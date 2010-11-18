@@ -9,7 +9,7 @@ This template is a generic HTML5 template.
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         {% block title %}
-		<title>Utrecht Noord West - Ledenadministratie</title> 
+		<title>NWonline - Kerkelijk Bureau</title> 
 		{% endblock %}
 		<link href="/media/style/cupertino/jquery-ui.css" rel="stylesheet" type="text/css"/>
 		<script src="/media/js/jquery.min.js"></script>
@@ -22,7 +22,7 @@ This template is a generic HTML5 template.
     <body>
         <header>
 		<div id="top">
-			<span>Utrecht Noord West - Ledenadministratie</span>
+			<span>NWonline - Kerkelijk Bureau</span>
 			{% if user.is_active %}
 			<span id="user">Welkom, {% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}. <a href="/logout">log uit</a></span>
 			{% endif %}
