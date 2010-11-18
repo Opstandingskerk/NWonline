@@ -1,0 +1,44 @@
+{% extends "KB/main.html" %}
+
+{% load customtags %}
+
+{% block content %}
+
+<div class="wizard">
+<h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
+<p>Wie wordt aanspreekpersoon/gezinshoofd?</p>
+<form name="form" id="form" action="." method="post">{% csrf_token %}
+
+<input type="radio" name="familyHead" value="A" id="headPersoonA"/><label for="headPersoonA">{{persoonA}}</label>
+<input type="radio" name="familyHead" value="B" id="headPersoonB"/><label for="headPersoonB">{{persoonB}}</label>
+{{ form.gezinshoofd }}<br class="clear"/>
+
+<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+{{ previous_fields|safe }}
+<input type="submit" id="submitButton" value="Volgende">
+<br class="clear"/>
+</form>
+</div>
+
+<script type="text/javascript">
+
+function update() {
+	var familyHead = $("form input[name='familyHead']").fieldValue();
+
+	if (familyHead == "") {
+		$("#submitButton").attr("disabled", true);
+	} else {
+		$("form input[name='{{form.gezinshoofd.html_name}}']").val(familyHead);
+		$("#submitButton").removeAttr('disabled');
+	}
+}
+
+$(document).ready(function(){
+	$("form input[name='familyHead']").click(update);	
+	update();
+});
+
+</script>
+
+{% endblock %}
+

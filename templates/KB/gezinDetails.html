@@ -1,0 +1,117 @@
+{% extends "KB/main.html" %}
+
+{% block content %}
+
+{% load customtags %}
+
+<div class="actions">
+	<span class="title">
+		{% if formState == "ADD" or gezinForm.errors %}
+		<h2>Gezin toevoegen</h2>
+		{% else %}
+		<h2>Fam. {{ gezinForm.instance.txtgezinsnaam }}</h2>
+		{% endif %}
+	</span>
+	<br class="clear"/>
+</div>
+
+<div id="detail" class="container">
+
+<form name="gezinForm" id="gezinForm" action="" method="post">
+<input type="hidden" name="idgezin" id="idgezin" value="{{gezinForm.instance.idgezin}}"/>
+{% if gezinForm.errors %}
+<input type="hidden" name="gezinFormHasErrors" id="gezinFormHasErrors" value="1"/>
+{% else %}
+<input type="hidden" name="gezinFormHasErrors" id="gezinFormHasErrors" value="0"/>
+{% endif %}
+{{ gezinForm.txtgezinsnaam|generate:"fixed" }}<br class="clear"/>
+{{ gezinForm.txtstraatnaam|generate:"fixed" }} {{ gezinForm.inthuisnummer|generate }} {{ gezinForm.txthuisnummertoevoeging|generate }}<br class="clear"/>
+{{ gezinForm.txtpostcode|generate:"fixed" }} {{ gezinForm.txtplaats|generate }}	{{ gezinForm.idland|generate }}<br class="clear"/>
+{{ gezinForm.txttelefoon|generate:"fixed" }}<br class="clear"/>
+{{ gezinForm.txtopmerking|generate:"fixed" }}<br class="clear"/>
+<input type="submit" class="button" id="buttonSaveGezinForm" value="Opslaan"/> 
+<input type="button" id="buttonModifyGezinForm" class="button" value="Wijzigen" onclick="modifyGezinForm()"/>
+<input type="button" id="buttonCancelGezinForm" class="button" value="Annuleren" onclick="cancelGezinForm()"/>
+</form>
+
+<br class="clear"/>
+
+<div class="actions">
+	<span class="buttons">
+		{% if gezinForm.instance.idgezin %}
+		<a href="persoon/add">Nieuw persoon</a>
+		{% endif %}
+	</span>
+	<br class="clear"/>
+</div>
+
+<table cellpadding="0" cellspacing="0" class="listview">
+	<tr>
+		<th>Roepnaam</th>
+    	<th>Geboortedatum</th>
+    	<th>Geslacht</th>
+    	<th>Telefoon</th>
+    	<th>E-mailadres</th>
+    </tr>
+	{% if persoonList %}
+	    {% for persoon in persoonList  %}
+		    <tr>
+		        <td><a href="../persoon/{{ persoon.idpersoon }}/">{{ persoon.txtroepnaam }}</a></td>
+		        <td>{{ persoon.dtmgeboortedatum|date }}</td>
+		        <td>{{ persoon.idgeslacht }}</td>
+		        <td>{{ persoon.txttelefoonnummer }}</td>
+		        <td>{{ persoon.txtemailadres }}</td>
+		    </tr>
+	    {% endfor %}
+	{% else %}
+	    <tr>
+	    	<td colspan="5">Geen personen.</td>
+	    </tr>
+	{% endif %}	    
+</table>
+
+
+
+</div> <!-- detail -->
+
+<script language="javascript">
+var formState = "{{formState}}";
+
+function update() {
+	if (formState == "VIEW") {
+		// Disable form inputs
+		$('#gezinForm :input').attr('disabled', true);
+		// Check if form is bound to gezin
+		if ($('#idgezin').val() != "None")
+			// Bound, enable 'Modify' button
+			$('#buttonModifyGezinForm').removeAttr('disabled');
+	}
+
+	if (formState == "MODIFY"
+		|| formState == "ADD") {
+		// Enable form inputs
+		$("#detail :input").removeAttr("disabled");
+		// Enable/disable buttons
+		$("#buttonModifyGezinForm").attr("disabled", true);	
+		$("#buttonCancelGezinForm").removeAttr('disabled');
+	}	
+}
+
+function modifyGezinForm() {
+	formState = "MODIFY";
+	update();
+}
+
+function cancelGezinForm() {
+	window.location = "{{cancelRedirect}}";
+}
+
+$(document).ready(function(){
+	update();
+});
+
+
+</script>
+
+{% endblock %}
+

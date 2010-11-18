@@ -1,0 +1,55 @@
+    <table cellpadding="0" cellspacing="0" class="listview">
+    <tr>
+    	<th>Achternaam</th>
+    	<th>Roepnaam</th>
+    	<th>Geboortedatum</th>
+    	<th>Geslacht</th>
+    	<th>Gezin</th>
+    	<th>Adres</th>
+    	<th>Postcode</th>
+    	<th>Plaats</th>
+    	<th>Land</th>
+    	<th>Telefoon</th>
+    	<th>E-mailadres</th>
+    </tr>
+    {% if page.object_list %}
+    {% for persoon in page.object_list  %}
+    <tr>
+        <td><a href="gezin/persoon/{{ persoon.idpersoon }}/">{{ persoon.txtachternaam }} {{ persoon.txttussenvoegsels }}</a></td>
+        <td>{{ persoon.txtroepnaam }}</td>
+        <td>{{ persoon.dtmgeboortedatum|date }}</td>
+        <td>{{ persoon.idgeslacht }}</td>
+        <td><a href="gezin/{{ persoon.idgezin.idgezin }}/">{{ persoon.idgezin.txtgezinsnaam }} <img border="0" alt="Direct naar gezin" style="float: right" src="/media/img/gotofamily.jpg"></a></td>
+        <td>{{ persoon.idgezin.txtstraatnaam }} {{ persoon.idgezin.inthuisnummer }}{{ persoon.idgezin.txthuisnummertoevoeging }}</td>
+        <td>{{ persoon.idgezin.txtpostcode }}</td>
+        <td>{{ persoon.idgezin.txtplaats }}</td>
+        <td>{{ persoon.idgezin.idland }}</td>
+        <td>{{ persoon.txttelefoonnummer }}</td>
+        <td>{{ persoon.txtemailadres }}</td>
+    </tr>
+    {% endfor %}
+	{% else %}
+	<tr>
+	    <td colspan="11">Geen leden gevonden.</td>
+	</tr>
+	{% endif %}    
+    </table>
+	
+	{% if page.object_list %}
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if page.has_previous %}
+	            <a href="?page={{ page.previous_page_number }}">< vorige</a>
+	        {% endif %}
+	
+	        <span class="current">
+	            Page {{ page.number }} of {{ page.paginator.num_pages }}.
+	        </span>
+	
+	        {% if page.has_next %}
+	            <a href="?page={{ page.next_page_number }}">volgende ></a>
+	        {% endif %}
+	    </span>
+	</div>
+	{% endif %} 
+

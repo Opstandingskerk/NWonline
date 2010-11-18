@@ -1,0 +1,22 @@
+{% extends "KB/base.html" %}
+
+{% comment %}
+
+Login page
+
+{% endcomment %}
+
+{% block body %}
+
+<section>
+	<div id="login" class="container">
+	<form name="login" action="" method="post">
+	<div class="message">{{ message }}</div>
+	<label for="username">Gebruikersnaam:</label><input id="username" type="text" name="username"/><br/>
+	<label for="password">Wachtwoord:</label><input id="password" type="password" name="password"/><br/ class="clear">
+	<div style="margin-left: 10.5em; margin-top: 1em"><input type="submit" value="OK"/></div>
+	</form>
+	</div>
+</section>
+
+{% endblock %}

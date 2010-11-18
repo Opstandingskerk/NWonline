@@ -1,0 +1,164 @@
+{% extends "KB/main.html" %}
+
+{% block head %}
+
+{{ form.media }}
+
+{% endblock %}
+
+{% block content %}
+
+{% load customtags %}
+
+<div class="actions">
+	<span class="title">
+		{% if formState == "ADD" or persoonForm.errors %}
+		<h2>Persoon toevoegen</h2>
+		{% else %}
+		<h2>{{ persoonForm.instance.txtroepnaam }} {{ persoonForm.instance.txttussenvoegsels }} {{ persoonForm.instance.txtachternaam }}</h2>
+		{% endif %}
+	</span>
+	<span class="buttons">
+		{% if persoonForm.instance.idpersoon %}
+		<a href="/wizard/marry/{{persoonForm.instance.idpersoon}}/">Trouwen</a>
+		{% endif %}	
+	</span>
+	<br class="clear"/>
+</div>
+
+<form name="persoonForm" id="persoonForm" action="" method="post">
+<div id="tabs_persoon" style="display: none" class="container">
+	<ul>
+		<li><a href="#subtab_persoonsgegevens">Persoonsgegevens</a></li>
+		<li><a href="#subtab_kerkhistorie">Kerkhistorie</a></li>
+	</ul>
+	<div id="subtab_persoonsgegevens">
+		<div style="display:none">
+		{{ persoonForm.idgezin }}
+		</div>
+		<input type="hidden" name="idpersoon" id="idpersoon" value="{{persoonForm.instance.idpersoon}}"/>
+		{% if persoonForm.errors %}
+		<input type="hidden" name="persoonFormHasErrors" id="persoonFormHasErrors" value="1"/>
+		{% else %}
+		<input type="hidden" name="persoonFormHasErrors" id="persoonFormHasErrors" value="0"/>
+		{% endif %}
+		
+		{{ persoonForm.txtachternaam|generate:"fixed" }} {{ persoonForm.txttussenvoegsels|generate }} {{ persoonForm.idgeslacht|generate }} <br class="clear"/>
+		{{ persoonForm.txtvoorletters|generate:"fixed" }} {{ persoonForm.txtdoopnaam|generate }}<br class="clear"/>
+		{{ persoonForm.txtroepnaam|generate:"fixed" }} {{ persoonForm.boolaansprekenmetroepnaam }} <label for="id_boolaansprekenmetroepnaam">{{ persoonForm.boolaansprekenmetroepnaam.label }}</label><br class="clear"/>
+		{{ persoonForm.txttelefoonnummer|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.txtemailadres|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.idgezinsrol|generate:"fixed" }}<br class="clear"/>
+		
+		{{ persoonForm.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.dtmgeboortedatum|generate:"fixed" }} <label for="id_txtgeboorteplaats">te</label> {{ persoonForm.txtgeboorteplaats }} {{ persoonForm.txtgeboorteplaats.errors }}<br class="clear"/>
+		{{ persoonForm.txtopmerking|generate:"fixed" }} <br class="clear"/>
+	</div> <!-- subtab_persoonsgegevens -->
+	<div id="subtab_kerkhistorie">
+		{{ persoonForm.dtmdatumdoop|generate:"fixed" }} {{ persoonForm.iddoopgemeente|generate }}<br class="clear"/>
+		{{ persoonForm.dtmdatumbelijdenis|generate:"fixed" }} {{ persoonForm.idbelijdenisgemeente|generate }}<br class="clear"/>
+		{{ persoonForm.dtmhuwelijksdatum|generate:"fixed" }}<br class="clear">
+		{{ persoonForm.dtmdatumhuwelijksbevestiging|generate:"fixed" }} {{ persoonForm.idhuwelijksgemeente|generate }}<br class="clear"/>
+		{{ persoonForm.dtmdatumbinnenkomst|generate:"fixed" }}{{ persoonForm.idbinnengekomenuitgemeente|generate }}<br class="clear"/>
+		{{ persoonForm.dtmdatumvertrek|generate:"fixed" }} {{ persoonForm.idvertrokkennaargemeente|generate }}<br class="clear"/>
+		
+	</div> <!-- subtab_kerkhistorie -->
+<input type="submit" class="button" id="buttonSavePersoonForm" value="Opslaan"/> 
+<input type="button" id="buttonModifyPersoonForm" class="button" value="Wijzigen" onclick="modifyPersoonForm()"/>
+<input type="button" id="buttonCancelPersoonForm" class="button" value="Annuleren" onclick="cancelPersoonForm()"/>
+<br class="clear"/>
+
+</div> <!-- tabs_persoon -->
+</form>
+
+<div class="actions">
+	<span class="title">
+		<h2>Fam. {{ persoonForm.instance.idgezin.txtgezinsnaam }} <a href="../../{{ persoonForm.instance.idgezin.idgezin }}/"><img border="0" src="/media/img/gotofamily.jpg"></a></h2>
+	</span>
+</div>
+
+    <table cellpadding="0" cellspacing="0" class="listview">
+    <tr>
+    	<th>Roepnaam</th>
+    	<th>Geboortedatum</th>
+    	<th>Geslacht</th>
+    	<th>Telefoon</th>
+    	<th>E-mailadres</th>
+    </tr>
+{% if persoonList %}
+    {% for persoon in persoonList  %}
+    <tr>
+        <td><a href="../../persoon/{{ persoon.idpersoon }}/">{% firstof persoon.txtroepnaam " " %}</a></td>
+        <td>{{ persoon.dtmgeboortedatum|date }}</td>
+        <td>{{ persoon.idgeslacht }}</td>
+        <td>{{ persoon.txttelefoonnummer }}</td>
+        <td>{{ persoon.txtemailadres }}</td>
+    </tr>
+    {% endfor %}
+{% else %}
+    <tr><td colspan="5">Geen personen.</td></tr>
+{% endif %}
+    </table>
+
+
+<script language="javascript">
+var formState = "{{formState}}";
+
+function update() {
+	if (formState == "VIEW") {
+		// Disable form inputs
+		$('#persoonForm :input').attr('disabled', true);
+
+		// Check if form is bound to gezin
+		if ($('#idpersoon').val() != "None")
+			// Bound, enable 'Modify' button
+			$('#buttonModifyPersoonForm').removeAttr('disabled');
+	}
+
+	if (formState == "MODIFY"
+		|| formState == "ADD") {
+		// Enable form inputs
+		$("#persoonForm :input").removeAttr("disabled");
+
+		// Enable/disable buttons
+		$("#buttonModifyPersoonForm").attr("disabled", true);	
+		$("#buttonCancelPersoonForm").removeAttr('disabled');
+	}
+}
+
+function modifyPersoonForm() {
+	formState = "MODIFY";
+	update();
+}
+
+function cancelPersoonForm() {
+	window.location = "{{cancelRedirect}}";
+}
+
+function clearPersoonForm() {
+	// Reset form
+	resetForm("#persoonForm");
+}
+
+$(document).ready(function(){
+	// Create JQuery tabs
+	$("#tabs_persoon").tabs();
+	$("#tabs_persoon").show();
+	
+
+	// Datepicker
+	$("{{ persoonForm.dtmgeboortedatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ persoonForm.dtmdatumdoop|id }}").datepicker({ dateFormat: 'dd-mm-yy' });		
+	$("{{ persoonForm.dtmdatumbelijdenis|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ persoonForm.dtmhuwelijksdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ persoonForm.dtmdatumhuwelijksbevestiging|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ persoonForm.dtmdatumbinnenkomst|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ persoonForm.dtmdatumvertrek|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+
+	update();
+});
+
+
+</script>
+
+{% endblock %}

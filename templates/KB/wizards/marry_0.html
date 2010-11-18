@@ -1,0 +1,83 @@
+{% extends "KB/main.html" %}
+
+{% load customtags %}
+
+{% block content %}
+
+<div class="wizard">
+<h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
+<p>Met wie gaat {{ persoonA }} trouwen?</p>
+<form name="form" id="form" action="." method="post">{% csrf_token %}
+<input type="hidden" id="persoonA" value="{{persoonA}}"/>
+{{ form.isNew|generate:"fixed" }}<input type="text" style="display:none" id="searchField" size="30" onChange="update()"/>
+<br class="clear"/>
+
+<div id="persoonDetails" {% if form.errors %}style="display: none"{% endif %}>
+{{ form.idpersoonB }}
+{{ form.txtachternaam|generate:"fixed" }} {{ form.txttussenvoegsels|generate }} {{ form.idgeslacht|generate }}<br class="clear"/>
+{{ form.txtroepnaam|generate:"fixed" }} {{ form.txtvoorletters|generate }}<br class="clear"/>
+</div>
+
+<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+{{ previous_fields|safe }}
+<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
+<br class="clear"/>
+</form>
+</div>
+
+<script type="text/javascript">
+
+function submitForm() {
+	$('#persoonDetails :input').removeAttr('disabled');
+	document.form.submit();
+}
+
+function update() {
+	var isNew = $("form input[name='{{form.isNew.html_name}}']").fieldValue();
+	if (isNew == "") {
+		$("#persoonDetails").hide();
+		$("#submitButton").attr("disabled", true);
+	} else if (isNew == 1) {
+		$("#persoonDetails").show();
+		$("#searchField").hide();
+		$("#searchField").val("");
+		$("#submitButton").removeAttr('disabled');
+		$('#persoonDetails :input').removeAttr('disabled');
+		resetForm("#persoonDetails");
+	} else {
+		$('#persoonDetails :input').attr('disabled', true);
+		$("#persoonDetails").show();
+		$("#searchField").show().focus();
+		if (!$("#id_{{ form.idpersoonB.html_name }}").val()) {
+			$("#submitButton").attr("disabled", true);
+			resetForm("#persoonDetails");
+		} else {
+			$("#submitButton").removeAttr('disabled');
+		}
+	}	
+}
+
+function selectName(event, ui) {
+	$("{{form.idpersoonB|id}}").val(ui.item.idpersoon);
+	$("{{form.txtachternaam|id}}").val(ui.item.txtachternaam);
+	$("{{form.txttussenvoegsels|id}}").val(ui.item.txttussenvoegsels);
+	$("{{form.txtroepnaam|id}}").val(ui.item.txtroepnaam);
+	$("{{form.txtvoorletters|id}}").val(ui.item.txtvoorletters);
+	$("{{form.idgeslacht|id}}").val(ui.item.idgeslacht);
+	update();
+}
+
+$(document).ready(function(){
+	$("#searchField").autocomplete({source:"/query/persoon",
+									minLength: 2,
+									select: selectName});
+
+	$("form input[name='{{form.isNew.html_name}}']").click(update);		
+
+	update();
+
+});
+</script>
+
+{% endblock %}
+
