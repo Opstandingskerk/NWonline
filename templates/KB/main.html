@@ -1,0 +1,36 @@
+{% extends "KB/base.html" %}
+
+{% comment %}
+
+Template for main page
+
+{% endcomment %}
+
+{% block body %}
+
+{% block menu %}
+
+<div class="menu">
+	<a href="/leden">Leden</a> <a href="#">Huiskringen</a> <a href="#">Rapportages</a> <a href="/admin">Onderhoud</a>
+	<div style="clear: both"></div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+<script type="text/javascript">
+
+function resetForm(id) {
+	$(':input', id)
+	 .not(':button, :submit, :reset')
+	 .val('')
+	 .removeAttr('checked')
+	 .removeAttr('selected');
+}
+
+</script>
+
+{% endblock %}

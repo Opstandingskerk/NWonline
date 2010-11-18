@@ -1,0 +1,25 @@
+{% extends "KB/main.html" %}
+
+{% comment %}
+
+Template for advanced search page
+
+{% endcomment %}
+
+{% block content %}
+
+<div class="container">
+<form name="form" id="form" action="." method="post">
+{{ searchForm }}
+<input type="submit" value="Zoek"/>
+<br class="clear"/>
+</form>
+</div>
+
+{% if page.object_list %}
+{% for persoon in page.object_list  %}
+{{ persoon }}
+{% endfor %}
+{% endif %}
+
+{% endblock %}

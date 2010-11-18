@@ -1,0 +1,57 @@
+{% extends "KB/main.html" %}
+
+{% block content %}
+
+<table class="actions" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td>
+	<input type="text" id="searchBox"/>
+	<img style="padding: 3px" src="/media/img/search_small.png" border="0"/> <a href="search/">uitgebreid</a>
+	</td>
+	<td align="right">
+		<a href="gezin/add">Nieuw gezin</a>
+	</td>
+</tr>
+</table>
+
+<div id="list">
+<!-- Filled by retrieveList() -->
+</div>
+
+<div id="loading"><img src="/media/img/ajax-loader.gif" border="0"/></div>
+	
+<script type="text/javascript">
+
+function retrieveList() {
+	filter = $("#searchBox").val()
+
+	$.get("/leden/?xhr&page={{page.number}}", {filter: filter },
+			function(data) {
+				$('#list').html(data)
+			});				 
+}
+
+$(document).ready(function(){
+	retrieveList();
+	
+	// Enable live filtering in search box
+	$("#searchBox").keyup(retrieveList);	
+
+	// Create ajax start function. It will disable input fields and displays the 
+	// load icon during ajax calls.
+	$("#loading").ajaxStart(function() {
+		$(this).show();		
+	});
+
+	// Create ajax complete function. Enables the input fields again and hides
+	// the load icon when ajax calls are finished.
+	$("#loading").ajaxComplete(function() {
+		$(this).hide();
+	});
+	
+});
+
+ 
+</script>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% comment %}
+
+This template is a generic HTML5 template.
+
+{% endcomment %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        {% block title %}
+		<title>Utrecht Noord West - Ledenadministratie</title> 
+		{% endblock %}
+		<link href="/media/style/cupertino/jquery-ui.css" rel="stylesheet" type="text/css"/>
+		<script src="/media/js/jquery.min.js"></script>
+		<script src="/media/js/jquery-ui.min.js"></script>
+		<script src="/media/js/jquery.form.js"></script>
+		<link rel="stylesheet" type="text/css" href="/media/style/base.css" /> 
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+		<div id="top">
+			<span>Utrecht Noord West - Ledenadministratie</span>
+			{% if user.is_active %}
+			<span id="user">Welkom, {% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}. <a href="/logout">log uit</a></span>
+			{% endif %}
+		</div>    	
+		</header>
+		<div id="main">
+    	{% block body %}{% endblock %}
+    	</div>
+    </body>
+</html>
+

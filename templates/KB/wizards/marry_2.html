@@ -1,0 +1,106 @@
+{% extends "KB/main.html" %}
+
+{% load customtags %}
+
+{% block content %}
+
+<div class="wizard">
+<h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
+<p>Op welk adres komt het gezin te wonen?</p>
+<form name="form" id="form" action="." method="post">{% csrf_token %}
+
+<input type="radio" id="id_2-code_0" value="A" {% if form.code.data == "A" %} checked="checked" {% endif %} name="2-code" /><label for="id_2-code_0">{{persoonA}} ({{gezinA.txtstraatnaam}} {{gezinA.inthuisnummer}}, {{gezinA.txtplaats}})</label>
+<input type="radio" id="id_2-code_1" value="B" {% if form.code.data == "B" %} checked="checked" {% endif %} name="2-code" /><label for="id_2-code_1">{{persoonB}} {% if persoonB.idpersoon %}({{gezinB.txtstraatnaam}} {{gezinB.inthuisnummer}}, {{gezinB.txtplaats}}){% endif %}</label>
+{% if persoonB.idpersoon %}
+<input type="radio" id="id_2-code_2" value="NEW" {% if form.code.data == "NEW" %} checked="checked" {% endif %} name="2-code" /><label for="id_2-code_2">Nieuw</label>
+{% endif %}
+
+<br class="clear"/>
+
+{{ form.welkgezin }}
+<div id="gezinDetails" style="display: none">
+{{ form.txtstraatnaam|generate:"fixed" }} {{ form.inthuisnummer|generate }} {{ form.txthuisnummertoevoeging|generate }}<br class="clear"/>
+{{ form.txtpostcode|generate:"fixed" }} {{ form.txtplaats|generate }}<br class="clear"/>
+{{ form.idland|generate:"fixed" }}<br class="clear"/>
+
+</div>
+
+<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+{{ previous_fields|safe }}
+<input type="button" id="submitButton" onClick="submitForm()" value="Voltooien">
+<br class="clear"/>
+</form>
+</div>
+
+<script type="text/javascript">
+
+function submitForm() {
+	$('#gezinDetails :input').removeAttr('disabled');
+	document.form.submit();
+}
+
+function update() {
+	var code = $("form input[name='2-code']").fieldValue();
+
+	if (code == "") {
+		$("#gezinDetails").hide();
+		$("#submitButton").attr("disabled", true);
+	} else if (code == "A") {
+		if ("{{persoonA.idpersoon}}") {
+			$('#gezinDetails :input').attr('disabled', true);
+		}
+		$("#gezinDetails").show();
+		$("#submitButton").removeAttr('disabled');
+	} else if (code == "B") {
+		if ("{{persoonB.idpersoon}}"!="None") {
+			$('#gezinDetails :input').attr('disabled', true);
+		} else {
+			$('#gezinDetails :input').removeAttr('disabled');
+		}
+		$("#gezinDetails").show();
+		$("#submitButton").removeAttr('disabled');
+	} else if (code == "NEW") {
+		$('#gezinDetails :input').removeAttr('disabled');
+		$("#gezinDetails").show();
+		$("#submitButton").removeAttr('disabled');
+	}
+}
+
+function fillForm() {
+	var code = $("form input[name='2-code']").fieldValue();
+
+	if (code == "A") {
+		$("{{form.txtstraatnaam|id}}").val("{{gezinA.txtstraatnaam}}");
+		$("{{form.inthuisnummer|id}}").val("{{gezinA.inthuisnummer}}");
+		$("{{form.txthuisnummertoevoeging|id}}").val("{{gezinA.txthuisnummertoevoeging}}");
+		$("{{form.txtpostcode|id}}").val("{{gezinA.txtpostcode}}");
+		$("{{form.txtplaats|id}}").val("{{gezinA.txtplaats}}");
+		$("{{form.idland|id}}").val("{{gezinA.idland.idland}}");
+	} else if (code == "B") {
+		$("{{form.txtstraatnaam|id}}").val("{{gezinB.txtstraatnaam}}");
+		$("{{form.inthuisnummer|id}}").val("{{gezinB.inthuisnummer}}");
+		$("{{form.txthuisnummertoevoeging|id}}").val("{{gezinB.txthuisnummertoevoeging}}");
+		$("{{form.txtpostcode|id}}").val("{{gezinB.txtpostcode}}");
+		$("{{form.txtplaats|id}}").val("{{gezinB.txtplaats}}");
+		$("{{form.idland|id}}").val("{{gezinB.idland.idland}}");
+	} else if (code == "NEW") {
+		$("{{form.txtstraatnaam|id}}").val("");
+		$("{{form.inthuisnummer|id}}").val("");
+		$("{{form.txthuisnummertoevoeging|id}}").val("");
+		$("{{form.txtpostcode|id}}").val("");
+		$("{{form.txtplaats|id}}").val("");
+		$("{{form.idland|id}}").val("");
+	}
+
+	update();
+}
+
+$(document).ready(function(){
+	$("form input[name='2-code']").change(fillForm);	
+	update();
+});
+
+</script>
+
+{% endblock %}
+
