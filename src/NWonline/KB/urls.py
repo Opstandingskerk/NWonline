@@ -18,5 +18,5 @@ urlpatterns = patterns('',
     (r'^query/persoon/.*$', 'NWonline.KB.ajax.queryPersoon'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': 'D:/Development/Projects/NWonline/media/OLA'}),
+        {'document_root': 'D:/Development/Projects/NWonline/media/KB'}),
 )
