@@ -27,7 +27,15 @@ function retrieveList() {
 
 	$.get("/leden/?xhr&page={{page.number}}", {filter: filter },
 			function(data) {
-				$('#list').html(data)
+				$('#list').html(data);
+				
+				/* write contents of the table cells to the title attribute of the td, so you can see the full contents on mouse over */
+				$('#persoonListTable td').each(function() {
+					this.title = $(this).text();
+				});
+				/* make the overflow ellipsis work cross browser */
+				$('#persoonListTable td').textOverflow('...',true);				
+				
 			});				 
 }
 
