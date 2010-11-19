@@ -1,0 +1,19 @@
+table#persoonListTable {
+	/* set this to whatever, 100% is usually what you want. */
+	width: 100%; 
+	
+	/* this is needed to make the table stop autosizing */
+	table-layout:fixed; 
+	
+}
+th#persoonListTable, td#persoonListTable {
+	/* we may want to use specific percentages per column? it will follow exactly what you specify */
+	width: 9%;/* 11 cols = 9% each */ 
+	
+	/* next block is required for the clipping behavior */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align:top;
+	text-align:left;
+	white-space: nowrap;
+}
