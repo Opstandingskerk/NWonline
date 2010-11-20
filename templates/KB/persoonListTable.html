@@ -1,16 +1,16 @@
     <table cellpadding="0" cellspacing="0" class="listview" id="persoonListTable">
     <tr>
-    	<th>Achternaam</th>
-    	<th>Roepnaam</th>
-    	<th>Geboortedatum</th>
-    	<th>Geslacht</th>
-    	<th>Gezin</th>
-    	<th>Adres</th>
-    	<th>Postcode</th>
-    	<th>Plaats</th>
-    	<th>Land</th>
-    	<th>Telefoon</th>
-    	<th>E-mailadres</th>
+    	<th class="col_surname">Achternaam</th>
+    	<th class="col_name">Roepnaam</th>
+    	<th class="col_birth">Geboortedatum</th>
+    	<th class="col_gender">Geslacht</th>
+    	<th class="col_family">Gezin</th>
+    	<th class="col_address">Adres</th>
+    	<th class="col_zip">Postcode</th>
+    	<th class="col_city">Plaats</th>
+    	<th class="col_country">Land</th>
+    	<th class="col_phone">Telefoon</th>
+    	<th class="col_email">E-mailadres</th>
     </tr>
     {% if page.object_list %}
     {% for persoon in page.object_list  %}
