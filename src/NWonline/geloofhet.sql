@@ -149,7 +149,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'admin','','','l.batteau@indieit.nl','sha1$3c2b0$f3252e9e2e716ca2264d7b509dac9c1ee997b8cd',1,1,1,'2010-11-12 10:16:11','2010-10-26 12:51:03'),(2,'kbuser','Test','Gebruiker','test@nietbestaand.nl','sha1$c0999$6f44a982128af6947e8d69ab8403bf1680732f4d',1,1,0,'2010-11-20 12:58:46','2010-10-26 13:28:04'),(3,'kbadmin','Admin','Gebruiker','admin@nietbestaand.nl','sha1$58822$0908f32b2659386dd7f101e4470144749b81b34d',1,1,1,'2010-11-20 15:04:07','2010-10-26 14:15:08');
+INSERT INTO `auth_user` VALUES (1,'admin','','','email@someplace.com','sha1$b051b$a3fe613aabf3607d1aedb4c37e90a1891cf9a3a3',1,1,1,'2010-11-12 10:16:11','2010-10-26 12:51:03'),(2,'kbuser','Test','Gebruiker','test@nietbestaand.nl','sha1$2c429$069b3ff9c4140e51e1b1ed6cdc51baba7ade1306',1,1,0,'2010-11-20 12:58:46','2010-10-26 13:28:04'),(3,'kbadmin','Admin','Gebruiker','admin@nietbestaand.nl','sha1$d8718$ed5e517ca1d2645de62f9742f8d20a0c54527aeb',1,1,1,'2010-11-20 15:04:07','2010-10-26 14:15:08');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +226,7 @@ CREATE TABLE `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +235,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2010-10-26 13:28:04',1,3,'2','kbuser',1,''),(2,'2010-10-26 13:28:59',1,3,'2','kbuser',2,'first_name, last_name, email en is_staff gewijzigd.'),(3,'2010-10-26 14:10:13',1,3,'2','kbuser',2,'password gewijzigd.'),(4,'2010-10-26 14:11:53',1,3,'2','kbuser',2,'user_permissions gewijzigd.'),(5,'2010-10-26 14:14:36',1,3,'2','kbuser',2,'is_superuser gewijzigd.'),(6,'2010-10-26 14:15:08',1,3,'3','testuser',1,''),(7,'2010-10-26 14:16:39',1,3,'2','kbuser',2,'is_superuser en user_permissions gewijzigd.'),(8,'2010-10-26 14:19:04',1,3,'3','kbadmin',2,'username, first_name, last_name, email, is_staff en is_superuser gewijzigd.'),(9,'2010-10-26 14:39:25',3,20,'1348','Joep Bladiebla',2,'boolactief gewijzigd.'),(10,'2010-10-26 14:43:43',3,20,'1348','Joep Bladiebla',2,'boolactief gewijzigd.'),(11,'2010-10-26 14:44:03',3,20,'1348','Joep Bladiebla',2,'boolactief gewijzigd.'),(12,'2010-10-26 15:12:00',3,20,'1','Jorieke Aaftink',2,'boolactief gewijzigd.'),(13,'2010-11-12 10:29:43',1,20,'965','Yannick Aikema',2,'idgezin en idgezinsrol gewijzigd.'),(14,'2010-11-12 10:30:11',1,20,'1113','Liza Baas',2,'idgezin en idgezinsrol gewijzigd.'),(15,'2010-11-12 10:30:51',1,13,'894','Aikema, Y.O. (Yannick)',3,'');
+INSERT INTO `django_admin_log` VALUES (1,'2010-10-26 13:28:04',1,3,'2','kbuser',1,''),(2,'2010-10-26 13:28:59',1,3,'2','kbuser',2,'first_name, last_name, email en is_staff gewijzigd.'),(3,'2010-10-26 14:10:13',1,3,'2','kbuser',2,'password gewijzigd.'),(4,'2010-10-26 14:11:53',1,3,'2','kbuser',2,'user_permissions gewijzigd.'),(5,'2010-10-26 14:14:36',1,3,'2','kbuser',2,'is_superuser gewijzigd.'),(6,'2010-10-26 14:15:08',1,3,'3','testuser',1,''),(7,'2010-10-26 14:16:39',1,3,'2','kbuser',2,'is_superuser en user_permissions gewijzigd.'),(8,'2010-10-26 14:19:04',1,3,'3','kbadmin',2,'username, first_name, last_name, email, is_staff en is_superuser gewijzigd.'),(9,'2010-10-26 14:39:25',3,20,'1348','Joep Bladiebla',2,'boolactief gewijzigd.'),(10,'2010-10-26 14:43:43',3,20,'1348','Joep Bladiebla',2,'boolactief gewijzigd.'),(11,'2010-10-26 14:44:03',3,20,'1348','Joep Bladiebla',2,'boolactief gewijzigd.'),(12,'2010-10-26 15:12:00',3,20,'1','Jorieke Aaftink',2,'boolactief gewijzigd.'),(13,'2010-11-12 10:29:43',1,20,'965','Yannick Aikema',2,'idgezin en idgezinsrol gewijzigd.'),(14,'2010-11-12 10:30:11',1,20,'1113','Liza Baas',2,'idgezin en idgezinsrol gewijzigd.'),(15,'2010-11-12 10:30:51',1,13,'894','Aikema, Y.O. (Yannick)',3,''),(16,'2010-11-20 15:09:14',3,3,'1','admin',2,'email gewijzigd.'),(17,'2010-11-20 15:10:16',3,3,'3','kbadmin',2,'Geen velden gewijzigd.'),(18,'2010-11-20 15:10:29',3,3,'2','kbuser',2,'Geen velden gewijzigd.');
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -686,4 +686,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-11-20 15:04:53
+-- Dump completed on 2010-11-20 15:10:33
