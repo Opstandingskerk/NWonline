@@ -5,6 +5,7 @@
     	<th class="col_birth">Geboortedatum</th>
     	<th class="col_gender">Geslacht</th>
     	<th class="col_family">Gezin</th>
+    	<th class="col_family_link">&nbsp;</th>
     	<th class="col_address">Adres</th>
     	<th class="col_zip">Postcode</th>
     	<th class="col_city">Plaats</th>
@@ -19,8 +20,9 @@
         <td>{{ persoon.txtroepnaam }}</td>
         <td>{{ persoon.dtmgeboortedatum|date }}</td>
         <td>{{ persoon.idgeslacht }}</td>
-        <td><a href="gezin/{{ persoon.idgezin.idgezin }}/">{{ persoon.idgezin.txtgezinsnaam }} <img border="0" alt="Direct naar gezin" style="float: right" src="/media/img/gotofamily.jpg"></a></td>
-        <td>{{ persoon.idgezin.txtstraatnaam }} {{ persoon.idgezin.inthuisnummer }}{{ persoon.idgezin.txthuisnummertoevoeging }}</td>
+        <td><a href="gezin/{{ persoon.idgezin.idgezin }}/">{{ persoon.idgezin.txtgezinsnaam }}</a></td>
+        <td><a href="gezin/{{ persoon.idgezin.idgezin }}/"><img border="0" alt="Direct naar gezin" style="float: right" src="/media/img/gotofamily.jpg"></a></td>
+        <td class="ellipsis">{{ persoon.idgezin.txtstraatnaam }} {{ persoon.idgezin.inthuisnummer }}{{ persoon.idgezin.txthuisnummertoevoeging }}</td>
         <td>{{ persoon.idgezin.txtpostcode }}</td>
         <td>{{ persoon.idgezin.txtplaats }}</td>
         <td>{{ persoon.idgezin.idland }}</td>
@@ -30,7 +32,7 @@
     {% endfor %}
 	{% else %}
 	<tr>
-	    <td colspan="11">Geen leden gevonden.</td>
+	    <td colspan="12">Geen leden gevonden.</td>
 	</tr>
 	{% endif %}    
     </table>

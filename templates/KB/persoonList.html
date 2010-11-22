@@ -32,8 +32,10 @@ function retrieveList() {
 				$('#persoonListTable td').each(function() { 
 					this.title = $(this).text(); 
 				}); 
-				/* make the overflow ellipsis work cross browser */ 
-				$('#persoonListTable td').textOverflow('...',true);    
+				/* make the overflow ellipsis work cross browser */
+				//code below currently commented because it is too slow in FireFox... GRR!
+				//stil works nice in all browser that support the CSS3 text-overflow property tho (IE6+ amongst others)
+				//$('#persoonListTable td.ellipsis').textOverflow('...',true);    
 			});				 
 }
 

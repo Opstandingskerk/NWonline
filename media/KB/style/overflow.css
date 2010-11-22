@@ -13,6 +13,7 @@ table#persoonListTable th, table#persoonListTable td {
 	vertical-align:top;
 	text-align:left;
 	white-space: nowrap;
+	padding: 2px 5px 0px 5px;
 }
 table#persoonListTable th.col_surname {
 	width: 12%;
@@ -28,6 +29,9 @@ table#persoonListTable th.col_gender {
 }
 table#persoonListTable th.col_family {
 	width: 12%;
+}
+table#persoonListTable th.col_family_link {
+	width: 1%;
 }
 table#persoonListTable th.col_address {
 	width: 15%;
