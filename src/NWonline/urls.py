@@ -1,6 +1,12 @@
-from django.conf.urls.defaults import *
-
-# Uncomment the next two lines to enable the admin:
+###############################################################################
+# File: NWonline/urls.py
+# Author: Lukas Batteau
+# Description: Url patterns file for the NWonline project.
+# 
+# CHANGE HISTORY
+# 20101209    Lukas Batteau        Added header. Reorganized imports.
+###############################################################################
+from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
 admin.autodiscover()
 

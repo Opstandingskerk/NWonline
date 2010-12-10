@@ -1,5 +1,14 @@
 {% extends "KB/main.html" %}
 
+{%#############################################################################
+# File: KB/persoonList.html
+# Author: Lukas Batteau
+# Description: Page 'Leden'
+# 
+# CHANGE HISTORY
+# 20101209    Lukas Batteau        Added header.
+#############################################################################%}
+
 {% block content %}
 
 <table class="actions" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -28,14 +37,10 @@ function retrieveList() {
 	$.get("/leden/?xhr&page={{page.number}}", {filter: filter },
 			function(data) {
 				$('#list').html(data)
-				/* write contents of the table cells to the title attribute of the td, so you can see the full contents on mouse over */ 
+				// write contents of the table cells to the title attribute of the td, so you can see the full contents on mouse over  
 				$('#persoonListTable td').each(function() { 
 					this.title = $(this).text(); 
 				}); 
-				/* make the overflow ellipsis work cross browser */
-				//code below currently commented because it is too slow in FireFox... GRR!
-				//stil works nice in all browser that support the CSS3 text-overflow property tho (IE6+ amongst others)
-				//$('#persoonListTable td.ellipsis').textOverflow('...',true);    
 			});				 
 }
 

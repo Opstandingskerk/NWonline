@@ -1,3 +1,11 @@
+###############################################################################
+# File: NWonline/KB/views.py
+# Author: Lukas Batteau
+# Description: Request handlers, usually mapping directly to a certain page.
+# 
+# CHANGE HISTORY
+# 20101209    Lukas Batteau        Added header.
+###############################################################################
 from NWonline.KB.forms import PersoonSearchForm
 from NWonline.KB.models import GezinsRol
 from datetime import datetime
@@ -28,10 +36,10 @@ def handlePersoonList(request):
                 # Empty, skip
                 continue
             
-            persoon_list = persoon_list & Persoon.objects.all().filter(Q(txtachternaam__icontains=word) |
-                                                                       Q(txtroepnaam__icontains=word) |
-                                                                       Q(idgezin__txtgezinsnaam__icontains=word) |
-                                                                       Q(idgezin__txtstraatnaam__icontains=word))
+            persoon_list = persoon_list.filter(Q(txtachternaam__icontains=word) |
+                                               Q(txtroepnaam__icontains=word) |
+                                               Q(idgezin__txtgezinsnaam__icontains=word) |
+                                               Q(idgezin__txtstraatnaam__icontains=word))
     except:
         # No search filter, continue
         pass

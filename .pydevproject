@@ -13,8 +13,4 @@
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/NWonline/src</path>
 </pydev_pathproperty>
-<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
-<path>C:\Program Files\BitNami DjangoStack\apps\django</path>
-<path>C:\Program Files\BitNami DjangoStack\apps</path>
-</pydev_pathproperty>
 </pydev_project>

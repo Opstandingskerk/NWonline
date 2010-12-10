@@ -1,3 +1,11 @@
+###############################################################################
+# File: NWonline/KB/models.py
+# Author: Lukas Batteau
+# Description: Business models, mapping directly to the data model used.
+# 
+# CHANGE HISTORY
+# 20101209    Lukas Batteau        Added header.
+###############################################################################
 from django.db import models
 
 class MySQLBooleanField(models.BooleanField):

@@ -1,4 +1,11 @@
-from NWonline.KB import wizards
+###############################################################################
+# File: NWonline/KB/urls.py
+# Author: Lukas Batteau
+# Description: Url patterns file for the KB app
+# 
+# CHANGE HISTORY
+# 20101209    Lukas Batteau        Added header. Removed unused import.
+###############################################################################
 from django.conf.urls.defaults import patterns, include
 
 urlpatterns = patterns('',
@@ -18,5 +25,5 @@ urlpatterns = patterns('',
     (r'^query/persoon/.*$', 'NWonline.KB.ajax.queryPersoon'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': '../../media/KB'}),
+        {'document_root': 'D:/Development/Projects/NWonline/media/KB'}),
 )

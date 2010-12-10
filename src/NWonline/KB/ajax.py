@@ -1,3 +1,11 @@
+###############################################################################
+# File: NWonline/KB/ajax.py
+# Author: Lukas Batteau
+# Description: Ajax request handlers
+# 
+# CHANGE HISTORY
+# 20101209    Lukas Batteau        Added header.
+###############################################################################
 from NWonline.KB.models import Persoon
 from django.db.models.query_utils import Q
 from django.http import HttpResponse

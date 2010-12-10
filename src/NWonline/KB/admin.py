@@ -1,3 +1,11 @@
+###############################################################################
+# File: NWonline/KB/admin.py
+# Author: Lukas Batteau
+# Description: ModelAdmin classes customizing admin default behaviour 
+# 
+# CHANGE HISTORY  
+# 20101209    Lukas Batteau        Added header.
+###############################################################################
 from NWonline.KB.models import GemeenteType, Gemeente, Geslacht, \
     GezinsRol, LidmaatschapStatus, Wijk, Huiskring, HuiskringLidRol, Land, Persoon, \
     Gezin

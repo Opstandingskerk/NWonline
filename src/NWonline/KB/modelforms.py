@@ -1,3 +1,11 @@
+###############################################################################
+# File: NWonline/KB/modelforms.py
+# Author: Lukas Batteau
+# Description: ModelForm classes, customizing default form behavior for models. 
+# 
+# CHANGE HISTORY
+# 20101209    Lukas Batteau        Added header.
+###############################################################################
 from django import forms
 import models
 
