@@ -6,7 +6,8 @@
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header.
 # 20110118    Lukas Batteau        Move kids from previous family to new family
-#                                  Fixed bug where entered values were lost 
+#                                  Fixed bug where entered values were lost
+# 20110118    Lukas Batteau        Restructured code for readability 
 ###############################################################################
 from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol
 from django import forms
@@ -133,34 +134,37 @@ class MarryWizard(FormWizard):
     
     def done(self, request, form_list):
         """
-        Process the completed wizard.
+        Complete the wizard in three steps:
+         1. Create the new family object and set the necessary values
+         2. Move persoonA with any children to the new family
+         3. Move persoonB with any children to the new family
         """
         
         # Stored data
         persoonA = self.storedFields["persoonA"]
         persoonB = self.storedFields["persoonB"]
         
+        ################################
+        # 1. CREATE NEW FAMILY OBJECT
+        #    - Create object
+        #    - Set new family name
+        #    - Set new address
+        ################################
+        
         # We always create a new Gezin object for the married couple, 
         # then throw away the old Gezin objects if they are empty.
         gezin = Gezin()
         
-        # Head of family A or B
+        # Determine new family name
         if (form_list[1].cleaned_data["gezinshoofd"] == "A"):
-            familyHead = persoonA
-            persoonA.idgezinsrol = GezinsRol.objects.get(pk=1)
-            persoonB.idgezinsrol = GezinsRol.objects.get(pk=2)
+            gezin.txtgezinsnaam = Gezin.createGezinsNaam(persoonA)
         else:
-            familyHead = persoonB
-            persoonB.idgezinsrol = GezinsRol.objects.get(pk=1)
-            persoonA.idgezinsrol = GezinsRol.objects.get(pk=2)
+            gezin.txtgezinsnaam = Gezin.createGezinsNaam(persoonB)
         
-        # Create gezinsnaam
-        gezin.txtgezinsnaam = Gezin.createGezinsNaam(familyHead)
-            
         # Check what address the new family is using: A, B, or NEW
         code = form_list[2].cleaned_data["code"]
         
-        # Determine the corresponding family
+        # Retrieve the corresponding existing family (gezinB may be None)
         oldGezin = self.storedFields["gezin"+code] # gezinA or gezinB
 
         # If the user chose the address of person B, but person B is new,
@@ -187,43 +191,71 @@ class MarryWizard(FormWizard):
         print "CREATING NEW GEZIN %s" % (gezin)
         gezin.save()
 
+        #######################################
+        # 2. UDPATE A:
+        #    - Move any children to new family
+        #    - Change family role for A
+        #    - Move A to new family
+        #    - Remove old family
+        #######################################
+        
+        # If persoonA is not a child
+        if (persoonA.idgezinsrol_id != GezinsRol.KIND):
+            # Move the existing children in the same family to the new family.
+            children = persoonA.idgezin.persoon_set.filter(idgezinsrol=GezinsRol.KIND)
+            for child in children:
+                child.idgezin = gezin
+                child.save()
+
+        # Change family role
+        if (form_list[1].cleaned_data["gezinshoofd"] == "A"):
+            persoonA.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.GEZINSHOOFD)
+        else:
+            persoonA.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.PARTNER)
+
         # Move persoonA to new family
         persoonAGezinOld = persoonA.idgezin
         persoonA.idgezin = gezin
         persoonA.save()
-        
-        # If persoonA is not a child
-        if (persoonA.idgezinsrol != GezinsRol.KIND):
-            # Move the existing children in the same family to the new family.
-            children = persoonAGezinOld.persoon_set.filter(idgezinsrol=GezinsRol.KIND)
-            for child in children:
-                child.idgezin = gezin
-                child.save()
         
         # Remove old gezin of persoonA if empty
         if (len(persoonAGezinOld.persoon_set.all()) == 0):
             print "DELETING GEZIN " + str(persoonAGezinOld)
             persoonAGezinOld.delete()
             
-        # Move persoonB to gezin
-        persoonBGezinOld = persoonB.idgezin # If persoonB is new, idgezin == None
-        persoonB.idgezin = gezin
-        persoonB.save()
- 
+        #######################################
+        # 3. UDPATE B:
+        #    - Move any children to new family
+        #    - Change family role for B
+        #    - Move B to new family
+        #    - Remove old family (if present)
+        #######################################
+        
         # Check if persoonB is an existing person, and not a child
-        if (persoonBGezinOld and persoonB.idgezinsrol != GezinsRol.KIND):
+        if (persoonB.idgezin and persoonB.idgezinsrol != GezinsRol.KIND):
             # If persoonB is not a child, move all children in the same family to 
             # the new family.
-            children = persoonBGezinOld.persoon_set.filter(idgezinsrol=GezinsRol.KIND)
+            children = persoonB.idgezin.persoon_set.filter(idgezinsrol=GezinsRol.KIND)
             for child in children:
                 child.idgezin = gezin
                 child.save()
         
-            # Remove old gezin of persoonB if 'empty'
-            if (len(persoonBGezinOld.persoon_set.all()) == 0):
-                print "DELETING GEZIN " + str(persoonBGezinOld)
-                persoonBGezinOld.delete()
-            
+        # Update the family role
+        if (form_list[1].cleaned_data["gezinshoofd"] == "A"):
+            persoonB.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.PARTNER)
+        else:
+            persoonB.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.GEZINSHOOFD)
+
+        # Move persoonB to new family
+        persoonBGezinOld = persoonB.idgezin
+        persoonB.idgezin = gezin
+        persoonB.save()
+ 
+        # Remove old gezin of persoonB if 'empty'
+        if (persoonBGezinOld and len(persoonB.idgezin.persoon_set.all()) == 0):
+            print "DELETING GEZIN " + str(persoonBGezinOld)
+            persoonBGezinOld.delete()
+        
         return HttpResponseRedirect("/leden/gezin/%d/" % (gezin.idgezin))
     
     def get_template(self, step):
