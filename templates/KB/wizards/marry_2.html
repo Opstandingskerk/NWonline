@@ -69,6 +69,16 @@ function update() {
 function fillForm() {
 	var code = $("form input[name='2-code']").fieldValue();
 
+	// When the user selects persoon B, and persoon B is not an existing
+	// member, the effect is the same as action NEW
+	if (code == "B") {
+		// Check if persoon B is an existing person
+		{% if not gezinB %}
+		// Doesn't exist
+		code = "NEW";
+		{% endif %}
+	}
+
 	if (code == "A") {
 		$("{{form.txtstraatnaam|id}}").val("{{gezinA.txtstraatnaam}}");
 		$("{{form.inthuisnummer|id}}").val("{{gezinA.inthuisnummer}}");
@@ -76,7 +86,7 @@ function fillForm() {
 		$("{{form.txtpostcode|id}}").val("{{gezinA.txtpostcode}}");
 		$("{{form.txtplaats|id}}").val("{{gezinA.txtplaats}}");
 		$("{{form.idland|id}}").val("{{gezinA.idland.idland}}");
-	} else if (code == "B") {
+	} else if (code == "B" && "{{gezinB}}" != "None") {
 		$("{{form.txtstraatnaam|id}}").val("{{gezinB.txtstraatnaam}}");
 		$("{{form.inthuisnummer|id}}").val("{{gezinB.inthuisnummer}}");
 		$("{{form.txthuisnummertoevoeging|id}}").val("{{gezinB.txthuisnummertoevoeging}}");
@@ -89,7 +99,7 @@ function fillForm() {
 		$("{{form.txthuisnummertoevoeging|id}}").val("");
 		$("{{form.txtpostcode|id}}").val("");
 		$("{{form.txtplaats|id}}").val("");
-		$("{{form.idland|id}}").val("");
+		$("{{form.idland|id}}").val("1"); // Default NEDERLAND
 	}
 
 	update();
