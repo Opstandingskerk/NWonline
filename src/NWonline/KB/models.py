@@ -5,6 +5,9 @@
 # 
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header.
+# 20110118    Lukas Batteau        Added constants for GezinsRol
+#                                  Moved createGezinsNaam to class Gezin
+#                                  Added default 'NEDERLAND' for Land 
 ###############################################################################
 from django.db import models
 
@@ -70,11 +73,6 @@ class Land(models.Model):
         db_table = u'ledendb_landen'
         ordering = ['txtlandnaam']
 
-def createGezinsNaam(persoon):
-    return ("%s, %s (%s)") % ((("%s %s") % (persoon.txtachternaam, persoon.txttussenvoegsels)).strip(),
-                                            persoon.txtvoorletters.replace(" ", ""),
-                                            persoon.txtroepnaam)
-
 class Gezin(models.Model):
     idgezin = models.AutoField(primary_key=True, db_column='idGezin') # Field name made lowercase.
     txtgezinsnaam = models.CharField("Gezin", max_length=150, db_column='txtGezinsnaam') # Field name made lowercase.
@@ -83,10 +81,16 @@ class Gezin(models.Model):
     txthuisnummertoevoeging = models.CharField("Toevoeging", max_length=60, db_column='txtHuisnummerToevoeging', blank=True, null=True) # Field name made lowercase.
     txtpostcode = models.CharField("Postcode", max_length=60, db_column='txtPostcode', blank=True, null=True) # Field name made lowercase.
     txtplaats = models.CharField("Plaats", max_length=150, db_column='txtPlaats', blank=True, null=True) # Field name made lowercase.
-    idland = models.ForeignKey(Land, verbose_name="Land", db_column='idLand', blank=True, null=True) # Field name made lowercase.
+    idland = models.ForeignKey(Land, verbose_name="Land", db_column='idLand', blank=True, null=True, default=1) # Field name made lowercase.
     txttelefoon = models.CharField("Telefoon", max_length=75, db_column='txtTelefoon', blank=True) # Field name made lowercase.
     txtopmerking = models.TextField("Opmerking", max_length=765, db_column='txtOpmerking', blank=True) # Field name made lowercase.
     
+    @classmethod
+    def createGezinsNaam(cls, persoon):
+        return ("%s, %s (%s)") % ((("%s %s") % (persoon.txtachternaam, persoon.txttussenvoegsels)).strip(),
+                                                persoon.txtvoorletters.replace(" ", ""),
+                                                persoon.txtroepnaam)
+
     def __unicode__(self):
         return self.txtgezinsnaam
 
@@ -94,6 +98,10 @@ class Gezin(models.Model):
         db_table = u'ledendb_gezinnen'
 
 class GezinsRol(models.Model):
+    GEZINSHOOFD = 1
+    PARTNER = 2
+    KIND = 3
+    
     idgezinsrol = models.AutoField(primary_key=True, db_column='idGezinsrol') # Field name made lowercase.
     txtgezinsrol = models.CharField(max_length=150, db_column='txtGezinsrol', blank=True) # Field name made lowercase.
 
