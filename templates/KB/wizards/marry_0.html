@@ -34,27 +34,45 @@ function submitForm() {
 
 function update() {
 	var isNew = $("form input[name='{{form.isNew.html_name}}']").fieldValue();
+
 	if (isNew == "") {
 		$("#persoonDetails").hide();
 		$("#submitButton").attr("disabled", true);
 	} else if (isNew == 1) {
 		$("#persoonDetails").show();
 		$("#searchField").hide();
-		$("#searchField").val("");
 		$("#submitButton").removeAttr('disabled');
 		$('#persoonDetails :input').removeAttr('disabled');
-		resetForm("#persoonDetails");
 	} else {
 		$('#persoonDetails :input').attr('disabled', true);
 		$("#persoonDetails").show();
 		$("#searchField").show().focus();
 		if (!$("#id_{{ form.idpersoonB.html_name }}").val()) {
 			$("#submitButton").attr("disabled", true);
-			resetForm("#persoonDetails");
 		} else {
 			$("#submitButton").removeAttr('disabled');
 		}
 	}	
+}
+
+function toggleIsNew() {
+	var isNew = $("form input[name='{{form.isNew.html_name}}']").fieldValue();
+
+	// Check which option the user selected, 'new persoon' or 'existing'
+	if (isNew == 1) {
+		// New. Clear search field.
+		$("#searchField").val("");
+		// Clear persoon details form (might contain results from search field)
+		resetForm("#persoonDetails");
+	} else {
+		// Existing. Check if search field already contains a value.  
+		if (!$("#id_{{ form.idpersoonB.html_name }}").val()) {
+			// Search field doesn't contain a value, clear persoon details form
+			resetForm("#persoonDetails");
+		}
+	}
+
+	update();
 }
 
 function selectName(event, ui) {
@@ -72,7 +90,7 @@ $(document).ready(function(){
 									minLength: 2,
 									select: selectName});
 
-	$("form input[name='{{form.isNew.html_name}}']").click(update);		
+	$("form input[name='{{form.isNew.html_name}}']").click(toggleIsNew);		
 
 	update();
 
