@@ -5,6 +5,10 @@
 # 
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header.
+# 20110328    Lukas Batteau        Persoon list page now separated in two: One
+#                                  with ajax 'quick filter' and one for 
+#                                  advanced searching via form post. Both pages
+#                                  share column sorting and pagination. 
 ###############################################################################
 from NWonline.KB.forms import PersoonSearchForm
 from NWonline.KB.models import GezinsRol
@@ -19,84 +23,232 @@ from django.template.context import RequestContext
 from modelforms import GezinForm, PersoonForm
 from models import Gezin, Persoon
 
-@login_required
-def handlePersoonList(request):
-    # Retrieve list with all active members
-    persoon_list = Persoon.objects.exclude(dtmdatumvertrek__lt=datetime.now()).exclude(boolactief=False)
+def createPersoonListPage(request):
+    """
+    Apply ordering and pagination to existing persoon list in session.
     
-    # Determine search filter
-    try:
-        filter = request.GET.get("filter")
-        filter_words = filter.split(" ")
-        
-        # Join filtered queries
-        for word in filter_words:
-            # Check if word is empty
-            if (word == ""):
-                # Empty, skip
-                continue
-            
-            persoon_list = persoon_list.filter(Q(txtachternaam__icontains=word) |
-                                               Q(txtroepnaam__icontains=word) |
-                                               Q(idgezin__txtgezinsnaam__icontains=word) |
-                                               Q(idgezin__txtstraatnaam__icontains=word))
-    except:
-        # No search filter, continue
-        pass
+    Assume the persoon list is present in the session, otherwise something
+    is very wrong. Calling methods are responsible for retrieving the list
+    and storing it in the session as 'persoon_list'.
+    
+    Look for GET parameters 'order_by' and 'page', where 'order_by' contains
+    the name of the column (prepended with "-" for descending order), and
+    'page' contains the current page number.
+    
+    Default max number of items on one page: 20
+    """
+    persoon_list = request.session["persoon_list"]
     
     # Determine ordering
     try:
-        order_by = request.GET["sort"]
+        order_by = request.GET["order_by"]
         persoon_list = persoon_list.order_by(order_by)
-    except Exception as e:
-        print e
+    except:
+        # Parameter 'order_by' not present in GET
         pass
         
+    # Create paginator with max twenty items per page
     paginator = Paginator(persoon_list, 20)
-
+    
     # Make sure page request is an int. If not, deliver first page.
     try:
         pageNr = int(request.GET.get("page", "1"))
     except ValueError:
         pageNr = 1
+        
+    # If page request is out of range, deliver last page of results.
+    if (pageNr > paginator.num_pages):
+        # Out of range, take last page
+        pageNr = paginator.num_pages
+        
+    return paginator.page(pageNr)
     
-    # If page request (9999) is out of range, deliver last page of results.
-    try:
-        page = paginator.page(pageNr)
-    except (EmptyPage, InvalidPage):
-        page = paginator.page(paginator.num_pages)
+@login_required
+def handlePersoonListSearch(request):
+    """
+    Handle the persoon list advanced search page.
+    
+    Render a form containing fields of a Persoon and related Gezin and 
+    process its submission (POST) by the user, using the field values 
+    as filters.
+    
+    Store the list in the session, in order for the column ordering and
+    pagination to work without having to retrieve the list. 
+    
+    Note that a new post by the the user creates a new list and separate
+    paginator, not making use of the createPersoonListPage method. 
+    The column ordering and pagination after the page has rendered do make 
+    use of createPersoonListPage. 
+    """
+    
+    # Check if advanced search form has been submitted
+    if (request.method == "POST"):
+        # A form bound to the POST data
+        persoonSearchForm = PersoonSearchForm(request.POST)
+        if (persoonSearchForm.is_valid()):
+            # Create initial persoon list with everything - don't worry, lazy querying
+            persoon_list = Persoon.objects.all()
+            
+            # Now check the form fields and apply filter when present
+            
+            boolactief = persoonSearchForm.cleaned_data["boolactief"]
+            if (boolactief):
+                persoon_list = persoon_list.filter(boolactief=boolactief)
+            
+            dtmgeboortedatumvan = persoonSearchForm.cleaned_data["dtmgeboortedatumvan"]
+            if (dtmgeboortedatumvan):
+                persoon_list = persoon_list.filter(dtmgeboortedatum__gte=dtmgeboortedatumvan)
+                
+            dtmgeboortedatumtot = persoonSearchForm.cleaned_data["dtmgeboortedatumtot"]
+            if (dtmgeboortedatumtot):
+                persoon_list = persoon_list.filter(dtmgeboortedatum__lt=dtmgeboortedatumtot)
+                
+            idgezinsrol = persoonSearchForm.cleaned_data["idgezinsrol"]
+            if (idgezinsrol):
+                persoon_list = persoon_list.filter(idgezinsrol=idgezinsrol)
+                
+            txtachternaam = persoonSearchForm.cleaned_data["txtachternaam"]
+            if (txtachternaam):
+                persoon_list = persoon_list.filter(txtachternaam__icontains=txtachternaam)
+                
+            txttussenvoegsels = persoonSearchForm.cleaned_data["txttussenvoegsels"]
+            if (txttussenvoegsels):
+                persoon_list = persoon_list.filter(txttussenvoegsels__icontains=txttussenvoegsels)
+                
+            txtvoorletters = persoonSearchForm.cleaned_data["txtvoorletters"]
+            if (txtvoorletters):
+                persoon_list = persoon_list.filter(txtvoorletters__icontains=txtvoorletters)
+                
+            txtroepnaam = persoonSearchForm.cleaned_data["txtroepnaam"]
+            if (txtroepnaam):
+                persoon_list = persoon_list.filter(txtroepnaam__icontains=txtroepnaam)
+                
+            txtdoopnaam = persoonSearchForm.cleaned_data["txtdoopnaam"]
+            if (txtdoopnaam):
+                persoon_list = persoon_list.filter(txtdoopnaam__icontains=txtdoopnaam)
+                
+            request.session["persoon_list"] = persoon_list
+        else:
+            # Form invalid
+            return render_to_response("KB/persoonSearch.html",
+                                      {"page": [],
+                                       "persoonSearchForm": persoonSearchForm,
+                                       "count": 0 },
+                                      context_instance=RequestContext(request))
+            
+            
+    else:
+        # No POST data
+        persoonSearchForm = PersoonSearchForm()
+        persoon_list = []
+        
+    # After every post, for all we know we have a totally different list, so 
+    # create a new Paginator and set it to the first page.
+    paginator = Paginator(persoon_list, 20)
+    page = paginator.page(1)
+        
+    # Render the corresponding template
+    return render_to_response("KB/persoonSearch.html",
+                              {"page": page,
+                               "persoonSearchForm": persoonSearchForm,
+                               "count": len(persoon_list) },
+                              context_instance=RequestContext(request))
+
+@login_required
+def handlePersoonListFilter(request):
+    """
+    Handle the persoon list page.
+    
+    Render an initial list containing all active Persoons in the database
+    with their related Gezin. Active means boolactief=True and 
+    dtmdatumvertrek is not before today.
+    
+    Render a search field above the list, that the user can use to quickly
+    filter the list by the following fields:
+     - txtachternaam
+     - txtroepnaam
+     - txtgezinsnaam
+     - txtstraatnaam
+     
+    Store the list in the session, in order for the column ordering and
+    pagination to work without having to retrieve the list. 
+    """
+    
+    # Retrieve default list with all active members
+    persoon_list = Persoon.objects.exclude(dtmdatumvertrek__lt=datetime.now()).exclude(boolactief=False)
+
+    # Determine quick search filter
+    if ("filter" in request.GET):
+        filter = request.GET["filter"]
+    else:
+        filter = ""
+    
+    # Create the list of search criteria, assuming they are separated by spaces 
+    filter_words = filter.split(" ")
+
+    # Join filtered queries
+    for word in filter_words:
+        # Check if word is empty
+        if (word == ""):
+            # Empty, skip
+            continue
+        
+        # Apply the filter by creating a combined query, testing if one of the
+        # fields contains this word.
+        persoon_list = persoon_list.filter(Q(txtachternaam__icontains=word) |
+                                           Q(txtroepnaam__icontains=word) |
+                                           Q(idgezin__txtgezinsnaam__icontains=word) |
+                                           Q(idgezin__txtstraatnaam__icontains=word))
+    
+    # Store the list in the session
+    request.session["persoon_list"] = persoon_list
+    
+    # Apply ordering and pagination
+    page = createPersoonListPage(request)
+
+    # This handler can be called in two different modes: Either the user has
+    # browsed here directly, in which case the full page should be rendered,
+    # or it is called by an ajax call from the page, in which case just the
+    # persoon_list should be rendered.
+    if (request.GET.has_key("xhr")):
+        # Ajax, render persoonListTable template instead of full html
+        return render_to_response("KB/persoonListTable.html",
+                                  {"page": page },
+                                  context_instance=RequestContext(request))
+    else:
+        # Regular request, render full template
+        return render_to_response("KB/persoonList.html",
+                                  {"page": page },
+                                  context_instance=RequestContext(request))
+    
+@login_required
+def handlePersoonListUpdate(request):
+    """
+    Handle a request where the Persoon list does not need to be retrieved.
+    
+    Apply column ordering and pagination and render either the page or 
+    just the list, depending on whether the request is ajax or not.
+    
+    It is unlikely that this handler is called directly, as it is only used
+    for ordering and pagination of an existing list.
+    """
+    
+    # Apply ordering and pagination
+    page = createPersoonListPage(request)
         
     # Determine whether request is ajax call
-    if request.GET.has_key("xhr"):
+    # TODO: Check if we really need to distinguish the request 
+    if (request.GET.has_key("xhr")):
         # Ajax, render template component instead of full html
         return render_to_response("KB/persoonListTable.html",
-                                  {"page": page},
+                                  {"page": page },
                                   context_instance=RequestContext(request))
     else:
         # Regular request, render full html
         return render_to_response("KB/persoonList.html",
-                                  {"page": page},
+                                  {"page": page },
                                   context_instance=RequestContext(request))
-        
-@login_required
-def handlePersoonSearch(request):
-    # Check if form has been submitted
-    if (request.method == "POST"):
-        # A form bound to the POST data
-        persoonSearchForm = PersoonSearchForm(request.POST)
-        persoon_list =Persoon.objects.filter(txtachternaam__icontains=persoonSearchForm.data["txtachternaam"])
-        paginator = Paginator(persoon_list, 20)
-        page = paginator.page(1)        
-        return render_to_response("KB/persoonSearch.html",
-                                  {"page": page},
-                                  context_instance=RequestContext(request))
-    else:
-        # No POST data
-        persoonSearchForm = PersoonSearchForm()
-        return render_to_response("KB/persoonSearch.html",
-                                  {"searchForm": persoonSearchForm},
-                                  context_instance=RequestContext(request))
-
+    
 @login_required
 def handleGezinDetails(request, gezinId):
     gezin = Gezin.objects.get(idgezin=gezinId)

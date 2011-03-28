@@ -1,17 +1,17 @@
     <table cellpadding="0" cellspacing="0" class="listview" id="persoonListTable">
     <tr>
-    	<th class="col_surname">Achternaam</th>
-    	<th class="col_name">Roepnaam</th>
-    	<th class="col_birth">Geboortedatum</th>
-    	<th class="col_gender">Geslacht</th>
-    	<th class="col_family">Gezin</th>
+    	<th class="col_surname"><a href="javascript:orderBy('txtachternaam')">Achternaam</a></th>
+    	<th class="col_name"><a href="javascript:orderBy('txtroepnaam')">Roepnaam</a></th>
+    	<th class="col_birth"><a href="javascript:orderBy('dtmgeboortedatum')">Geboortedatum</a></th>
+    	<th class="col_gender"><a href="javascript:orderBy('idgeslacht')">Geslacht</a></th>
+    	<th class="col_family"><a href="javascript:orderBy('idgezin__txtgezinsnaam')">Gezin</a></th>
     	<th class="col_family_link">&nbsp;</th>
-    	<th class="col_address">Adres</th>
-    	<th class="col_zip">Postcode</th>
-    	<th class="col_city">Plaats</th>
-    	<th class="col_country">Land</th>
-    	<th class="col_phone">Telefoon</th>
-    	<th class="col_email">E-mailadres</th>
+    	<th class="col_address"><a href="javascript:orderBy('idgezin__txtstraatnaam')">Adres</a></th>
+    	<th class="col_zip"><a href="javascript:orderBy('idgezin__txtpostcode')">Postcode</a></th>
+    	<th class="col_city"><a href="javascript:orderBy('idgezin__txtplaats')">Plaats</a></th>
+    	<th class="col_country"><a href="javascript:orderBy('idgezin__idland__txtlandnaam')">Land</a></th>
+    	<th class="col_phone"><a href="javascript:orderBy('txttelefoonnummer')">Telefoon</a></th>
+    	<th class="col_email"><a href="javascript:orderBy('txtemailadres')">E-mailadres</a></th>
     </tr>
     {% if page.object_list %}
     {% for persoon in page.object_list  %}
@@ -32,7 +32,7 @@
     {% endfor %}
 	{% else %}
 	<tr>
-	    <td colspan="12">Geen leden gevonden.</td>
+	    <td colspan="12">&nbsp;</td>
 	</tr>
 	{% endif %}    
     </table>
@@ -41,7 +41,7 @@
 	<div class="pagination">
 	    <span class="step-links">
 	        {% if page.has_previous %}
-	            <a href="?page={{ page.previous_page_number }}">< vorige</a>
+	            <a href="javascript:updateListPage({{ page.previous_page_number }})">< vorige</a>
 	        {% endif %}
 	
 	        <span class="current">
@@ -49,7 +49,7 @@
 	        </span>
 	
 	        {% if page.has_next %}
-	            <a href="?page={{ page.next_page_number }}">volgende ></a>
+	            <a href="javascript:updateListPage({{ page.next_page_number }})">volgende ></a>
 	        {% endif %}
 	    </span>
 	</div>
