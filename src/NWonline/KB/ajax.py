@@ -5,8 +5,9 @@
 # 
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header.
+# 20100328    Lukas Batteau        Added queryGemeente, used in marry wizard
 ###############################################################################
-from NWonline.KB.models import Persoon
+from NWonline.KB.models import Persoon, Gemeente
 from django.db.models.query_utils import Q
 from django.http import HttpResponse
 from django.utils import simplejson
@@ -40,6 +41,21 @@ def queryPersoon(request):
                        'txtroepnaam': force_unicode(persoon.txtroepnaam),
                        'txtvoorletters': str(persoon.txtvoorletters),
                        'idgeslacht': str(persoon.idgeslacht.idgeslacht)})
+        
+    # Redirect to a success page.
+    return HttpResponse(simplejson.dumps(result),
+                        mimetype='application/json')
+
+def queryGemeente(request):
+    query = request.GET.get('term')
+
+    # Create empty list
+    gemeente_list = Gemeente.objects.filter(txtgemeentenaam__icontains=query)   
+            
+    result = []
+    for gemeente in gemeente_list:
+        result.append({'value': str(gemeente),
+                       'idgemeente': str(gemeente.idgemeente)})
         
     # Redirect to a success page.
     return HttpResponse(simplejson.dumps(result),
