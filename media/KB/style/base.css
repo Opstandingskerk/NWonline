@@ -17,6 +17,7 @@ a:hover {
 
 h2 {
 	margin: 0px;
+	margin-bottom: 1em;
 }
 	
 
@@ -44,6 +45,10 @@ form label, form input, form select, form textarea, form button {
 	float: left;
 	margin-bottom: 12px;
 	margin-right: 1em;
+}
+
+form tr {
+	clear: both;
 }
 
 form ul {
@@ -120,32 +125,31 @@ span#user {
 }
 
 .actions {
-	padding: 3px;
-	margin-bottom: 3px;
 	margin-top: 7px;
 }
 
-.actions .buttons {
-	float: right;
+.actions #search {
+	float: left;
+	padding-bottom: 7px;
 }
 
-.actions td {
-	vertical-align: bottom;
+.actions #searchBox {
+	width: 200px;
 }
 
 .actions #buttons {
-	width: 100%;
-	text-align: right;
-}
-
-
-
-#searchBox {
-	width: 200px;
+	float: right;
+	margin-top: 3px;
 }
 
 #buttonsContainer {
 	padding: 7px 0px 7px 0px;
+}
+
+.actions #advanced_search {
+	margin-top: 7px;
+	padding: 12px;
+	border: 1px solid #BBDAEE;
 }
 
 #persoonList {
@@ -201,7 +205,7 @@ div.container {
 	padding: 7px;
 }
 
-br.clear {
+.clear {
 	clear: both;
 }
 
