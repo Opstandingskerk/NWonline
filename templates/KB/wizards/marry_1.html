@@ -6,13 +6,14 @@
 
 <div class="wizard">
 <h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
-<p>Wie wordt aanspreekpersoon/gezinshoofd?</p>
+<p>Gegevens huwelijk</p>
 <form name="form" id="form" action="." method="post">{% csrf_token %}
-
-<input type="radio" name="familyHead" value="A" id="headPersoonA"/><label for="headPersoonA">{{persoonA}}</label>
-<input type="radio" name="familyHead" value="B" id="headPersoonB"/><label for="headPersoonB">{{persoonB}}</label>
-{{ form.gezinshoofd }}<br class="clear"/>
-
+{{ form.dtmhuwelijksdatum|generate:"fixed" }} <br class="clear"/>
+{{ form.dtmbevestiging|generate:"fixed" }} <span style="float:left; margin-right: 12px">{{ form.idgemeente.label }}</span>{% if form.idgemeente.errors %}<span class="error">{{ form.idgemeente.errors }}{% endif %}<input type="text" id="searchField" size="30"/>{% if form.idgemeente.errors %}</span>{% endif %}
+<div style="display:none">
+{{ form.idgemeente|generate }}
+</div> 
+<br class="clear"/>
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
 {{ previous_fields|safe }}
 <input type="submit" id="submitButton" value="Volgende">
@@ -22,22 +23,26 @@
 
 <script type="text/javascript">
 
-function update() {
-	var familyHead = $("form input[name='familyHead']").fieldValue();
+function prefill() {
+	$("#searchField").val($("{{ form.idgemeente|id }} option:selected").text());
+}
 
-	if (familyHead == "") {
-		$("#submitButton").attr("disabled", true);
-	} else {
-		$("form input[name='{{form.gezinshoofd.html_name}}']").val(familyHead);
-		$("#submitButton").removeAttr('disabled');
-	}
+function select(event, ui) {
+	$("{{form.idgemeente|id}}").val(ui.item.idgemeente);
 }
 
 $(document).ready(function(){
-	$("form input[name='familyHead']").click(update);	
-	update();
-});
+	$("#searchField").autocomplete({source:"/query/gemeente",
+									minLength: 2,
+									select: select});
 
+	prefill();
+
+	// Datepicker
+	$("{{ form.dtmhuwelijksdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ form.dtmbevestiging|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+
+});
 </script>
 
 {% endblock %}

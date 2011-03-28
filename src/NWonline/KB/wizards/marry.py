@@ -9,7 +9,8 @@
 #                                  Fixed bug where entered values were lost
 # 20110118    Lukas Batteau        Restructured code for readability 
 ###############################################################################
-from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol
+from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol, \
+    Gemeente
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
 from django.forms.forms import Form
@@ -34,18 +35,26 @@ class MarryForm1(Form):
                                         label="Tussenvoegsels",
                                         required=False)
     
-    
-
 class MarryForm2(Form):
     """
-    Marry wizard screen 2. Determines which persoon is the family head.
+    Marry wizard screen 2. Determines the marriage details.
     """
-    gezinshoofd = forms.CharField(widget=forms.HiddenInput())
+    dtmhuwelijksdatum = forms.CharField(label="Datum huwelijk")
+    dtmbevestiging = forms.CharField(label="Datum bevestiging")
+    idgemeente = forms.ModelChoiceField(queryset=Gemeente.objects.all(),
+                                        label="Gemeente")
     
 
 class MarryForm3(Form):
     """
-    Marry wizard screen 3. Determines the family address 
+    Marry wizard screen 3. Determines which persoon is the family head.
+    """
+    gezinshoofd = forms.CharField(widget=forms.HiddenInput())
+    
+
+class MarryForm4(Form):
+    """
+    Marry wizard screen 4. Determines the family address 
     """
     code = forms.CharField(widget=forms.RadioSelect(choices=(("A", "A"),("B", "B"),("NEW", "NEW"))))
     txtstraatnaam = forms.CharField(label="Straat")
@@ -118,8 +127,8 @@ class MarryWizard(FormWizard):
             
             # Add persoon to context
             self.storedFields["persoonB"] = persoon
-        elif (step == 2):
-            # Screen 3. Address
+        elif (step == 3):
+            # Screen 4. Address
             
             gezinA = self.storedFields["persoonA"].idgezin
             self.storedFields["gezinA"] = gezinA
@@ -156,13 +165,13 @@ class MarryWizard(FormWizard):
         gezin = Gezin()
         
         # Determine new family name
-        if (form_list[1].cleaned_data["gezinshoofd"] == "A"):
+        if (form_list[2].cleaned_data["gezinshoofd"] == "A"):
             gezin.txtgezinsnaam = Gezin.createGezinsNaam(persoonA)
         else:
             gezin.txtgezinsnaam = Gezin.createGezinsNaam(persoonB)
         
         # Check what address the new family is using: A, B, or NEW
-        code = form_list[2].cleaned_data["code"]
+        code = form_list[3].cleaned_data["code"]
         
         # Retrieve the corresponding existing family (gezinB may be None)
         oldGezin = self.storedFields["gezin"+code] # gezinA or gezinB
@@ -171,12 +180,12 @@ class MarryWizard(FormWizard):
         # we have the same situation as when the address is new.
         if (code == "NEW" or (code == "B" and oldGezin == None)):
             # New address, create gezin
-            gezin.txtstraatnaam = form_list[2].cleaned_data["txtstraatnaam"]
-            gezin.inthuisnummer = form_list[2].cleaned_data["inthuisnummer"]
-            gezin.txthuisnummertoevoeging = form_list[2].cleaned_data["txthuisnummertoevoeging"]
-            gezin.txtpostcode = form_list[2].cleaned_data["txtpostcode"]
-            gezin.txtplaats = form_list[2].cleaned_data["txtplaats"]
-            gezin.idland = form_list[2].cleaned_data["idland"]
+            gezin.txtstraatnaam = form_list[3].cleaned_data["txtstraatnaam"]
+            gezin.inthuisnummer = form_list[3].cleaned_data["inthuisnummer"]
+            gezin.txthuisnummertoevoeging = form_list[3].cleaned_data["txthuisnummertoevoeging"]
+            gezin.txtpostcode = form_list[3].cleaned_data["txtpostcode"]
+            gezin.txtplaats = form_list[3].cleaned_data["txtplaats"]
+            gezin.idland = form_list[3].cleaned_data["idland"]
             
         else:
             # Existing address, copy data from specified address
@@ -208,7 +217,7 @@ class MarryWizard(FormWizard):
                 child.save()
 
         # Change family role
-        if (form_list[1].cleaned_data["gezinshoofd"] == "A"):
+        if (form_list[2].cleaned_data["gezinshoofd"] == "A"):
             persoonA.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.GEZINSHOOFD)
         else:
             persoonA.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.PARTNER)
@@ -241,7 +250,7 @@ class MarryWizard(FormWizard):
                 child.save()
         
         # Update the family role
-        if (form_list[1].cleaned_data["gezinshoofd"] == "A"):
+        if (form_list[2].cleaned_data["gezinshoofd"] == "A"):
             persoonB.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.PARTNER)
         else:
             persoonB.idgezinsrol = GezinsRol.objects.get(pk=GezinsRol.GEZINSHOOFD)
