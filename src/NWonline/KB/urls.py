@@ -7,6 +7,7 @@
 # 20101209    Lukas Batteau        Added header. Removed unused import.
 ###############################################################################
 from django.conf.urls.defaults import patterns, include
+from django.views.generic.simple import redirect_to
 
 urlpatterns = patterns('',
     (r'^login/$', 'NWonline.KB.views.handleLogin'),
@@ -27,4 +28,7 @@ urlpatterns = patterns('',
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': 'D:/Development/Projects/NWonline/media/KB'}),
+        
+    (r'^', redirect_to, {'url': '/leden/'}),
+        
 )
