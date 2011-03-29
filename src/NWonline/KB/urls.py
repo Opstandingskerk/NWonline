@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': 'D:/Development/Projects/NWonline/media/KB'}),
+    
         
     (r'^', redirect_to, {'url': '/leden/'}),
         
