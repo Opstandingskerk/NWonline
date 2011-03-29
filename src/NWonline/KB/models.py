@@ -9,6 +9,7 @@
 #                                  Moved createGezinsNaam to class Gezin
 #                                  Added default 'NEDERLAND' for Land 
 # 20110328    Lukas Batteau        Added indexes for quick filter
+# 20110329    Lukas Batteau        Reorganized persoon membership
 ###############################################################################
 from django.db import models
 
@@ -154,12 +155,22 @@ class HuiskringLid(models.Model):
     class Meta:
         db_table = u'ledendb_huiskringleden'
 
+class LidmaatschapVorm(models.Model):
+    idlidmaatschapvorm = models.AutoField(primary_key=True, db_column='idLidmaatschapvorm') # Field name made lowercase.
+    txtlidmaatschapvorm = models.CharField(max_length=150, db_column='txtLidmaatschapvorm', blank=True) # Field name made lowercase.
+    boolvoorquotum = MySQLBooleanField(db_column='boolVoorQuotum') # Field name made lowercase. This field type is a guess.
+    txtlidmaatschapvormkort = models.CharField(max_length=150, db_column='txtLidmaatschapvormKort', blank=True) # Field name made lowercase.
+    txtattestatie = models.CharField(max_length=150, db_column='txtAttestatie', blank=True) # Field name made lowercase.
+
+    def __unicode__(self):
+        return self.txtlidmaatschapvorm
+
+    class Meta:
+        db_table = u'ledendb_lidmaatschapvormen'
+
 class LidmaatschapStatus(models.Model):
     idlidmaatschapstatus = models.AutoField(primary_key=True, db_column='idLidmaatschapstatus') # Field name made lowercase.
     txtlidmaatschapstatus = models.CharField(max_length=150, db_column='txtLidmaatschapstatus', blank=True) # Field name made lowercase.
-    boolvoorquotum = MySQLBooleanField(db_column='boolVoorQuotum') # Field name made lowercase. This field type is a guess.
-    txtlidmaatschapstatuskort = models.CharField(max_length=150, db_column='txtLidmaatschapstatusKort', blank=True) # Field name made lowercase.
-    txtattestatie = models.CharField(max_length=150, db_column='txtAttestatie', blank=True) # Field name made lowercase.
 
     def __unicode__(self):
         return self.txtlidmaatschapstatus
@@ -169,7 +180,7 @@ class LidmaatschapStatus(models.Model):
 
 class Persoon(models.Model):
     idpersoon = models.AutoField(primary_key=True, db_column='idPersoon') # Field name made lowercase.
-    idlidmaatschapstatus = models.ForeignKey(LidmaatschapStatus, verbose_name="Status", null=True, db_column='idLidmaatschapStatus', blank=True) # Field name made lowercase.
+    idlidmaatschapvorm = models.ForeignKey(LidmaatschapVorm, verbose_name="Lidmaatschap", null=True, db_column='idLidmaatschapVorm', blank=True) # Field name made lowercase.
     idgezin = models.ForeignKey(Gezin, verbose_name="Gezin", null=True, blank=True, db_column='idGezin') # Field name made lowercase.
     idgezinsrol = models.ForeignKey(GezinsRol, verbose_name="Gezinsrol", db_column='idGezinsRol') # Field name made lowercase.
     txtachternaam = models.CharField("Achternaam", max_length=150, db_column='txtAchternaam', db_index=True) # Field name made lowercase.
@@ -197,7 +208,7 @@ class Persoon(models.Model):
     txtopmerking = models.TextField("Opmerkingen", max_length=765, db_column='txtOpmerking', blank=True) # Field name made lowercase.
     dtmoverlijdensdatum = models.DateField("Datum overlijden", null=True, db_column='dtmOverlijdensdatum', blank=True) # Field name made lowercase.
     dtmdatumonttrokken = models.DateField("Datum onttrekking", null=True, db_column='dtmDatumOnttrokken', blank=True) # Field name made lowercase.
-    boolactief = MySQLBooleanField("Actief", db_column='boolActief', default=True) # Field name made lowercase. This field type is a guess.
+    idlidmaatschapstatus = models.ForeignKey(LidmaatschapStatus, verbose_name="Status", null=False, db_column='idLidmaatschapStatus', blank=False) # Field name made lowercase.
     idwijk = models.ForeignKey(Wijk, verbose_name="Wijk", null=True, blank=True, db_column='idWijk') # Field name made lowercase.
     idgastgemeente = models.ForeignKey(Gemeente, verbose_name="Gastgemeente", null=True, blank=True, db_column='idGastGemeente', related_name='Gastlid') # Field name made lowercase.
     idgasthoofdgemeente = models.ForeignKey(Gemeente, verbose_name="Gasthoofdgemeente", null=True, blank=True, db_column='idGastHoofdGemeente', related_name='Gastlid_hoofd') # Field name made lowercase.

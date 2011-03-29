@@ -5,16 +5,18 @@
 # 
 # CHANGE HISTORY  
 # 20101209    Lukas Batteau        Added header.
+# 20110329    Lukas Batteau        Reorganized persoon membership
 ###############################################################################
-from NWonline.KB.models import GemeenteType, Gemeente, Geslacht, \
-    GezinsRol, LidmaatschapStatus, Wijk, Huiskring, HuiskringLidRol, Land, Persoon, \
-    Gezin
+from NWonline.KB.models import GemeenteType, Gemeente, Geslacht, GezinsRol, \
+    LidmaatschapVorm, Wijk, Huiskring, HuiskringLidRol, Land, Persoon, Gezin, \
+    LidmaatschapStatus
 from django.contrib import admin
 
 admin.site.register(GemeenteType)
 admin.site.register(Gemeente)
 admin.site.register(Geslacht)
 admin.site.register(GezinsRol)
+admin.site.register(LidmaatschapVorm)
 admin.site.register(LidmaatschapStatus)
 admin.site.register(Wijk)
 admin.site.register(Huiskring)
@@ -29,10 +31,12 @@ class PersoonAdmin(admin.ModelAdmin):
                     'dtmgeboortedatum',
                     'idgezin',
                     'idlidmaatschapstatus',
+                    'idlidmaatschapvorm',
                     'idwijk',
                     )
     search_fields = ['txtachternaam', 'txtroepnaam']
     list_filter = ['idlidmaatschapstatus',
+                   'idlidmaatschapvorm',
                    'idwijk']
     fieldsets = (
         (None, {
@@ -52,7 +56,7 @@ class PersoonAdmin(admin.ModelAdmin):
         ('Lidmaatschap', {
             'classes': ('collapse','wide',),
             'fields': (('idlidmaatschapstatus',
-                       'boolactief'),
+                       'idlidmaatschapvorm'),
                        'idwijk',
                        'boolgeborennw',
                        ('boolgastlidnw',

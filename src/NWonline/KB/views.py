@@ -9,9 +9,11 @@
 #                                  with ajax 'quick filter' and one for 
 #                                  advanced searching via form post. Both pages
 #                                  share column sorting and pagination. 
+# 20110329    Lukas Batteau        Lidmaatschap is gewijzigd, bestaat nu uit
+#                                  vorm (doop, etc) en status (actief, etc).
 ###############################################################################
 from NWonline.KB.forms import PersoonSearchForm
-from NWonline.KB.models import GezinsRol
+from NWonline.KB.models import GezinsRol, LidmaatschapStatus
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -91,9 +93,13 @@ def handlePersoonListSearch(request):
             
             # Now check the form fields and apply filter when present
             
-            boolactief = persoonSearchForm.cleaned_data["boolactief"]
-            if (boolactief):
-                persoon_list = persoon_list.filter(boolactief=boolactief)
+            idlidmaatschapstatus = persoonSearchForm.cleaned_data["idlidmaatschapstatus"]
+            if (idlidmaatschapstatus):
+                persoon_list = persoon_list.filter(idlidmaatschapstatus=idlidmaatschapstatus)
+            
+            idlidmaatschapvorm = persoonSearchForm.cleaned_data["idlidmaatschapvorm"]
+            if (idlidmaatschapvorm):
+                persoon_list = persoon_list.filter(idlidmaatschapvorm=idlidmaatschapvorm)
             
             dtmgeboortedatumvan = persoonSearchForm.cleaned_data["dtmgeboortedatumvan"]
             if (dtmgeboortedatumvan):
@@ -160,7 +166,7 @@ def handlePersoonListFilter(request):
     Handle the persoon list page.
     
     Render an initial list containing all active Persoons in the database
-    with their related Gezin. Active means boolactief=True and 
+    with their related Gezin. Active means idlidmaatschapstatus=1 and 
     dtmdatumvertrek is not before today.
     
     Render a search field above the list, that the user can use to quickly
@@ -175,7 +181,11 @@ def handlePersoonListFilter(request):
     """
     
     # Retrieve default list with all active members
-    persoon_list = Persoon.objects.exclude(dtmdatumvertrek__lt=datetime.now()).exclude(boolactief=False)
+    
+    persoon_list = Persoon.objects.exclude(
+                                dtmdatumvertrek__lt=datetime.now()
+                                 ).filter(
+                                idlidmaatschapstatus=LidmaatschapStatus.objects.get(pk=1))
 
     # Determine quick search filter
     if ("filter" in request.GET):
@@ -248,6 +258,7 @@ def handlePersoonListUpdate(request):
         return render_to_response("KB/persoonList.html",
                                   {"page": page },
                                   context_instance=RequestContext(request))
+    
     
 @login_required
 def handleGezinDetails(request, gezinId):
@@ -362,6 +373,25 @@ def handleGezinPersoonAdd(request, gezinId):
 def handlePersoonDetails(request, persoonId):
     persoon = Persoon.objects.get(idpersoon=persoonId)    
     
+    # Create membership description
+    status = persoon.idlidmaatschapstatus
+    lidmaatschap = persoon.idlidmaatschapvorm
+    if (status == LidmaatschapStatus.objects.get(pk=1)):
+        # Active: Show form
+        membership = str(lidmaatschap)
+    else:
+        membership = str(status)
+        if (status == LidmaatschapStatus.objects.get(pk=2)):
+            # Vertrokken: Show date and destination
+            membership += " %s naar %s" % (persoon.dtmdatumvertrek.strftime("%d-%m-%Y"), str(persoon.idvertrokkennaargemeente))
+        elif (status == LidmaatschapStatus.objects.get(pk=3)):
+            # Onttrokken: Show date
+            membership += " %s" % (persoon.dtmdatumonttrokken.strftime("%d-%m-%Y"))
+        elif (status == LidmaatschapStatus.objects.get(pk=4)):
+            # Overleden: Show date
+            membership += " %s" % (persoon.dtmoverlijdensdatum.strftime("%d-%m-%Y"))
+            
+    
     # Check if form state is passed
     try:
         formState = request.GET["state"]
@@ -403,6 +433,7 @@ def handlePersoonDetails(request, persoonId):
     
     return render_to_response("KB/persoonDetails.html",
                               {"persoonForm": persoonForm,
+                               "membership": membership,
                                "persoonList": persoonList,
                                "formState": formState,
                                "cancelRedirect": cancelRedirect},

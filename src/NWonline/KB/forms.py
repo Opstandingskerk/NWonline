@@ -5,8 +5,9 @@
 # 
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header.
+# 20110329    Lukas Batteau        Reorganized persoon membership
 ###############################################################################
-from NWonline.KB.models import GezinsRol
+from NWonline.KB.models import GezinsRol, LidmaatschapStatus, LidmaatschapVorm
 from django import forms
 
 class PersoonSearchForm(forms.Form):
@@ -35,8 +36,13 @@ class PersoonSearchForm(forms.Form):
                                           required=False)
     dtmgeboortedatumtot = forms.DateField(label="tot",
                                           required=False)
-    boolactief = forms.BooleanField(label="Actief", 
-                                    initial=True,
+    idlidmaatschapstatus = forms.ModelChoiceField(
+                                    queryset=LidmaatschapStatus.objects.all(),
+                                    label="Status lidmaatschap",
+                                    required=False)
+    idlidmaatschapvorm = forms.ModelChoiceField(
+                                    queryset=LidmaatschapVorm.objects.all(),
+                                    label="Lidmaatschap vorm",
                                     required=False)
     
     

@@ -15,7 +15,7 @@
 		{% if formState == "ADD" or persoonForm.errors %}
 		<h2>Persoon toevoegen</h2>
 		{% else %}
-		<h2>{{ persoonForm.instance.txtroepnaam }} {{ persoonForm.instance.txttussenvoegsels }} {{ persoonForm.instance.txtachternaam }}</h2>
+		<h2>{{ persoonForm.instance.txtroepnaam }} {{ persoonForm.instance.txttussenvoegsels }} {{ persoonForm.instance.txtachternaam }} ({{ membership }})</h2>
 		{% endif %}
 	</span>
 	<span class="buttons">
@@ -49,12 +49,12 @@
 		{{ persoonForm.txttelefoonnummer|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.txtemailadres|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.idgezinsrol|generate:"fixed" }}<br class="clear"/>
-		
-		{{ persoonForm.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.dtmgeboortedatum|generate:"fixed" }} <label for="id_txtgeboorteplaats">te</label> {{ persoonForm.txtgeboorteplaats }} {{ persoonForm.txtgeboorteplaats.errors }}<br class="clear"/>
 		{{ persoonForm.txtopmerking|generate:"fixed" }} <br class="clear"/>
 	</div> <!-- subtab_persoonsgegevens -->
 	<div id="subtab_kerkhistorie">
+		{{ persoonForm.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.idlidmaatschapvorm|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.dtmdatumdoop|generate:"fixed" }} {{ persoonForm.iddoopgemeente|generate }}<br class="clear"/>
 		{{ persoonForm.dtmdatumbelijdenis|generate:"fixed" }} {{ persoonForm.idbelijdenisgemeente|generate }}<br class="clear"/>
 		{{ persoonForm.dtmhuwelijksdatum|generate:"fixed" }}<br class="clear">
