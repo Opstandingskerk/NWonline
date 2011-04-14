@@ -4,15 +4,20 @@
 
 {% load customtags %}
 
-<div class="actions">
-	<span class="title">
+<div class="detail_header">
+	<div class="title">
 		{% if formState == "ADD" or gezinForm.errors %}
 		<h2>Gezin toevoegen</h2>
 		{% else %}
 		<h2>Fam. {{ gezinForm.instance.txtgezinsnaam }}</h2>
 		{% endif %}
-	</span>
-	<br class="clear"/>
+	</div>
+	<div class="status">
+		{% if gezinForm.instance.idgezin %}
+		<span><a href="/wizard/membership/gezin/{{gezinForm.instance.idgezin}}/">Lidmaatschap</a></span>
+		<br class="clear"/>
+		{% endif %}	
+	</div>
 </div>
 
 <div id="detail" class="container">
@@ -36,43 +41,18 @@
 
 <br class="clear"/>
 
-<div class="actions">
-	<span class="buttons">
+</div> <!-- detail -->
+
+<div class="detail_header">
+	<div class="status">
 		{% if gezinForm.instance.idgezin %}
-		<a href="persoon/add">Nieuw persoon</a>
+		<span><a href="persoon/add">Nieuw persoon</a></span>
+		<br class="clear"/>
 		{% endif %}
-	</span>
-	<br class="clear"/>
+	</div>
 </div>
 
-<table cellpadding="0" cellspacing="0" class="listview">
-	<tr>
-		<th>Roepnaam</th>
-    	<th>Geboortedatum</th>
-    	<th>Geslacht</th>
-    	<th>Telefoon</th>
-    	<th>E-mailadres</th>
-    </tr>
-	{% if persoonList %}
-	    {% for persoon in persoonList  %}
-		    <tr>
-		        <td><a href="../persoon/{{ persoon.idpersoon }}/">{{ persoon.txtroepnaam }}</a></td>
-		        <td>{{ persoon.dtmgeboortedatum|date }}</td>
-		        <td>{{ persoon.idgeslacht }}</td>
-		        <td>{{ persoon.txttelefoonnummer }}</td>
-		        <td>{{ persoon.txtemailadres }}</td>
-		    </tr>
-	    {% endfor %}
-	{% else %}
-	    <tr>
-	    	<td colspan="5">Geen personen.</td>
-	    </tr>
-	{% endif %}	    
-</table>
-
-
-
-</div> <!-- detail -->
+{% include "KB/gezinPersoonList.html" %}
 
 <script language="javascript">
 var formState = "{{formState}}";

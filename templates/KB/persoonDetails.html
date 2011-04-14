@@ -10,20 +10,20 @@
 
 {% load customtags %}
 
-<div class="actions">
-	<span class="title">
+<div class="detail_header">
+	<div class="title">
 		{% if formState == "ADD" or persoonForm.errors %}
 		<h2>Persoon toevoegen</h2>
 		{% else %}
-		<h2>{{ persoonForm.instance.txtroepnaam }} {{ persoonForm.instance.txttussenvoegsels }} {{ persoonForm.instance.txtachternaam }} ({{ membership }})</h2>
+		<h2>{{ persoonForm.instance.txtroepnaam }} {{ persoonForm.instance.txttussenvoegsels }} {{ persoonForm.instance.txtachternaam }}</h2>
 		{% endif %}
-	</span>
-	<span class="buttons">
-		{% if persoonForm.instance.idpersoon %}
-		<a href="/wizard/marry/{{persoonForm.instance.idpersoon}}/">Trouwen</a>
-		{% endif %}	
-	</span>
-	<br class="clear"/>
+	</div>
+	{% if persoonForm.instance.idpersoon %}
+	<div class="status">
+		<strong>{{ membership }}</strong>
+		<span><a href="/wizard/membership/{{persoonForm.instance.idpersoon}}/">Lidmaatschap</a> | <a href="/wizard/marry/{{persoonForm.instance.idpersoon}}/">Trouwen</a></span>
+	</div>
+	{% endif %}	
 </div>
 
 <form name="persoonForm" id="persoonForm" action="" method="post">
@@ -53,14 +53,23 @@
 		{{ persoonForm.txtopmerking|generate:"fixed" }} <br class="clear"/>
 	</div> <!-- subtab_persoonsgegevens -->
 	<div id="subtab_kerkhistorie">
+		
 		{{ persoonForm.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
+		<div id="container_dtmdatumvertrek" style="display: none">
+		{{ persoonForm.dtmdatumvertrek|generate:"fixed" }} {{ persoonForm.idvertrokkennaargemeente|generate }}<br class="clear"/>
+		</div>
+		<div id="container_dtmdatumonttrokken" style="display: none">
+		{{ persoonForm.dtmdatumonttrokken|generate:"fixed" }}<br class="clear"/>
+		</div>
+		<div id="container_dtmoverlijdensdatum" style="display: none">
+		{{ persoonForm.dtmoverlijdensdatum|generate:"fixed" }}<br class="clear"/>
+		</div>
 		{{ persoonForm.idlidmaatschapvorm|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.dtmdatumdoop|generate:"fixed" }} {{ persoonForm.iddoopgemeente|generate }}<br class="clear"/>
 		{{ persoonForm.dtmdatumbelijdenis|generate:"fixed" }} {{ persoonForm.idbelijdenisgemeente|generate }}<br class="clear"/>
 		{{ persoonForm.dtmhuwelijksdatum|generate:"fixed" }}<br class="clear">
 		{{ persoonForm.dtmdatumhuwelijksbevestiging|generate:"fixed" }} {{ persoonForm.idhuwelijksgemeente|generate }}<br class="clear"/>
 		{{ persoonForm.dtmdatumbinnenkomst|generate:"fixed" }}{{ persoonForm.idbinnengekomenuitgemeente|generate }}<br class="clear"/>
-		{{ persoonForm.dtmdatumvertrek|generate:"fixed" }} {{ persoonForm.idvertrokkennaargemeente|generate }}<br class="clear"/>
 		
 	</div> <!-- subtab_kerkhistorie -->
 <input type="submit" class="button" id="buttonSavePersoonForm" value="Opslaan"/> 
@@ -71,35 +80,13 @@
 </div> <!-- tabs_persoon -->
 </form>
 
-<div class="actions">
+<div class="detail_header">
 	<span class="title">
 		<h2>Fam. {{ persoonForm.instance.idgezin.txtgezinsnaam }} <a href="../../{{ persoonForm.instance.idgezin.idgezin }}/"><img border="0" src="/media/img/gotofamily.jpg"></a></h2>
 	</span>
 </div>
 
-    <table cellpadding="0" cellspacing="0" class="listview">
-    <tr>
-    	<th>Roepnaam</th>
-    	<th>Geboortedatum</th>
-    	<th>Geslacht</th>
-    	<th>Telefoon</th>
-    	<th>E-mailadres</th>
-    </tr>
-{% if persoonList %}
-    {% for persoon in persoonList  %}
-    <tr>
-        <td><a href="../../persoon/{{ persoon.idpersoon }}/">{% firstof persoon.txtroepnaam " " %}</a></td>
-        <td>{{ persoon.dtmgeboortedatum|date }}</td>
-        <td>{{ persoon.idgeslacht }}</td>
-        <td>{{ persoon.txttelefoonnummer }}</td>
-        <td>{{ persoon.txtemailadres }}</td>
-    </tr>
-    {% endfor %}
-{% else %}
-    <tr><td colspan="5">Geen personen.</td></tr>
-{% endif %}
-    </table>
-
+{% include "KB/gezinPersoonList.html" %}
 
 <script language="javascript">
 var formState = "{{formState}}";
@@ -124,6 +111,8 @@ function update() {
 		$("#buttonModifyPersoonForm").attr("disabled", true);	
 		$("#buttonCancelPersoonForm").removeAttr('disabled');
 	}
+
+	updateStatus();
 }
 
 function modifyPersoonForm() {
@@ -140,6 +129,39 @@ function clearPersoonForm() {
 	resetForm("#persoonForm");
 }
 
+function updateStatus() {
+	$("#container_dtmdatumvertrek").hide();
+	$("#container_dtmdatumonttrokken").hide();
+	$("#container_dtmoverlijdensdatum").hide();
+	// Check current status
+	var status = $("input[name='idlidmaatschapstatus']:checked").val();
+	if (status == 1) {
+		// Actief
+		$("{{ persoonForm.dtmdatumonttrokken|id }}").val("");
+		$("{{ persoonForm.dtmdatumvertrek|id }}").val("");
+		$("{{ persoonForm.idvertrokkennaargemeente|id }}").val("");
+		$("{{ persoonForm.dtmoverlijdensdatum|id }}").val("");
+	}
+	else if (status == 2) {
+		// Vertrokken
+		$("#container_dtmdatumvertrek").show();
+		$("{{ persoonForm.dtmdatumonttrokken|id }}").val("");
+		$("{{ persoonForm.dtmoverlijdensdatum|id }}").val("");
+	} else if (status == 3) {
+		// Onttrokken
+		$("#container_dtmdatumonttrokken").show();
+		$("{{ persoonForm.dtmdatumvertrek|id }}").val("");
+		$("{{ persoonForm.idvertrokkennaargemeente|id }}").val("");
+		$("{{ persoonForm.dtmoverlijdensdatum|id }}").val("");
+	} else if (status == 4) {
+		// Overleden
+		$("#container_dtmoverlijdensdatum").show();
+		$("{{ persoonForm.dtmdatumvertrek|id }}").val("");
+		$("{{ persoonForm.idvertrokkennaargemeente|id }}").val("");
+		$("{{ persoonForm.dtmdatumonttrokken|id }}").val("");
+	}	
+}
+
 $(document).ready(function(){
 	// Create JQuery tabs
 	$("#tabs_persoon").tabs();
@@ -154,6 +176,8 @@ $(document).ready(function(){
 	$("{{ persoonForm.dtmdatumhuwelijksbevestiging|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
 	$("{{ persoonForm.dtmdatumbinnenkomst|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
 	$("{{ persoonForm.dtmdatumvertrek|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ persoonForm.dtmdatumonttrokken|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ persoonForm.dtmoverlijdensdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
 
 	update();
 });
