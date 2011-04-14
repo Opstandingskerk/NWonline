@@ -10,6 +10,7 @@
 #                                  Added default 'NEDERLAND' for Land 
 # 20110328    Lukas Batteau        Added indexes for quick filter
 # 20110329    Lukas Batteau        Reorganized persoon membership
+# 20110414    Lukas Batteau        Moved membership description method to model
 ###############################################################################
 from django.db import models
 
@@ -217,6 +218,32 @@ class Persoon(models.Model):
 
     def __unicode__(self):
         return ("%s %s") % (("%s %s" % (self.txtroepnaam, self.txttussenvoegsels)).strip(), self.txtachternaam)
+    
+    def membership(self):
+        status = self.idlidmaatschapstatus
+        lidmaatschap = self.idlidmaatschapvorm
+        if (status == LidmaatschapStatus.objects.get(pk=1)):
+            # Active: Show form
+            membership = str(lidmaatschap)
+        else:
+            membership = str(status)
+            if (status == LidmaatschapStatus.objects.get(pk=2)):
+                # Vertrokken: Show date and destination
+                if (self.dtmdatumvertrek):
+                    membership += " %s" % (self.dtmdatumvertrek.strftime("%d-%m-%Y"))
+                if (self.idvertrokkennaargemeente):
+                    membership += " naar %s" % (str(self.idvertrokkennaargemeente))
+            elif (status == LidmaatschapStatus.objects.get(pk=3)):
+                # Onttrokken: Show date
+                if (self.dtmdatumonttrokken):
+                    membership += " %s" % (self.dtmdatumonttrokken.strftime("%d-%m-%Y"))
+            elif (status == LidmaatschapStatus.objects.get(pk=4)):
+                # Overleden: Show date
+                if (self.dtmoverlijdensdatum):
+                    membership += " %s" % (self.dtmoverlijdensdatum.strftime("%d-%m-%Y"))
+        
+        return membership
+        
     
     class Meta:
         db_table = u'ledendb_personen'
