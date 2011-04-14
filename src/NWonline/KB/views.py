@@ -11,6 +11,8 @@
 #                                  share column sorting and pagination. 
 # 20110329    Lukas Batteau        Lidmaatschap is gewijzigd, bestaat nu uit
 #                                  vorm (doop, etc) en status (actief, etc).
+# 20110414    Lukas Batteau        Moved membership description method to model
+#                                  Persoon list now filtered by status
 ###############################################################################
 from NWonline.KB.forms import PersoonSearchForm
 from NWonline.KB.models import GezinsRol, LidmaatschapStatus
@@ -181,11 +183,7 @@ def handlePersoonListFilter(request):
     """
     
     # Retrieve default list with all active members
-    
-    persoon_list = Persoon.objects.exclude(
-                                dtmdatumvertrek__lt=datetime.now()
-                                 ).filter(
-                                idlidmaatschapstatus=LidmaatschapStatus.objects.get(pk=1))
+    persoon_list = Persoon.objects.filter(idlidmaatschapstatus=LidmaatschapStatus.objects.get(pk=1))
 
     # Determine quick search filter
     if ("filter" in request.GET):
@@ -367,30 +365,10 @@ def handleGezinPersoonAdd(request, gezinId):
                            "formState": formState,
                            "cancelRedirect": cancelRedirect},
                            context_instance=RequestContext(request))
-
     
 @login_required
 def handlePersoonDetails(request, persoonId):
     persoon = Persoon.objects.get(idpersoon=persoonId)    
-    
-    # Create membership description
-    status = persoon.idlidmaatschapstatus
-    lidmaatschap = persoon.idlidmaatschapvorm
-    if (status == LidmaatschapStatus.objects.get(pk=1)):
-        # Active: Show form
-        membership = str(lidmaatschap)
-    else:
-        membership = str(status)
-        if (status == LidmaatschapStatus.objects.get(pk=2)):
-            # Vertrokken: Show date and destination
-            membership += " %s naar %s" % (persoon.dtmdatumvertrek.strftime("%d-%m-%Y"), str(persoon.idvertrokkennaargemeente))
-        elif (status == LidmaatschapStatus.objects.get(pk=3)):
-            # Onttrokken: Show date
-            membership += " %s" % (persoon.dtmdatumonttrokken.strftime("%d-%m-%Y"))
-        elif (status == LidmaatschapStatus.objects.get(pk=4)):
-            # Overleden: Show date
-            membership += " %s" % (persoon.dtmoverlijdensdatum.strftime("%d-%m-%Y"))
-            
     
     # Check if form state is passed
     try:
@@ -422,12 +400,16 @@ def handlePersoonDetails(request, persoonId):
         if (persoonForm.is_valid()):
             # Form is valid
             persoonForm.save()
+            persoon = persoonForm.instance
             formState = "VIEW"
         else:
             formState = "MODIFY"
     else:
         # No POST data
         persoonForm = PersoonForm(instance=persoon)
+
+    # Create membership description
+    membership = persoon.membership()
 
     persoonList = Persoon.objects.filter(idgezin=persoon.idgezin.idgezin).order_by("idgezinsrol", "dtmgeboortedatum")
     
