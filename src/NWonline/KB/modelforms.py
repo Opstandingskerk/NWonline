@@ -5,6 +5,7 @@
 # 
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header.
+# 20110414    Lukas Batteau        Reorganized membership
 ###############################################################################
 from django import forms
 import models
@@ -37,7 +38,11 @@ class PersoonForm(forms.ModelForm):
     txtvoorletters = forms.CharField(
                             widget=forms.TextInput(attrs={'size':8}),
                             label="Voorletters")
-    
+    idlidmaatschapstatus = forms.ModelChoiceField(label="Status",
+                                                  queryset=models.LidmaatschapStatus.objects.all(),
+                                                  widget=forms.RadioSelect(attrs = {'onClick': 'updateStatus();'}),
+                                                  empty_label=None)
+        
     class Meta:
         model = models.Persoon
     
