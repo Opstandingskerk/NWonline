@@ -5,6 +5,7 @@
 # 
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header. Removed unused import.
+# 20110414    Lukas Batteau        Static path changed. Fixed redirect.
 ###############################################################################
 from django.conf.urls.defaults import patterns, include
 from django.views.generic.simple import redirect_to
@@ -27,9 +28,8 @@ urlpatterns = patterns('',
     (r'^query/gemeente/.*$', 'NWonline.KB.ajax.queryGemeente'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': 'D:/Development/Projects/NWonline/media/KB'}),
-    
+        {'document_root': 'D:/Development/Projects/Django/NWonline/media/KB'}),
         
-    (r'^', redirect_to, {'url': '/leden/'}),
+    (r'^$', redirect_to, {'url': 'leden/'}),
         
 )
