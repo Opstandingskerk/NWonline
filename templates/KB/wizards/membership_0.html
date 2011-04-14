@@ -1,0 +1,94 @@
+{% extends "KB/main.html" %}
+
+{% load customtags %}
+
+{% block content %}
+
+<div class="wizard">
+<h2>Wizard lidmaatschap wijzigen ({{ step }} van {{ step_count }})</h2>
+<p>Geef aan op welke manier het lidmaatschap van 
+{% if updateWholeFamily %}
+de fam. {{ gezin }}
+{% else %}
+{{ persoon }}
+{% endif %} wijzigt.</p>
+{{ form.errors }}
+<form name="form" id="form" action="." method="post">
+{% csrf_token %}
+
+{{ form.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
+<div id="container_dtmdatumvertrek" style="display: none">
+{{ form.dtmdatumvertrek|generate:"fixed" }} {{ form.idvertrokkennaargemeente|generate }}<br class="clear"/>
+</div>
+<div id="container_dtmdatumonttrokken" style="display: none">
+{{ form.dtmdatumonttrokken|generate:"fixed" }}<br class="clear"/>
+</div>
+<div id="container_dtmoverlijdensdatum" style="display: none">
+{{ form.dtmoverlijdensdatum|generate:"fixed" }}<br class="clear"/>
+</div>
+
+{% if persoon.idgezinsrol.pk == 1 %}
+{{ form.updateWholeFamily|generate:"fixed" }}
+{% endif %}
+
+<br class="clear"/>
+
+<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+{{ previous_fields|safe }}
+<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
+<br class="clear"/>
+</form>
+</div>
+
+<script type="text/javascript">
+
+function submitForm() {
+	document.form.submit();
+}
+
+function updateStatus() {
+	$("#container_dtmdatumvertrek").hide();
+	$("#container_dtmdatumonttrokken").hide();
+	$("#container_dtmoverlijdensdatum").hide();
+	// Check current status
+	var status = $("input[name='0-idlidmaatschapstatus']:checked").val();
+	if (status == 1) {
+		// Actief
+		$("{{ form.dtmdatumonttrokken|id }}").val("");
+		$("{{ form.dtmdatumvertrek|id }}").val("");
+		$("{{ form.idvertrokkennaargemeente|id }}").val(-1);
+		$("{{ form.dtmoverlijdensdatum|id }}").val("");
+	}
+	else if (status == 2) {
+		// Vertrokken
+		$("#container_dtmdatumvertrek").show();
+		$("{{ form.dtmdatumonttrokken|id }}").val("");
+		$("{{ form.dtmoverlijdensdatum|id }}").val("");
+	} else if (status == 3) {
+		// Onttrokken
+		$("#container_dtmdatumonttrokken").show();
+		$("{{ form.dtmdatumvertrek|id }}").val("");
+		$("{{ form.idvertrokkennaargemeente|id }}").val(-1);
+		$("{{ form.dtmoverlijdensdatum|id }}").val("");
+	} else if (status == 4) {
+		// Overleden
+		$("#container_dtmoverlijdensdatum").show();
+		$("{{ form.dtmdatumvertrek|id }}").val("");
+		$("{{ form.idvertrokkennaargemeente|id }}").val(-1);
+		$("{{ form.dtmdatumonttrokken|id }}").val("");
+	}	
+}
+
+$(document).ready(function(){
+	// Datepicker
+	$("{{ form.dtmdatumvertrek|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ form.dtmdatumonttrokken|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ form.dtmoverlijdensdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+
+	updateStatus();
+
+});
+</script>
+
+{% endblock %}
+
