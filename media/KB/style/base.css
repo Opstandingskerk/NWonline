@@ -16,8 +16,7 @@ a:hover {
 }
 
 h2 {
-	margin: 0px;
-	margin-bottom: 1em;
+	margin-bottom: 0.5em;
 }
 	
 
@@ -43,7 +42,7 @@ form label.fixed {
 
 form label, form input, form select, form textarea, form button {
 	float: left;
-	margin-bottom: 12px;
+	margin-bottom: 0.5em;
 	margin-right: 1em;
 }
 
@@ -161,6 +160,33 @@ span#user {
 	margin-right: 0.5em;
 }
 
+#detail.container {
+	margin-bottom: 1em;
+}
+
+.detail_header {
+	margin-top 7px;
+}
+
+.detail_header .status span {
+	float: right;
+}
+
+.detail_header .status {
+	border: 1px solid #dddddd;
+	margin-bottom: 0.5em;
+	padding: 6px;
+	background-color: #f2f5f7;
+	background-image: url("images/ui-bg_highlight-hard_100_f2f5f7_1x100.png");
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+	background-position: 50% top;
+	color: #362b36;
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+}	
+
 #tabs {
 	/*margin: 12px;
 	height: 90%;*/
@@ -243,6 +269,7 @@ div.wizard {
 	background-color: #EEE;
 	border: 1px solid #DDD;
 	padding: 7px;
+	min-width: 500px;
 }	
 
 .selectContainer {
