@@ -7,7 +7,7 @@
 <div class="wizard">
 <h2>Wizard lidmaatschap wijzigen ({{ step }} van {{ step_count }})</h2>
 <p>Geef aan op welke manier het lidmaatschap van 
-{% if updateWholeFamily %}
+{% if is_mode_family %}
 de fam. {{ gezin }}
 {% else %}
 {{ persoon }}
@@ -19,6 +19,7 @@ de fam. {{ gezin }}
 {{ form.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
 <div id="container_dtmdatumvertrek" style="display: none">
 {{ form.dtmdatumvertrek|generate:"fixed" }} {{ form.idvertrokkennaargemeente|generate }}<br class="clear"/>
+{{ form.generateCertificate|generate:"fixed" }}<br class="clear"/>
 </div>
 <div id="container_dtmdatumonttrokken" style="display: none">
 {{ form.dtmdatumonttrokken|generate:"fixed" }}<br class="clear"/>

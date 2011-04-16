@@ -93,6 +93,9 @@ class Gezin(models.Model):
         return ("%s, %s (%s)") % ((("%s %s") % (persoon.txtachternaam, persoon.txttussenvoegsels)).strip(),
                                                 persoon.txtvoorletters.replace(" ", ""),
                                                 persoon.txtroepnaam)
+        
+    def createAddress(self):
+        return ("%s %s %s" % (self.txtstraatnaam, str(self.inthuisnummer), self.txthuisnummertoevoeging)).strip()
 
     def __unicode__(self):
         return self.txtgezinsnaam
@@ -178,6 +181,14 @@ class LidmaatschapStatus(models.Model):
 
     class Meta:
         db_table = u'ledendb_lidmaatschapstatussen'
+
+class Attestatie(models.Model):
+    idattestatie = models.AutoField(primary_key=True)
+    txtcode = models.CharField("Code", max_length=20)
+    txtbeschrijving = models.TextField("Beschrijving")
+
+    def __unicode__(self):
+        return self.txtcode
 
 class Persoon(models.Model):
     idpersoon = models.AutoField(primary_key=True, db_column='idPersoon') # Field name made lowercase.

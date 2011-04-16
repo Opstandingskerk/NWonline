@@ -5,21 +5,27 @@
 # 
 # CHANGE HISTORY
 # 20110314    Lukas Batteau        Initial version
+# 20110416    Lukas Batteau        Added certificates (attestaties)
 ###############################################################################
-from NWonline.KB.models import Persoon, LidmaatschapStatus, Gemeente, Gezin
+from NWonline.KB.models import Persoon, LidmaatschapStatus, Gemeente, Gezin, \
+    Attestatie, LidmaatschapVorm
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
 from django.forms.forms import Form
 from django.http import HttpResponseRedirect, HttpResponse
+import datetime
 
 class MembershipForm1(Form):
     """
     Membership wizard screen 1
     """
-    updateWholeFamily = forms.BooleanField(widget=forms.RadioSelect(choices=(("1", "Ja"),("2", "Nee"))),
+    updateWholeFamily = forms.BooleanField(widget=forms.RadioSelect(choices=(("1", "Ja"),("0", "Nee"))),
                                            label="Hele gezin?",
                                            initial=False,
                                            required=False)
+    generateCertificate = forms.BooleanField(widget=forms.RadioSelect(choices=(("1", "Ja"),("0", "Nee"))),
+                                             label="Attestatie?",
+                                             required=False)
     idlidmaatschapstatus = forms.ModelChoiceField(label="Status",
                                                   queryset=LidmaatschapStatus.objects.all(),
                                                   widget=forms.RadioSelect(attrs = {'onClick': 'updateStatus();'}),
@@ -28,6 +34,23 @@ class MembershipForm1(Form):
     idvertrokkennaargemeente = forms.ModelChoiceField(label="Gemeente", queryset=Gemeente.objects.all(), required=False)
     dtmoverlijdensdatum = forms.DateField(label="Datum overlijden", required=False)
     dtmdatumonttrokken = forms.DateField(label="Datum onttrokken", required=False)
+    
+
+class MembershipForm2(Form):
+    """
+    Membership wizard screen 2
+    """
+    certificateType = forms.ModelChoiceField(label="Attestatie",
+                                             queryset=Attestatie.objects.all(),
+                                             widget=forms.RadioSelect(),
+                                             empty_label=None)
+    
+
+class MembershipForm3(Form):
+    """
+    Membership wizard screen 3
+    """
+    certificate = None
     
 
 class MembershipWizard(FormWizard):
@@ -42,28 +65,33 @@ class MembershipWizard(FormWizard):
         1. At 'gezin' level
         2. At 'persoon' level
         
-        Which level is determined by the 'updateWholeFamily' flag passed
+        Which level is determined by the 'is_mode_family' flag passed
         on entering this wizard. There is also an additional 'updateWholeFamily'
         flag in the user form.
         """
         
         # Read 'whole family' flag
-        updateWholeFamily = kwargs["updateWholeFamily"]
-        self.storedFields["updateWholeFamily"] = updateWholeFamily 
+        is_mode_family = kwargs["is_mode_family"]
         
-        if (updateWholeFamily):
+        if (is_mode_family):
             # Extract gezin ID from url
             gezinId = kwargs["gezinId"]
-
+            
             # Check if gezin already retrieved
             if ("gezin" not in self.storedFields 
                 or self.storedFields["gezin"].idgezin != gezinId):
                 # Not yet retrieved or someone else. Retrieve.
                 gezin = Gezin.objects.get(pk=gezinId)
-            
+                
                 # Add gezin to stored fields
                 self.storedFields["gezin"] = gezin
-            
+                
+                # Check size of family
+                if (len(gezin.persoon_set.all()) == 1):
+                    # Can't process this as family
+                    is_mode_family = False
+                    # Store persoon separately
+                    self.storedFields["persoon"] = gezin.persoon_set.get(pk=1)                
         else:
             # Extract persoon Id from url
             persoonId = kwargs["persoonId"]
@@ -77,15 +105,235 @@ class MembershipWizard(FormWizard):
                 # Add persoon to stored fields
                 self.storedFields["persoon"] = persoon
             
+        self.storedFields["is_mode_family"] = is_mode_family    
+
+        # Copy data in stored fields to context        
+        self.extra_context.update(self.storedFields)
+        
         # Continue in super class
         FormWizard.parse_params(self, request, args, kwargs)
     
+    def process_step(self, request, form, step):
+        """
+        Hook for dynamically modifying the wizard's pages based on user input
+        """
+        
+        # Check which page we're processing
+        if (step == 0):
+            # Page 1
+            
+            # Check whether we should generate a certificate at the end
+            # of the wizard
+            generateCertificate = form.cleaned_data["generateCertificate"]
+            if (generateCertificate):
+                # Certificate request, add corresponding pages if not yet existing
+                if (len(self.form_list) == 1):
+                    self.form_list.append(MembershipForm2)
+                    self.form_list.append(MembershipForm3)
+            else:
+                # Reset list
+                self.form_list = [MembershipForm1]
+                # The rest of the fiels are only necessary for generating
+                # a certificate
+                return
+                
+            # Store whether whole family should be updated
+            updateWholeFamily = form.cleaned_data["updateWholeFamily"]
+            self.storedFields["updateWholeFamily"] = updateWholeFamily
+            
+            # Store family
+            if (not self.storedFields["is_mode_family"] and updateWholeFamily):
+                self.storedFields["gezin"] = self.storedFields["persoon"].idgezin                         
+            
+            # Store destination church for use in certificate 
+            self.storedFields["idvertrokkennaargemeente"] = form.cleaned_data["idvertrokkennaargemeente"]
+
+            # Modify which types of certificates to show
+            queryset = Attestatie.objects.all()
+            if ((self.storedFields["is_mode_family"] 
+                 or self.storedFields["updateWholeFamily"])
+                and len(self.storedFields["gezin"].persoon_set.all()) > 1):
+                # Only show 'Gezins'
+                queryset = queryset.filter(pk=4)
+            else:
+                # Exclude 'Gezins'
+                queryset = queryset.exclude(pk=4)
+                
+                # Check membership
+                persoon = self.storedFields["persoon"]
+                if (persoon.idlidmaatschapvorm == LidmaatschapVorm.objects.get(pk=1)):
+                    # Dooplid
+                    queryset = queryset.filter(pk=1)
+                else:
+                    queryset = queryset.exclude(pk=1)
+            
+            self.form_list[1].base_fields["certificateType"].queryset = queryset
+             
+                
+        elif (step == 1):
+            # Store selected certificate
+            self.storedFields["certificateType"] = form.cleaned_data["certificateType"]
+        
+                            
     def render_template(self, request, form, previous_fields, step, context=None):
         # Authenticate user
         if not request.user.is_authenticated():
             # User is anonymous, redirect to login
-            return HttpResponseRedirect("/login?next=" + request.path)        
+            return HttpResponseRedirect("/login?next=" + request.path)
+        
+        elif (step == 2):
+            # Page 3: Generate certificate
+            certificateType = self.storedFields["certificateType"]
+            gemeente = self.storedFields["idvertrokkennaargemeente"]
             
+            # Check certificate type
+            if (certificateType.txtcode.upper() == "GEZINS"):
+                # GEZINSATTESTATIE
+                gezin = self.storedFields["gezin"]
+                husband = gezin.persoon_set.get(idgezinsrol__pk=1)
+                wife = gezin.persoon_set.get(idgezinsrol__pk=2)
+                # Check if head is female
+                if (husband.idgeslacht.pk == 2):
+                    # Swap
+                    tmp = husband
+                    husband = wife
+                    wife = tmp
+                    
+                husband_achternaam = ("%s %s" % (husband.txttussenvoegsels, husband.txtachternaam)).strip()
+                wife_achternaam = ("%s %s" % (wife.txttussenvoegsels, wife.txtachternaam)).strip()
+                
+                # Create certificate
+                form.certificate = certificateType.txtbeschrijving % (gezin.txtgezinsnaam,
+                                                                      gezin.createAddress(),
+                                                                      gezin.txtpostcode,
+                                                                      gezin.txtplaats,
+                                                                      gezin.idland,
+                                                                      datetime.datetime.now().strftime("%d %B %Y"),
+                                                                      husband.idgeslacht.txtaanhefkerk,
+                                                                      husband.txtdoopnaam, 
+                                                                      husband_achternaam,
+                                                                      husband.txtroepnaam,
+                                                                      husband.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                      husband.txtgeboorteplaats,
+                                                                      husband.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                      husband.iddoopgemeente,
+                                                                      husband.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                      husband.idbelijdenisgemeente,
+                                                                      wife.idgeslacht.txtaanhefkerk,
+                                                                      wife.txtdoopnaam, 
+                                                                      wife_achternaam,
+                                                                      wife.txtroepnaam,
+                                                                      wife.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                      wife.txtgeboorteplaats,
+                                                                      wife.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                      wife.iddoopgemeente,
+                                                                      wife.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                      wife.idbelijdenisgemeente,
+                                                                      gemeente)
+            
+            else:
+                # Person
+                persoon = self.storedFields["persoon"]
+            
+                achternaam = ("%s %s" % (persoon.txttussenvoegsels, persoon.txtachternaam)).strip()
+                aanhef = persoon.idgeslacht.txtaanhefkerk
+                
+                # Determine pronoun
+                if (persoon.idgeslacht.txtgeslacht == "M"):
+                    aanwijzend = "hij"
+                elif (persoon.idgeslacht.txtgeslacht == "V"):
+                    aanwijzend = "zij"  
+                
+                # Check type of certificate
+                if (certificateType.txtcode.upper() == "DOOP"):
+                    # DOOPATTESTATIE                                
+                    form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
+                                                                          achternaam,
+                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.txtpostcode,
+                                                                          persoon.idgezin.txtplaats,
+                                                                          persoon.idgezin.idland,
+                                                                          datetime.datetime.now().strftime("%d %B %Y"),
+                                                                          aanhef,
+                                                                          persoon.txtdoopnaam, 
+                                                                          achternaam,
+                                                                          persoon.txtroepnaam,
+                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                          persoon.txtgeboorteplaats,
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.iddoopgemeente,
+                                                                          aanhef,
+                                                                          gemeente)
+                elif (certificateType.txtcode.upper() == "VERBLIJFS"):
+                    
+        
+                    # VERBLIJFSATTESTATIE
+                    form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
+                                                                          achternaam,
+                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.txtpostcode,
+                                                                          persoon.idgezin.txtplaats,
+                                                                          persoon.idgezin.idland,
+                                                                          datetime.datetime.now().strftime("%d %B %Y"),
+                                                                          aanhef,
+                                                                          persoon.txtdoopnaam, 
+                                                                          achternaam,
+                                                                          persoon.txtroepnaam,
+                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                          persoon.txtgeboorteplaats,
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.iddoopgemeente,
+                                                                          persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                          persoon.idbelijdenisgemeente,
+                                                                          aanwijzend.capitalize(),
+                                                                          aanhef,
+                                                                          gemeente,
+                                                                          aanhef)
+            
+                elif (certificateType.txtcode.upper() == "BELIJDENIS"):
+                    # BELIJDENISATTESTATIE
+                    form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
+                                                                          achternaam,
+                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.txtpostcode,
+                                                                          persoon.idgezin.txtplaats,
+                                                                          persoon.idgezin.idland,
+                                                                          datetime.datetime.now().strftime("%d %B %Y"),
+                                                                          aanhef,
+                                                                          persoon.txtdoopnaam, 
+                                                                          achternaam,
+                                                                          persoon.txtroepnaam,
+                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                          persoon.txtgeboorteplaats,
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.iddoopgemeente,
+                                                                          persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                          persoon.idbelijdenisgemeente,
+                                                                          aanhef,
+                                                                          gemeente,
+                                                                          aanhef)
+                elif (certificateType.txtcode.upper() == "KERKELIJKE GEGEVENS"):
+                    # KERKELIJKE GEGEVENS
+                    form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
+                                                                          achternaam,
+                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.txtpostcode,
+                                                                          persoon.idgezin.txtplaats,
+                                                                          persoon.idgezin.idland,
+                                                                          datetime.datetime.now().strftime("%d %B %Y"),
+                                                                          aanhef,
+                                                                          persoon.txtdoopnaam, 
+                                                                          achternaam,
+                                                                          persoon.txtroepnaam,
+                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                          persoon.txtgeboorteplaats,
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.iddoopgemeente,
+                                                                          persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                          persoon.idbelijdenisgemeente,
+                                                                          str(persoon.idlidmaatschapvorm).lower())
+            
+        
         # Copy data in stored fields to context        
         self.extra_context.update(self.storedFields)
         
@@ -95,14 +343,14 @@ class MembershipWizard(FormWizard):
         """
         Processes submitted form
         """
-        # Read 'whole family' flag
-        updateWholeFamily = self.storedFields["updateWholeFamily"]
+        # Read mode
+        is_mode_family = self.storedFields["is_mode_family"]
         
         # Processed form data
         form_data = form_list[0].cleaned_data
         
         # Create list of persons to update.
-        if (updateWholeFamily):
+        if (is_mode_family):
             # Update whole family
             gezin = self.storedFields["gezin"]
             persoonList = gezin.persoon_set.all()
@@ -135,7 +383,7 @@ class MembershipWizard(FormWizard):
             persoon.save()
         
         # Redirect the user to either family or person detail page
-        if (updateWholeFamily or form_data["updateWholeFamily"]):
+        if (is_mode_family or form_data["updateWholeFamily"]):
             return HttpResponseRedirect("/leden/gezin/%d/" % (gezin.idgezin))
         else:
             return HttpResponseRedirect("/leden/gezin/persoon/%d/" % (persoon.idpersoon))

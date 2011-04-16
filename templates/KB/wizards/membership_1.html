@@ -1,0 +1,33 @@
+{% extends "KB/main.html" %}
+
+{% load customtags %}
+
+{% block content %}
+
+<div class="wizard">
+<h2>Wizard lidmaatschap wijzigen ({{ step }} van {{ step_count }})</h2>
+<p>Kies het type attestatie:</p>
+<form name="form" id="form" action="." method="post">
+{% csrf_token %}
+{{ form.certificateType|generate:"fixed" }}
+<br class="clear"/>
+<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+{{ previous_fields|safe }}
+<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
+<br class="clear"/>
+</form>
+</div>
+
+<script type="text/javascript">
+
+function submitForm() {
+	document.form.submit();
+}
+
+$(document).ready(function(){
+
+});
+</script>
+
+{% endblock %}
+
