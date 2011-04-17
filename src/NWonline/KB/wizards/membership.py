@@ -6,14 +6,17 @@
 # CHANGE HISTORY
 # 20110314    Lukas Batteau        Initial version
 # 20110416    Lukas Batteau        Added certificates (attestaties)
+# 20110417    Lukas Batteau        Fix: Check for one parent families
 ###############################################################################
 from NWonline.KB.models import Persoon, LidmaatschapStatus, Gemeente, Gezin, \
-    Attestatie, LidmaatschapVorm
+    Attestatie, LidmaatschapVorm, Geslacht
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
+from django.db.models.query_utils import Q
 from django.forms.forms import Form
 from django.http import HttpResponseRedirect, HttpResponse
 import datetime
+import time
 
 class MembershipForm1(Form):
     """
@@ -154,18 +157,18 @@ class MembershipWizard(FormWizard):
                  or self.storedFields["updateWholeFamily"])
                 and len(self.storedFields["gezin"].persoon_set.all()) > 1):
                 # Only show 'Gezins'
-                queryset = queryset.filter(pk=4)
+                queryset = queryset.filter(txtcode="Gezins")
             else:
                 # Exclude 'Gezins'
-                queryset = queryset.exclude(pk=4)
+                queryset = queryset.exclude(txtcode="Gezins")
                 
                 # Check membership
                 persoon = self.storedFields["persoon"]
                 if (persoon.idlidmaatschapvorm == LidmaatschapVorm.objects.get(pk=1)):
                     # Dooplid
-                    queryset = queryset.filter(pk=1)
+                    queryset = queryset.filter(Q(txtcode="Doop")| Q(txtcode="Kerkelijke gegevens"))
                 else:
-                    queryset = queryset.exclude(pk=1)
+                    queryset = queryset.exclude(txtcode="Doop")
             
             self.form_list[1].base_fields["certificateType"].queryset = queryset
              
@@ -190,17 +193,53 @@ class MembershipWizard(FormWizard):
             if (certificateType.txtcode.upper() == "GEZINS"):
                 # GEZINSATTESTATIE
                 gezin = self.storedFields["gezin"]
-                husband = gezin.persoon_set.get(idgezinsrol__pk=1)
-                wife = gezin.persoon_set.get(idgezinsrol__pk=2)
-                # Check if head is female
-                if (husband.idgeslacht.pk == 2):
-                    # Swap
-                    tmp = husband
-                    husband = wife
-                    wife = tmp
+                
+                head = gezin.persoon_set.get(idgezinsrol__pk=1)
+                
+                if (gezin.persoon_set.filter(idgezinsrol__pk=2)):
+                    partner = gezin.persoon_set.get(idgezinsrol__pk=2)
+                else:
+                    partner = Persoon(idgeslacht=Geslacht.objects.get(pk=3 - head.idgeslacht.pk))
+                
+                head_achternaam = ("%s %s" % (head.txttussenvoegsels, head.txtachternaam)).strip()
+                partner_achternaam = ("%s %s" % (partner.txttussenvoegsels, partner.txtachternaam)).strip()
+                
+                if (head.idgeslacht.pk==1):
+                    spouse = "zijn echtgenote"
+                else:
+                    spouse = "haar echtgenoot"
                     
-                husband_achternaam = ("%s %s" % (husband.txttussenvoegsels, husband.txtachternaam)).strip()
-                wife_achternaam = ("%s %s" % (wife.txttussenvoegsels, wife.txtachternaam)).strip()
+                # Apply date formatting (have to check for 'None' types)
+
+                if (head.dtmgeboortedatum):
+                    head.dtmgeboortedatum = head.dtmgeboortedatum.strftime("%d-%m-%Y")
+                else:
+                    head.dtmgeboortedatum = ""                
+                
+                if (head.dtmdatumbelijdenis):
+                    head.dtmdatumbelijdenis = head.dtmdatumbelijdenis.strftime("%d-%m-%Y")
+                else:
+                    head.dtmdatumbelijdenis = ""
+                    
+                if (head.dtmdatumdoop):
+                    head.dtmdatumdoop = head.dtmdatumdoop.strftime("%d-%m-%Y")
+                else:
+                    head.dtmdatumdoop = ""
+                    
+                if (partner.dtmgeboortedatum):
+                    partner.dtmgeboortedatum = partner.dtmgeboortedatum.strftime("%d-%m-%Y")
+                else:
+                    partner.dtmgeboortedatum = ""
+                    
+                if (partner.dtmdatumbelijdenis):
+                    partner.dtmdatumbelijdenis = partner.dtmdatumbelijdenis.strftime("%d-%m-%Y")
+                else:
+                    partner.dtmdatumbelijdenis = ""
+                    
+                if (partner.dtmdatumdoop):
+                    partner.dtmdatumdoop = partner.dtmdatumdoop.strftime("%d-%m-%Y")
+                else:
+                    partner.dtmdatumdoop = ""
                 
                 # Create certificate
                 form.certificate = certificateType.txtbeschrijving % (gezin.txtgezinsnaam,
@@ -209,26 +248,27 @@ class MembershipWizard(FormWizard):
                                                                       gezin.txtplaats,
                                                                       gezin.idland,
                                                                       datetime.datetime.now().strftime("%d %B %Y"),
-                                                                      husband.idgeslacht.txtaanhefkerk,
-                                                                      husband.txtdoopnaam, 
-                                                                      husband_achternaam,
-                                                                      husband.txtroepnaam,
-                                                                      husband.dtmgeboortedatum.strftime("%d-%m-%Y"),
-                                                                      husband.txtgeboorteplaats,
-                                                                      husband.dtmdatumdoop.strftime("%d-%m-%Y"),
-                                                                      husband.iddoopgemeente,
-                                                                      husband.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
-                                                                      husband.idbelijdenisgemeente,
-                                                                      wife.idgeslacht.txtaanhefkerk,
-                                                                      wife.txtdoopnaam, 
-                                                                      wife_achternaam,
-                                                                      wife.txtroepnaam,
-                                                                      wife.dtmgeboortedatum.strftime("%d-%m-%Y"),
-                                                                      wife.txtgeboorteplaats,
-                                                                      wife.dtmdatumdoop.strftime("%d-%m-%Y"),
-                                                                      wife.iddoopgemeente,
-                                                                      wife.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
-                                                                      wife.idbelijdenisgemeente,
+                                                                      head.idgeslacht.txtaanhefkerk,
+                                                                      head.txtdoopnaam, 
+                                                                      head_achternaam,
+                                                                      head.txtroepnaam,
+                                                                      head.dtmgeboortedatum,
+                                                                      head.txtgeboorteplaats,
+                                                                      head.dtmdatumdoop,
+                                                                      head.iddoopgemeente,
+                                                                      head.dtmdatumbelijdenis,
+                                                                      head.idbelijdenisgemeente,
+                                                                      spouse,
+                                                                      partner.idgeslacht.txtaanhefkerk,
+                                                                      partner.txtdoopnaam, 
+                                                                      partner_achternaam,
+                                                                      partner.txtroepnaam,
+                                                                      partner.dtmgeboortedatum,
+                                                                      partner.txtgeboorteplaats,
+                                                                      partner.dtmdatumdoop,
+                                                                      partner.iddoopgemeente,
+                                                                      partner.dtmdatumbelijdenis,
+                                                                      partner.idbelijdenisgemeente,
                                                                       gemeente)
             
             else:
@@ -244,6 +284,12 @@ class MembershipWizard(FormWizard):
                 elif (persoon.idgeslacht.txtgeslacht == "V"):
                     aanwijzend = "zij"  
                 
+                # Apply date formatting (have to check for 'None' types)
+                if (persoon.dtmdatumbelijdenis):
+                    persoon.dtmdatumbelijdenis = persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y")
+                else:
+                    persoon.dtmdatumbelijdenis = ""
+                    
                 # Check type of certificate
                 if (certificateType.txtcode.upper() == "DOOP"):
                     # DOOPATTESTATIE                                
@@ -283,7 +329,7 @@ class MembershipWizard(FormWizard):
                                                                           persoon.txtgeboorteplaats,
                                                                           persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
                                                                           persoon.iddoopgemeente,
-                                                                          persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmdatumbelijdenis,
                                                                           persoon.idbelijdenisgemeente,
                                                                           aanwijzend.capitalize(),
                                                                           aanhef,
@@ -307,7 +353,7 @@ class MembershipWizard(FormWizard):
                                                                           persoon.txtgeboorteplaats,
                                                                           persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
                                                                           persoon.iddoopgemeente,
-                                                                          persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmdatumbelijdenis,
                                                                           persoon.idbelijdenisgemeente,
                                                                           aanhef,
                                                                           gemeente,
@@ -329,7 +375,7 @@ class MembershipWizard(FormWizard):
                                                                           persoon.txtgeboorteplaats,
                                                                           persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
                                                                           persoon.iddoopgemeente,
-                                                                          persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmdatumbelijdenis,
                                                                           persoon.idbelijdenisgemeente,
                                                                           str(persoon.idlidmaatschapvorm).lower())
             
