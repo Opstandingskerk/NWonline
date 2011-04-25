@@ -50,9 +50,14 @@ function orderBy(column) {
 }
 
 function updateList() {
-	$.get("/leden/update?xhr", {order_by: order_by,
-		                        page: page},
-			function(data) {
+	$.ajaxQueue({
+		url:"/leden/update?xhr",
+		async:true,
+		data:{
+			filter: filter,
+			order_by: order_by,
+			page: page},
+		success: function(data) {	
 				$('#list').html(data)
 				// write contents of the table cells to the title attribute of the td, so you can see the full contents on mouse over  
 				$('#persoonListTable td').each(function() { 

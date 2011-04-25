@@ -43,22 +43,42 @@ function orderBy(column) {
 
 function retrieveList() {
 	filter = $("#searchBox").val();
-	$.get("/leden/?xhr", {filter: filter,
-		                        order_by: order_by,
-		                        page: page},
-			function(data) {
+	$.ajaxQueue({
+		url:"/leden/?xhr",
+		async:true,
+		data:{
+			filter: filter,
+			order_by: order_by,
+			page: page},
+		success: function(data) {
 				$('#list').html(data)
 				// write contents of the table cells to the title attribute of the td, so you can see the full contents on mouse over  
 				$('#persoonListTable td').each(function() { 
 					this.title = $(this).text(); 
-				}); 
-			});
+				}); 		
+			}
+		});/*
+		function(data,txtstatus,jqxhr) {
+			//if (filter!=$("#searchBox").val()) {
+				//alert('error!'+filter)
+			//	return false;
+			//}
+			alert(jqxhr);
+			cur=$('#textarea').val()
+			$('#textarea').val(cur+"\r\n"+filter+'-'+$("#searchBox").val());
+			//alert()
+
+		});*/
 }
 
 function updateList() {
-	$.get("/leden/update?xhr", {order_by: order_by,
-		                        page: page},
-			function(data) {
+	$.ajaxQueue({
+		url:"/leden/?xhr",
+		async:true,
+		data:{
+			order_by: order_by,
+			page: page},
+		success: function(data) {
 				$('#list').html(data)
 				// write contents of the table cells to the title attribute of the td, so you can see the full contents on mouse over  
 				$('#persoonListTable td').each(function() { 
@@ -81,5 +101,5 @@ $(document).ready(function(){
 
  
 </script>
-
+<textarea id="textarea"></textarea>
 {% endblock %}

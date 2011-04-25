@@ -114,7 +114,12 @@ span#user {
 
 #main {
 	height: 80%;
-	float: left;
+	/*
+	float causes chrome to size the main to minimum size and 
+	only renders the persoonlist table after that, reducing the 
+	100% width of that table to the maximum length of any other
+	item in the main div.
+	float: left;*/
 	padding: 12px;
 }
 
