@@ -57,23 +57,12 @@ function retrieveList() {
 					this.title = $(this).text(); 
 				}); 		
 			}
-		});/*
-		function(data,txtstatus,jqxhr) {
-			//if (filter!=$("#searchBox").val()) {
-				//alert('error!'+filter)
-			//	return false;
-			//}
-			alert(jqxhr);
-			cur=$('#textarea').val()
-			$('#textarea').val(cur+"\r\n"+filter+'-'+$("#searchBox").val());
-			//alert()
-
-		});*/
+		});
 }
 
 function updateList() {
 	$.ajaxQueue({
-		url:"/leden/?xhr",
+		url:"/leden/update/?xhr",
 		async:true,
 		data:{
 			order_by: order_by,
@@ -83,8 +72,9 @@ function updateList() {
 				// write contents of the table cells to the title attribute of the td, so you can see the full contents on mouse over  
 				$('#persoonListTable td').each(function() { 
 					this.title = $(this).text(); 
-				}); 
-			});
+				});
+			}
+		});
 }
 
 function updateListPage(newPage) {
@@ -95,11 +85,8 @@ function updateListPage(newPage) {
 $(document).ready(function(){
 	// Enable live filtering in search box
 	$("#searchBox").keyup(retrieveList);
-
-	//test
 });
 
  
 </script>
-<textarea id="textarea"></textarea>
 {% endblock %}
