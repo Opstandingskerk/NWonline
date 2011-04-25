@@ -29,8 +29,8 @@ class MySQLBooleanField(models.BooleanField):
 class Gemeente(models.Model):
     idgemeente = models.AutoField(primary_key=True, db_column='idGemeente') # Field name made lowercase.
     txtgemeentenaam = models.CharField(max_length=150, db_column='txtGemeenteNaam', blank=True) # Field name made lowercase.
-    idgemeentetype = models.IntegerField(db_column='idGemeenteType') # Field name made lowercase.
-    txtopmerking = models.TextField(max_length=765, db_column='txtOpmerking', blank=True) # Field name made lowercase.
+    idgemeentetype = models.IntegerField(db_column='idGemeenteType', blank=True, null=True) # Field name made lowercase.
+    txtopmerking = models.TextField(max_length=765, db_column='txtOpmerking', blank=True, null=True) # Field name made lowercase.
 
     def __unicode__(self):
         return self.txtgemeentenaam
@@ -85,8 +85,8 @@ class Gezin(models.Model):
     txtpostcode = models.CharField("Postcode", max_length=60, db_column='txtPostcode', db_index=True, blank=True, null=True) # Field name made lowercase.
     txtplaats = models.CharField("Plaats", max_length=150, db_column='txtPlaats', db_index=True, blank=True, null=True) # Field name made lowercase.
     idland = models.ForeignKey(Land, verbose_name="Land", db_column='idLand', blank=True, null=True, default=1) # Field name made lowercase.
-    txttelefoon = models.CharField("Telefoon", max_length=75, db_column='txtTelefoon', db_index=True, blank=True) # Field name made lowercase.
-    txtopmerking = models.TextField("Opmerking", max_length=765, db_column='txtOpmerking', blank=True) # Field name made lowercase.
+    txttelefoon = models.CharField("Telefoon", max_length=75, db_column='txtTelefoon', db_index=True, blank=True, null=True) # Field name made lowercase.
+    txtopmerking = models.TextField("Opmerking", max_length=765, db_column='txtOpmerking', blank=True, null=True) # Field name made lowercase.
     
     @classmethod
     def createGezinsNaam(cls, persoon):
@@ -120,7 +120,7 @@ class GezinsRol(models.Model):
 class Wijk(models.Model):
     idwijk = models.AutoField(primary_key=True, db_column='idWijk') # Field name made lowercase.
     txtwijknaam = models.CharField(max_length=150, db_column='txtWijkNaam') # Field name made lowercase.
-    txtwijknaamkort = models.CharField(max_length=9, db_column='txtWijkNaamKort', blank=True) # Field name made lowercase.
+    txtwijknaamkort = models.CharField(max_length=9, db_column='txtWijkNaamKort', blank=True, null=True) # Field name made lowercase.
 
     def __unicode__(self):
         return self.txtwijknaam
@@ -164,7 +164,7 @@ class LidmaatschapVorm(models.Model):
     txtlidmaatschapvorm = models.CharField(max_length=150, db_column='txtLidmaatschapvorm', blank=True) # Field name made lowercase.
     boolvoorquotum = MySQLBooleanField(db_column='boolVoorQuotum') # Field name made lowercase. This field type is a guess.
     txtlidmaatschapvormkort = models.CharField(max_length=150, db_column='txtLidmaatschapvormKort', blank=True) # Field name made lowercase.
-    txtattestatie = models.CharField(max_length=150, db_column='txtAttestatie', blank=True) # Field name made lowercase.
+    txtattestatie = models.CharField(max_length=150, db_column='txtAttestatie', blank=True, null=True) # Field name made lowercase.
 
     def __unicode__(self):
         return self.txtlidmaatschapvorm
@@ -197,12 +197,12 @@ class Persoon(models.Model):
     idgezinsrol = models.ForeignKey(GezinsRol, verbose_name="Gezinsrol", db_column='idGezinsRol') # Field name made lowercase.
     txtachternaam = models.CharField("Achternaam", max_length=150, db_column='txtAchternaam', db_index=True) # Field name made lowercase.
     txttussenvoegsels = models.CharField("Tussenvoegsels", max_length=150, db_column='txtTussenvoegsels', blank=True, null=True) # Field name made lowercase.
-    txtvoorletters = models.CharField("Voorletters", max_length=150, db_column='txtVoorletters', blank=True) # Field name made lowercase.
-    txtdoopnaam = models.CharField("Doopnaam", max_length=150, db_column='txtDoopnaam', blank=True, db_index=True) # Field name made lowercase.
-    txtroepnaam = models.CharField("Roepnaam", max_length=150, db_column='txtRoepnaam', db_index=True) # Field name made lowercase.
+    txtvoorletters = models.CharField("Voorletters", max_length=150, db_column='txtVoorletters', blank=True, null=True) # Field name made lowercase.
+    txtdoopnaam = models.CharField("Doopnaam", max_length=150, db_column='txtDoopnaam', blank=True, db_index=True, null=True) # Field name made lowercase.
+    txtroepnaam = models.CharField("Roepnaam", max_length=150, db_column='txtRoepnaam', db_index=True, null=True) # Field name made lowercase.
     boolaansprekenmetroepnaam = MySQLBooleanField("Aanspreken met roepnaam ", db_column='boolAansprekenMetRoepnaam', blank=True) # Field name made lowercase. This field type is a guess.
     dtmgeboortedatum = models.DateField("Geboortedatum", null=True, db_column='dtmGeboortedatum', blank=True) # Field name made lowercase.
-    txtgeboorteplaats = models.CharField("te", max_length=150, db_column='txtGeboorteplaats', blank=True) # Field name made lowercase.
+    txtgeboorteplaats = models.CharField("te", max_length=150, null=True, db_column='txtGeboorteplaats', blank=True) # Field name made lowercase.
     idgeslacht = models.ForeignKey(Geslacht, verbose_name="Geslacht", null=True, db_column='idGeslacht', blank=True) # Field name made lowercase.
     dtmdatumdoop = models.DateField("Datum doop", null=True, db_column='dtmDatumDoop', blank=True) # Field name made lowercase.
     iddoopgemeente = models.ForeignKey(Gemeente, verbose_name="Doopgemeente", null=True, db_column='idDoopgemeente', blank=True, related_name='Gedoopt') # Field name made lowercase.
@@ -214,10 +214,10 @@ class Persoon(models.Model):
     idbinnengekomenuitgemeente = models.ForeignKey(Gemeente, verbose_name="Binnengekomen uit", null=True, db_column='idBinnengekomenUitGemeente', blank=True, related_name='Binnengekomen') # Field name made lowercase.
     dtmdatumvertrek = models.DateField("Datum vertrek", null=True, db_column='dtmDatumVertrek', blank=True) # Field name made lowercase.
     idvertrokkennaargemeente = models.ForeignKey(Gemeente, verbose_name="Vertrokken naar", null=True, db_column='idVertrokkenNaarGemeente', blank=True, related_name='Vertrokken') # Field name made lowercase.
-    txttelefoonnummer = models.CharField("Telefoon", max_length=75, db_column='txtTelefoonNummer', blank=True) # Field name made lowercase.
-    txtemailadres = models.CharField("E-mailadres", max_length=150, db_column='txtEmailAdres', blank=True) # Field name made lowercase.
+    txttelefoonnummer = models.CharField("Telefoon", max_length=75, null=True, db_column='txtTelefoonNummer', blank=True) # Field name made lowercase.
+    txtemailadres = models.CharField("E-mailadres", max_length=150, null=True, db_column='txtEmailAdres', blank=True) # Field name made lowercase.
     dtmdatumhuwelijksbevestiging = models.DateField("Datum huwelijksbevestiging", null=True, db_column='dtmDatumHuwelijksbevestiging', blank=True) # Field name made lowercase.
-    txtopmerking = models.TextField("Opmerkingen", max_length=765, db_column='txtOpmerking', blank=True) # Field name made lowercase.
+    txtopmerking = models.TextField("Opmerkingen", max_length=765, null=True, db_column='txtOpmerking', blank=True) # Field name made lowercase.
     dtmoverlijdensdatum = models.DateField("Datum overlijden", null=True, db_column='dtmOverlijdensdatum', blank=True) # Field name made lowercase.
     dtmdatumonttrokken = models.DateField("Datum onttrekking", null=True, db_column='dtmDatumOnttrokken', blank=True) # Field name made lowercase.
     idlidmaatschapstatus = models.ForeignKey(LidmaatschapStatus, verbose_name="Status", null=False, db_column='idLidmaatschapStatus', blank=False) # Field name made lowercase.
