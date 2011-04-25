@@ -7,8 +7,10 @@
 # 20101209    Lukas Batteau        Added header. Removed unused import.
 # 20110414    Lukas Batteau        Static path changed. Fixed redirect.
 ###############################################################################
+from NWonline import settings
 from django.conf.urls.defaults import patterns, include
 from django.views.generic.simple import redirect_to
+import os
 
 urlpatterns = patterns('',
     (r'^login/$', 'NWonline.KB.views.handleLogin'),
@@ -28,7 +30,7 @@ urlpatterns = patterns('',
     (r'^query/gemeente/.*$', 'NWonline.KB.ajax.queryGemeente'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': 'D:/Development/Projects/Django/NWonline/media/KB'}),
+        {'document_root': os.path.join(settings.MEDIA_ROOT, 'KB')}),
         
     (r'^$', redirect_to, {'url': 'leden/'}),
         
