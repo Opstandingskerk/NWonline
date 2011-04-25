@@ -311,6 +311,10 @@ div.wizard {
 	width: 100px;
 }
 
+p.error {
+	color: Red;
+}
+
 .error input {
 	border: 1px solid Red;
 }
