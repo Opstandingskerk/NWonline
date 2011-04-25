@@ -14,6 +14,9 @@
 	<div class="title">
 		{% if formState == "ADD" or persoonForm.errors %}
 		<h2>Persoon toevoegen</h2>
+			{% if persoonForm.errors %}
+			<p class="error">Het formulier bevat fouten.</p>
+			{% endif %}
 		{% else %}
 		<h2>{{ persoonForm.instance.txtroepnaam }} {{ persoonForm.instance.txttussenvoegsels }} {{ persoonForm.instance.txtachternaam }}</h2>
 		{% endif %}
@@ -35,6 +38,7 @@
 	<div id="subtab_persoonsgegevens">
 		<div style="display:none">
 		{{ persoonForm.idgezin }}
+		<input type="hidden" name="selectedTab" id="selectedTab" value="{{selectedTab}}"/>
 		</div>
 		<input type="hidden" name="idpersoon" id="idpersoon" value="{{persoonForm.instance.idpersoon}}"/>
 		{% if persoonForm.errors %}
@@ -42,7 +46,6 @@
 		{% else %}
 		<input type="hidden" name="persoonFormHasErrors" id="persoonFormHasErrors" value="0"/>
 		{% endif %}
-		
 		{{ persoonForm.txtachternaam|generate:"fixed" }} {{ persoonForm.txttussenvoegsels|generate }} {{ persoonForm.idgeslacht|generate }} <br class="clear"/>
 		{{ persoonForm.txtvoorletters|generate:"fixed" }} {{ persoonForm.txtdoopnaam|generate }}<br class="clear"/>
 		{{ persoonForm.txtroepnaam|generate:"fixed" }} {{ persoonForm.boolaansprekenmetroepnaam }} <label for="id_boolaansprekenmetroepnaam">{{ persoonForm.boolaansprekenmetroepnaam.label }}</label><br class="clear"/>
@@ -53,7 +56,6 @@
 		{{ persoonForm.txtopmerking|generate:"fixed" }} <br class="clear"/>
 	</div> <!-- subtab_persoonsgegevens -->
 	<div id="subtab_kerkhistorie">
-		
 		{{ persoonForm.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
 		<div id="container_dtmdatumvertrek" style="display: none">
 		{{ persoonForm.dtmdatumvertrek|generate:"fixed" }} {{ persoonForm.idvertrokkennaargemeente|generate }}<br class="clear"/>
@@ -72,7 +74,7 @@
 		{{ persoonForm.dtmdatumbinnenkomst|generate:"fixed" }}{{ persoonForm.idbinnengekomenuitgemeente|generate }}<br class="clear"/>
 		
 	</div> <!-- subtab_kerkhistorie -->
-<input type="submit" class="button" id="buttonSavePersoonForm" value="Opslaan"/> 
+<input type="button" class="button" id="buttonSavePersoonForm" value="Opslaan" onClick="submitForm()"/> 
 <input type="button" id="buttonModifyPersoonForm" class="button" value="Wijzigen" onclick="modifyPersoonForm()"/>
 <input type="button" id="buttonCancelPersoonForm" class="button" value="Annuleren" onclick="cancelPersoonForm()"/>
 <br class="clear"/>
@@ -90,6 +92,12 @@
 
 <script language="javascript">
 var formState = "{{formState}}";
+
+function submitForm() {
+	var selectedTab = $("#tabs_persoon").tabs('option', 'selected'); // => 0
+	$("#selectedTab").val(selectedTab);
+	document.persoonForm.submit();
+}
 
 function update() {
 	if (formState == "VIEW") {
@@ -165,6 +173,7 @@ function updateStatus() {
 $(document).ready(function(){
 	// Create JQuery tabs
 	$("#tabs_persoon").tabs();
+	$("#tabs_persoon").tabs('select', {{selectedTab}});
 	$("#tabs_persoon").show();
 	
 
