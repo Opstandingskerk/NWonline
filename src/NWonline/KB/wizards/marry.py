@@ -10,7 +10,7 @@
 # 20110118    Lukas Batteau        Restructured code for readability 
 ###############################################################################
 from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol, \
-    Gemeente
+    Gemeente, LidmaatschapStatus
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
 from django.forms.forms import Form
@@ -123,7 +123,7 @@ class MarryWizard(FormWizard):
                 persoon.txtroepnaam = request.POST["0-txtroepnaam"]
                 persoon.idgeslacht = Geslacht.objects.get(pk=atoi(request.POST["0-idgeslacht"]))
                 persoon.txttussenvoegsels = request.POST["0-txttussenvoegsels"]
-                persoon.txtvoorletters = request.POST["0-txtvoorletters"]
+                persoon.txtvoorletters = request.POST["0-txtvoorletters"] 
             
             # Add persoon to context
             self.storedFields["persoonB"] = persoon
@@ -174,7 +174,10 @@ class MarryWizard(FormWizard):
         code = form_list[3].cleaned_data["code"]
         
         # Retrieve the corresponding existing family (gezinB may be None)
-        oldGezin = self.storedFields["gezin"+code] # gezinA or gezinB
+        if "gezin"+code in self.storedFields:
+            oldGezin = self.storedFields["gezin"+code] # gezinA or gezinB
+        else:
+            oldGezin = None 
 
         # If the user chose the address of person B, but person B is new,
         # we have the same situation as when the address is new.

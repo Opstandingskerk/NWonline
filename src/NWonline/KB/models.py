@@ -220,7 +220,7 @@ class Persoon(models.Model):
     txtopmerking = models.TextField("Opmerkingen", max_length=765, null=True, db_column='txtOpmerking', blank=True) # Field name made lowercase.
     dtmoverlijdensdatum = models.DateField("Datum overlijden", null=True, db_column='dtmOverlijdensdatum', blank=True) # Field name made lowercase.
     dtmdatumonttrokken = models.DateField("Datum onttrekking", null=True, db_column='dtmDatumOnttrokken', blank=True) # Field name made lowercase.
-    idlidmaatschapstatus = models.ForeignKey(LidmaatschapStatus, verbose_name="Status", null=False, db_column='idLidmaatschapStatus', blank=False) # Field name made lowercase.
+    idlidmaatschapstatus = models.ForeignKey(LidmaatschapStatus, default=LidmaatschapStatus.objects.get(txtlidmaatschapstatus="Actief"), verbose_name="Status", null=False, db_column='idLidmaatschapStatus', blank=False) # Field name made lowercase.
     idwijk = models.ForeignKey(Wijk, verbose_name="Wijk", null=True, blank=True, db_column='idWijk') # Field name made lowercase.
     idgastgemeente = models.ForeignKey(Gemeente, verbose_name="Gastgemeente", null=True, blank=True, db_column='idGastGemeente', related_name='Gastlid') # Field name made lowercase.
     idgasthoofdgemeente = models.ForeignKey(Gemeente, verbose_name="Gasthoofdgemeente", null=True, blank=True, db_column='idGastHoofdGemeente', related_name='Gastlid_hoofd') # Field name made lowercase.
