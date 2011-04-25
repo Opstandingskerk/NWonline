@@ -41,7 +41,8 @@ class PersoonForm(forms.ModelForm):
     idlidmaatschapstatus = forms.ModelChoiceField(label="Status",
                                                   queryset=models.LidmaatschapStatus.objects.all(),
                                                   widget=forms.RadioSelect(attrs = {'onClick': 'updateStatus();'}),
-                                                  empty_label=None)
+                                                  empty_label=None,
+                                                  required=False)
         
     class Meta:
         model = models.Persoon
