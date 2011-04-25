@@ -25,7 +25,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from modelforms import GezinForm, PersoonForm
-from models import Gezin, Persoon
+from models import Gezin, Persoon 
 
 def createPersoonListPage(request):
     """
@@ -340,6 +340,9 @@ def handleGezinPersoonAdd(request, gezinId):
             return HttpResponseRedirect("../../persoon/%d/" % (persoonForm.instance.idpersoon))
         else:
             formState = "MODIFY"
+
+        # Remember the selected tab
+        selectedTab = request.POST["selectedTab"]
     else:
         # No POST data
         persoon = Persoon()
@@ -357,10 +360,14 @@ def handleGezinPersoonAdd(request, gezinId):
         
         persoonForm = PersoonForm(instance=persoon)
         
+        # Default to first tab
+        selectedTab = 0
+        
     persoonList = Persoon.objects.filter(idgezin=gezinId).order_by("idgezinsrol", "dtmgeboortedatum")
     
     return render_to_response("KB/persoonDetails.html",
                           {"persoonForm": persoonForm,
+                           "selectedTab": selectedTab,
                            "persoonList": persoonList,
                            "formState": formState,
                            "cancelRedirect": cancelRedirect},
@@ -404,9 +411,13 @@ def handlePersoonDetails(request, persoonId):
             formState = "VIEW"
         else:
             formState = "MODIFY"
+            
+        # Remember the selected tab
+        selectedTab = request.POST["selectedTab"]
     else:
         # No POST data
         persoonForm = PersoonForm(instance=persoon)
+        selectedTab = 0
 
     # Create membership description
     membership = persoon.membership()
@@ -415,6 +426,7 @@ def handlePersoonDetails(request, persoonId):
     
     return render_to_response("KB/persoonDetails.html",
                               {"persoonForm": persoonForm,
+                               "selectedTab": selectedTab,
                                "membership": membership,
                                "persoonList": persoonList,
                                "formState": formState,
