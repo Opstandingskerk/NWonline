@@ -123,8 +123,7 @@ class MarryWizard(FormWizard):
                 persoon.txtroepnaam = request.POST["0-txtroepnaam"]
                 persoon.idgeslacht = Geslacht.objects.get(pk=atoi(request.POST["0-idgeslacht"]))
                 persoon.txttussenvoegsels = request.POST["0-txttussenvoegsels"]
-                persoon.txtvoorletters = request.POST["0-txtvoorletters"]
-                persoon.idlidmaatschapstatus = LidmaatschapStatus.objects.get(txtlidmaatschapstatus="Actief") #default value, could also be in defined 
+                persoon.txtvoorletters = request.POST["0-txtvoorletters"] 
             
             # Add persoon to context
             self.storedFields["persoonB"] = persoon
