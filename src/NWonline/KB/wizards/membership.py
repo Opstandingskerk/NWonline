@@ -8,6 +8,7 @@
 # 20110416    Lukas Batteau        Added certificates (attestaties)
 # 20110417    Lukas Batteau        Fix: Check for one parent families
 ###############################################################################
+from NWonline.KB.modelforms import AutoCompleteSelect
 from NWonline.KB.models import Persoon, LidmaatschapStatus, Gemeente, Gezin, \
     Attestatie, LidmaatschapVorm, Geslacht
 from django import forms
@@ -34,7 +35,10 @@ class MembershipForm1(Form):
                                                   widget=forms.RadioSelect(attrs = {'onClick': 'updateStatus();'}),
                                                   empty_label=None)
     dtmdatumvertrek = forms.DateField(label="Datum vertrek", required=False)
-    idvertrokkennaargemeente = forms.ModelChoiceField(label="Gemeente", queryset=Gemeente.objects.all(), required=False)
+    idvertrokkennaargemeente = forms.ModelChoiceField(label="Gemeente", 
+                                                      queryset=Gemeente.objects.all(), 
+                                                      required=False,
+                                                      widget=AutoCompleteSelect())
     dtmoverlijdensdatum = forms.DateField(label="Datum overlijden", required=False)
     dtmdatumonttrokken = forms.DateField(label="Datum onttrokken", required=False)
     
@@ -284,12 +288,6 @@ class MembershipWizard(FormWizard):
                 elif (persoon.idgeslacht.txtgeslacht == "V"):
                     aanwijzend = "zij"  
                 
-                # Apply date formatting (have to check for 'None' types)
-                if (persoon.dtmdatumbelijdenis):
-                    persoon.dtmdatumbelijdenis = persoon.dtmdatumbelijdenis.strftime("%d-%m-%Y")
-                else:
-                    persoon.dtmdatumbelijdenis = ""
-                    
                 # Check type of certificate
                 if (certificateType.txtcode.upper() == "DOOP"):
                     # DOOPATTESTATIE                                
@@ -306,7 +304,7 @@ class MembershipWizard(FormWizard):
                                                                           persoon.txtroepnaam,
                                                                           persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
                                                                           persoon.txtgeboorteplaats,
-                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y") if persoon.dtmdatumdoop else "",
                                                                           persoon.iddoopgemeente,
                                                                           aanhef,
                                                                           gemeente)
@@ -325,9 +323,9 @@ class MembershipWizard(FormWizard):
                                                                           persoon.txtdoopnaam, 
                                                                           achternaam,
                                                                           persoon.txtroepnaam,
-                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y") if persoon.dtmgeboortedatum else "",
                                                                           persoon.txtgeboorteplaats,
-                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y") if persoon.dtmdatumdoop else "",
                                                                           persoon.iddoopgemeente,
                                                                           persoon.dtmdatumbelijdenis,
                                                                           persoon.idbelijdenisgemeente,
@@ -349,9 +347,9 @@ class MembershipWizard(FormWizard):
                                                                           persoon.txtdoopnaam, 
                                                                           achternaam,
                                                                           persoon.txtroepnaam,
-                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y") if persoon.dtmgeboortedatum else "",
                                                                           persoon.txtgeboorteplaats,
-                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y") if persoon.dtmdatumdoop else "",
                                                                           persoon.iddoopgemeente,
                                                                           persoon.dtmdatumbelijdenis,
                                                                           persoon.idbelijdenisgemeente,
@@ -371,9 +369,9 @@ class MembershipWizard(FormWizard):
                                                                           persoon.txtdoopnaam, 
                                                                           achternaam,
                                                                           persoon.txtroepnaam,
-                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmgeboortedatum.strftime("%d-%m-%Y") if persoon.dtmgeboortedatum else "",
                                                                           persoon.txtgeboorteplaats,
-                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y"),
+                                                                          persoon.dtmdatumdoop.strftime("%d-%m-%Y") if persoon.dtmdatumdoop else "",
                                                                           persoon.iddoopgemeente,
                                                                           persoon.dtmdatumbelijdenis,
                                                                           persoon.idbelijdenisgemeente,

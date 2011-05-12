@@ -4,6 +4,8 @@
 
 {% load customtags %}
 
+<div id="content" class="detail">
+
 <div class="detail_header">
 	<div class="title">
 		{% if formState == "ADD" or gezinForm.errors %}
@@ -53,6 +55,8 @@
 </div>
 
 {% include "KB/gezinPersoonList.html" %}
+
+</div> <!--  content  -->
 
 <script language="javascript">
 var formState = "{{formState}}";

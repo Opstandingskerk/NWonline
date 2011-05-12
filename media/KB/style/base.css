@@ -123,6 +123,10 @@ span#user {
 	padding: 12px;
 }
 
+#content.detail {
+	width: 800px;
+}
+
 #bottom {
 	height: 15%;
 }
@@ -143,6 +147,11 @@ span#user {
 .actions #buttons {
 	float: right;
 	margin-top: 3px;
+}
+
+#extended_search {
+	margin-bottom: 1em;
+	padding: 1em;
 }
 
 #buttonsContainer {
@@ -168,15 +177,15 @@ span#user {
 	margin-bottom: 1em;
 }
 
-.detail_header {margin-top 7px;
-	
+.detail_header {
+	margin-top 7px;	
 }
 
 .detail_header .status span {
 	float: right;
 }
 
-.detail_header .status {
+.status {
 	border: 1px solid #dddddd;
 	margin-bottom: 0.5em;
 	padding: 6px;
@@ -200,8 +209,8 @@ span#user {
 #loading {
 	display: none;
 	position: absolute;
-	left: 500px;
-	top: 300px;
+	left: 165px;
+	top: 7px;
 }
 
 .menu {
@@ -349,7 +358,7 @@ p.error {
 }
 
 .ui-widget label.fixed {
-	width: 8.0em;
+	width: 10.0em;
 }
 
 .ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button

@@ -1,3 +1,4 @@
+    {% if page.object_list %}
     <table cellpadding="0" cellspacing="0" class="listview" id="persoonListTable">
     <tr>
     	<th class="col_surname"><a href="javascript:orderBy('txtachternaam')">Achternaam</a></th>
@@ -13,7 +14,6 @@
     	<th class="col_phone"><a href="javascript:orderBy('txttelefoonnummer')">Telefoon</a></th>
     	<th class="col_email"><a href="javascript:orderBy('txtemailadres')">E-mailadres</a></th>
     </tr>
-    {% if page.object_list %}
     {% for persoon in page.object_list  %}
     <tr>
         <td><a href="/leden/gezin/persoon/{{ persoon.idpersoon }}/">{{ persoon.txtachternaam }} {{ persoon.txttussenvoegsels }}</a></td>
@@ -30,22 +30,16 @@
         <td>{{ persoon.txtemailadres }}</td>
     </tr>
     {% endfor %}
-	{% else %}
-	<tr>
-	    <td colspan="12">&nbsp;</td>
-	</tr>
-	{% endif %}    
     </table>
 	
-	{% if page.object_list %}
 	<div class="pagination">
 	    <span class="step-links">
-	        {% if page.has_previous %}
+	    	{% if page.has_previous %}
 	            <a href="javascript:updateListPage({{ page.previous_page_number }})">< vorige</a>
 	        {% endif %}
 	
 	        <span class="current">
-	            Page {{ page.number }} of {{ page.paginator.num_pages }}.
+	            Pagina {{ page.number }} van {{ page.paginator.num_pages }} ({{ page.paginator.count }}).
 	        </span>
 	
 	        {% if page.has_next %}
@@ -53,5 +47,7 @@
 	        {% endif %}
 	    </span>
 	</div>
+	{% else %}
+	<p>Geen resultaten gevonden.</p>
 	{% endif %} 
 

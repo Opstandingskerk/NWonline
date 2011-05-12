@@ -18,7 +18,6 @@ urlpatterns = patterns('',
     
     (r'^leden/$', 'NWonline.KB.views.handlePersoonListFilter'),
     (r'^leden/update$', 'NWonline.KB.views.handlePersoonListUpdate'),
-    (r'^leden/search/$', 'NWonline.KB.views.handlePersoonListSearch'),
     (r'^leden/gezin/(?P<gezinId>\d*)/*$', 'NWonline.KB.views.handleGezinDetails'),    
     (r'^leden/gezin/(?P<gezinId>\d*)/persoon/add$', 'NWonline.KB.views.handleGezinPersoonAdd'),    
     (r'^leden/gezin/add/*$', 'NWonline.KB.views.handleGezinAdd'),    

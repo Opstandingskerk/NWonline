@@ -39,10 +39,15 @@ class PersoonSearchForm(forms.Form):
     idlidmaatschapstatus = forms.ModelChoiceField(
                                     queryset=LidmaatschapStatus.objects.all(),
                                     label="Status lidmaatschap",
-                                    required=False)
+                                    required=False,
+                                    initial=LidmaatschapStatus.objects.get(pk=1))
     idlidmaatschapvorm = forms.ModelChoiceField(
                                     queryset=LidmaatschapVorm.objects.all(),
                                     label="Lidmaatschap vorm",
                                     required=False)
+    dtmdatumbinnenkomstvan = forms.DateField(label="Datum binnenkomst van",
+                                          required=False)
+    dtmdatumbinnenkomsttot = forms.DateField(label="tot",
+                                          required=False)
     
     

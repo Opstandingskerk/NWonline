@@ -10,6 +10,8 @@
 
 {% load customtags %}
 
+<div id="content" class="detail">
+
 <div class="detail_header">
 	<div class="title">
 		{% if formState == "ADD" or persoonForm.errors %}
@@ -67,11 +69,12 @@
 		{{ persoonForm.dtmoverlijdensdatum|generate:"fixed" }}<br class="clear"/>
 		</div>
 		{{ persoonForm.idlidmaatschapvorm|generate:"fixed" }}<br class="clear"/>
-		{{ persoonForm.dtmdatumdoop|generate:"fixed" }} {{ persoonForm.iddoopgemeente|generate }}<br class="clear"/>
-		{{ persoonForm.dtmdatumbelijdenis|generate:"fixed" }} {{ persoonForm.idbelijdenisgemeente|generate }}<br class="clear"/>
+		{{ persoonForm.idwijk|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.dtmdatumdoop|generate:"fixed" }} {{ persoonForm.iddoopgemeente|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.dtmdatumbelijdenis|generate:"fixed" }} {{ persoonForm.idbelijdenisgemeente|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.dtmhuwelijksdatum|generate:"fixed" }}<br class="clear">
-		{{ persoonForm.dtmdatumhuwelijksbevestiging|generate:"fixed" }} {{ persoonForm.idhuwelijksgemeente|generate }}<br class="clear"/>
-		{{ persoonForm.dtmdatumbinnenkomst|generate:"fixed" }}{{ persoonForm.idbinnengekomenuitgemeente|generate }}<br class="clear"/>
+		{{ persoonForm.dtmdatumhuwelijksbevestiging|generate:"fixed" }} {{ persoonForm.idhuwelijksgemeente|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.dtmdatumbinnenkomst|generate:"fixed" }}{{ persoonForm.idbinnengekomenuitgemeente|generate:"fixed" }}<br class="clear"/>
 		
 	</div> <!-- subtab_kerkhistorie -->
 <input type="button" class="button" id="buttonSavePersoonForm" value="Opslaan" onClick="submitForm()"/> 
@@ -89,6 +92,8 @@
 </div>
 
 {% include "KB/gezinPersoonList.html" %}
+
+</div>
 
 <script language="javascript">
 var formState = "{{formState}}";
@@ -187,10 +192,9 @@ $(document).ready(function(){
 	$("{{ persoonForm.dtmdatumvertrek|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
 	$("{{ persoonForm.dtmdatumonttrokken|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
 	$("{{ persoonForm.dtmoverlijdensdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-
+	
 	update();
 });
-
 
 </script>
 

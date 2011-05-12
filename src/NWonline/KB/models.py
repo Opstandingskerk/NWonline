@@ -200,7 +200,7 @@ class Persoon(models.Model):
     txtvoorletters = models.CharField("Voorletters", max_length=150, db_column='txtVoorletters', blank=True, null=True) # Field name made lowercase.
     txtdoopnaam = models.CharField("Doopnaam", max_length=150, db_column='txtDoopnaam', blank=True, db_index=True, null=True) # Field name made lowercase.
     txtroepnaam = models.CharField("Roepnaam", max_length=150, db_column='txtRoepnaam', db_index=True, null=True) # Field name made lowercase.
-    boolaansprekenmetroepnaam = MySQLBooleanField("Aanspreken met roepnaam ", db_column='boolAansprekenMetRoepnaam', blank=True) # Field name made lowercase. This field type is a guess.
+    boolaansprekenmetroepnaam = MySQLBooleanField("Aanspreken met roepnaam ", db_column='boolAansprekenMetRoepnaam', blank=True, default=True) # Field name made lowercase. This field type is a guess.
     dtmgeboortedatum = models.DateField("Geboortedatum", null=True, db_column='dtmGeboortedatum', blank=True) # Field name made lowercase.
     txtgeboorteplaats = models.CharField("te", max_length=150, null=True, db_column='txtGeboorteplaats', blank=True) # Field name made lowercase.
     idgeslacht = models.ForeignKey(Geslacht, verbose_name="Geslacht", null=True, db_column='idGeslacht', blank=True) # Field name made lowercase.

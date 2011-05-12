@@ -11,9 +11,9 @@ This template is a generic HTML5 template.
         {% block title %}
 		<title>NWonline - Kerkelijk Bureau</title> 
 		{% endblock %}
-		<link href="/media/style/cupertino/jquery-ui.css" rel="stylesheet" type="text/css"/>
-		<script src="/media/js/jquery.min.js"></script>
-		<script src="/media/js/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript"></script>
 		<script src="/media/js/jquery.form.js"></script>
 		<script src="/media/js/jquery.ajaxqueue.js"></script>
 		<script type="text/javascript" src="/media/js/jquery.text-overflow.min.js"></script> 
@@ -54,6 +54,23 @@ This template is a generic HTML5 template.
 				$(this).hide();
 			});
 		});
+		
+		function select_autocomplete(idsearchfield, idselect) {
+			// Extract object array from select options
+			var options = [];
+			$(idselect + " option").each(function(i){
+				options[i] = {"id": $(this).val(), "value": $(this).text()};
+		    });
+			
+			// Autocomplete
+			$(idsearchfield).autocomplete({source: options,
+										   select: function(event, ui) { $(idselect).val(ui.item.id); },
+										   create: function(event, ui) { $(idsearchfield).val($(idselect + " :selected").text()); }});
+			
+			
+		}
+
+		
 		
 		</script>
 		{% block body %}{% endblock %}
