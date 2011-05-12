@@ -9,7 +9,7 @@
 ###############################################################################
 from NWonline.KB.models import GemeenteType, Gemeente, Geslacht, GezinsRol, \
     LidmaatschapVorm, Wijk, Huiskring, HuiskringLidRol, Land, Persoon, Gezin, \
-    LidmaatschapStatus, Attestatie
+    LidmaatschapStatus, Attestatie, HuiskringLid
 from django.contrib import admin
 
 admin.site.register(GemeenteType)
@@ -20,6 +20,7 @@ admin.site.register(LidmaatschapVorm)
 admin.site.register(LidmaatschapStatus)
 admin.site.register(Wijk)
 admin.site.register(Huiskring)
+admin.site.register(HuiskringLid)
 admin.site.register(HuiskringLidRol)
 admin.site.register(Land)
 admin.site.register(Attestatie)
