@@ -209,8 +209,13 @@ span#user {
 #loading {
 	display: none;
 	position: absolute;
-	left: 165px;
-	top: 7px;
+	left: 15.5em;
+	top: 0.5em;
+}
+
+#version {
+	font-size: 6px;
+	color: silver;
 }
 
 .menu {
