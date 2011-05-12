@@ -129,6 +129,10 @@ def handlePersoonListFilter(request):
             if (idlidmaatschapvorm):
                 persoon_list = persoon_list.filter(idlidmaatschapvorm=idlidmaatschapvorm)
             
+            idwijk = persoonSearchForm.cleaned_data["idwijk"]
+            if (idwijk):
+                persoon_list = persoon_list.filter(idwijk=idwijk)
+            
             dtmgeboortedatumvan = persoonSearchForm.cleaned_data["dtmgeboortedatumvan"]
             if (dtmgeboortedatumvan):
                 persoon_list = persoon_list.filter(dtmgeboortedatum__gte=dtmgeboortedatumvan)
@@ -168,6 +172,30 @@ def handlePersoonListFilter(request):
             dtmdatumbinnenkomsttot = persoonSearchForm.cleaned_data["dtmdatumbinnenkomsttot"]
             if (dtmdatumbinnenkomsttot):
                 persoon_list = persoon_list.filter(dtmdatumbinnenkomst__lt=dtmdatumbinnenkomsttot)
+                
+            dtmdatumvertrekvan = persoonSearchForm.cleaned_data["dtmdatumvertrekvan"]
+            if (dtmdatumvertrekvan):
+                persoon_list = persoon_list.filter(dtmdatumvertrek__gte=dtmdatumvertrekvan)
+                
+            dtmdatumvertrektot = persoonSearchForm.cleaned_data["dtmdatumvertrektot"]
+            if (dtmdatumvertrektot):
+                persoon_list = persoon_list.filter(dtmdatumvertrek__lt=dtmdatumvertrektot)
+                
+            dtmdatumonttrokkenvan = persoonSearchForm.cleaned_data["dtmdatumonttrokkenvan"]
+            if (dtmdatumonttrokkenvan):
+                persoon_list = persoon_list.filter(dtmdatumonttrokken__gte=dtmdatumonttrokkenvan)
+                
+            dtmdatumonttrokkentot = persoonSearchForm.cleaned_data["dtmdatumonttrokkentot"]
+            if (dtmdatumonttrokkentot):
+                persoon_list = persoon_list.filter(dtmdatumonttrokken__lt=dtmdatumonttrokkentot)
+                
+            dtmoverlijdensdatumvan = persoonSearchForm.cleaned_data["dtmoverlijdensdatumvan"]
+            if (dtmoverlijdensdatumvan):
+                persoon_list = persoon_list.filter(dtmoverlijdensdatum__gte=dtmoverlijdensdatumvan)
+                
+            dtmoverlijdensdatumtot = persoonSearchForm.cleaned_data["dtmoverlijdensdatumtot"]
+            if (dtmoverlijdensdatumtot):
+                persoon_list = persoon_list.filter(dtmoverlijdensdatum__lt=dtmoverlijdensdatumtot)
                 
     else:
         # Nothing posted
