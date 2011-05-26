@@ -117,14 +117,14 @@ def main():
             "fields": {
                 "idgezin": gezin.idGezin,
                 "txtgezinsnaam": gezin.txtGezinsnaam,
-                "txtstraatnaam": txtStraatnaam,
+                "txtstraatnaam": none_safe_string(txtStraatnaam),
                 "inthuisnummer": match_huisnummer,
-                "txthuisnummertoevoeging": match_toevoeging,
-                "txtpostcode": txtPostcode,
-                "txtplaats": txtPlaats,
+                "txthuisnummertoevoeging": none_safe_string(match_toevoeging),
+                "txtpostcode": none_safe_string(txtPostcode),
+                "txtplaats": none_safe_string(txtPlaats),
                 "idland": "1",
-                "txttelefoon": gezin.txtTelefoonnummer,
-                "txtopmerking": txtAdresExtra
+                "txttelefoon": none_safe_string(gezin.txtTelefoonnummer),
+                "txtopmerking": none_safe_string(txtAdresExtra)
             }
         }
         result.append(family)
@@ -134,55 +134,58 @@ def main():
     for lid in curs.fetchall():                
         # Als persoon vertrokken is dan krijgt hij de status 2 = Vertrokken
         # tenzij hij naar gemeente id 338 (=onttrokken) of id 339 (=overleden) gaat
+        if (lid.idLid in (300, 632, 1480, 1392, 1405, 1406, 1407, 1408, 1419, 1436, 1481, 1485, 1497, 518)):
+            logger.info("Skipping %s" % (lid))
+            continue
                   
-        dtm_onttrokken = ""
-        dtm_overleden = "" 
-        dtm_vertrokken = ""
-        id_vlg_gemeente = ""        
+        dtm_onttrokken = None
+        dtm_overleden = None
+        dtm_vertrokken = None
+        id_vlg_gemeente = "1"        
         if lid.dtmVertrokken is not None:
             if lid.idVolgendeGemeente == 338:
-                ls_vorm = 3
-                dtm_onttrokken = str(lid.dtmVertrokken)                                
+                ls_status = 3
+                dtm_onttrokken = lid.dtmVertrokken.strftime("%Y-%m-%d") if lid.dtmVertrokken else None                             
             if lid.idVolgendeGemeente == 339:
-                ls_vorm = 4
-                dtm_overleden = str(lid.dtmVertrokken)
+                ls_status = 4
+                dtm_overleden = lid.dtmVertrokken.strftime("%Y-%m-%d") if lid.dtmVertrokken else None 
             else:    
-                ls_vorm = 2
-                dtm_vertrokken = str(lid.dtmVertrokken)
+                ls_status = 2
+                dtm_vertrokken = lid.dtmVertrokken.strftime("%Y-%m-%d") if lid.dtmVertrokken else None 
                 id_vlg_gemeente = lid.idVolgendeGemeente
         else:
-            ls_vorm = 1            
+            ls_status = 1            
         
         ## De status van het lid bepalen
-        gastgemeente =""
-        gasthoofdgemeente =""
+        gastgemeente ="1"
+        gasthoofdgemeente ="1"
         
         if lid.idStatus == 1: # Belijdend -> Belijdend
-            ls_status = "1"
+            ls_vorm = "1"
         elif lid.idStatus == 2: # Doop -> Doop
-            ls_status = "2"
+            ls_vorm = "2"
         elif lid.idStatus == 3: # Cathechumeen -> Catechumeen
-            ls_status = "5"
+            ls_vorm = "5"
         elif lid.idStatus == 4: # Overig -> Vriend
-            ls_status = "6"
+            ls_vorm = "6"
         elif lid.idStatus == 5: # Gastlid (b) -> Gastlid B
-            ls_status = "4"
-            gasthoofdgemeente = "" #TODO
+            ls_vorm = "4"
+            gasthoofdgemeente = "1" #TODO
             
         elif lid.idStatus == 6: # Gastlid (d) -> Gastlid D
-            ls_status = "3"
-            gasthoofdgemeente = "" #TODO
+            ls_vorm = "3"
+            gasthoofdgemeente = "1" #TODO
             
         elif lid.idStatus == 7: # Gastlid Elders (D) -> D
-            ls_status = "1"
-            gastgemeente = "" #TODO
+            ls_vorm = "1"
+            gastgemeente = "1" #TODO
             
         elif lid.idStatus == 8: # Gastlid Elders (B) -> B
-            ls_status = "2"
-            gastgemeente ="" #TODO
+            ls_vorm = "2"
+            gastgemeente ="1" #TODO
             
         else:
-            ls_status = "6" # Overig -> Vriend
+            ls_vorm = "6" # Overig -> Vriend
         #TODO: None in json moet null worden
         #TODO: datetime field ->> date field
         person = {
@@ -194,35 +197,35 @@ def main():
                 "idgezin": lid.idGezin,
                 "idgezinsrol": lid.idGezinsRol,
                 "txtachternaam": lid.txtAchternaam, 
-                "txttussenvoegsels": lid.txtVoorvoegsels,
-                "txtvoorletters": lid.txtVoorletters,
-                "txtdoopnaam": lid.txtDoopnaam,
-                "txtroepnaam": lid.txtRoepnaam,
+                "txttussenvoegsels": none_safe_string(lid.txtVoorvoegsels),
+                "txtvoorletters": none_safe_string(lid.txtVoorletters),
+                "txtdoopnaam": none_safe_string(lid.txtDoopnaam),
+                "txtroepnaam": none_safe_string(lid.txtRoepnaam),
                 "boolaansprekenmetroepnaam": lid.ysnRoepnaam,
-                "dtmgeboortedatum": str(lid.dtmGeboortedatum),
-                "txtgeboorteplaats": lid.txtGeboorteplaats,
+                "dtmgeboortedatum": lid.dtmGeboortedatum.strftime("%Y-%m-%d") if lid.dtmGeboortedatum else None,
+                "txtgeboorteplaats": none_safe_string(lid.txtGeboorteplaats),
                 "idgeslacht": get_geslacht_id(lid.txtGeslacht),
-                "dtmdatumdoop": str(lid.dtmDoop),
+                "dtmdatumdoop": lid.dtmDoop.strftime("%Y-%m-%d") if lid.dtmDoop else None,
                 "iddoopgemeente": lid.idDoopgemeente,
-                "dtmdatumbelijdenis": str(lid.dtmBelijdenis),
+                "dtmdatumbelijdenis": lid.dtmBelijdenis.strftime("%Y-%m-%d") if lid.dtmBelijdenis else None,
                 "idbelijdenisgemeente": lid.idBelijdenisgemeente,
-                "dtmhuwelijksdatum": str(lid.dtmTrouwdatum),
+                "dtmhuwelijksdatum": lid.dtmTrouwdatum.strftime("%Y-%m-%d") if lid.dtmTrouwdatum else None,
                 "idhuwelijksgemeente": lid.idTrouwgemeente,
-                "dtmdatumbinnenkomst": str(lid.dtmBinnenkomst),
+                "dtmdatumbinnenkomst": lid.dtmBinnenkomst.strftime("%Y-%m-%d") if lid.dtmBinnenkomst else None,
                 "idbinnengekomenuitgemeente": lid.idVorigeGemeente,
                 "dtmdatumvertrek": dtm_vertrokken,
                 "idvertrokkennaargemeente": id_vlg_gemeente,
-                "txttelefoonnummer": lid.txtMobielNummer,
-                "txtemailadres": lid.txtEmailAdres,
-                "dtmdatumhuwelijksbevestiging": str(lid.dtmTrouwbevestiging),
-                "txtopmerking": lid.txtAantekeningen,
+                "txttelefoonnummer": none_safe_string(lid.txtMobielNummer),
+                "txtemailadres": none_safe_string(lid.txtEmailAdres),
+                "dtmdatumhuwelijksbevestiging": lid.dtmTrouwbevestiging.strftime("%Y-%m-%d") if lid.dtmTrouwbevestiging else None,
+                "txtopmerking": none_safe_string(lid.txtAantekeningen),
                 "dtmoverlijdensdatum": dtm_overleden,
                 "dtmdatumonttrokken": dtm_onttrokken,
                 "idlidmaatschapstatus": ls_status,
                 "idwijk": "1",
                 "idgastgemeente": gastgemeente,
                 "idgasthoofdgemeente": gasthoofdgemeente,                
-                "boolgeborennw": ""
+                "boolgeborennw": False
             }
         }
         result.append(person)
@@ -245,25 +248,25 @@ def main():
         result.append(lidmaatschap_status)
 
     logger.info("Insert Lidmaatschapvormen")
-    lidmaatschap_vormen = [(1,'Dooplid', "True", "D", "Doopattestatie"),
-                       (2,'Belijdend lid', "True", "B", "Belijdenisattestatie"),
-                       (3,'Gastlid (doop)', "False", "D(g)", "Doopattestatie als gastlid"),
-                       (4,'Gastlid (belijdend)', "False", "B(g)", "Belijdenisattestatie als gastlid"),
-                       (5,'Catechumeen', "False", "C", ""),
-                       (6,'Vriend', "False", "V", "")]
+    lidmaatschap_vormen = [(1,'Dooplid', True, "D", "Doopattestatie"),
+                       (2,'Belijdend lid', True, "B", "Belijdenisattestatie"),
+                       (3,'Gastlid (doop)', False, "D(g)", "Doopattestatie als gastlid"),
+                       (4,'Gastlid (belijdend)', False, "B(g)", "Belijdenisattestatie als gastlid"),
+                       (5,'Catechumeen', False, "C", ""),
+                       (6,'Vriend', False, "V", "")]
     for lv in lidmaatschap_vormen:
         lidmaatschap_vorm = {
             "pk":lv[0],
             "model": "KB.lidmaatschapvorm",
             "fields": {
                 "idlidmaatschapvorm": lv[0],
-                "txtlidmaatschapstatus": lv[1],
+                "txtlidmaatschapvorm": lv[1],
                 "boolvoorquotum": lv[2],
                 "txtlidmaatschapvormkort": lv[3],
                 "txtattestatie": lv[4]
             }
         }
-        result.append(lidmaatschap_status)
+        result.append(lidmaatschap_vorm)
 
         
     logger.info("Insert CommunityTypes")
