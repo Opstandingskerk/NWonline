@@ -17,7 +17,6 @@ from django.db.models.query_utils import Q
 from django.forms.forms import Form
 from django.http import HttpResponseRedirect, HttpResponse
 import datetime
-import time
 
 class MembershipForm1(Form):
     """
@@ -155,7 +154,7 @@ class MembershipWizard(FormWizard):
             # Store destination church for use in certificate 
             self.storedFields["idvertrokkennaargemeente"] = form.cleaned_data["idvertrokkennaargemeente"]
 
-            # Modify which types of certificates to show
+            # Determine which types of certificates to show
             queryset = Attestatie.objects.all()
             if ((self.storedFields["is_mode_family"] 
                  or self.storedFields["updateWholeFamily"])
@@ -212,42 +211,10 @@ class MembershipWizard(FormWizard):
                     spouse = "zijn echtgenote"
                 else:
                     spouse = "haar echtgenoot"
-                    
-                # Apply date formatting (have to check for 'None' types)
-
-                if (head.dtmgeboortedatum):
-                    head.dtmgeboortedatum = head.dtmgeboortedatum.strftime("%d-%m-%Y")
-                else:
-                    head.dtmgeboortedatum = ""                
-                
-                if (head.dtmdatumbelijdenis):
-                    head.dtmdatumbelijdenis = head.dtmdatumbelijdenis.strftime("%d-%m-%Y")
-                else:
-                    head.dtmdatumbelijdenis = ""
-                    
-                if (head.dtmdatumdoop):
-                    head.dtmdatumdoop = head.dtmdatumdoop.strftime("%d-%m-%Y")
-                else:
-                    head.dtmdatumdoop = ""
-                    
-                if (partner.dtmgeboortedatum):
-                    partner.dtmgeboortedatum = partner.dtmgeboortedatum.strftime("%d-%m-%Y")
-                else:
-                    partner.dtmgeboortedatum = ""
-                    
-                if (partner.dtmdatumbelijdenis):
-                    partner.dtmdatumbelijdenis = partner.dtmdatumbelijdenis.strftime("%d-%m-%Y")
-                else:
-                    partner.dtmdatumbelijdenis = ""
-                    
-                if (partner.dtmdatumdoop):
-                    partner.dtmdatumdoop = partner.dtmdatumdoop.strftime("%d-%m-%Y")
-                else:
-                    partner.dtmdatumdoop = ""
-                
+                                    
                 # Create certificate
                 form.certificate = certificateType.txtbeschrijving % (gezin.txtgezinsnaam,
-                                                                      gezin.createAddress(),
+                                                                      gezin.create_address(),
                                                                       gezin.txtpostcode,
                                                                       gezin.txtplaats,
                                                                       gezin.idland,
@@ -256,22 +223,22 @@ class MembershipWizard(FormWizard):
                                                                       head.txtdoopnaam, 
                                                                       head_achternaam,
                                                                       head.txtroepnaam,
-                                                                      head.dtmgeboortedatum,
+                                                                      head.dtmgeboortedatum.strftime("%d-%m-%Y") if head.dtmgeboortedatum else "",
                                                                       head.txtgeboorteplaats,
-                                                                      head.dtmdatumdoop,
+                                                                      head.dtmdatumdoop.strftime("%d-%m-%Y") if head.dtmdatumdoop else "",
                                                                       head.iddoopgemeente,
-                                                                      head.dtmdatumbelijdenis,
+                                                                      head.dtmdatumbelijdenis.strftime("%d-%m-%Y") if head.dtmdatumbelijdenis else "",
                                                                       head.idbelijdenisgemeente,
                                                                       spouse,
                                                                       partner.idgeslacht.txtaanhefkerk,
                                                                       partner.txtdoopnaam, 
                                                                       partner_achternaam,
                                                                       partner.txtroepnaam,
-                                                                      partner.dtmgeboortedatum,
+                                                                      partner.dtmgeboortedatum.strftime("%d-%m-%Y") if partner.dtmgeboortedatum else "",
                                                                       partner.txtgeboorteplaats,
-                                                                      partner.dtmdatumdoop,
+                                                                      partner.dtmdatumdoop.strftime("%d-%m-%Y") if partner.dtmdatumdoop else "",
                                                                       partner.iddoopgemeente,
-                                                                      partner.dtmdatumbelijdenis,
+                                                                      partner.dtmdatumbelijdenis.strftime("%d-%m-%Y") if partner.dtmdatumbelijdenis else "",
                                                                       partner.idbelijdenisgemeente,
                                                                       gemeente)
             
@@ -293,7 +260,7 @@ class MembershipWizard(FormWizard):
                     # DOOPATTESTATIE                                
                     form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
                                                                           achternaam,
-                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.create_address(),
                                                                           persoon.idgezin.txtpostcode,
                                                                           persoon.idgezin.txtplaats,
                                                                           persoon.idgezin.idland,
@@ -314,7 +281,7 @@ class MembershipWizard(FormWizard):
                     # VERBLIJFSATTESTATIE
                     form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
                                                                           achternaam,
-                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.create_address(),
                                                                           persoon.idgezin.txtpostcode,
                                                                           persoon.idgezin.txtplaats,
                                                                           persoon.idgezin.idland,
@@ -338,7 +305,7 @@ class MembershipWizard(FormWizard):
                     # BELIJDENISATTESTATIE
                     form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
                                                                           achternaam,
-                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.create_address(),
                                                                           persoon.idgezin.txtpostcode,
                                                                           persoon.idgezin.txtplaats,
                                                                           persoon.idgezin.idland,
@@ -360,7 +327,7 @@ class MembershipWizard(FormWizard):
                     # KERKELIJKE GEGEVENS
                     form.certificate = certificateType.txtbeschrijving % (persoon.txtroepnaam,
                                                                           achternaam,
-                                                                          persoon.idgezin.createAddress(),
+                                                                          persoon.idgezin.create_address(),
                                                                           persoon.idgezin.txtpostcode,
                                                                           persoon.idgezin.txtplaats,
                                                                           persoon.idgezin.idland,
@@ -412,6 +379,13 @@ class MembershipWizard(FormWizard):
         # Now update all persons in persoonList
         for persoon in persoonList:
             persoon.idlidmaatschapstatus = form_data["idlidmaatschapstatus"]
+            
+            # First reset the fields, e.g. departure date should be made
+            # empty if a member becomes active again.
+            persoon.dtmdatumvertrek = None
+            persoon.idvertrokkennaargemeente = None
+            persoon.dtmdatumonttrokken = None
+            persoon.dtmoverlijdensdatum = None
             
             if (persoon.idlidmaatschapstatus.pk == 2):
                 # Vertrokken
