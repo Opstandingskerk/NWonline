@@ -29,11 +29,16 @@ DATABASES = {
 # system time zone.
 TIME_ZONE = 'Europe/Amsterdam'
 
-DATE_FORMAT = "d-m-Y"
+HOME_TOWN = 'Utrecht'
+
+HOME_COUNTRY = 'Nederland'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'nl-NL'
+
+DATE_FORMAT = "d-m-Y"
+DATE_FORMAT_JQUERY = "dd-mm-yy"
 
 SITE_ID = 1
 
