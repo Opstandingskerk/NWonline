@@ -8,11 +8,13 @@
 # 20100328    Lukas Batteau        Added queryGemeente, used in marry wizard
 ###############################################################################
 from NWonline.KB.models import Persoon, Gemeente
+from django.contrib.auth.decorators import login_required
 from django.db.models.query_utils import Q
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.utils.encoding import force_unicode
 
+@login_required
 def queryPersoon(request):
     query = request.GET.get('term')
     query_words = query.split(" ")
@@ -46,6 +48,7 @@ def queryPersoon(request):
     return HttpResponse(simplejson.dumps(result),
                         mimetype='application/json')
 
+@login_required
 def queryGemeente(request):
     query = request.GET.get('term')
 
