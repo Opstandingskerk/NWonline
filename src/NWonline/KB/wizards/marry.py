@@ -11,6 +11,7 @@
 ###############################################################################
 from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol, \
     Gemeente, LidmaatschapStatus
+from NWonline.KB.widgets import AutoCompleteSelect
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
 from django.forms.forms import Form
@@ -39,9 +40,10 @@ class MarryForm2(Form):
     """
     Marry wizard screen 2. Determines the marriage details.
     """
-    dtmhuwelijksdatum = forms.CharField(label="Datum huwelijk")
-    dtmbevestiging = forms.CharField(label="Datum bevestiging")
-    idgemeente = forms.ModelChoiceField(queryset=Gemeente.objects.all(),
+    dtmhuwelijksdatum = forms.DateField(label="Datum huwelijk")
+    dtmdatumhuwelijksbevestiging = forms.DateField(label="Datum bevestiging")
+    idhuwelijksgemeente = forms.ModelChoiceField(widget=AutoCompleteSelect(),
+                                        queryset=Gemeente.objects.all(),
                                         label="Gemeente")
     
 
@@ -111,8 +113,6 @@ class MarryWizard(FormWizard):
             return HttpResponseRedirect("/login?next=" + request.path)        
             
         if (step == 1):
-            # Screen 2. Select family head.
-            
             # Store persoonB from screen 1.
             idpersoon = request.POST["0-idpersoonB"]
             if (idpersoon):
@@ -127,9 +127,7 @@ class MarryWizard(FormWizard):
             
             # Add persoon to context
             self.storedFields["persoonB"] = persoon
-        elif (step == 3):
-            # Screen 4. Address
-            
+        
             gezinA = self.storedFields["persoonA"].idgezin
             self.storedFields["gezinA"] = gezinA
             
@@ -166,9 +164,9 @@ class MarryWizard(FormWizard):
         
         # Determine new family name
         if (form_list[2].cleaned_data["gezinshoofd"] == "A"):
-            gezin.txtgezinsnaam = Gezin.createGezinsNaam(persoonA)
+            gezin.txtgezinsnaam = Gezin.create_gezins_naam(persoonA)
         else:
-            gezin.txtgezinsnaam = Gezin.createGezinsNaam(persoonB)
+            gezin.txtgezinsnaam = Gezin.create_gezins_naam(persoonB)
         
         # Check what address the new family is using: A, B, or NEW
         code = form_list[3].cleaned_data["code"]
@@ -209,6 +207,7 @@ class MarryWizard(FormWizard):
         #    - Change family role for A
         #    - Move A to new family
         #    - Remove old family
+        #    - Update marriage info
         #######################################
         
         # If persoonA is not a child
@@ -228,12 +227,18 @@ class MarryWizard(FormWizard):
         # Move persoonA to new family
         persoonAGezinOld = persoonA.idgezin
         persoonA.idgezin = gezin
-        persoonA.save()
         
         # Remove old gezin of persoonA if empty
         if (len(persoonAGezinOld.persoon_set.all()) == 0):
             print "DELETING GEZIN " + str(persoonAGezinOld)
             persoonAGezinOld.delete()
+            
+        # Update marriage info
+        persoonA.dtmhuwelijksdatum = form_list[1].cleaned_data["dtmhuwelijksdatum"]
+        persoonA.dtmdatumhuwelijksbevestiging = form_list[1].cleaned_data["dtmdatumhuwelijksbevestiging"]
+        persoonA.idhuwelijksgemeente = form_list[1].cleaned_data["idhuwelijksgemeente"]
+        
+        persoonA.save()
             
         #######################################
         # 3. UDPATE B:
@@ -261,12 +266,18 @@ class MarryWizard(FormWizard):
         # Move persoonB to new family
         persoonBGezinOld = persoonB.idgezin
         persoonB.idgezin = gezin
-        persoonB.save()
  
         # Remove old gezin of persoonB if 'empty'
         if (persoonBGezinOld and len(persoonB.idgezin.persoon_set.all()) == 0):
             print "DELETING GEZIN " + str(persoonBGezinOld)
             persoonBGezinOld.delete()
+        
+        # Update marriage info
+        persoonB.dtmhuwelijksdatum = form_list[1].cleaned_data["dtmhuwelijksdatum"]
+        persoonB.dtmdatumhuwelijksbevestiging = form_list[1].cleaned_data["dtmdatumhuwelijksbevestiging"]
+        persoonB.idhuwelijksgemeente = form_list[1].cleaned_data["idhuwelijksgemeente"]
+
+        persoonB.save()
         
         return HttpResponseRedirect("/leden/gezin/%d/" % (gezin.idgezin))
     
