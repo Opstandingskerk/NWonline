@@ -124,7 +124,7 @@ span#user {
 }
 
 #content.detail {
-	width: 800px;
+	width: 650px;
 }
 
 #bottom {
@@ -233,6 +233,7 @@ span#user {
 	background-color: #62BBE8;
 	border: 1px solid #DDD;
 	color: White;
+	margin-right: 0.1em;
 }
 
 .menu a:hover {

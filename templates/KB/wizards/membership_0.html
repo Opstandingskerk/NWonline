@@ -28,7 +28,7 @@ de fam. {{ gezin }}
 {{ form.dtmoverlijdensdatum|generate:"fixed" }}<br class="clear"/>
 </div>
 
-{% if not is_mode_famiy and persoon.idgezinsrol.pk == 1 %}
+{% if not is_mode_famiy and persoon.idgezinsrol.pk == 1 and persoon.idgezin.persoon_set.count > 1%}
 {{ form.updateWholeFamily|generate:"fixed" }}
 {% endif %}
 

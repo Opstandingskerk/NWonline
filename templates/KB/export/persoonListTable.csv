@@ -1,0 +1,3 @@
+{% load customtags %}{% if persoon_list %}Achternaam;Roepnaam;Geboortedatum;Geslacht;Gezin;Adres;Postcode;Plaats;Land;Telefoon;E-mailadres{% for persoon in persoon_list  %}
+{{ persoon.txtachternaam }} {{ persoon.txttussenvoegsels }};{{ persoon.txtroepnaam }};{{ persoon.dtmgeboortedatum|date }};{{ persoon.idgeslacht }};{{ persoon.idgezin.txtgezinsnaam }};{{ persoon.idgezin.txtstraatnaam }} {{ persoon.idgezin.inthuisnummer }}{{ persoon.idgezin.txthuisnummertoevoeging }};{{ persoon.idgezin.txtpostcode }};{{ persoon.idgezin.txtplaats }};{{ persoon.idgezin.idland }};{{ persoon.txttelefoonnummer }};{{ persoon.txtemailadres }}{% endfor %}
+{% endif %}

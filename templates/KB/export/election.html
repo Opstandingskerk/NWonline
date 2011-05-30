@@ -1,0 +1,14 @@
+<html>
+<body>
+{% regroup list by first_letter_gezin as letter_list %}
+<h2>Kiesgerechtigde personen - ten behoeve van</h2>
+{% for letter in letter_list %}
+<h3>{{ letter.grouper }}</h3>
+<table>
+{% for item in letter.list %}
+<tr><td style="width: 20em">[ ] {{ item.create_short_name }}</td><td>{{ item.create_address }}</td></tr>
+{% endfor %}
+</table>        
+{% endfor %}
+</body>
+</html>

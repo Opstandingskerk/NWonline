@@ -7,43 +7,10 @@
 # 20101209    Lukas Batteau        Added header.
 # 20110414    Lukas Batteau        Reorganized membership
 ###############################################################################
+from NWonline.KB.widgets import AutoCompleteSelect, SelectWithPopup,\
+    JQueryDateField
 from django import forms
-from django.forms import widgets
-from django.utils.safestring import mark_safe
 import models
-
-class AutoCompleteSelect(widgets.Select):
-    """
-    Custom form widget, displaying an autocomplete text input that is connected
-    to the original select.
-    """
-    def __init__(self, attrs=None, choices=()):
-        super(AutoCompleteSelect, self).__init__(attrs)
-
-    def render(self, name, value, attrs=None, choices=()):
-        # Make original hidden
-        if (attrs):
-            attrs["style"] = "display: none"
-        else:
-            attrs = {"style": "display: none"}
-            
-        # Create original select field.
-        select = super(AutoCompleteSelect, self).render(name, value, attrs, choices)
-
-        # Add auto complete field
-        name_auto = name + "_auto"
-        attrs_auto = {"id": attrs["id"]+"_auto" }
-        final_attrs = self.build_attrs(attrs_auto, type="text", name=name_auto)
-        
-        autocomplete = u"""<input%s onClick="this.value=''"/>""" % widgets.flatatt(final_attrs)
-        
-        javascript = u"""<script language="javascript">
-        $(document).ready(function(){
-            select_autocomplete("%s", "%s");
-        });</script>""" % ("#%s" % (attrs_auto["id"]), "#%s" % (attrs["id"]))
-        
-        
-        return mark_safe("%s %s %s" % (select, autocomplete, javascript))
 
 class GezinForm(forms.ModelForm):
     txtgezinsnaam = forms.CharField(
@@ -90,5 +57,26 @@ class PersoonForm(forms.ModelForm):
             "idbelijdenisgemeente": AutoCompleteSelect(),
             "idhuwelijksgemeente": AutoCompleteSelect(),
             "idbinnengekomenuitgemeente": AutoCompleteSelect(),
+            "idvertrokkennaargemeente": AutoCompleteSelect(),
+            "dtmgeboortedatum": JQueryDateField(),
+            "dtmdatumdoop": JQueryDateField(),
+            "dtmdatumbelijdenis": JQueryDateField(),
+            "dtmhuwelijksdatum": JQueryDateField(),
+            "dtmdatumhuwelijksbevestiging": JQueryDateField(),
+            "dtmdatumbinnenkomst": JQueryDateField(),
+            "dtmdatumvertrek": JQueryDateField(),
+            "dtmdatumonttrokken": JQueryDateField(),
+            "dtmoverlijdensdatum": JQueryDateField(),
+            #"idgezinsrol": SelectWithPopup()
         }
+        
+class GemeenteForm(forms.ModelForm):
+    
+    class Meta:
+        model = models.Gemeente
+    
+class GezinsRolForm(forms.ModelForm):
+    
+    class Meta:
+        model = models.GezinsRol
     

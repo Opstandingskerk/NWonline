@@ -181,18 +181,6 @@ $(document).ready(function(){
 	$("#tabs_persoon").tabs('select', {{selectedTab}});
 	$("#tabs_persoon").show();
 	
-
-	// Datepicker
-	$("{{ persoonForm.dtmgeboortedatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ persoonForm.dtmdatumdoop|id }}").datepicker({ dateFormat: 'dd-mm-yy' });		
-	$("{{ persoonForm.dtmdatumbelijdenis|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ persoonForm.dtmhuwelijksdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ persoonForm.dtmdatumhuwelijksbevestiging|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ persoonForm.dtmdatumbinnenkomst|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ persoonForm.dtmdatumvertrek|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ persoonForm.dtmdatumonttrokken|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ persoonForm.dtmoverlijdensdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	
 	update();
 });
 

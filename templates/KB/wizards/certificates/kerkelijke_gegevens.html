@@ -1,0 +1,64 @@
+{% comment %}
+
+This template is a generic HTML5 template.
+
+{% endcomment %}
+
+{% load i18n %}
+
+<html>
+<body>
+<p>aan:<br>
+{% if partner %}Fam. {{ persoon.txtvoorletters }} {{ persoon.create_sir_name }}{% else %}{{ persoon }}{% endif %}<br>
+{{ gezin.create_address }}<br>
+{{ gezin.txtpostcode }} {{ gezin.txtplaats }}<br>
+{% if gezin.idland.pk != 1 %}{{ gezin.idland }}{% endif %}
+</p>
+<p>
+Utrecht, {% now "j F Y" %}
+</p>
+<center><h1>KERKELIJKE GEGEVENS</h1></center>
+<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat
+<table border="0">
+<tr><td>{{ persoon.idgeslacht.txtaanhefkerk }}</td><td><strong>{{ persoon.txtdoopnaam }} {{ persoon.create_sir_name }} ({{ persoon.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ persoon.dtmgeboortedatum }} te {{ persoon.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ persoon.dtmdatumdoop }} in de {{ persoon.iddoopgemeente }}</td></tr>
+{% if persoon.idlidmaatschapvorm.pk == 2 %}<tr><td>belijdenis afgelegd</td><td>{{ persoon.dtmdatumbelijdenis }} in de {{ persoon.idbelijdenisgemeente }}</td></tr>{% endif %}
+</table>
+{% if partner %}
+<p>en {% if persoon.idgeslacht.pk == 1 %}zijn echtgenote{% else %}haar echtgenoot{% endif %}</p>
+<table border="0">
+<tr><td>{{ partner.idgeslacht.txtaanhefkerk }}</td><td><strong>{{ partner.txtdoopnaam }} {{ partner.create_sir_name }} ({{ partner.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ partner.dtmgeboortedatum }} te {{ partner.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ partner.dtmdatumdoop }} in de {{ partner.iddoopgemeente }}</td></tr>
+<tr><td>belijdenis afgelegd</td><td>{{ partner.dtmdatumbelijdenis }} in de {{ partner.idbelijdenisgemeente }}</td></tr>
+</table>
+<p>{% if partner.dtmhuwelijksdatum %}getrouwd op {{ partner.dtmhuwelijksdatum }}{% if partner.idhuwelijksgemeente %}, bevestigd in de {{ partner.idhuwelijksgemeente }}{% endif %},{% endif %}</p>
+<p>tot op heden lid waren van onze gemeente.<br/>
+Deze verklaring wordt afgegeven in verband met hun vertrek uit onze gemeente.</p>
+{% else %}
+<p>tot op heden lid was van onze gemeente.<br/>
+Deze verklaring wordt afgegeven in verband met {% if persoon.idgeslacht.pk == 1 %}zijn{% else %}haar{% endif %} vertrek uit onze gemeente.</p>
+{% endif %}
+<p>
+Contactgegevens:<br>
+<strong>[INVULLEN]</strong>
+</p>
+{% include "KB/wizards/certificates/footer.html" %}
+{% if children %}
+<hr>
+<p>Kinderen die tegelijk vertrokken zijn:</p>
+<p>
+<table border="0">
+{% for child in children %}
+<tr><td>{% if child.idgeslacht.pk == 1 %}zoon{% else %}dochter{% endif %}</td><td><strong>{{ child.txtdoopnaam }} {{ child.create_sir_name }} ({{ child.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ child.dtmgeboortedatum }} te {{ child.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ child.dtmdatumdoop }} in de {{ child.iddoopgemeente }}</td></tr>
+{% if child.idlidmaatschapvorm.pk == 2 %}<tr><td>belijdenis afgelegd</td><td>{{ child.dtmdatumbelijdenis }} in de {{ child.idbelijdenisgemeente }}</td></tr>{% endif %}
+<tr><td colspan="2">&nbsp</td></tr>
+{% endfor %}
+</table>
+</p>
+{% endif %}
+</body>
+</html>

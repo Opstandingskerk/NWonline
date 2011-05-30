@@ -1,0 +1,39 @@
+{% comment %}
+
+This template is a generic HTML5 template.
+
+{% endcomment %}
+
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+<body>
+<p>aan:<br>
+{{ persoon }}<br>
+{{ gezin.create_address }}<br>
+{{ gezin.txtpostcode }} {{ gezin.txtplaats }}<br>
+{% if gezin.idland.pk != 1 %}{{ gezin.idland }}{% endif %}
+</p>
+<p>
+Utrecht, {% now "j F Y" %}
+</p>
+<center><h1>VERBLIJFSATTESTATIE</h1></center>
+<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat
+<table border="0">
+<tr><td>{{ persoon.idgeslacht.txtaanhefkerk }}</td><td><strong>{{ persoon.txtdoopnaam }} {{ persoon.create_sir_name }} ({{ persoon.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ persoon.dtmgeboortedatum }} te {{ persoon.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ persoon.dtmdatumdoop }} in de {{ persoon.iddoopgemeente }}</td></tr>
+{% if persoon.idlidmaatschapvorm.pk == 2 %}<tr><td>belijdenis afgelegd</td><td>{{ persoon.dtmdatumbelijdenis }} in de {{ persoon.idbelijdenisgemeente }}</td></tr>{% endif %}
+</table>
+<p>tot op heden {% if persoon.idlidmaatschapvorm.pk == 2 %}belijdend lid{% endif %}{% if persoon.idlidmaatschapvorm.pk == 1 %}dooplid{% endif %} was van onze gemeente.</p>
+<p>{% if persoon.idgeslacht.pk == 1 %}Hij{% else %}Zij{% endif %} heeft te kennen gegeven gastlid te willen worden van uw gemeente.</p>
+<p>De kerkenraad beveelt deze {{ persoon.idgeslacht.txtaanhefkerk }} aan de {{ gemeente }} aan en verzoekt de ambtsdragers deze {{ persoon.idgeslacht.txtaanhefkerk }} onder hun christelijk opzicht en bestuur aan te nemen, tot het gebruik van de heilige sacramenten toe te laten en in alle voorkomende gevallen met christelijke raad en daad bij te staan.</p>
+<p><strong>[INVULLEN EVENTUELE AANVULLENDE GEGEVENS]</strong></p>
+<p>
+Nieuw adres:<br>
+<strong>[INVULLEN]</strong>
+</p>
+{% include "KB/wizards/certificates/footer.html" %}
+</body>
+</html>

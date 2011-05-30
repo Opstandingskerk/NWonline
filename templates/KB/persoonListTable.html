@@ -17,11 +17,11 @@
     {% for persoon in page.object_list  %}
     <tr>
         <td><a href="/leden/gezin/persoon/{{ persoon.idpersoon }}/">{{ persoon.txtachternaam }} {{ persoon.txttussenvoegsels }}</a></td>
-        <td>{{ persoon.txtroepnaam }}</td>
-        <td>{{ persoon.dtmgeboortedatum|date }}</td>
+        <td>{{ persoon.txtroepnaam|safe }}</td>
+        <td>{{ persoon.dtmgeboortedatum }}</td>
         <td>{{ persoon.idgeslacht }}</td>
         <td><a href="/leden/gezin/{{ persoon.idgezin.idgezin }}/">{{ persoon.idgezin.txtgezinsnaam }}</a></td>
-        <td><a href="/leden/gezin/{{ persoon.idgezin.idgezin }}/"><img border="0" alt="Direct naar gezin" style="float: right" src="/media/img/gotofamily.jpg"></a></td>
+        <td><a href="/leden/gezin/{{ persoon.idgezin.idgezin }}/"><img border="0" alt="Direct naar gezin" style="float: right" src="/media/img/gotofamily.gif"></a></td>
         <td class="ellipsis">{{ persoon.idgezin.txtstraatnaam }} {{ persoon.idgezin.inthuisnummer }}{{ persoon.idgezin.txthuisnummertoevoeging }}</td>
         <td>{{ persoon.idgezin.txtpostcode }}</td>
         <td>{{ persoon.idgezin.txtplaats }}</td>

@@ -1,0 +1,37 @@
+{% comment %}
+
+This template is a generic HTML5 template.
+
+{% endcomment %}
+
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+<body>
+<p>aan:<br>
+{{ persoon }}<br>
+{{ gezin.create_address }}<br>
+{{ gezin.txtpostcode }} {{ gezin.txtplaats }}<br>
+{% if gezin.idland.pk != 1 %}{{ gezin.idland }}{% endif %}
+</p>
+<p>
+Utrecht, {% now "j F Y" %}
+</p>
+<center><h1>DOOPATTESTATIE</h1></center>
+<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat
+<table border="0">
+<tr><td>{{ persoon.idgeslacht.txtaanhefkerk }}</td><td><strong>{{ persoon.txtdoopnaam }} {{ persoon.create_sir_name }} ({{ persoon.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ persoon.dtmgeboortedatum }} te {{ persoon.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ persoon.dtmdatumdoop }} in de {{ persoon.iddoopgemeente }}</td></tr>
+</table>
+<p>tot op heden dooplid was van onze gemeente.</p>
+<p>De kerkenraad beveelt deze {{ persoon.idgeslacht.txtaanhefkerk }} aan in de herderlijke zorgen van de opzieners van de {{ gemeente }}.</p>
+<p><strong>[INVULLEN EVENTUELE AANVULLENDE GEGEVENS]</strong></p>
+<p>
+Nieuw adres:<br>
+<strong>[INVULLEN]</strong>
+</p>
+{% include "KB/wizards/certificates/footer.html" %}
+</body>
+</html>

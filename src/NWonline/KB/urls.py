@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^logout/$', 'NWonline.KB.views.handleLogout'),
     
     (r'^leden/$', 'NWonline.KB.views.handlePersoonListFilter'),
+    (r'^leden/export$', 'NWonline.KB.views.handlePersoonListExport'),
     (r'^leden/update$', 'NWonline.KB.views.handlePersoonListUpdate'),
     (r'^leden/gezin/(?P<gezinId>\d*)/*$', 'NWonline.KB.views.handleGezinDetails'),    
     (r'^leden/gezin/(?P<gezinId>\d*)/persoon/add$', 'NWonline.KB.views.handleGezinPersoonAdd'),    
@@ -27,6 +28,13 @@ urlpatterns = patterns('',
     
     (r'^query/persoon/.*$', 'NWonline.KB.ajax.queryPersoon'),
     (r'^query/gemeente/.*$', 'NWonline.KB.ajax.queryGemeente'),
+    
+    (r'^add/(?P<model>.*)$', 'NWonline.KB.views.handleAddInstance'),
+    
+    (r'^export/$', 'NWonline.KB.export.handleExport'),
+    (r'^export/members$', 'NWonline.KB.export.handleExportMembers'),
+    (r'^export/election$', 'NWonline.KB.export.handleExportElection'),
+    (r'^export/birthdays$', 'NWonline.KB.export.handleExportBirthdays'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': os.path.join(settings.MEDIA_ROOT, 'KB')}),

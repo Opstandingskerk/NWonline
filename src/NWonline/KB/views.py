@@ -15,16 +15,21 @@
 #                                  Persoon list now filtered by status
 ###############################################################################
 from NWonline.KB.forms import PersoonSearchForm
+from NWonline.KB.modelforms import GemeenteForm
 from NWonline.KB.models import GezinsRol, LidmaatschapStatus, LidmaatschapVorm
 from datetime import datetime
+from django import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.db.models.query_utils import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template.context import RequestContext
-from modelforms import GezinForm, PersoonForm
+from django.template.context import RequestContext, Context
+from django.template import loader
+from django.utils import simplejson
+from django.utils.html import escape
+from modelforms import GezinForm, PersoonForm, GezinsRolForm
 from models import Gezin, Persoon
 
 def createPersoonListPage(request):
@@ -66,6 +71,29 @@ def createPersoonListPage(request):
         pageNr = paginator.num_pages
         
     return paginator.page(pageNr)
+
+@login_required
+def handlePersoonListExport(request):
+    persoon_list = request.session["persoon_list"]
+
+    #response = render_to_response("KB/export/persoonListTable.csv", 
+    #                              { 'persoon_list': persoon_list})
+   
+    template = loader.get_template("KB/export/persoonListTable.csv")
+    context = Context({
+        'persoon_list': persoon_list,
+    })
+    
+    response = HttpResponse() 
+    filename = "leden_%s.csv" % (datetime.now().strftime("%Y%m%d%H%M%S"))
+    response['Content-Disposition'] = 'attachment; filename='+filename
+    response['Content-Type'] = 'text/csv; charset=utf-8'
+    # Add UTF-8 'BOM' signature, otherwise Excel will assume the CSV file
+    # encoding is ASCII and special characters will be mangled
+    response.write("\xEF\xBB\xBF")
+    response.write(template.render(context))
+    
+    return response
     
 @login_required
 def handlePersoonListFilter(request):
@@ -224,7 +252,32 @@ def handlePersoonListFilter(request):
                                   {"page": page,
                                    "persoonSearchForm": persoonSearchForm },
                                   context_instance=RequestContext(request))
+
+@login_required
+def handlePopupAdd(request, form, model):
+
+    if request.method == "POST":
+        form = form(request.POST)
+        if form.is_valid():
+            try:
+                newObject = form.save()
+            except forms.ValidationError, error:
+                newObject = None
+            if newObject:
+                instance = {"id": newObject._get_pk_val(),
+                         "value": newObject }
+                return HttpResponse(simplejson.dumps(instance),
+                                    mimetype='application/json')
+    else:
+        form = form()
     
+    return render_to_response("KB/add_related_popup.html", {'form': form, 'field': model })
+
+@login_required
+def handleAddInstance(request, model):
+    form = eval("%sForm" % (model))
+    return handlePopupAdd(request, form, model)
+
 @login_required
 def handlePersoonListUpdate(request):
     """
@@ -337,7 +390,7 @@ def handleGezinPersoonAdd(request, gezinId):
             # Update gezin name if persoon is family head
             persoon = persoonForm.instance
             if (persoon.idgezinsrol == GezinsRol.GEZINSHOOFD):
-                persoon.idgezin.txtgezinsnaam = Gezin.createGezinsNaam(persoon)
+                persoon.idgezin.txtgezinsnaam = Gezin.create_gezins_naam(persoon)
                 persoon.idgezin.save()
                 
             return HttpResponseRedirect("../../persoon/%d/" % (persoonForm.instance.idpersoon))
@@ -414,7 +467,7 @@ def handlePersoonDetails(request, persoonId):
 
             # Update gezin name if persoon is family head
             if (persoon.idgezinsrol.pk == GezinsRol.GEZINSHOOFD):
-                persoon.idgezin.txtgezinsnaam = Gezin.createGezinsNaam(persoon)
+                persoon.idgezin.txtgezinsnaam = Gezin.create_gezins_naam(persoon)
                 persoon.idgezin.save()
             
             formState = "VIEW"

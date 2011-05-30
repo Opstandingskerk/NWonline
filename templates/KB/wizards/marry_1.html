@@ -9,11 +9,7 @@
 <p>Gegevens huwelijk</p>
 <form name="form" id="form" action="." method="post">{% csrf_token %}
 {{ form.dtmhuwelijksdatum|generate:"fixed" }} <br class="clear"/>
-{{ form.dtmbevestiging|generate:"fixed" }} <span style="float:left; margin-right: 12px">{{ form.idgemeente.label }}</span>{% if form.idgemeente.errors %}<span class="error">{{ form.idgemeente.errors }}{% endif %}<input type="text" id="searchField" size="30"/>{% if form.idgemeente.errors %}</span>{% endif %}
-<div style="display:none">
-{{ form.idgemeente|generate }}
-</div> 
-<br class="clear"/>
+{{ form.dtmdatumhuwelijksbevestiging|generate:"fixed" }} {{ form.idhuwelijksgemeente|generate }} <br class="clear"/>
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
 {{ previous_fields|safe }}
 <input type="submit" id="submitButton" value="Volgende">
@@ -23,24 +19,10 @@
 
 <script type="text/javascript">
 
-function prefill() {
-	$("#searchField").val($("{{ form.idgemeente|id }} option:selected").text());
-}
-
-function select(event, ui) {
-	$("{{form.idgemeente|id}}").val(ui.item.idgemeente);
-}
-
 $(document).ready(function(){
-	$("#searchField").autocomplete({source:"/query/gemeente",
-									minLength: 2,
-									select: select});
-
-	prefill();
-
 	// Datepicker
 	$("{{ form.dtmhuwelijksdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ form.dtmbevestiging|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
+	$("{{ form.dtmdatumhuwelijksbevestiging|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
 
 });
 </script>

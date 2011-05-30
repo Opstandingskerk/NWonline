@@ -1,0 +1,70 @@
+{% comment %}
+
+This template is a generic HTML5 template.
+
+{% endcomment %}
+
+{% load i18n %}
+
+<html>
+<body>
+
+<p>aan:<br>
+Fam. {{ persoon.txtvoorletters }} {{ persoon.create_sir_name }}<br>
+{{ gezin.create_address }}<br>
+{{ gezin.txtpostcode }} {{ gezin.txtplaats }}<br>
+{% if gezin.idland.pk != 1 %}{{ gezin.idland }}{% endif %}
+</p>
+<p>
+Utrecht, {% now "j F Y" %}
+</p>
+<center><h1>GEZINSATTESTATIE</h1></center>
+<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat
+<table border="0">
+<tr><td>{{ persoon.idgeslacht.txtaanhefkerk }}</td><td><strong>{{ persoon.txtdoopnaam }} {{ persoon.create_sir_name }} ({{ persoon.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ persoon.dtmgeboortedatum }} te {{ persoon.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ persoon.dtmdatumdoop }} in de {{ persoon.iddoopgemeente }}</td></tr>
+<tr><td>belijdenis afgelegd</td><td>{{ persoon.dtmdatumbelijdenis }} in de {{ persoon.idbelijdenisgemeente }}</td></tr>
+</table>
+<p>en {% if persoon.idgeslacht.pk == 1 %}zijn echtgenote{% else %}haar echtgenoot{% endif %}</p>
+<table border="0">
+<tr><td>{{ partner.idgeslacht.txtaanhefkerk }}</td><td><strong>{{ partner.txtdoopnaam }} {{ partner.create_sir_name }} ({{ partner.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ partner.dtmgeboortedatum }} te {{ partner.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ partner.dtmdatumdoop }} in de {{ partner.iddoopgemeente }}</td></tr>
+<tr><td>belijdenis afgelegd</td><td>{{ partner.dtmdatumbelijdenis }} in de {{ partner.idbelijdenisgemeente }}</td></tr>
+</table>
+<p>{% if partner.dtmhuwelijksdatum %}getrouwd op {{ partner.dtmhuwelijksdatum }}{% if partner.idhuwelijksgemeente %}, bevestigd in de {{ partner.idhuwelijksgemeente }}{% endif %},{% endif %}</p>
+<p>tot de sacramenten zijn toegelaten en - zover hem bekend - gezond zijn in de leer en 
+onbesproken in de wandel.</p>
+<p>De kerkenraad beveelt deze broeder en zuster 
+{% if children %}
+en hun {{ children.count }} kinderen
+{% for child in children %}{% if not forloop.first and not forloop.last %}, {% endif %}
+{% if forloop.last %} en {% endif %}
+{{ child.txtroepnaam }}{% endfor %}
+{% endif %}
+aan de {{ gemeente }} aan en verzoekt de ambtsdragers dit gezin onder hun 
+christelijk opzicht en bestuur aan te nemen, tot het gebruik van de heilige sacramenten 
+toe te laten en in alle voorkomende gevallen met christelijke raad en daad bij te staan.</p>
+<p>
+Adres:<br>
+<strong>[INVULLEN]</strong>
+</p>
+{% include "KB/wizards/certificates/footer.html" %}
+{% if children %}
+<hr>
+<p>Kinderen die tegelijk naar de {{ gemeente }} vertrokken zijn:</p>
+<p>
+<table border="0">
+{% for child in children %}
+<tr><td>{% if child.idgeslacht.pk == 1 %}zoon{% else %}dochter{% endif %}</td><td><strong>{{ child.txtdoopnaam }} {{ child.create_sir_name }} ({{ child.txtroepnaam }})</strong></td></tr>
+<tr><td>geboren</td><td>{{ child.dtmgeboortedatum }} te {{ child.txtgeboorteplaats }}</td></tr>
+<tr><td>gedoopt</td><td>{{ child.dtmdatumdoop }} in de {{ child.iddoopgemeente }}</td></tr>
+{% if child.idlidmaatschapvorm.pk == 2 %}<tr><td>belijdenis afgelegd</td><td>{{ child.dtmdatumbelijdenis }} in de {{ child.idbelijdenisgemeente }}</td></tr>{% endif %}
+<tr><td colspan="2">&nbsp</td></tr>
+{% endfor %}
+</table>
+</p>
+{% endif %}
+</body>
+</html>

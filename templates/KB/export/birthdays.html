@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<html>
+<body>
+{% regroup list by birth_month as month_list %}
+<h2>Verjaardagen</h2>
+{% for month in month_list %}
+<h3>{% trans month.grouper %}</h3>
+<table>
+{% for person in month.list %}
+<tr><td style="width: 2em">{{ person.birthday.day }}</td><td> {{ person }}{% if person.age <= 12 %} ({{ person.age }}){% endif %}, {{ person.create_address }}</td></tr>
+{% endfor %}
+</table>        
+{% endfor %}
+</body>
+</html>
