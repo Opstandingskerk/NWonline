@@ -81,11 +81,6 @@ function updateStatus() {
 }
 
 $(document).ready(function(){
-	// Datepicker
-	$("{{ form.dtmdatumvertrek|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ form.dtmdatumonttrokken|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{ form.dtmoverlijdensdatum|id }}").datepicker({ dateFormat: 'dd-mm-yy' });
-
 	updateStatus();
 
 });

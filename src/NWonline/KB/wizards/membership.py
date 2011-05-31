@@ -11,6 +11,7 @@
 from NWonline.KB.modelforms import AutoCompleteSelect
 from NWonline.KB.models import Persoon, LidmaatschapStatus, Gemeente, Gezin, \
     Attestatie, LidmaatschapVorm, Geslacht, GezinsRol
+from NWonline.KB.widgets import JQueryDateField
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
 from django.db.models.query_utils import Q
@@ -36,14 +37,16 @@ class MembershipForm1(Form):
                                                   queryset=LidmaatschapStatus.objects.all(),
                                                   widget=forms.RadioSelect(attrs = {'onClick': 'updateStatus();'}),
                                                   empty_label=None)
-    dtmdatumvertrek = forms.DateField(label="Datum vertrek", required=False, localize=True)
+    dtmdatumvertrek = forms.DateField(label="Datum vertrek", required=False,
+                                      widget=JQueryDateField)
     idvertrokkennaargemeente = forms.ModelChoiceField(label="Gemeente", 
                                                       queryset=Gemeente.objects.all(), 
                                                       required=False,
                                                       widget=AutoCompleteSelect())
-    dtmoverlijdensdatum = forms.DateField(label="Datum overlijden", required=False)
-    dtmdatumonttrokken = forms.DateField(label="Datum onttrokken", required=False)
-    
+    dtmoverlijdensdatum = forms.DateField(label="Datum overlijden", required=False,
+                                          widget=JQueryDateField)
+    dtmdatumonttrokken = forms.DateField(label="Datum onttrokken", required=False,
+                                         widget=JQueryDateField)
 
 class MembershipForm2(Form):
     """

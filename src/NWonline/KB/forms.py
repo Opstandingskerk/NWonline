@@ -10,6 +10,7 @@
 from NWonline.KB.models import GezinsRol, LidmaatschapStatus, LidmaatschapVorm,\
     Wijk
 from django import forms
+from NWonline.KB.widgets import JQueryDateField
 
 class PersoonSearchForm(forms.Form):
     """
@@ -34,9 +35,11 @@ class PersoonSearchForm(forms.Form):
     txtdoopnaam = forms.CharField(label="Doopnaam",
                                     required=False)
     dtmgeboortedatumvan = forms.DateField(label="Geboortedatum van",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmgeboortedatumtot = forms.DateField(label="tot",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     idlidmaatschapstatus = forms.ModelChoiceField(
                                     queryset=LidmaatschapStatus.objects.all(),
                                     label="Status lidmaatschap",
@@ -50,20 +53,26 @@ class PersoonSearchForm(forms.Form):
                                     label="Wijk",
                                     required=False)
     dtmdatumbinnenkomstvan = forms.DateField(label="Datum binnenkomst van",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmdatumbinnenkomsttot = forms.DateField(label="tot",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmdatumvertrekvan = forms.DateField(label="Datum vertrek van",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmdatumvertrektot = forms.DateField(label="tot",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmdatumonttrokkenvan = forms.DateField(label="Datum onttrokken van",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmdatumonttrokkentot = forms.DateField(label="tot",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmoverlijdensdatumvan = forms.DateField(label="Datum overleden van",
-                                          required=False)
+                                          required=False,
+                                          widget=JQueryDateField)
     dtmoverlijdensdatumtot = forms.DateField(label="tot",
-                                          required=False)
-    
-    
+                                          required=False,
+                                          widget=JQueryDateField)

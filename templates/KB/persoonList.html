@@ -112,19 +112,7 @@ $(document).ready(function(){
 	$("#btn_submit").click(function(){
 		retrieveList();
 	});
-	
-	// Enable date pickers
-	$("{{persoonSearchForm.dtmgeboortedatumvan|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmgeboortedatumtot|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmdatumvertrekvan|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmdatumvertrektot|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmdatumonttrokkenvan|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmdatumonttrokkentot|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmdatumbinnenkomstvan|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmdatumbinnenkomsttot|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmoverlijdensdatumvan|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	$("{{persoonSearchForm.dtmoverlijdensdatumtot|id}}").datepicker({ dateFormat: 'dd-mm-yy' });
-	
+		
 	retrieveList();
 });
 
