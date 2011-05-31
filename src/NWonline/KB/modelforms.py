@@ -8,7 +8,7 @@
 # 20110414    Lukas Batteau        Reorganized membership
 ###############################################################################
 from NWonline.KB.widgets import AutoCompleteSelect, SelectWithPopup,\
-    JQueryDateField
+    DatePicker
 from django import forms
 import models
 
@@ -58,15 +58,15 @@ class PersoonForm(forms.ModelForm):
             "idhuwelijksgemeente": AutoCompleteSelect(),
             "idbinnengekomenuitgemeente": AutoCompleteSelect(),
             "idvertrokkennaargemeente": AutoCompleteSelect(),
-            "dtmgeboortedatum": JQueryDateField(),
-            "dtmdatumdoop": JQueryDateField(),
-            "dtmdatumbelijdenis": JQueryDateField(),
-            "dtmhuwelijksdatum": JQueryDateField(),
-            "dtmdatumhuwelijksbevestiging": JQueryDateField(),
-            "dtmdatumbinnenkomst": JQueryDateField(),
-            "dtmdatumvertrek": JQueryDateField(),
-            "dtmdatumonttrokken": JQueryDateField(),
-            "dtmoverlijdensdatum": JQueryDateField(),
+            "dtmgeboortedatum": DatePicker(),
+            "dtmdatumdoop": DatePicker(),
+            "dtmdatumbelijdenis": DatePicker(),
+            "dtmhuwelijksdatum": DatePicker(),
+            "dtmdatumhuwelijksbevestiging": DatePicker(),
+            "dtmdatumbinnenkomst": DatePicker(),
+            "dtmdatumvertrek": DatePicker(),
+            "dtmdatumonttrokken": DatePicker(),
+            "dtmoverlijdensdatum": DatePicker(),
             #"idgezinsrol": SelectWithPopup()
         }
         

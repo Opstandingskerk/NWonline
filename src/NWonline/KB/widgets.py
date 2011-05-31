@@ -59,10 +59,10 @@ class MultipleSelectWithPopup(forms.SelectMultiple):
         popupplus = render_to_string("KB/add_related_popup_link.html", {'field': name})
         return html+popupplus
     
-class JQueryDateField(widgets.DateInput):
+class DatePicker(widgets.DateInput):
 
     def render(self, name, value, attrs=None):
-        html = super(JQueryDateField, self).render(name, value, attrs)
+        html = super(DatePicker, self).render(name, value, attrs)
         jquery = u"""<script language="javascript">
         $(document).ready(function(){
             $('#%s').datepicker({ dateFormat: '%s' });
