@@ -11,7 +11,7 @@
 ###############################################################################
 from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol, \
     Gemeente, LidmaatschapStatus
-from NWonline.KB.widgets import AutoCompleteSelect
+from NWonline.KB.widgets import AutoCompleteSelect, DatePicker
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
 from django.forms.forms import Form
@@ -40,8 +40,10 @@ class MarryForm2(Form):
     """
     Marry wizard screen 2. Determines the marriage details.
     """
-    dtmhuwelijksdatum = forms.DateField(label="Datum huwelijk")
-    dtmdatumhuwelijksbevestiging = forms.DateField(label="Datum bevestiging")
+    dtmhuwelijksdatum = forms.DateField(label="Datum huwelijk",
+                                        widget=DatePicker)
+    dtmdatumhuwelijksbevestiging = forms.DateField(label="Datum bevestiging",
+                                                   widget=DatePicker)
     idhuwelijksgemeente = forms.ModelChoiceField(widget=AutoCompleteSelect(),
                                         queryset=Gemeente.objects.all(),
                                         label="Gemeente")

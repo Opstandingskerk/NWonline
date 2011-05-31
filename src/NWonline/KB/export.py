@@ -5,7 +5,7 @@
 ###############################################################################
 from NWonline.KB.models import Persoon, LidmaatschapStatus, GezinsRol, \
     LidmaatschapVorm
-from NWonline.KB.widgets import JQueryDateField
+from NWonline.KB.widgets import DatePicker
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -31,10 +31,10 @@ class BirthdaysForm(forms.Form):
     initial_date_to = today.replace(day=31, month=12)
     
     date_from = forms.DateField(label="Datum van",
-                                widget=JQueryDateField(),
+                                widget=DatePicker(),
                                 initial=initial_date_from)
     date_to = forms.DateField(label="tot",
-                              widget=JQueryDateField(),
+                              widget=DatePicker(),
                               initial=initial_date_to)
     category = forms.TypedChoiceField(label="Categorie",
                                       choices=((CATEGORY_LTE12, '12-'), (CATEGORY_GT12, '12+')),
@@ -182,3 +182,20 @@ def handleExportBirthdays(request):
         response.write(template.render(context))
     
         return response
+    
+@login_required
+def handleExportEmail(request):
+    members = Persoon.objects.filter(idlidmaatschapstatus=LidmaatschapStatus.ACTIEF)
+    members = members.order_by("idgezin__txtgezinsnaam")
+    
+    response = HttpResponse() 
+    filename = "emailadressen_%s.txt" % (datetime.datetime.now().strftime("%Y%m%d"))
+    response['Content-Disposition'] = 'attachment; filename='+filename
+    response['Content-Type'] = 'text/plain; charset=utf-8'
+    for persoon in members:
+        if (persoon.txtemailadres):
+            response.write(persoon.txtemailadres.lower())
+            response.write("\r\n")
+
+    return response
+
