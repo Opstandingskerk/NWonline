@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     (r'^export/members$', 'NWonline.KB.export.handleExportMembers'),
     (r'^export/election$', 'NWonline.KB.export.handleExportElection'),
     (r'^export/birthdays$', 'NWonline.KB.export.handleExportBirthdays'),
+    (r'^export/email$', 'NWonline.KB.export.handleExportEmail'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': os.path.join(settings.MEDIA_ROOT, 'KB')}),

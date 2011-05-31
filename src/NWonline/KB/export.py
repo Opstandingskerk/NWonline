@@ -182,3 +182,20 @@ def handleExportBirthdays(request):
         response.write(template.render(context))
     
         return response
+    
+@login_required
+def handleExportEmail(request):
+    members = Persoon.objects.filter(idlidmaatschapstatus=LidmaatschapStatus.ACTIEF)
+    members = members.order_by("idgezin__txtgezinsnaam")
+    
+    response = HttpResponse() 
+    filename = "emailadressen_%s.txt" % (datetime.datetime.now().strftime("%Y%m%d"))
+    response['Content-Disposition'] = 'attachment; filename='+filename
+    response['Content-Type'] = 'text/plain; charset=utf-8'
+    for persoon in members:
+        if (persoon.txtemailadres):
+            response.write(persoon.txtemailadres.lower())
+            response.write("\r\n")
+
+    return response
+
