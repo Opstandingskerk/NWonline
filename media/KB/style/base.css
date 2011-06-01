@@ -181,11 +181,11 @@ span#user {
 	margin-top 7px;	
 }
 
-.detail_header .status span {
+.detail_header .box span {
 	float: right;
 }
 
-.status {
+.box {
 	border: 1px solid #dddddd;
 	margin-bottom: 0.5em;
 	padding: 6px;
@@ -199,6 +199,12 @@ span#user {
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
+}
+
+.widget {
+	width: 50em;
+	margin-right: 7px;
+	float: left;
 }
 
 #tabs { /*margin: 12px;
@@ -401,4 +407,8 @@ p.error {
 
 #certificate td {
 	padding: 3px;
+}
+
+#export_widget {
+	display: none;
 }

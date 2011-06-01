@@ -31,15 +31,15 @@ urlpatterns = patterns('',
     
     (r'^add/(?P<model>.*)$', 'NWonline.KB.views.handleAddInstance'),
     
-    (r'^export/$', 'NWonline.KB.export.handleExport'),
-    (r'^export/members$', 'NWonline.KB.export.handleExportMembers'),
-    (r'^export/election$', 'NWonline.KB.export.handleExportElection'),
-    (r'^export/birthdays$', 'NWonline.KB.export.handleExportBirthdays'),
-    (r'^export/email$', 'NWonline.KB.export.handleExportEmail'),
+    (r'^dashboard/$', 'NWonline.KB.dashboard.handleExport'),
+    (r'^dashboard/members$', 'NWonline.KB.dashboard.handleExportMembers'),
+    (r'^dashboard/election$', 'NWonline.KB.dashboard.handleExportElection'),
+    (r'^dashboard/birthdays$', 'NWonline.KB.dashboard.handleExportBirthdays'),
+    (r'^dashboard/email$', 'NWonline.KB.dashboard.handleExportEmail'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': os.path.join(settings.MEDIA_ROOT, 'KB')}),
         
-    (r'^$', redirect_to, {'url': 'leden/'}),
+    (r'^$', redirect_to, {'url': 'dashboard/'}),
         
 )

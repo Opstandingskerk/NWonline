@@ -42,13 +42,34 @@ class BirthdaysForm(forms.Form):
                                       initial=CATEGORY_LTE12,
                                       coerce=int)
 
+class Statistics():
+    def __init__(self):
+        self.label = ""
+        self.value = 0
+            
 @login_required
 def handleExport(request):
     members_form = MembersForm()
     birthdays_form = BirthdaysForm()
-    return render_to_response("KB/export/export.html",
+    
+    # Create members stats
+    stats = []
+
+    for membership in LidmaatschapVorm.objects.all():
+        stat = Statistics()
+        stat.label = str(membership)
+        stat.value = Persoon.objects.filter(idlidmaatschapstatus=LidmaatschapStatus.ACTIEF, idlidmaatschapvorm=membership).count()
+        stats.append(stat)
+    
+    total = Statistics()
+    total.label = "Totaal"
+    total.value = Persoon.objects.filter(idlidmaatschapstatus=LidmaatschapStatus.ACTIEF).count()
+       
+    return render_to_response("KB/dashboard.html",
                               {"members_form": members_form,
-                               "birthdays_form": birthdays_form},
+                               "birthdays_form": birthdays_form,
+                               "stats": stats,
+                               "total": total},
                               context_instance=RequestContext(request))
 
 @login_required

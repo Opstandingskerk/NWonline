@@ -52,6 +52,7 @@ def createPersoonListPage(request):
     try:
         order_by = request.GET["order_by"]
         persoon_list = persoon_list.order_by(order_by)
+        request.session["persoon_list"] = persoon_list
     except:
         # Parameter 'order_by' not present in GET
         pass
@@ -79,9 +80,9 @@ def handlePersoonListExport(request):
     #response = render_to_response("KB/export/persoonListTable.csv", 
     #                              { 'persoon_list': persoon_list})
    
-    template = loader.get_template("KB/export/persoonListTable.csv")
+    template = loader.get_template("KB/export/members.csv")
     context = Context({
-        'persoon_list': persoon_list,
+        'members': persoon_list,
     })
     
     response = HttpResponse() 
