@@ -6,16 +6,22 @@
 
 {{ form.errors }}
 
-<div class="wizard">
+<div class="box widget">
 <h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
 <p>Op welk adres komt het gezin te wonen?</p>
 <form name="form" id="form" action="." method="post">{% csrf_token %}
 
-<input type="radio" id="id_3-code_0" value="A" {% if form.code.data == "A" %} checked="checked" {% endif %} name="3-code" /><label for="id_3-code_0">{{persoonA}} ({{gezinA.txtstraatnaam}} {{gezinA.inthuisnummer}}, {{gezinA.txtplaats}})</label>
-<input type="radio" id="id_3-code_1" value="B" {% if form.code.data == "B" %} checked="checked" {% endif %} name="3-code" /><label for="id_3-code_1">{{persoonB}} {% if persoonB.idpersoon %}({{gezinB.txtstraatnaam}} {{gezinB.inthuisnummer}}, {{gezinB.txtplaats}}){% endif %}</label>
-{% if persoonB.idpersoon %}
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td>
+<input type="radio" id="id_3-code_0" value="A" {% if form.code.data == "A" %} checked="checked" {% endif %} name="3-code" /><label for="id_3-code_0">{{persoonA}}<br class="clear"/><small>{{gezinA.create_address}}, {{gezinA.txtplaats}}</small></label>
+</td><td>
+<input type="radio" id="id_3-code_1" value="B" {% if form.code.data == "B" %} checked="checked" {% endif %} name="3-code" /><label for="id_3-code_1">{{persoonB}} {% if persoonB.idpersoon %}<br class="clear"/><small>{{gezinB.create_address}}, {{gezinB.txtplaats}}</small>{% endif %}</label>
+</td>
+<td>{% if persoonB.idpersoon %}
 <input type="radio" id="id_3-code_2" value="NEW" {% if form.code.data == "NEW" %} checked="checked" {% endif %} name="3-code" /><label for="id_3-code_2">Nieuw</label>
 {% endif %}
+</td></tr>
+</table>
 
 <br class="clear"/>
 
