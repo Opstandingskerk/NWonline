@@ -134,6 +134,15 @@ class MembershipWizard(FormWizard):
         if (step == 0):
             # Page 1
             
+            # Store whether whole family should be updated
+            updateWholeFamily = form.cleaned_data["updateWholeFamily"]
+            
+            # If mode on entering was not 'family', but the user wants
+            # to update the whole family, we switch to mode 'family'
+            if (not self.storedFields["is_mode_family"] and updateWholeFamily):
+                self.storedFields["gezin"] = self.storedFields["persoon"].idgezin
+                self.storedFields["is_mode_family"] = updateWholeFamily         
+            
             # Check whether we should generate a certificate at the end
             # of the wizard
             generateCertificate = form.cleaned_data["generateCertificate"]
@@ -149,15 +158,6 @@ class MembershipWizard(FormWizard):
                 # a certificate
                 return
                 
-            # Store whether whole family should be updated
-            updateWholeFamily = form.cleaned_data["updateWholeFamily"]
-            
-            # If mode on entering was not 'family', but the user wants
-            # to update the whole family, we switch to mode 'family'
-            if (not self.storedFields["is_mode_family"] and updateWholeFamily):
-                self.storedFields["gezin"] = self.storedFields["persoon"].idgezin
-                self.storedFields["is_mode_family"] = updateWholeFamily         
-            
             # Store destination church for use in certificate 
             self.storedFields["idvertrokkennaargemeente"] = form.cleaned_data["idvertrokkennaargemeente"]
 
