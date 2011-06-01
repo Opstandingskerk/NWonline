@@ -1,0 +1,106 @@
+{% extends "KB/main.html" %}
+
+{% block content %}
+
+{% load customtags %}
+
+<div class="box widget">
+	<h3>Aantal leden</h3>
+	<table border="0" cellpadding="0" cellspacing="0">
+	<tr><td style="vertical-align: top">
+	<table id="stats" border="0" cellpadding="3" cellspacing="0" class="listview" style="width: auto">
+	<thead class="ui-widget-header">
+	    <tr>
+	    	<th>Lidmaatschap</th>
+			<th>Aantal</th>
+	    </tr>
+	</thead>
+	<tbody>
+	    {% for stat in stats %}
+	    <tr><td>{{ stat.label }}</td><td>{{ stat.value }}</td></tr>
+	    {% endfor %}
+	    <tr><td><strong>{{ total.label }}</strong></td><td><strong>{{ total.value }}</strong></td></tr>
+	</tbody>
+	</table>
+	</td>
+	<td>
+	<div id="chart"><img src="/media/img/ajax-loader-dark.gif" style="position: relative; top: -3em; left: 15em" border="0"/></div>
+	</td></tr>
+	</table>
+</div>
+<div id="export_widget" class="box widget">
+<h3>Exporteren</h3>
+<div id="export" class="accordion">
+	<h3><a href="#">Ledenlijst</a></h3>
+	<div>
+		<p>Deze lijst bevat de gegevens van alle actieve leden.</p> 
+		<form name="members" action="members" method="POST">
+		<p class="clear">Type: <img src="/media/img/excel.gif/" border="0"></p>
+		<input type="submit" value="Genereer"/>
+		</form>
+	</div>
+	<h3><a href="#">Verjaardagen</a></h3>
+	<div>
+		<p>Deze lijst bevat alle actieve leden die in de gegeven periode jarig zijn, gegroepeerd op maand.</p>
+		<form name="birthdays" action="birthdays" method="POST">
+		{{ birthdays_form.date_from|generate:"fixed" }}{{ birthdays_form.date_to|generate }}<br class="clear"/>
+		{{ birthdays_form.category|generate:"fixed" }}
+		<p class="clear">Type: <img src="/media/img/word.gif/" border="0"></p>
+		<input type="submit" value="Genereer"/>
+		</form>
+	</div>
+	<h3><a href="#">Stemlijst</a></h3>
+	<div>
+		<p>De stemlijst bevat alle actieve belijdende leden, gegroepeerd op gezin.</p> 
+		<p>Type: <img src="/media/img/word.gif/" border="0"></p>
+		<form name="election" action="election" method="POST">
+		<input type="submit" value="Genereer"/>
+		</form>
+	</div>
+	<h3><a href="#">E-mailadressen</a></h3>
+	<div>
+		<p>
+		Deze lijst bevat de e-mailadressen van alle actieve leden.
+		</p>
+		<form name="email" action="email" method="POST">
+		<input type="submit" value="Genereer"/>
+		</form>
+	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#export_widget").show();
+    $("#export").accordion({ collapsible: true })
+    $("#export").accordion("activate", false);
+  });
+
+ 
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Lidmaatschap');
+    data.addColumn('number', 'Aantal');
+    data.addRows({{stats|length}});
+    {% for stat in stats %}
+    data.setValue({{ forloop.counter0 }}, 0, "{{ stat.label }}");
+    data.setValue({{ forloop.counter0 }}, 1, {{ stat.value }});
+   	{% endfor %}
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart'));
+    chart.draw(data, {
+    	width: 400, 
+    	height: 250, 
+    	backgroundColor: '#f2f5f7',
+    	chartArea: {left:80,top:0,width:"80%",height:"80%"},
+    	title: 'Verdeling'});
+  }
+</script>
+
+{% endblock %}

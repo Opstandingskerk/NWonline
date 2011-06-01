@@ -14,7 +14,7 @@
 		<h2>Fam. {{ gezinForm.instance.txtgezinsnaam }}</h2>
 		{% endif %}
 	</div>
-	<div class="status">
+	<div class="box">
 		{% if gezinForm.instance.idgezin %}
 		<span><a href="/wizard/membership/gezin/{{gezinForm.instance.idgezin}}/">Lidmaatschap</a></span>
 		<br class="clear"/>
@@ -46,7 +46,7 @@
 </div> <!-- detail -->
 
 <div class="detail_header">
-	<div class="status">
+	<div class="box">
 		{% if gezinForm.instance.idgezin %}
 		<span><a href="persoon/add">Nieuw persoon</a></span>
 		<br class="clear"/>

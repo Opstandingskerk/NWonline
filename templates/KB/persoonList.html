@@ -19,7 +19,7 @@
 <div class="clear"></div>
 </div>
 
-<div class="status" id="extended_search" style="display:none">
+<div class="box" id="extended_search" style="display:none">
 {{ persoonSearchForm.idgezinsrol|generate:"fixed" }}<br class="clear"/>
 {{ persoonSearchForm.txtachternaam|generate:"fixed" }} {{ persoonSearchForm.txttussenvoegsels|generate }}<br class="clear"/>
 {{ persoonSearchForm.txtvoorletters|generate:"fixed" }} {{ persoonSearchForm.txtroepnaam|generate }} {{ persoonSearchForm.txtdoopnaam|generate }}<br class="clear"/>
@@ -105,7 +105,7 @@ $(document).ready(function(){
 	
 	// Enable slide on extended search form 
 	$("#extended_search").click(function(){
-		  $(".status").slideToggle("slow");
+		  $(".box").slideToggle("slow");
 	});
 	
 	// Search button calls ajax call
