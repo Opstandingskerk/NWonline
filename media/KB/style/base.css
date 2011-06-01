@@ -202,8 +202,10 @@ span#user {
 }
 
 .widget {
-	width: 50em;
+	min-width: 50em;
 	margin-right: 7px;
+	padding-left: 1em;
+	padding-right: 1em;
 	float: left;
 }
 
@@ -288,13 +290,6 @@ table.listview th {
 
 div.pagination {
 	padding: 3px 7px 3px 7px;
-}
-
-div.wizard {
-	background-color: #EEE;
-	border: 1px solid #DDD;
-	padding: 7px;
-	min-width: 500px;
 }
 
 .selectContainer {
