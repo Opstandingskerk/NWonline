@@ -1,3 +1,4 @@
+# -*- coding: iso-8859-15 -*-
 import logging
 import os
 import pyodbc
@@ -12,8 +13,17 @@ DRV = '{Microsoft Access Driver (*.mdb)}'
 PWD = None
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
-logging.basicConfig(level=logging.INFO)
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+fh = logging.FileHandler('log.txt', mode = 'w')
+fh.setLevel(logging.WARNING)
+
+logger.addHandler(ch)
+logger.addHandler(fh)
+
+
 
 def get_geslacht_id(txtGeslacht):
     if txtGeslacht == 'M':
@@ -78,7 +88,7 @@ def main():
         result.append(family_role)
     
     
-    logger.info("Converting tblGezin")           
+    logger.info("Tabel Gezin")           
     curs.execute("select * from tblGezin")
     for gezin in  curs.fetchall():                
         if gezin.idAdres is not None:
@@ -92,17 +102,31 @@ def main():
                 match_huisnummer = m.group('huisnummer')
                 match_toevoeging = m.group('toevoeging')
                 if match_huisnummer == '':
+                    logger.warn('Gezin heeft geen huisnummer: %s - %s', str(gezin.idGezin), gezin.txtGezinsnaam)
                     match_huisnummer = -999
             else:
+                logger.warn('Gezin heeft geen huisnummer: %s - %s', str(gezin.idGezin), gezin.txtGezinsnaam)
                 match_huisnummer = -999
                 match_toevoeging = ""
             
-            txtStraatnaam = gezinsadres.txtStraatnaam
+            txtStraatnaam = gezinsadres.txtStraatnaam            
             txtPostcode = gezinsadres.txtPostcode
             txtPlaats = gezinsadres.txtPlaats
             txtAdresExtra = gezinsadres.txtAdresExtra
+            
+            if none_safe_string(txtPostcode)!="":
+                check_postcode = re.findall(r"(^[0-9]{4}[a-z|A-Z]{2}$)", txtPostcode)
+                if len(check_postcode)!=1:
+                    logger.warn("Gezin komt waarschijnlijk niet uit Nederland, handmatig controleren voor gezin: %s - %s", str(gezin.idGezin), gezin.txtGezinsnaam)
+            else:
+                logger.warn("Gezin heeft geen postcode: %s - %s", str(gezin.idGezin), gezin.txtGezinsnaam) 
+            if none_safe_string(txtStraatnaam)=="":
+                logger.warn("Gezin heeft geen straatnaam: %s - %s", str(gezin.idGezin), gezin.txtGezinsnaam) 
+            if none_safe_string(txtPlaats)=="":
+                logger.warn("Gezin heeft geen plaats: %s - %s", str(gezin.idGezin), gezin.txtGezinsnaam) 
                               
         else:
+            logger.warn('Geen adres gevonden voor gezin: %s - %s', str(gezin.idGezin), gezin.txtGezinsnaam)
             match_huisnummer = -999
             match_toevoeging = "" 
             txtStraatnaam = ""
@@ -122,7 +146,7 @@ def main():
                 "txthuisnummertoevoeging": none_safe_string(match_toevoeging),
                 "txtpostcode": none_safe_string(txtPostcode),
                 "txtplaats": none_safe_string(txtPlaats),
-                "idland": "1",
+                "idland": "149",
                 "txttelefoon": none_safe_string(gezin.txtTelefoonnummer),
                 "txtopmerking": none_safe_string(txtAdresExtra)
             }
@@ -135,9 +159,19 @@ def main():
         # Als persoon vertrokken is dan krijgt hij de status 2 = Vertrokken
         # tenzij hij naar gemeente id 338 (=onttrokken) of id 339 (=overleden) gaat
         if (lid.idLid in (300, 632, 1480, 1392, 1405, 1406, 1407, 1408, 1419, 1436, 1481, 1485, 1497, 518)):
-            logger.info("Skipping %s" % (lid))
+            logger.warn("Lid overgeslagen bij importeren: %s" % (lid))
             continue
-                  
+        
+        if lid.idGezin is not None:
+            gezin_lid = curs.execute("select * from tblGezin where idGezin=%s" % str(lid.idGezin))        
+            id_wijk = gezin_lid.fetchone().idWijkNieuw
+            if id_wijk is None or id_wijk==0:
+                logger.warn("Lid heeft geen wijknummer, nu 11 (Overig) gegeven: %s - %s", lid.idLid, lid.txtAchternaam)
+                id_wijk = 11
+        else:
+            logger.warn("Lid behoort niet tot een gezin: %s - %s", lid.idLid, lid.txtAchternaam)
+
+        
         dtm_onttrokken = None
         dtm_overleden = None
         dtm_vertrokken = None
@@ -222,7 +256,7 @@ def main():
                 "dtmoverlijdensdatum": dtm_overleden,
                 "dtmdatumonttrokken": dtm_onttrokken,
                 "idlidmaatschapstatus": ls_status,
-                "idwijk": "1",
+                "idwijk": id_wijk,
                 "idgastgemeente": gastgemeente,
                 "idgasthoofdgemeente": gasthoofdgemeente,                
                 "boolgeborennw": False
@@ -269,8 +303,7 @@ def main():
         result.append(lidmaatschap_vorm)
 
         
-    logger.info("Insert CommunityTypes")
-    #### Community Types ###
+    logger.info("Gemeentetypes")
     community_types = [(1,'GKV'),
                        (2,'NGK'),
                        (3,'CGK'),
@@ -288,12 +321,355 @@ def main():
             }
         }
         result.append(community_type)
+        
+    logger.info("Wijken")    
+    wijken = [(1,'Pijlsweerd / kop Lombok', 'P/KL'),
+              (2,'Lombok', 'LO'),
+              (3,'Oog in al, Schepenbuurt, Lombok', 'OSL'),
+              (4,'Leidsche Rijn', 'LR'),
+              (5,'Ondiep', 'OND'),
+              (6,'Zuilen, omgeving Julianapark', 'ZJ'),
+              (7,'Zuilen Noord', 'ZN'),
+              (8,'Overvecht Zuid', 'OZ'),
+              (9,'Overvecht Noord', 'ON'),
+              (10,'Buitenland', 'BU'),
+              (11,'Overig', 'OV')]
+    for w in wijken:
+        wijk = {
+            "pk":w[0],
+            "model": "KB.wijk",
+            "fields": {
+                "idwijk": w[0],
+                "txtwijknaam": w[1],
+                "txtwijknaamkort": w[2]
+            }
+        }
+        result.append(wijk)
+    
+    logger.info("Huiskringen")
+    huiskringen = [ (1, "Pijlsweerd / kop Lombok kring 1", 1, "", "a"),
+                    (2, "Pijlsweerd / kop Lombok kring 2", 1, "", "b"),
+                    (3, "Pijlsweerd / kop Lombok kring 3", 1, "", "c"),
+                    (4, "Lombok kring 1", 2, "", "a"),
+                    (5, "Lombok kring 2", 2, "", "b"),
+                    (6, "Oog in al, Schepenbuurt, Lombok kring 1", 3, "", "a"),
+                    (7, "Oog in al, Schepenbuurt, Lombok kring 2", 3, "", "b"),
+                    (8, "Oog in al, Schepenbuurt, Lombok kring 3", 3, "", "c"),
+                    (9, "Leidsche Rijn Kring 1", 4, "", "a"),
+                    (10, "Kring Rijnwaarde", 4, "", "b"),
+                    (11, "Ondiep kring 1", 5, "", "a"),
+                    (12, "Ondiep kring 2", 5, "", "b"),
+                    (13, "Ondiep kring 3", 5, "", "c"),
+                    (14, "Ondiep kring 4", 5, "", "d"),
+                    (15, "Zuilen, omgeving Julianapark kring 1", 6, "", "a"),
+                    (16, "Zuilen, omgeving Julianapark kring 2", 6, "", "b"),
+                    (17, "Zuilen, omgeving Julianapark kring 3", 6, "", "c"),
+                    (18, "Zuilen, omgeving Julianapark kring 4", 6, "", "d"),
+                    (19, "Zuilen noord kring 1", 7, "", "a"),
+                    (20, "Zuilen noord kring 2", 7, "", "b"),
+                    (21, "Zuilen noord kring 3", 7, "", "c"),
+                    (22, "Overvecht zuid kring 1", 8, "", "a"),
+                    (23, "Overvecht zuid kring 2", 8, "", "b"),
+                    (24, "Overvecht noord kring 1", 9, "", "a"),
+                    (25, "Overvecht noord kring 2", 9, "", "b"),
+                    (26, "Overvecht noord kring 3", 9, "", "c"),
+                    (27, "ONBEKEND", 11, "", "")]                   
+    for hk in huiskringen:
+        huiskring = {
+            "pk":hk[0],
+            "model": "KB.huiskring",
+            "fields": {
+                "idhuiskring": hk[0],
+                "txthuiskringnaam": hk[1],
+                "idwijk": hk[2],
+                "txtopmerking": hk[3],
+                "txtvolgnummer": hk[4]
+            }
+        }
+        result.append(lidmaatschap_status)
     
     
-    #inode, tmp_filename = tempfile.mkstemp(suffix='.json')
-    tmp_filename = "kb.json"
-    open(tmp_filename, 'w').write(simplejson.dumps(result, indent=4))
-    logger.info("Wrote json to %s", tmp_filename)
+    logger.info("Geslacht")    
+    geslachten = [(1,'M', 'man', 'de heer', 'dhr.', 'broeder', 'br.'),
+                       (2,'V', 'vrouw', 'mevrouw', 'mw.', 'zuster', 'zr.')]
+    for g in geslachten:
+        geslacht = {
+            "pk": g[0],
+            "model": "KB.geslacht",
+            "fields": {
+                "idgeslacht": g[0],
+                "txtgeslacht": g[1],
+                "txtgeslachtlang": g[2],                
+                "txtaanhef": g[3],
+                "txtaanhefkort": g[4],                
+                "txtaanhefkerk": g[5],
+                "txtaanhefkerkkort": g[6]
+            }
+        }
+        result.append(geslacht)   
+
+    logger.info("Landen")
+    landen=[u'Afghanistan',
+            u'Åland',
+            u'Albanië',
+            u'Algerije',
+            u'Amerikaanse Maagdeneilanden',
+            u'Amerikaans-Samoa',
+            u'Andorra',
+            u'Angola',
+            u'Anguilla',
+            u'Antarctica',
+            u'Antigua en Barbuda',
+            u'Argentinië',
+            u'Armenië',
+            u'Aruba',
+            u'Australië',
+            u'Azerbeidzjan',
+            u'Bahama\'s',
+            u'Bahrein',
+            u'Bangladesh',
+            u'Barbados',
+            u'Belarus',
+            u'België',
+            u'Belize',
+            u'Benin',
+            u'Bermuda',
+            u'Bhutan',
+            u'Bolivia',
+            u'Bosnië-Herzegovina',
+            u'Botswana',
+            u'Brazilië',
+            u'Britse Maagdeneilanden',
+            u'Brunei',
+            u'Bulgarije',
+            u'Burkina Faso',
+            u'Burundi',
+            u'Cambodja',
+            u'Canada',
+            u'Caymaneilanden / Kaaimaneilanden',
+            u'Centraal-Afrikaanse Republiek',
+            u'Chili',
+            u'China',
+            u'Christmaseiland',
+            u'Cocoseilanden',
+            u'Colombia',
+            u'Comoren',
+            u'Congo',
+            u'Congo',
+            u'Cookeilanden',
+            u'Costa Rica',
+            u'Cuba',
+            u'Curaçao',
+            u'Cyprus',
+            u'Denemarken',
+            u'Djibouti',
+            u'Dominica',
+            u'Dominicaanse Republiek',
+            u'Duitsland',
+            u'Ecuador',
+            u'Egypte',
+            u'El Salvador',
+            u'Equatoriaal-Guinea',
+            u'Eritrea',
+            u'Estland',
+            u'Ethiopië',
+            u'Faerøer',
+            u'Falklandeilanden',
+            u'Fiji',
+            u'Filipijnen',
+            u'Finland',
+            u'Frankrijk',
+            u'Frans-Guyana',
+            u'Frans-Polynesië',
+            u'Gabon',
+            u'Gambia',
+            u'Georgië',
+            u'Ghana',
+            u'Gibraltar',
+            u'Grenada',
+            u'Griekenland',
+            u'Groenland',
+            u'Groot-Brittannië',
+            u'Guadeloupe',
+            u'Guam',
+            u'Guatemala',
+            u'Guinee',
+            u'Guinee-Bissau',
+            u'Guyana',
+            u'Haïti',
+            u'Heilige Stoel',
+            u'Honduras',
+            u'Hongarije',
+            u'Hongkong',
+            u'Ierland',
+            u'IJsland',
+            u'India',
+            u'Indonesië',
+            u'Irak',
+            u'Iran',
+            u'Israël',
+            u'Italië',
+            u'Ivoorkust',
+            u'Jamaica',
+            u'Japan',
+            u'Jemen',
+            u'Jordanië',
+            u'Kaaimaneilanden / Caymaneilanden',
+            u'Kaapverdië',
+            u'Kameroen',
+            u'Kazachstan',
+            u'Kenia',
+            u'Kirgizië, Kyrgyzstan',
+            u'Kiribati',
+            u'Koeweit',
+            u'Kosovo',
+            u'Kroatië',
+            u'Laos',
+            u'Lesotho',
+            u'Letland',
+            u'Libanon',
+            u'Liberia',
+            u'Libië',
+            u'Liechtenstein',
+            u'Litouwen',
+            u'Luxemburg',
+            u'Macau',
+            u'Macedonië',
+            u'Madagaskar',
+            u'Malawi',
+            u'Maldiven, Malediven',
+            u'Maleisië',
+            u'Mali',
+            u'Malta',
+            u'Marokko',
+            u'Marshalleilanden',
+            u'Martinique',
+            u'Mauritanië',
+            u'Mauritius',
+            u'Mexico',
+            u'Micronesia',
+            u'Moldavië',
+            u'Monaco',
+            u'Mongolië',
+            u'Montenegro',
+            u'Montserrat',
+            u'Mozambique',
+            u'Myanmar',
+            u'Namibië',
+            u'Nauru',
+            u'Nederland',
+            u'Nederlandse Antillen',
+            u'Nepal',
+            u'Nicaragua',
+            u'Nieuw-Caledonië',
+            u'Nieuw-Zeeland',
+            u'Niger',
+            u'Nigeria',
+            u'Niue',
+            u'Noordelijke Marianen',
+            u'Noord-Korea',
+            u'Noorwegen',
+            u'Norfolkeiland',
+            u'Oeganda',
+            u'Oekraïne',
+            u'Oezbekistan',
+            u'Oman',
+            u'Oostenrijk',
+            u'Oost-Timor',
+            u'Pakistan',
+            u'Palau',
+            u'Palestijnse Autonome Gebieden',
+            u'Panama',
+            u'Papoea-Nieuw-Guinea',
+            u'Paraguay',
+            u'Peru',
+            u'Pitcairneilanden',
+            u'Polen',
+            u'Portugal',
+            u'Puerto Rico, Porto Rico',
+            u'Qatar',
+            u'Réunion',
+            u'Roemenië',
+            u'Rusland',
+            u'Rwanda',
+            u'Saint Kitts en Nevis',
+            u'Saint Lucia',
+            u'Saint-Pierre en Miquelon',
+            u'Saint Vincent en de Grenadines',
+            u'Salomonseilanden',
+            u'Samoa',
+            u'San Marino',
+            u'Sao Tomé en Principe',
+            u'Saudi-Arabië',
+            u'Senegal',
+            u'Servië',
+            u'Seychellen',
+            u'Sierra Leone',
+            u'Singapore',
+            u'Sint-Helena',
+            u'Sint Maarten',
+            u'Slovakije',
+            u'Slovenië',
+            u'Soedan',
+            u'Somalië',
+            u'Spanje',
+            u'Sri Lanka',
+            u'Suriname',
+            u'Swaziland',
+            u'Syrië',
+            u'Tadzjikistan',
+            u'Taiwan',
+            u'Tanzania',
+            u'Thailand',
+            u'Timor-Leste',
+            u'Togo',
+            u'Tokelau-eilanden',
+            u'Tonga',
+            u'Trinidad en Tobago',
+            u'Tsjaad',
+            u'Tsjechië',
+            u'Tunesië',
+            u'Turkije',
+            u'Turkmenistan',
+            u'Turks- en Caicoseilanden',
+            u'Tuvalu',
+            u'Uganda',
+            u'Uruguay',
+            u'Vanuatu',
+            u'Vaticaanstad',
+            u'Venezuela',
+            u'Verenigde Arabische Emiraten',
+            u'Verenigde Staten van Amerika',
+            u'Verenigd Koninkrijk',
+            u'Vietnam',
+            u'Wallis en Futuna',
+            u'Wit-Rusland',
+            u'Zambia',
+            u'Zimbabwe',
+            u'Zuid-Afrika',
+            u'Zuid-Korea',
+            u'Zweden',
+            u'Zwitserland']
+    counter=1
+    for l in landen:         
+        land = {
+            "pk": counter,
+            "model": "KB.land",
+            "fields": {
+                "idland": counter,
+                "txtlandnaam": l
+            }
+        }
+        result.append(land)    
+        counter += 1        
+    
+   
+    fixture_filename = "kb.json"
+    fixture_file = open(fixture_filename, 'w')
+    fixture_file.write(simplejson.dumps(result, indent=4))
+    fixture_file.close()
+    
+    logger.info("Wrote json to %s", fixture_filename)
     
 if __name__ == "__main__":
     main()
