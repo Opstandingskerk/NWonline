@@ -162,12 +162,10 @@ def main():
             logger.warn("Lid overgeslagen bij importeren: %s" % (lid))
             continue
         
-        if lid.idGezin is not None:
-            gezin_lid = curs.execute("select * from tblGezin where idGezin=%s" % str(lid.idGezin))        
-            id_wijk = gezin_lid.fetchone().idWijkNieuw
-            if id_wijk is None or id_wijk==0:
-                logger.warn("Lid heeft geen wijknummer, nu 11 (Overig) gegeven: %s - %s", lid.idLid, lid.txtAchternaam)
-                id_wijk = 11
+        id_wijk = lid.huiskringwijk
+        if id_wijk is None or id_wijk==0:
+            logger.warn("Lid heeft geen wijknummer, nu 11 (Overig) gegeven: %s - %s", lid.idLid, lid.txtAchternaam)
+            id_wijk = 11
         else:
             logger.warn("Lid behoort niet tot een gezin: %s - %s", lid.idLid, lid.txtAchternaam)
 
@@ -180,89 +178,90 @@ def main():
             if lid.idVolgendeGemeente == 338:
                 ls_status = 3
                 dtm_onttrokken = lid.dtmVertrokken.strftime("%Y-%m-%d") if lid.dtmVertrokken else None                             
-            if lid.idVolgendeGemeente == 339:
+            elif lid.idVolgendeGemeente == 339:
                 ls_status = 4
                 dtm_overleden = lid.dtmVertrokken.strftime("%Y-%m-%d") if lid.dtmVertrokken else None 
             else:    
                 ls_status = 2
                 dtm_vertrokken = lid.dtmVertrokken.strftime("%Y-%m-%d") if lid.dtmVertrokken else None 
                 id_vlg_gemeente = lid.idVolgendeGemeente
-        else:
+            if lid.ysnLid == True:
+                logger.warn("Lid is vertrokken (heeft vertrokken datum) maar is nog wel aangemerkt als lid: %s - %s", lid.idLid, lid.txtAchternaam)                  
+        else:        
             ls_status = 1            
+            if lid.ysnLid == False:
+                logger.warn("Lid is niet vetrokken, maar is ook geen lid meer: %s - %s", lid.idLid, lid.txtAchternaam)    
+        
         
         ## De status van het lid bepalen
-        gastgemeente ="1"
-        gasthoofdgemeente ="1"
+        gastgemeente = None
+        gasthoofdgemeente = None
         
         if lid.idStatus == 1: # Belijdend -> Belijdend
-            ls_vorm = "1"
+            ls_vorm = 1
         elif lid.idStatus == 2: # Doop -> Doop
-            ls_vorm = "2"
+            ls_vorm = 2
         elif lid.idStatus == 3: # Cathechumeen -> Catechumeen
-            ls_vorm = "5"
+            ls_vorm = 5
         elif lid.idStatus == 4: # Overig -> Vriend
-            ls_vorm = "6"
+            ls_vorm = 6
         elif lid.idStatus == 5: # Gastlid (b) -> Gastlid B
-            ls_vorm = "4"
-            gasthoofdgemeente = "1" #TODO
-            
+            ls_vorm = 4            
+            logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
         elif lid.idStatus == 6: # Gastlid (d) -> Gastlid D
-            ls_vorm = "3"
-            gasthoofdgemeente = "1" #TODO
-            
+            ls_vorm = "3"            
+            logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
         elif lid.idStatus == 7: # Gastlid Elders (D) -> D
-            ls_vorm = "1"
-            gastgemeente = "1" #TODO
-            
+            ls_vorm = "1"            
+            logger.warn("Lid is elders gastlid - gastgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
         elif lid.idStatus == 8: # Gastlid Elders (B) -> B
-            ls_vorm = "2"
-            gastgemeente ="1" #TODO
-            
+            ls_vorm = "2"            
+            logger.warn("Lid is elders gastlid - gastgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
         else:
             ls_vorm = "6" # Overig -> Vriend
-        #TODO: None in json moet null worden
-        #TODO: datetime field ->> date field
-        person = {
-            "pk": lid.idLid,
-            "model": "KB.persoon",
-            "fields": {
-                "idpersoon": lid.idLid,
-                "idlidmaatschapvorm": ls_vorm,
-                "idgezin": lid.idGezin,
-                "idgezinsrol": lid.idGezinsRol,
-                "txtachternaam": lid.txtAchternaam, 
-                "txttussenvoegsels": none_safe_string(lid.txtVoorvoegsels),
-                "txtvoorletters": none_safe_string(lid.txtVoorletters),
-                "txtdoopnaam": none_safe_string(lid.txtDoopnaam),
-                "txtroepnaam": none_safe_string(lid.txtRoepnaam),
-                "boolaansprekenmetroepnaam": lid.ysnRoepnaam,
-                "dtmgeboortedatum": lid.dtmGeboortedatum.strftime("%Y-%m-%d") if lid.dtmGeboortedatum else None,
-                "txtgeboorteplaats": none_safe_string(lid.txtGeboorteplaats),
-                "idgeslacht": get_geslacht_id(lid.txtGeslacht),
-                "dtmdatumdoop": lid.dtmDoop.strftime("%Y-%m-%d") if lid.dtmDoop else None,
-                "iddoopgemeente": lid.idDoopgemeente,
-                "dtmdatumbelijdenis": lid.dtmBelijdenis.strftime("%Y-%m-%d") if lid.dtmBelijdenis else None,
-                "idbelijdenisgemeente": lid.idBelijdenisgemeente,
-                "dtmhuwelijksdatum": lid.dtmTrouwdatum.strftime("%Y-%m-%d") if lid.dtmTrouwdatum else None,
-                "idhuwelijksgemeente": lid.idTrouwgemeente,
-                "dtmdatumbinnenkomst": lid.dtmBinnenkomst.strftime("%Y-%m-%d") if lid.dtmBinnenkomst else None,
-                "idbinnengekomenuitgemeente": lid.idVorigeGemeente,
-                "dtmdatumvertrek": dtm_vertrokken,
-                "idvertrokkennaargemeente": id_vlg_gemeente,
-                "txttelefoonnummer": none_safe_string(lid.txtMobielNummer),
-                "txtemailadres": none_safe_string(lid.txtEmailAdres),
-                "dtmdatumhuwelijksbevestiging": lid.dtmTrouwbevestiging.strftime("%Y-%m-%d") if lid.dtmTrouwbevestiging else None,
-                "txtopmerking": none_safe_string(lid.txtAantekeningen),
-                "dtmoverlijdensdatum": dtm_overleden,
-                "dtmdatumonttrokken": dtm_onttrokken,
-                "idlidmaatschapstatus": ls_status,
-                "idwijk": id_wijk,
-                "idgastgemeente": gastgemeente,
-                "idgasthoofdgemeente": gasthoofdgemeente,                
-                "boolgeborennw": False
+            #TODO: None in json moet null worden
+            #TODO: datetime field ->> date field
+            person = {
+                "pk": lid.idLid,
+                "model": "KB.persoon",
+                "fields": {
+                    "idpersoon": lid.idLid,
+                    "idlidmaatschapvorm": ls_vorm,
+                    "idgezin": lid.idGezin,
+                    "idgezinsrol": lid.idGezinsRol,
+                    "txtachternaam": lid.txtAchternaam, 
+                    "txttussenvoegsels": none_safe_string(lid.txtVoorvoegsels),
+                    "txtvoorletters": none_safe_string(lid.txtVoorletters),
+                    "txtdoopnaam": none_safe_string(lid.txtDoopnaam),
+                    "txtroepnaam": none_safe_string(lid.txtRoepnaam),
+                    "boolaansprekenmetroepnaam": lid.ysnRoepnaam,
+                    "dtmgeboortedatum": lid.dtmGeboortedatum.strftime("%Y-%m-%d") if lid.dtmGeboortedatum else None,
+                    "txtgeboorteplaats": none_safe_string(lid.txtGeboorteplaats),
+                    "idgeslacht": get_geslacht_id(lid.txtGeslacht),
+                    "dtmdatumdoop": lid.dtmDoop.strftime("%Y-%m-%d") if lid.dtmDoop else None,
+                    "iddoopgemeente": lid.idDoopgemeente,
+                    "dtmdatumbelijdenis": lid.dtmBelijdenis.strftime("%Y-%m-%d") if lid.dtmBelijdenis else None,
+                    "idbelijdenisgemeente": lid.idBelijdenisgemeente,
+                    "dtmhuwelijksdatum": lid.dtmTrouwdatum.strftime("%Y-%m-%d") if lid.dtmTrouwdatum else None,
+                    "idhuwelijksgemeente": lid.idTrouwgemeente,
+                    "dtmdatumbinnenkomst": lid.dtmBinnenkomst.strftime("%Y-%m-%d") if lid.dtmBinnenkomst else None,
+                    "idbinnengekomenuitgemeente": lid.idVorigeGemeente,
+                    "dtmdatumvertrek": dtm_vertrokken,
+                    "idvertrokkennaargemeente": id_vlg_gemeente,
+                    "txttelefoonnummer": none_safe_string(lid.txtMobielNummer),
+                    "txtemailadres": none_safe_string(lid.txtEmailAdres),
+                    "dtmdatumhuwelijksbevestiging": lid.dtmTrouwbevestiging.strftime("%Y-%m-%d") if lid.dtmTrouwbevestiging else None,
+                    "txtopmerking": none_safe_string(lid.txtAantekeningen),
+                    "dtmoverlijdensdatum": dtm_overleden,
+                    "dtmdatumonttrokken": dtm_onttrokken,
+                    "idlidmaatschapstatus": ls_status,
+                    "idwijk": id_wijk,
+                    "idgastgemeente": gastgemeente,
+                    "idgasthoofdgemeente": gasthoofdgemeente,                
+                    "boolgeborennw": False
+                }
             }
-        }
-        result.append(person)
+            result.append(person)
     
     
     logger.info("Insert Lidmaatschapstatussen")
