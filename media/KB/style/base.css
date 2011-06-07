@@ -202,10 +202,11 @@ span#user {
 }
 
 .widget {
-	min-width: 50em;
+	min-width: 48em;
 	margin-right: 7px;
 	padding-left: 1em;
 	padding-right: 1em;
+	padding-bottom: 1em;
 	float: left;
 }
 
