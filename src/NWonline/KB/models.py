@@ -146,22 +146,14 @@ class Huiskring(models.Model):
         db_table = u"ledendb_huiskringen"
 
 class HuiskringLidRol(models.Model):
-    idhuiskringrol = models.AutoField(primary_key=True, db_column="idHuiskringrol") # Field name made lowercase.
-    txthuiskringrol = models.CharField(max_length=150, db_column="txtHuiskringrol") # Field name made lowercase.
+    idhuiskringlidrol = models.AutoField(primary_key=True, db_column="idHuiskringLidrol") # Field name made lowercase.
+    txthuiskringlidrol = models.CharField(max_length=150, db_column="txtHuiskringLidrol") # Field name made lowercase.
 
     def __unicode__(self):
-        return self.txthuiskringrol
+        return self.txthuiskringlidrol
 
     class Meta:
         db_table = u"ledendb_huiskringlidrollen"
-
-class HuiskringLid(models.Model):
-    idpersoon = models.AutoField(primary_key=True, db_column="idPersoon") # Field name made lowercase.
-    idhuiskring = models.ForeignKey(Huiskring, db_column="idHuiskring") # Field name made lowercase.
-    idhuiskringrol = models.ForeignKey(HuiskringLidRol, db_column="idHuiskringRol") # Field name made lowercase.
-    idhuiskringlid = models.IntegerField(db_column="idHuiskringLid") # Field name made lowercase.
-    class Meta:
-        db_table = u"ledendb_huiskringleden"
 
 class LidmaatschapVorm(models.Model):
     DOOP = 1
@@ -244,6 +236,9 @@ class Persoon(models.Model):
     idgasthoofdgemeente = models.ForeignKey(Gemeente, verbose_name="Gasthoofdgemeente", null=True, blank=True, db_column="idGastHoofdGemeente", related_name="Gastlid_hoofd") # Field name made lowercase.
     boolgastlidnw = MySQLBooleanField("Gastlid Noord-West", db_column="boolGastlidNW") # Field name made lowercase. This field type is a guess.
     boolgeborennw = MySQLBooleanField("Geboren in Noord-West", db_column="boolGeborenNW") # Field name made lowercase. This field type is a guess.
+    idhuiskring = models.ForeignKey(Huiskring, db_column="idHuiskring", null=True, blank=True) # Field name made lowercase.
+    idhuiskringlidrol = models.ForeignKey(HuiskringLidRol, db_column="idHuiskringRol", null=True, blank=True) # Field name made lowercase.    
+
 
     def calculate_age(self, some_date=None):
         if (some_date):
