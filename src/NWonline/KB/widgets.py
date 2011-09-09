@@ -41,7 +41,8 @@ class AutoCompleteSelect(widgets.Select):
         });</script>""" % ("#%s" % (attrs_auto["id"]), "#%s" % (attrs["id"]))
         
         
-        return mark_safe("%s %s %s" % (select, autocomplete, javascript))
+        return mark_safe("%s %s %s" % (select, autocomplete, javascript))    
+   
 
 class SelectWithPopup(forms.Select):
 

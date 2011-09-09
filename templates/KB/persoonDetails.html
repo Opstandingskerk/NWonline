@@ -68,8 +68,10 @@
 		<div id="container_dtmoverlijdensdatum" style="display: none">
 		{{ persoonForm.dtmoverlijdensdatum|generate:"fixed" }}<br class="clear"/>
 		</div>
-		{{ persoonForm.idlidmaatschapvorm|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.idlidmaatschapvorm|generate:"fixed" }} <span id="container_idgasthoofdgemeente" style="display:none"> {{ persoonForm.idgasthoofdgemeente|generate }} </span><br class="clear"/>
+		{{ persoonForm.boolgastlidelders|generate:"fixed" }} <span id="container_idgastgemeente" style="display:none"> {{ persoonForm.idgastgemeente|generate }}</span><br class="clear"/>
 		{{ persoonForm.idwijk|generate:"fixed" }}<br class="clear"/>
+		{{ persoonForm.idhuiskring|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.dtmdatumdoop|generate:"fixed" }} {{ persoonForm.iddoopgemeente|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.dtmdatumbelijdenis|generate:"fixed" }} {{ persoonForm.idbelijdenisgemeente|generate:"fixed" }}<br class="clear"/>
 		{{ persoonForm.dtmhuwelijksdatum|generate:"fixed" }}<br class="clear">
@@ -126,6 +128,8 @@ function update() {
 	}
 
 	updateStatus();
+	updateForm();
+	updateGuest();
 }
 
 function modifyPersoonForm() {
@@ -173,6 +177,26 @@ function updateStatus() {
 		$("{{ persoonForm.idvertrokkennaargemeente|id }}").val("");
 		$("{{ persoonForm.dtmdatumonttrokken|id }}").val("");
 	}	
+}
+
+function updateForm() {
+	var idlidmaatschapvorm = $("{{ persoonForm.idlidmaatschapvorm|id }}").val();
+	if (idlidmaatschapvorm == 3 || idlidmaatschapvorm == 4) {
+		$("#container_idgasthoofdgemeente").show();
+	} else {
+		$("{{ persoonForm.idgasthoofdgemeente|id }}").val(-1);
+		$("#container_idgasthoofdgemeente").hide();
+	}
+}
+
+function updateGuest() {
+	var boolgastlidelders = $("{{ persoonForm.boolgastlidelders|id }}").is(':checked');
+	if (boolgastlidelders) {
+		$("#container_idgastgemeente").show();
+	} else {
+		$("{{ persoonForm.idgastgemeente|id }}").val(-1);
+		$("#container_idgastgemeente").hide();
+	}
 }
 
 $(document).ready(function(){

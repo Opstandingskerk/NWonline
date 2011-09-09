@@ -37,6 +37,8 @@ def none_safe_string(txt_object):
     else:
         return txt_object
         
+def create_lid_label(lid):
+    return "%s - %s %s %s" % (lid.idLid, lid.txtAchternaam, lid.txtVoorvoegsels, lid.txtVoorletters)
 
 def main():
     conn = pyodbc.connect('DRIVER=%s;DBQ=%s;PWD=%s' % (DRV,MDB,PWD))
@@ -164,11 +166,8 @@ def main():
         
         id_wijk = lid.huiskringwijk
         if id_wijk is None or id_wijk==0:
-            logger.warn("Lid heeft geen wijknummer, nu 11 (Overig) gegeven: %s - %s", lid.idLid, lid.txtAchternaam)
+            logger.warn("Lid heeft geen wijknummer, nu 11 (Overig) gegeven: %s", create_lid_label(lid))
             id_wijk = 11
-        else:
-            logger.warn("Lid behoort niet tot een gezin: %s - %s", lid.idLid, lid.txtAchternaam)
-
         
         dtm_onttrokken = None
         dtm_overleden = None
@@ -190,11 +189,12 @@ def main():
         else:        
             ls_status = 1            
             if lid.ysnLid == False:
-                logger.warn("Lid is niet vetrokken, maar is ook geen lid meer: %s - %s", lid.idLid, lid.txtAchternaam)    
+                logger.warn("Lid is niet vetrokken, maar is ook geen lid meer: %s", create_lid_label(lid))    
 
         ## De status van het lid bepalen
         gastgemeente = None
         gasthoofdgemeente = None
+        boolgastlidelders = False
         
         if lid.idStatus == 1: # Belijdend -> Belijdend
             ls_vorm = 1
@@ -206,16 +206,20 @@ def main():
             ls_vorm = 6
         elif lid.idStatus == 5: # Gastlid (b) -> Gastlid B
             ls_vorm = 4            
-            logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
+            logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         elif lid.idStatus == 6: # Gastlid (d) -> Gastlid D
             ls_vorm = "3"            
-            logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
+            logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         elif lid.idStatus == 7: # Gastlid Elders (D) -> D
             ls_vorm = "1"            
-            logger.warn("Lid is elders gastlid - gastgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
+            boolgastlidelders = True
+            ls_status = 1
+            logger.warn("Lid is elders gastlid - status en gastgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         elif lid.idStatus == 8: # Gastlid Elders (B) -> B
-            ls_vorm = "2"            
-            logger.warn("Lid is elders gastlid - gastgemeente moet gecontroleerd worden: %s - %s", lid.idLid, lid.txtAchternaam)
+            ls_vorm = "2"
+            ls_status = 1
+            boolgastlidelders = True
+            logger.warn("Lid is elders gastlid - status en gastgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         else:
             ls_vorm = "6" # Overig -> Vriend
             #TODO: None in json moet null worden
@@ -251,11 +255,12 @@ def main():
                 "txttelefoonnummer": none_safe_string(lid.txtMobielNummer),
                 "txtemailadres": none_safe_string(lid.txtEmailAdres),
                 "dtmdatumhuwelijksbevestiging": lid.dtmTrouwbevestiging.strftime("%Y-%m-%d") if lid.dtmTrouwbevestiging else None,
-                "txtopmerking": none_safe_string(lid.txtAantekeningen),
+                "txtopmerking": none_safe_string(lid.txtAantekeningen) + "\n" + none_safe_string(lid.txtAdresAmbtContact),
                 "dtmoverlijdensdatum": dtm_overleden,
                 "dtmdatumonttrokken": dtm_onttrokken,
                 "idlidmaatschapstatus": ls_status,
                 "idwijk": id_wijk,
+                "boolgastlidelders": boolgastlidelders,
                 "idgastgemeente": gastgemeente,
                 "idgasthoofdgemeente": gasthoofdgemeente,
                 "idhuiskring": lid.idHuiskring,

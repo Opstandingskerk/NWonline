@@ -48,6 +48,14 @@ class PersoonForm(forms.ModelForm):
                                                   widget=forms.RadioSelect(attrs = {"onClick": "updateStatus();"}),
                                                   empty_label=None,
                                                   required=False)
+    idlidmaatschapvorm = forms.ModelChoiceField(label="Lidmaatschap",
+                                                queryset=models.LidmaatschapVorm.objects.all(),
+                                                widget=forms.Select(attrs = {"onClick": "updateForm();"}),
+                                                empty_label=None,
+                                                required=False)
+    boolgastlidelders = forms.BooleanField(label="Gastlid elders",
+                                             widget=forms.CheckboxInput(attrs = {"onClick": "updateGuest();"}),
+                                             required=False)
     
         
     class Meta:
@@ -58,6 +66,8 @@ class PersoonForm(forms.ModelForm):
             "idhuwelijksgemeente": AutoCompleteSelect(),
             "idbinnengekomenuitgemeente": AutoCompleteSelect(),
             "idvertrokkennaargemeente": AutoCompleteSelect(),
+            "idgastgemeente": AutoCompleteSelect(),
+            "idgasthoofdgemeente": AutoCompleteSelect(),
             "dtmgeboortedatum": DatePicker(),
             "dtmdatumdoop": DatePicker(),
             "dtmdatumbelijdenis": DatePicker(),

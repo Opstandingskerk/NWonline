@@ -26,6 +26,10 @@ class MembershipForm1(Form):
     """
     Membership wizard screen 1
     """
+    CHOICE_GEENGASTLID = "0"
+    CHOICE_GASTLIDNW = "1"
+    CHOICE_GASTLIDELDERS = "2"
+    
     updateWholeFamily = forms.BooleanField(widget=forms.RadioSelect(choices=(("1", "Ja"),("0", "Nee"))),
                                            label="Hele gezin?",
                                            initial=False,
@@ -47,6 +51,11 @@ class MembershipForm1(Form):
                                           widget=DatePicker)
     dtmdatumonttrokken = forms.DateField(label="Datum onttrokken", required=False,
                                          widget=DatePicker)
+    gastlidmaatschap = forms.ChoiceField(widget=forms.RadioSelect(attrs= {"onClick": "displayGuestNotification();"}),
+                                         choices=((CHOICE_GEENGASTLID, "Nee"), (CHOICE_GASTLIDNW, "Ja, hier"), (CHOICE_GASTLIDELDERS, "Ja, daar")),
+                                         label="Gastlid?",
+                                         initial="0",
+                                         required=False)
 
 class MembershipForm2(Form):
     """
@@ -141,7 +150,10 @@ class MembershipWizard(FormWizard):
             # to update the whole family, we switch to mode 'family'
             if (not self.storedFields["is_mode_family"] and updateWholeFamily):
                 self.storedFields["gezin"] = self.storedFields["persoon"].idgezin
-                self.storedFields["is_mode_family"] = updateWholeFamily         
+                self.storedFields["is_mode_family"] = updateWholeFamily     
+                
+            # Check whether guest membership applies
+            guestMembership = form.cleaned_data["gastlidmaatschap"]
             
             # Check whether we should generate a certificate at the end
             # of the wizard
@@ -163,21 +175,28 @@ class MembershipWizard(FormWizard):
 
             # Determine which types of certificates to show
             queryset = Attestatie.objects.all()
-            if (self.storedFields["is_mode_family"]
-                and len(self.storedFields["gezin"].persoon_set.all()) > 1):
-                # Show 'Gezins' and 'Kerkelijke gegevens'
-                queryset = queryset.filter(Q(txtcode=Attestatie.CODE_GEZINS)| Q(txtcode=Attestatie.CODE_KERKELIJKEGEGEVENS))
+            
+            if (guestMembership == MembershipForm1.CHOICE_GASTLIDELDERS):
+                queryset = queryset.filter(txtcode=Attestatie.CODE_VERBLIJFS)
             else:
-                # Exclude 'Gezins'
-                queryset = queryset.exclude(txtcode=Attestatie.CODE_GEZINS)
-                
-                # Check membership
-                persoon = self.storedFields["persoon"]
-                if (persoon.idlidmaatschapvorm == LidmaatschapVorm.objects.get(pk=1)):
-                    # Dooplid
-                    queryset = queryset.filter(Q(txtcode=Attestatie.CODE_DOOP)| Q(txtcode=Attestatie.CODE_KERKELIJKEGEGEVENS))
+                queryset = queryset.exclude(txtcode=Attestatie.CODE_VERBLIJFS)
+                if (self.storedFields["is_mode_family"]
+                    and len(self.storedFields["gezin"].persoon_set.all()) > 1):
+                    # Show 'Gezins' and 'Kerkelijke gegevens'
+                    queryset = queryset.filter(txtcode=Attestatie.CODE_GEZINS)
                 else:
-                    queryset = queryset.exclude(txtcode=Attestatie.CODE_DOOP)
+                    # Exclude 'Gezins'
+                    queryset = queryset.exclude(txtcode=Attestatie.CODE_GEZINS)
+                    
+                    # Check membership
+                    persoon = self.storedFields["persoon"]
+                    if (persoon.idlidmaatschapvorm == LidmaatschapVorm.objects.get(pk=1)):
+                        # Dooplid
+                        queryset = queryset.filter(txtcode=Attestatie.CODE_DOOP)
+                    else:
+                        queryset = queryset.exclude(txtcode=Attestatie.CODE_DOOP)
+                    
+            
             
             self.form_list[1].base_fields["certificateType"].queryset = queryset
              
@@ -285,23 +304,46 @@ class MembershipWizard(FormWizard):
             
         # Now update all persons in persoonList
         for persoon in persoonList:
-            persoon.idlidmaatschapstatus = form_data["idlidmaatschapstatus"]
             
             # First reset the fields, e.g. departure date should be made
             # empty if a member becomes active again.
             persoon.dtmdatumvertrek = None
             persoon.idvertrokkennaargemeente = None
+            persoon.idgastgemeente = None
+            persoon.idgasthoofdgemeente = None
             persoon.dtmdatumonttrokken = None
             persoon.dtmoverlijdensdatum = None
+            persoon.boolgastlidelders = False
+            persoon.boolgastlidnw = False
             
-            if (persoon.idlidmaatschapstatus.pk == 2):
+            persoon.idlidmaatschapstatus = form_data["idlidmaatschapstatus"]
+            if (persoon.idlidmaatschapstatus.pk == LidmaatschapStatus.VERTROKKEN):
                 # Vertrokken
-                persoon.dtmdatumvertrek = form_data["dtmdatumvertrek"]
-                persoon.idvertrokkennaargemeente = form_data["idvertrokkennaargemeente"]
-            elif (persoon.idlidmaatschapstatus.pk == 3):
+                
+                # Check if member becomes guest here or in another church
+                gastlidmaatschap = form_data["gastlidmaatschap"]
+                if (not gastlidmaatschap == MembershipForm1.CHOICE_GEENGASTLID):
+                    # Guest, we need to revert status to active  
+                    persoon.idlidmaatschapstatus = LidmaatschapStatus.objects.get(pk=LidmaatschapStatus.ACTIEF)
+                    # Update the guest membership fields
+                    if (gastlidmaatschap == MembershipForm1.CHOICE_GASTLIDELDERS):
+                        persoon.boolgastlidelders = True
+                        persoon.idgastgemeente = form_data["idvertrokkennaargemeente"]
+                    else:
+                        persoon.boolgastlidnw = True
+                        persoon.idgasthoofdgemeente = form_data["idvertrokkennaargemeente"]
+                        # Update the membership form
+                        if (persoon.idlidmaatschapvorm.pk == LidmaatschapVorm.DOOP):
+                            persoon.idlidmaatschapvorm = LidmaatschapVorm.objects.get(pk=LidmaatschapVorm.GASTLID_DOOP)
+                        elif (persoon.idlidmaatschapvorm.pk == LidmaatschapVorm.BELIJDEND):
+                            persoon.idlidmaatschapvorm = LidmaatschapVorm.objects.get(pk=LidmaatschapVorm.GASTLID_BELIJDEND)
+                else:
+                    persoon.dtmdatumvertrek = form_data["dtmdatumvertrek"]
+                    persoon.idvertrokkennaargemeente = form_data["idvertrokkennaargemeente"]
+            elif (persoon.idlidmaatschapstatus.pk == LidmaatschapStatus.ONTTROKKEN):
                 # Onttrokken
                 persoon.dtmdatumonttrokken = form_data["dtmdatumonttrokken"]
-            elif (persoon.idlidmaatschapstatus.pk == 4):
+            elif (persoon.idlidmaatschapstatus.pk == LidmaatschapStatus.OVERLEDEN):
                 # Overleden
                 persoon.dtmoverlijdensdatum = form_data["dtmoverlijdensdatum"]
             

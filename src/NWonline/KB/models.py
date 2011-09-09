@@ -158,6 +158,8 @@ class HuiskringLidRol(models.Model):
 class LidmaatschapVorm(models.Model):
     DOOP = 1
     BELIJDEND = 2
+    GASTLID_DOOP = 3
+    GASTLID_BELIJDEND = 4
     
     idlidmaatschapvorm = models.AutoField(primary_key=True, db_column="idLidmaatschapvorm") # Field name made lowercase.
     txtlidmaatschapvorm = models.CharField(max_length=150, db_column="txtLidmaatschapvorm", blank=True) # Field name made lowercase.
@@ -235,9 +237,10 @@ class Persoon(models.Model):
     idgastgemeente = models.ForeignKey(Gemeente, verbose_name="Gastgemeente", null=True, blank=True, db_column="idGastGemeente", related_name="Gastlid") # Field name made lowercase.
     idgasthoofdgemeente = models.ForeignKey(Gemeente, verbose_name="Gasthoofdgemeente", null=True, blank=True, db_column="idGastHoofdGemeente", related_name="Gastlid_hoofd") # Field name made lowercase.
     boolgastlidnw = MySQLBooleanField("Gastlid Noord-West", db_column="boolGastlidNW") # Field name made lowercase. This field type is a guess.
+    boolgastlidelders = models.BooleanField("Gastlid elders", db_column="boolGastlidElders") # Field name made lowercase. This field type is a guess.
     boolgeborennw = MySQLBooleanField("Geboren in Noord-West", db_column="boolGeborenNW") # Field name made lowercase. This field type is a guess.
-    idhuiskring = models.ForeignKey(Huiskring, db_column="idHuiskring", null=True, blank=True) # Field name made lowercase.
-    idhuiskringlidrol = models.ForeignKey(HuiskringLidRol, db_column="idHuiskringRol", null=True, blank=True) # Field name made lowercase.    
+    idhuiskring = models.ForeignKey(Huiskring, verbose_name="Huiskring", db_column="idHuiskring", null=True, blank=True) # Field name made lowercase.
+    idhuiskringlidrol = models.ForeignKey(HuiskringLidRol, verbose_name="Rol in huiskring", db_column="idHuiskringRol", null=True, blank=True) # Field name made lowercase.    
 
 
     def calculate_age(self, some_date=None):
@@ -310,6 +313,19 @@ class Persoon(models.Model):
                 membership = str(lidmaatschap)
             else:
                 membership = str(status)
+                
+            # If guest member away, show info
+            if (self.boolgastlidelders):
+                membership += " (gastlid bij %s)" % (self.idgastgemeente)
+                
+            # If guest member here, show info
+            # TODO: The membership forms for guests should be replaced by the
+            # boolgastlidnw field
+            if (self.boolgastlidnw
+                or self.idlidmaatschapvorm.pk == LidmaatschapVorm.GASTLID_BELIJDEND
+                or self.idlidmaatschapvorm.pk == LidmaatschapVorm.GASTLID_DOOP):
+                membership += " (lid bij %s)" % (self.idgasthoofdgemeente)
+            
         else:
             membership = str(status)
             if (status == LidmaatschapStatus.objects.get(pk=2)):

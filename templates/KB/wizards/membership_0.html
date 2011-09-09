@@ -19,6 +19,8 @@ de fam. {{ gezin }}
 {{ form.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
 <div id="container_dtmdatumvertrek" style="display: none">
 {{ form.dtmdatumvertrek|generate:"fixed" }} {{ form.idvertrokkennaargemeente|generate }}<br class="clear"/>
+{{ form.gastlidmaatschap|generate:"fixed" }}<br class="clear"/>
+<div id="container_guestnotification" style="display: none; font-size: x-small"><label class="fixed"></label>Gastleden behouden altijd de actieve status<br/><br/></div>
 {{ form.generateCertificate|generate:"fixed" }}<br class="clear"/>
 </div>
 <div id="container_dtmdatumonttrokken" style="display: none">
@@ -78,6 +80,15 @@ function updateStatus() {
 		$("{{ form.idvertrokkennaargemeente|id }}").val(-1);
 		$("{{ form.dtmdatumonttrokken|id }}").val("");
 	}	
+}
+
+function displayGuestNotification() {
+	guest = $('input:radio[name=0-gastlidmaatschap]:checked').val();
+	if (guest > 0) {
+		$("#container_guestnotification").show();
+	} else {
+		$("#container_guestnotification").hide();
+	}
 }
 
 $(document).ready(function(){

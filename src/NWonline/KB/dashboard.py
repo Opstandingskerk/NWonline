@@ -1,7 +1,7 @@
 ###############################################################################
-# File: NWonline/KB/export.py
+# File: NWonline/KB/dashboard.py
 # Author: Lukas Batteau
-# Description: Handlers for the exports page
+# Description: Handlers for the dashboard
 ###############################################################################
 from NWonline.KB.models import Persoon, LidmaatschapStatus, GezinsRol, \
     LidmaatschapVorm
