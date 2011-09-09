@@ -94,12 +94,14 @@ $(document).ready(function() {
    	{% endfor %}
 
     var chart = new google.visualization.PieChart(document.getElementById('chart'));
+    $("#chart").hide();
     chart.draw(data, {
     	width: 400, 
     	height: 250, 
     	backgroundColor: '#f2f5f7',
-    	chartArea: {left:80,top:0,width:"80%",height:"80%"},
+    	chartArea: {left:60,top:0,width:"80%",height:"80%"},
     	title: 'Verdeling'});
+    $("#chart").fadeIn("slow");
   }
 </script>
 

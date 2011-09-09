@@ -43,7 +43,9 @@ form label,form input,form select,form textarea,form button {
 	float: left;
 	margin-bottom: 0.5em;
 	margin-right: 1em;
+	line-height: 18px;
 }
+
 
 form tr {
 	clear: both;
@@ -202,10 +204,11 @@ span#user {
 }
 
 .widget {
-	min-width: 50em;
+	min-width: 48em;
 	margin-right: 7px;
 	padding-left: 1em;
 	padding-right: 1em;
+	padding-bottom: 1em;
 	float: left;
 }
 
@@ -373,7 +376,7 @@ p.error {
 	font-family: Arial, sans-serif;
 	float: left;
 	margin-bottom: 12px;
-	margin-right: 1em;
+	margin-right: 0.5em;
 }
 
 .ui-tabs .ui-tabs-nav {
