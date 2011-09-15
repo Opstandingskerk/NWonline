@@ -94,7 +94,7 @@ function exportGeloofhet() {
 	$("#button_export").attr('disabled', true);
 	$("#progressmessage").text("Bezig...").removeClass("message");
 	
-	$.get("update/test",
+	$.get("update",
 		function(data){
 			$("#progressmessage").text(data.result_message);
 			if (!data.result) {

@@ -49,7 +49,7 @@ class Statistics():
         self.value = 0
             
 @login_required
-def handleExport(request):
+def handleDashboard(request):
     members_form = MembersForm()
     birthdays_form = BirthdaysForm()
     
@@ -222,18 +222,18 @@ def handleExportEmail(request):
     return response
 
 @login_required
-def exportMembersToWebsite(request, environment):
+def exportMembersToWebsite(request):
     result_message = "OK"
     result_success = True
     
     try:
-        exportGezinnen(environment)
+        exportGezinnen()
     except Exception as (errno, strerror):
         result_message = strerror
         result_success = False
          
     try:
-        exportLeden(environment)
+        exportLeden()
     except Exception as (errno, strerror):
         result_message = strerror
         result_success = False
@@ -251,10 +251,10 @@ def reportExportProgress(request):
     return HttpResponse(simplejson.dumps(cache.get(settings.CACHEKEY_PROGRESS)),
                         mimetype='application/json')
     
-def exportGezinnen(environment):
+def exportGezinnen():
     # Create connection to geloofhet database
-    db = "geloofhet_"+environment
-    geloofhet_cursor = connections[db].cursor()
+    database = settings.GELOOFHET_DATABASE;
+    geloofhet_cursor = connections[database].cursor()
     
     # Empty table
     geloofhet_cursor.execute("DELETE FROM tblHuishouden")
@@ -275,7 +275,7 @@ def exportGezinnen(environment):
         geloofhetGezin.txtHuisnummer = str(gezin.inthuisnummer)
         geloofhetGezin.txtPostcode = gezin.txtpostcode
         geloofhetGezin.txtPlaats = gezin.txtplaats
-        geloofhetGezin.save(using=db)
+        geloofhetGezin.save(using=database)
 
         # Calculate progress as percentage
         progress = 100*index/nr_gezinnen
@@ -284,10 +284,10 @@ def exportGezinnen(environment):
         
     cache.set(settings.CACHEKEY_PROGRESS, {'progress': 100, 'message': "Gereed"}, 30)
 
-def exportLeden(environment):
+def exportLeden():
     # Create connection to geloofhet database
-    db = "geloofhet_"+environment
-    geloofhet_cursor = connections[db].cursor()
+    database = settings.GELOOFHET_DATABASE;
+    geloofhet_cursor = connections[database].cursor()
     
     # Empty table
     geloofhet_cursor.execute("DELETE FROM tblLid")
@@ -334,7 +334,7 @@ def exportLeden(environment):
         geloofhetLid.idHuiskring = lid.idhuiskring.pk if lid.idhuiskring else None 
         geloofhetLid.idHuiskringLidType = lid.idhuiskringlidrol.pk if lid.idhuiskringlidrol else None 
         geloofhetLid.huiskringwijk = lid.idwijk.pk if lid.idwijk else None
-        geloofhetLid.save(using=db)
+        geloofhetLid.save(using=database)
         
         # Calculate progress as percentage
         progress = 100*index/nr_leden

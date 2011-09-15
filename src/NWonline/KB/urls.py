@@ -31,12 +31,12 @@ urlpatterns = patterns('',
     
     (r'^add/(?P<model>.*)$', 'NWonline.KB.views.handleAddInstance'),
     
-    (r'^dashboard/$', 'NWonline.KB.dashboard.handleExport'),
+    (r'^dashboard/$', 'NWonline.KB.dashboard.handleDashboard'),
     (r'^dashboard/members$', 'NWonline.KB.dashboard.handleExportMembers'),
     (r'^dashboard/election$', 'NWonline.KB.dashboard.handleExportElection'),
     (r'^dashboard/birthdays$', 'NWonline.KB.dashboard.handleExportBirthdays'),
     (r'^dashboard/email$', 'NWonline.KB.dashboard.handleExportEmail'),
-    (r'^dashboard/update/(?P<environment>\w*)$', 'NWonline.KB.dashboard.exportMembersToWebsite'),
+    (r'^dashboard/update$', 'NWonline.KB.dashboard.exportMembersToWebsite'),
     (r'^dashboard/progress$', 'NWonline.KB.dashboard.reportExportProgress'),
     
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
