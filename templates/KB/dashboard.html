@@ -96,7 +96,6 @@ function exportGeloofhet() {
 	
 	$.get("update/test",
 		function(data){
-			alert(data.result_message);
 			$("#progressmessage").text(data.result_message);
 			if (!data.result) {
 				$("#progressmessage").addClass("message");
