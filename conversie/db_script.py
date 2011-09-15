@@ -38,7 +38,7 @@ def none_safe_string(txt_object):
         return txt_object
         
 def create_lid_label(lid):
-    return "%s - %s %s %s" % (lid.idLid, lid.txtAchternaam, lid.txtVoorvoegsels, lid.txtVoorletters)
+    return "%s - %s %s %s" % (lid.idLid, lid.txtAchternaam, none_safe_string(lid.txtVoorvoegsels), lid.txtVoorletters)
 
 def main():
     conn = pyodbc.connect('DRIVER=%s;DBQ=%s;PWD=%s' % (DRV,MDB,PWD))
@@ -157,10 +157,15 @@ def main():
      
     logger.info("Converting tblLid")    
     curs.execute("select * from tblLid")
+    
+    nrOfBelijdend = 0
+    nrOfDoop = 0
+    nrOfBelijdendElders = 0
+    nrOfDoopElders = 0
     for lid in curs.fetchall():                
         # Als persoon vertrokken is dan krijgt hij de status 2 = Vertrokken
         # tenzij hij naar gemeente id 338 (=onttrokken) of id 339 (=overleden) gaat
-        if (lid.idLid in (300, 632, 1480, 1392, 1405, 1406, 1407, 1408, 1419, 1436, 1481, 1485, 1497, 518)):
+        if (lid.idLid in (300,)):#, 632, 1480, 1392, 1419, 1436, 1481, 1485, 1497, 518)):
             logger.warn("Lid overgeslagen bij importeren: %s" % (lid))
             continue
         
@@ -185,10 +190,12 @@ def main():
                 dtm_vertrokken = lid.dtmVertrokken.strftime("%Y-%m-%d") if lid.dtmVertrokken else None 
                 id_vlg_gemeente = lid.idVolgendeGemeente
             if lid.ysnLid == True:
-                logger.warn("Lid is vertrokken (heeft vertrokken datum) maar is nog wel aangemerkt als lid: %s - %s", lid.idLid, lid.txtAchternaam)                  
+                ls_status = 1
+                logger.warn("Lid lijkt vertrokken (heeft vertrokken datum) maar is nog wel aangemerkt als lid: %s - %s", lid.idLid, lid.txtAchternaam)                  
         else:        
             ls_status = 1            
             if lid.ysnLid == False:
+                ls_status = 2
                 logger.warn("Lid is niet vetrokken, maar is ook geen lid meer: %s", create_lid_label(lid))    
 
         ## De status van het lid bepalen
@@ -196,28 +203,42 @@ def main():
         gasthoofdgemeente = None
         boolgastlidelders = False
         
-        if lid.idStatus == 1: # Belijdend -> Belijdend
+        if lid.idStatus == 1: # Doop -> Doop
             ls_vorm = 1
-        elif lid.idStatus == 2: # Doop -> Doop
+            if lid.ysnLid:
+                nrOfDoop += 1
+        elif lid.idStatus == 2: # Belijdend -> Belijdend
             ls_vorm = 2
+            if lid.ysnLid:
+               nrOfBelijdend  += 1
         elif lid.idStatus == 3: # Cathechumeen -> Catechumeen
             ls_vorm = 5
         elif lid.idStatus == 4: # Overig -> Vriend
             ls_vorm = 6
         elif lid.idStatus == 5: # Gastlid (b) -> Gastlid B
-            ls_vorm = 4            
+            ls_vorm = 4
             logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         elif lid.idStatus == 6: # Gastlid (d) -> Gastlid D
-            ls_vorm = "3"            
+            ls_vorm = 3           
             logger.warn("Lid is belijdend gastlid - hoofdgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         elif lid.idStatus == 7: # Gastlid Elders (D) -> D
-            ls_vorm = "1"            
+            ls_vorm = 1  
+            if lid.ysnLid:
+                nrOfDoopElders += 1          
+                ls_status = 1
+            else:
+                ls_status = 2
             boolgastlidelders = True
-            ls_status = 1
             logger.warn("Lid is elders gastlid - status en gastgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         elif lid.idStatus == 8: # Gastlid Elders (B) -> B
-            ls_vorm = "2"
-            ls_status = 1
+            ls_vorm = 2
+            
+            if lid.ysnLid:
+                nrOfBelijdendElders += 1
+                ls_status = 1
+            else:
+                ls_status = 2
+                
             boolgastlidelders = True
             logger.warn("Lid is elders gastlid - status en gastgemeente moet gecontroleerd worden: %s", create_lid_label(lid))
         else:
@@ -225,6 +246,19 @@ def main():
             #TODO: None in json moet null worden
             #TODO: datetime field ->> date field
         
+        # Not null velden controleren
+        if (lid.txtAchternaam == None or lid.txtAchternaam == ""):
+            logger.error("Achternaam mag niet leeg zijn voor %s" % create_lid_label(lid))
+            return
+        
+        # Huiskring
+        if (lid.idHuiskring == 0):
+            lid.idHuiskring = None
+            
+        if (lid.idHuiskringLidType == 0):
+            lid.idHuiskringLidType = None    
+        
+            
         person = {
             "pk": lid.idLid,
             "model": "KB.persoon",
@@ -268,7 +302,14 @@ def main():
             }
         }
         result.append(person)
+        logger.warn("OK: %s" % create_lid_label(lid))
     
+    logger.warn("!!!!!!!!!!!!!!")    
+    logger.warn("Doop: " + str(nrOfDoop))
+    logger.warn("Belijdend: " + str(nrOfBelijdend))
+    logger.warn("D elders: " + str(nrOfDoopElders))
+    logger.warn("B elders: " + str(nrOfBelijdendElders))
+        
     logger.warn("Huiskringleiders moeten nog zelf ingevuld worden!")
     logger.info("Insert Lidmaatschapstatussen")
     lidmaatschap_statussen = [(1,'Actief'),
@@ -352,34 +393,14 @@ def main():
         result.append(wijk)
     
     logger.info("Huiskringen")
-    huiskringen = [ (1, "Pijlsweerd / kop Lombok kring 1", 1, "", "a"),
-                    (2, "Pijlsweerd / kop Lombok kring 2", 1, "", "b"),
-                    (3, "Pijlsweerd / kop Lombok kring 3", 1, "", "c"),
-                    (4, "Lombok kring 1", 2, "", "a"),
-                    (5, "Lombok kring 2", 2, "", "b"),
-                    (6, "Oog in al, Schepenbuurt, Lombok kring 1", 3, "", "a"),
-                    (7, "Oog in al, Schepenbuurt, Lombok kring 2", 3, "", "b"),
-                    (8, "Oog in al, Schepenbuurt, Lombok kring 3", 3, "", "c"),
-                    (9, "Leidsche Rijn Kring 1", 4, "", "a"),
-                    (10, "Kring Rijnwaarde", 4, "", "b"),
-                    (11, "Ondiep kring 1", 5, "", "a"),
-                    (12, "Ondiep kring 2", 5, "", "b"),
-                    (13, "Ondiep kring 3", 5, "", "c"),
-                    (14, "Ondiep kring 4", 5, "", "d"),
-                    (15, "Zuilen, omgeving Julianapark kring 1", 6, "", "a"),
-                    (16, "Zuilen, omgeving Julianapark kring 2", 6, "", "b"),
-                    (17, "Zuilen, omgeving Julianapark kring 3", 6, "", "c"),
-                    (18, "Zuilen, omgeving Julianapark kring 4", 6, "", "d"),
-                    (19, "Zuilen noord kring 1", 7, "", "a"),
-                    (20, "Zuilen noord kring 2", 7, "", "b"),
-                    (21, "Zuilen noord kring 3", 7, "", "c"),
-                    (22, "Overvecht zuid kring 1", 8, "", "a"),
-                    (23, "Overvecht zuid kring 2", 8, "", "b"),
-                    (24, "Overvecht noord kring 1", 9, "", "a"),
-                    (25, "Overvecht noord kring 2", 9, "", "b"),
-                    (26, "Overvecht noord kring 3", 9, "", "c"),
-                    (27, "ONBEKEND", 11, "", "")]                   
+    curs.execute("select * from tblHuiskring")
+    huiskringen = curs.fetchall()
+    
     for hk in huiskringen:
+        if hk[1] is None:
+            # txthuiskringnaam is null
+            continue
+        
         huiskring = {
             "pk":hk[0],
             "model": "KB.huiskring",
@@ -387,8 +408,8 @@ def main():
                 "idhuiskring": hk[0],
                 "txthuiskringnaam": hk[1],
                 "idwijk": hk[2],
-                "txtopmerking": hk[3],
-                "txtvolgnummer": hk[4]
+                "txtopmerking": "",
+                "txtvolgnummer": hk[3]
             }
         }
         result.append(huiskring)

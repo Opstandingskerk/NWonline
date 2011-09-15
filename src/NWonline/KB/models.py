@@ -357,4 +357,63 @@ class Persoon(models.Model):
     class Meta:
         db_table = u"ledendb_personen"
         ordering = ["txtachternaam"]
-
+        
+class tblHuishouden(models.Model):
+    """
+    This model corresponds with the Geloofhet.nl families table. 
+    Data in the Gezin table is exported to this table to be used 
+    on the website.
+    """
+    idHuishouden = models.IntegerField(primary_key=True)
+    txtHuishoudenNaam = models.CharField("Gezin", max_length=150)
+    txtTelefoonnummer = models.CharField("Telefoon", max_length=75, blank=True, null=True)
+    txtStraatnaam = models.CharField("Straat", max_length=150, blank=True, null=True)
+    txtHuisnummer = models.CharField("Huisnummer", max_length=20, blank=True, null=True)
+    txtPostcode = models.CharField("Postcode", max_length=60, blank=True, null=True)
+    txtPlaats = models.CharField("Plaats", max_length=150, blank=True, null=True)
+    
+    class Meta:
+        db_table = u"tblHuishouden"
+            
+class tblLid(models.Model):
+    """
+    This model corresponds with the Geloofhet.nl members table. 
+    Data in the Persoon table is exported to this table to be used 
+    on the website.  
+    """
+    idpersoon = models.IntegerField(primary_key=True, db_column="idLid") # Field name made lowercase.
+    ysnLid = MySQLBooleanField("Actief lid")
+    idHuishouden = models.IntegerField(verbose_name="Gezin", null=True, blank=True) # Field name made lowercase.
+    idRol = models.IntegerField(verbose_name="Gezinsrol", null=True, blank=True) # Field name made lowercase.
+    txtAchternaam = models.CharField("Achternaam", max_length=150, db_index=True) # Field name made lowercase.
+    txtVoorvoegsels = models.CharField("Tussenvoegsels", max_length=150, blank=True, null=True) # Field name made lowercase.
+    txtVoorletters = models.CharField("Voorletters", max_length=150, blank=True, null=True) # Field name made lowercase.
+    txtDoopnaam = models.CharField("Doopnaam", max_length=150, blank=True, db_index=True, null=True) # Field name made lowercase.
+    txtRoepnaam = models.CharField("Roepnaam", max_length=150, db_column="txtRoepnaam", db_index=True, null=True) # Field name made lowercase.
+    ysnRoepnaam = MySQLBooleanField("Aanspreken met roepnaam ", blank=True, default=True) # Field name made lowercase. This field type is a guess.
+    dtmGeboortedatum = models.DateField("Geboortedatum", null=True, blank=True) # Field name made lowercase.
+    txtGeboorteplaats = models.CharField("te", max_length=150, null=True, blank=True) # Field name made lowercase.
+    txtGeslacht = models.CharField("Geslacht", max_length=150, null=True, blank=True) # Field name made lowercase.
+    idStatus = models.IntegerField("Status", null=True) # Field name made lowercase.
+    dtmDoop = models.DateField("Datum doop", null=True, blank=True) # Field name made lowercase.
+    idDoopgemeente = models.IntegerField("Doopgemeente", null=True, blank=True) # Field name made lowercase.
+    dtmBelijdenis = models.DateField("Datum belijdenis", null=True, blank=True) # Field name made lowercase.
+    idBelijdenisgemeente = models.IntegerField("Belijdenisgemeente", null=True, blank=True) # Field name made lowercase.
+    dtmBinnenkomst = models.DateField("Datum binnenkomst", null=True, blank=True) # Field name made lowercase.
+    idVorigeGemeente = models.IntegerField("Binnengekomen uit", null=True, blank=True) # Field name made lowercase.
+    dtmVertrokken = models.DateField("Datum vertrek", null=True, blank=True) # Field name made lowercase.
+    idVolgendeGemeente = models.IntegerField("Vertrokken naar", null=True, blank=True) # Field name made lowercase.
+    txtMobielNummer = models.CharField("Telefoon", max_length=75, null=True, blank=True) # Field name made lowercase.
+    ysnMobielNummer = MySQLBooleanField("Mobiel zichtbaar?")
+    txtEmailAdres = models.CharField("E-mailadres", max_length=150, null=True, blank=True) # Field name made lowercase.
+    ysnEmailAdres = MySQLBooleanField("E-mailadres zichtbaar?")
+    txtAantekeningen = models.TextField("Opmerkingen", max_length=765, null=True, blank=True) # Field name made lowercase.
+    dtmTrouwdatum = models.DateField("Datum huwelijk", null=True, blank=True) # Field name made lowercase.
+    idTrouwgemeente = models.IntegerField("Huwelijksgemeente", null=True, blank=True) # Field name made lowercase.
+    dtmTrouwbevestiging = models.DateField("Datum huwelijksbevestiging", null=True, blank=True) # Field name made lowercase.
+    idHuiskring = models.IntegerField("Huiskring", null=True, blank=True) # Field name made lowercase.
+    idHuiskringLidType = models.IntegerField("Rol in huiskring", null=True, blank=True) # Field name made lowercase.    
+    huiskringwijk = models.IntegerField("Wijk", null=True, blank=True) # Field name made lowercase.
+    
+    class Meta:
+            db_table = u"tblLid"    

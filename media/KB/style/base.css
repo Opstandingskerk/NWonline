@@ -212,6 +212,11 @@ span#user {
 	float: left;
 }
 
+.right-widget {
+	width: 40em;
+	min-width: 40em;
+}
+
 #tabs { /*margin: 12px;
 	height: 90%;*/
 	
@@ -254,6 +259,10 @@ span#user {
 div.message {
 	color: Red;
 	margin: 3px;
+}
+
+div.small {
+	font-size: x-small;
 }
 
 div.container {
@@ -362,17 +371,17 @@ p.error {
 	font-size: 1.0em;
 }
 
-.ui-widget label {
+.ui-widget label, .ui-widget input {
 	float: left;
 	margin-right: 0.5em;
 }
 
 .ui-widget label.fixed {
-	width: 10.0em;
+	width: 6em;
+	font-weight: bold;
 }
 
-.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button
-	{
+.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button {
 	font-family: Arial, sans-serif;
 	float: left;
 	margin-bottom: 12px;

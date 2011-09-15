@@ -1,17 +1,18 @@
-###############################################################################
-# File: NWonline/KB/dashboard.py
-# Author: Lukas Batteau
-# Description: Handlers for the dashboard
-###############################################################################
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+from NWonline import settings
 from NWonline.KB.models import Persoon, LidmaatschapStatus, GezinsRol, \
-    LidmaatschapVorm
+    LidmaatschapVorm, Huiskring, tblLid, Gezin, tblHuishouden
 from NWonline.KB.widgets import DatePicker
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
+from django.db import connections, transaction
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.template.context import RequestContext, Context
+from django.utils import simplejson
 import datetime
 
 class MembersForm(forms.Form):
@@ -219,4 +220,127 @@ def handleExportEmail(request):
             response.write("\r\n")
 
     return response
+
+@login_required
+def exportMembersToWebsite(request, environment):
+    result_message = "OK"
+    result_success = True
+    
+    try:
+        exportGezinnen(environment)
+    except Exception as (errno, strerror):
+        result_message = strerror
+        result_success = False
+         
+    try:
+        exportLeden(environment)
+    except Exception as (errno, strerror):
+        result_message = strerror
+        result_success = False
+     
+    if (result_success):
+        if (cache.get(settings.CACHEKEY_PROGRESS)):
+            result_message = cache.get(settings.CACHEKEY_PROGRESS)["message"]
+    
+    return HttpResponse(simplejson.dumps({"result": result_success,
+                                          "result_message": result_message}),
+                        mimetype='application/json')
+
+@login_required
+def reportExportProgress(request):
+    return HttpResponse(simplejson.dumps(cache.get(settings.CACHEKEY_PROGRESS)),
+                        mimetype='application/json')
+    
+def exportGezinnen(environment):
+    # Create connection to geloofhet database
+    db = "geloofhet_"+environment
+    geloofhet_cursor = connections[db].cursor()
+    
+    # Empty table
+    geloofhet_cursor.execute("DELETE FROM tblHuishouden")
+    transaction.commit_unless_managed()
+    
+    # Fill table
+    gezinnen = Gezin.objects.all()
+    nr_gezinnen = len(gezinnen)
+    progress = 0
+    message = 'Updating table tblHuishouden'
+    cache.set(settings.CACHEKEY_PROGRESS, {'progress': progress, 'message': message}, 30)
+    for (index, gezin) in enumerate(gezinnen):
+        geloofhetGezin = tblHuishouden()
+        geloofhetGezin.idHuishouden = gezin.idgezin
+        geloofhetGezin.txtHuishoudenNaam = gezin.txtgezinsnaam
+        geloofhetGezin.txtTelefoonnummer = gezin.txttelefoon
+        geloofhetGezin.txtStraatnaam = gezin.txtstraatnaam
+        geloofhetGezin.txtHuisnummer = str(gezin.inthuisnummer)
+        geloofhetGezin.txtPostcode = gezin.txtpostcode
+        geloofhetGezin.txtPlaats = gezin.txtplaats
+        geloofhetGezin.save(using=db)
+
+        # Calculate progress as percentage
+        progress = 100*index/nr_gezinnen
+        # Store progress in cache
+        cache.set(settings.CACHEKEY_PROGRESS, {'progress': progress, 'message': message}, 30)
+        
+    cache.set(settings.CACHEKEY_PROGRESS, {'progress': 100, 'message': "Gereed"}, 30)
+
+def exportLeden(environment):
+    # Create connection to geloofhet database
+    db = "geloofhet_"+environment
+    geloofhet_cursor = connections[db].cursor()
+    
+    # Empty table
+    geloofhet_cursor.execute("DELETE FROM tblLid")
+    transaction.commit_unless_managed()
+    
+    # Fill table
+    leden = Persoon.objects.filter(idlidmaatschapstatus=1)
+    nr_leden = len(leden)
+    progress = 0
+    message = 'Updating table tblLid'
+    cache.set(settings.CACHEKEY_PROGRESS, {'progress': progress, 'message': message}, 30)
+    
+    for (index, lid) in enumerate(leden):
+        geloofhetLid = tblLid()
+        geloofhetLid.idLid = lid.idpersoon
+        geloofhetLid.ysnLid = True
+        geloofhetLid.idHuishouden = int(lid.idgezin.pk) if lid.idgezin else None
+        geloofhetLid.idRol = lid.idgezinsrol.pk if lid.idgezinsrol else None
+        geloofhetLid.txtAchternaam = lid.txtachternaam
+        geloofhetLid.txtVoorvoegsels = lid.txttussenvoegsels 
+        geloofhetLid.txtVoorletters = lid.txtvoorletters
+        geloofhetLid.txtDoopnaam = lid.txtdoopnaam 
+        geloofhetLid.txtRoepnaam = lid.txtroepnaam 
+        geloofhetLid.ysnRoepnaam = lid.boolaansprekenmetroepnaam 
+        geloofhetLid.dtmGeboortedatum = lid.dtmgeboortedatum 
+        geloofhetLid.txtGeboorteplaats = lid.txtgeboorteplaats 
+        geloofhetLid.txtGeslacht = lid.idgeslacht.txtgeslacht 
+        geloofhetLid.idStatus = lid.idlidmaatschapstatus.pk if lid.idlidmaatschapstatus else None 
+        geloofhetLid.dtmDoop = lid.dtmdatumdoop 
+        geloofhetLid.idDoopgemeente = lid.iddoopgemeente.pk if lid.iddoopgemeente else None  
+        geloofhetLid.dtmBelijdenis = lid.dtmdatumbelijdenis 
+        geloofhetLid.idBelijdenisgemeente = lid.idbelijdenisgemeente.pk if lid.idbelijdenisgemeente else None 
+        geloofhetLid.dtmBinnenkomst = lid.dtmdatumbinnenkomst 
+        geloofhetLid.idVorigeGemeente = lid.idbinnengekomenuitgemeente.pk if lid.idbinnengekomenuitgemeente else None 
+        geloofhetLid.dtmVertrokken = lid.dtmdatumvertrek 
+        geloofhetLid.idVolgendeGemeente = lid.idvertrokkennaargemeente.pk if lid.idvertrokkennaargemeente else None 
+        geloofhetLid.txtMobielNummer = lid.txttelefoonnummer 
+        geloofhetLid.ysnMobielNummer = False 
+        geloofhetLid.txtEmailAdres = lid.txtemailadres 
+        geloofhetLid.ysnEmailAdres = False 
+        geloofhetLid.dtmTrouwdatum = lid.dtmhuwelijksdatum 
+        geloofhetLid.idTrouwgemeente = lid.idhuwelijksgemeente.pk if lid.idhuwelijksgemeente else None 
+        geloofhetLid.dtmTrouwbevestiging = lid.dtmdatumhuwelijksbevestiging 
+        geloofhetLid.idHuiskring = lid.idhuiskring.pk if lid.idhuiskring else None 
+        geloofhetLid.idHuiskringLidType = lid.idhuiskringlidrol.pk if lid.idhuiskringlidrol else None 
+        geloofhetLid.huiskringwijk = lid.idwijk.pk if lid.idwijk else None
+        geloofhetLid.save(using=db)
+        
+        # Calculate progress as percentage
+        progress = 100*index/nr_leden
+        # Store progress in cache
+        cache.set(settings.CACHEKEY_PROGRESS, {'progress': progress, 'message': message}, 30)
+    
+    cache.set(settings.CACHEKEY_PROGRESS, {'progress': 100, 'message': "%d leden gekopiëerd" % (nr_leden)}, 30)
+
 

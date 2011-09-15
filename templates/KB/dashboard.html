@@ -28,7 +28,7 @@
 	</td></tr>
 	</table>
 </div>
-<div id="export_widget" class="box widget">
+<div id="export_widget" class="box widget right-widget">
 <h3>Exporteren</h3>
 <div id="export" class="accordion">
 	<h3><a href="#">Ledenlijst</a></h3>
@@ -66,17 +66,63 @@
 		<input type="submit" value="Genereer"/>
 		</form>
 	</div>
+	<h3><a href="#">Update geloofhet.nl</a></h3>
+	<div>
+		<p>
+		Exporteer de ledengegevens naar geloofhet.nl.
+		</p> 
+		<div id="progressbar"></div>
+		<div id="progressmessage" class="small"></div>
+		<p>
+		<input id="button_export" type="submit" value="Exporteer" onClick="exportGeloofhet();"/>
+		</p>
+	</div>
 </div>
 </div>
 
 <script type="text/javascript">
+var refreshIntervalId;
 
 $(document).ready(function() {
 	$("#export_widget").show();
     $("#export").accordion({ collapsible: true })
     $("#export").accordion("activate", false);
+    //$("#progressbar").progressbar({ value: 0 });
   });
 
+function exportGeloofhet() {
+	$("#button_export").attr('disabled', true);
+	$("#progressmessage").text("Bezig...").removeClass("message");
+	
+	$.get("update/test",
+		function(data){
+			alert(data.result_message);
+			$("#progressmessage").text(data.result_message);
+			if (!data.result) {
+				$("#progressmessage").addClass("message");
+			}
+			$("#button_export").attr('disabled', false);
+			if (refreshIntervalId) {
+				clearInterval(refreshIntervalId);
+			}
+		}
+		, "json");
+	
+	//refreshIntervalId = setInterval(retrieveProgress, 5000);
+	
+}
+
+function retrieveProgress() {
+	$.get("progress",
+		function(data) {
+			alert(data);
+			if (data != null) {
+				$("#progressbar").progressbar({ value: data.progress });
+				$("#progressmessage").text(data.message);
+			}
+		},
+		"json");
+}
  
 </script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
