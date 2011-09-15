@@ -381,7 +381,7 @@ class tblLid(models.Model):
     Data in the Persoon table is exported to this table to be used 
     on the website.  
     """
-    idpersoon = models.IntegerField(primary_key=True, db_column="idLid") # Field name made lowercase.
+    idLid = models.IntegerField(primary_key=True, db_column="idLid") # Field name made lowercase.
     ysnLid = MySQLBooleanField("Actief lid")
     idHuishouden = models.IntegerField(verbose_name="Gezin", null=True, blank=True) # Field name made lowercase.
     idRol = models.IntegerField(verbose_name="Gezinsrol", null=True, blank=True) # Field name made lowercase.
