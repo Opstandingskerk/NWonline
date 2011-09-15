@@ -371,14 +371,13 @@ p.error {
 	font-size: 1.0em;
 }
 
-.ui-widget label, .ui-widget input {
+.ui-widget label {
 	float: left;
 	margin-right: 0.5em;
 }
 
 .ui-widget label.fixed {
-	width: 6em;
-	font-weight: bold;
+	width: 10.0em;
 }
 
 .ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button {
