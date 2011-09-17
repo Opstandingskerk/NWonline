@@ -37,7 +37,7 @@ class MarryForm1(Form):
                                         required=False)
     idlidmaatschapvorm = forms.ModelChoiceField(label="Soort lid",
                                                 queryset=LidmaatschapVorm.objects.all(),
-                                                required=False)
+                                                required=True)
     
 class MarryForm2(Form):
     """

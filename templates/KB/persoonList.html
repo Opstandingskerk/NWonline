@@ -106,6 +106,16 @@ $(document).ready(function(){
 	// Enable slide on extended search form 
 	$("#extended_search").click(function(){
 		  $(".box").slideToggle("slow");
+		  // When using extended search include all membership statuses
+		  idlidmaatschapstatus_select = $("{{ persoonSearchForm.idlidmaatschapstatus|id }}")
+		  // Toggle value
+		  if (idlidmaatschapstatus_select.val() == 1) {
+			  // All statuses by default
+			  $("{{ persoonSearchForm.idlidmaatschapstatus|id }}").val(-1);
+		  } else {
+			  // Only active members
+			  $("{{ persoonSearchForm.idlidmaatschapstatus|id }}").val(1);
+		  }
 	});
 	
 	// Search button calls ajax call
