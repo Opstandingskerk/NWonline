@@ -16,6 +16,7 @@
 {{ form.idpersoonB }}
 {{ form.txtachternaam|generate:"fixed" }} {{ form.txttussenvoegsels|generate }} {{ form.idgeslacht|generate }}<br class="clear"/>
 {{ form.txtroepnaam|generate:"fixed" }} {{ form.txtvoorletters|generate }}<br class="clear"/>
+{{ form.idlidmaatschapvorm|generate:"fixed" }}<br class="clear"/>
 </div>
 
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
@@ -82,6 +83,7 @@ function selectName(event, ui) {
 	$("{{form.txtroepnaam|id}}").val(ui.item.txtroepnaam);
 	$("{{form.txtvoorletters|id}}").val(ui.item.txtvoorletters);
 	$("{{form.idgeslacht|id}}").val(ui.item.idgeslacht);
+	$("{{form.idlidmaatschapvorm|id}}").val(ui.item.idlidmaatschapvorm);
 	update();
 }
 

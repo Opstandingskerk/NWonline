@@ -204,7 +204,7 @@ class Attestatie(models.Model):
 
 class Persoon(models.Model):
     idpersoon = models.AutoField(primary_key=True, db_column="idPersoon") # Field name made lowercase.
-    idlidmaatschapvorm = models.ForeignKey(LidmaatschapVorm, verbose_name="Lidmaatschap", null=True, db_column="idLidmaatschapVorm", blank=True) # Field name made lowercase.
+    idlidmaatschapvorm = models.ForeignKey(LidmaatschapVorm, verbose_name="Lidmaatschap", null=False, db_column="idLidmaatschapVorm", blank=False) # Field name made lowercase.
     idgezin = models.ForeignKey(Gezin, verbose_name="Gezin", null=True, blank=True, db_column="idGezin") # Field name made lowercase.
     idgezinsrol = models.ForeignKey(GezinsRol, verbose_name="Gezinsrol", db_column="idGezinsRol") # Field name made lowercase.
     txtachternaam = models.CharField("Achternaam", max_length=150, db_column="txtAchternaam", db_index=True) # Field name made lowercase.
@@ -322,8 +322,8 @@ class Persoon(models.Model):
             # TODO: The membership forms for guests should be replaced by the
             # boolgastlidnw field
             if (self.boolgastlidnw
-                or self.idlidmaatschapvorm.pk == LidmaatschapVorm.GASTLID_BELIJDEND
-                or self.idlidmaatschapvorm.pk == LidmaatschapVorm.GASTLID_DOOP):
+                or self.idlidmaatschapvorm == LidmaatschapVorm.objects.get(pk=LidmaatschapVorm.GASTLID_BELIJDEND)
+                or self.idlidmaatschapvorm == LidmaatschapVorm.objects.get(pk=LidmaatschapVorm.GASTLID_DOOP)):
                 membership += " (lid bij %s)" % (self.idgasthoofdgemeente)
             
         else:

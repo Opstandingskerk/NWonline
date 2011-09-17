@@ -42,7 +42,8 @@ def queryPersoon(request):
                        'txttussenvoegsels': str(persoon.txttussenvoegsels),
                        'txtroepnaam': force_unicode(persoon.txtroepnaam),
                        'txtvoorletters': str(persoon.txtvoorletters),
-                       'idgeslacht': str(persoon.idgeslacht.idgeslacht)})
+                       'idgeslacht': str(persoon.idgeslacht.idgeslacht),
+                       'idlidmaatschapvorm': str(persoon.idlidmaatschapvorm.idlidmaatschapvorm)})
         
     # Redirect to a success page.
     return HttpResponse(simplejson.dumps(result),

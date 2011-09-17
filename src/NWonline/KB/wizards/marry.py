@@ -10,7 +10,7 @@
 # 20110118    Lukas Batteau        Restructured code for readability 
 ###############################################################################
 from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol, \
-    Gemeente, LidmaatschapStatus
+    Gemeente, LidmaatschapStatus, LidmaatschapVorm
 from NWonline.KB.widgets import AutoCompleteSelect, DatePicker
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
@@ -35,6 +35,9 @@ class MarryForm1(Form):
     txttussenvoegsels = forms.CharField(widget=forms.TextInput(attrs={"size":8}),
                                         label="Tussenvoegsels",
                                         required=False)
+    idlidmaatschapvorm = forms.ModelChoiceField(label="Soort lid",
+                                                queryset=LidmaatschapVorm.objects.all(),
+                                                required=False)
     
 class MarryForm2(Form):
     """
@@ -125,7 +128,7 @@ class MarryWizard(FormWizard):
                 persoon.txtroepnaam = request.POST["0-txtroepnaam"]
                 persoon.idgeslacht = Geslacht.objects.get(pk=atoi(request.POST["0-idgeslacht"]))
                 persoon.txttussenvoegsels = request.POST["0-txttussenvoegsels"]
-                persoon.txtvoorletters = request.POST["0-txtvoorletters"] 
+                persoon.txtvoorletters = request.POST["0-txtvoorletters"]
             
             # Add persoon to context
             self.storedFields["persoonB"] = persoon
@@ -278,6 +281,9 @@ class MarryWizard(FormWizard):
         persoonB.dtmhuwelijksdatum = form_list[1].cleaned_data["dtmhuwelijksdatum"]
         persoonB.dtmdatumhuwelijksbevestiging = form_list[1].cleaned_data["dtmdatumhuwelijksbevestiging"]
         persoonB.idhuwelijksgemeente = form_list[1].cleaned_data["idhuwelijksgemeente"]
+        
+        # Update membership
+        persoonB.idlidmaatschapvorm = form_list[0].cleaned_data["idlidmaatschapvorm"]
 
         persoonB.save()
         
