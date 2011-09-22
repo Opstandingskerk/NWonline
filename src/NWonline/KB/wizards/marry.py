@@ -79,7 +79,8 @@ class MarryForm4(Form):
     txtplaats = forms.CharField(label="Plaats")
     idland = forms.ModelChoiceField(queryset=Land.objects.all(),
                                     label="Land",
-                                    initial=Land.objects.get(idland=1))
+                                    widget=AutoCompleteSelect(),
+                                    initial=Land.objects.get(idland=Land.NEDERLAND))
     
 class MarryWizard(FormWizard):
     
