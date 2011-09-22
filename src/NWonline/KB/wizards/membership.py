@@ -108,11 +108,12 @@ class MembershipWizard(FormWizard):
                 self.storedFields["gezin"] = gezin
                 
                 # Check size of family
-                if (len(gezin.persoon_set.all()) == 1):
+                personen_in_gezin = gezin.persoon_set.all()
+                if (len(personen_in_gezin) == 1):
                     # Can't process this as family
                     is_mode_family = False
                     # Store persoon separately
-                    self.storedFields["persoon"] = gezin.persoon_set.get(pk=1)                
+                    self.storedFields["persoon"] = personen_in_gezin[0]               
         else:
             # Extract persoon Id from url
             persoonId = kwargs["persoonId"]

@@ -68,7 +68,7 @@ class Geslacht(models.Model):
         db_table = u"ledendb_geslachten"
 
 class Land(models.Model):
-    NEDERLAND = 1
+    NEDERLAND = 149
     
     idland = models.AutoField(primary_key=True, db_column="idLand") # Field name made lowercase.
     txtlandnaam = models.CharField(max_length=300, db_column="txtLandnaam", blank=True) # Field name made lowercase.
@@ -88,7 +88,7 @@ class Gezin(models.Model):
     txthuisnummertoevoeging = models.CharField("Toevoeging", max_length=60, db_column="txtHuisnummerToevoeging", blank=True, null=True) # Field name made lowercase.
     txtpostcode = models.CharField("Postcode", max_length=60, db_column="txtPostcode", db_index=True, blank=True, null=True) # Field name made lowercase.
     txtplaats = models.CharField("Plaats", max_length=150, db_column="txtPlaats", db_index=True, blank=True, null=True) # Field name made lowercase.
-    idland = models.ForeignKey(Land, verbose_name="Land", db_column="idLand", blank=True, null=True, default=1) # Field name made lowercase.
+    idland = models.ForeignKey(Land, verbose_name="Land", db_column="idLand", blank=True, null=True, default=Land.NEDERLAND) # Field name made lowercase.
     txttelefoon = models.CharField("Telefoon", max_length=75, db_column="txtTelefoon", db_index=True, blank=True, null=True) # Field name made lowercase.
     txtopmerking = models.TextField("Opmerking", max_length=765, db_column="txtOpmerking", blank=True, null=True) # Field name made lowercase.
     
