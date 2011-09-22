@@ -28,6 +28,12 @@
 	</td></tr>
 	</table>
 </div>
+<div id="action_widget" class="box widget right-widget">
+<img src="/media/img/icon_enter_off.png" class="icon" border="0"/>
+<img src="/media/img/icon_baby_off.png" class="icon" border="0"/>
+<img src="/media/img/icon_marry_off.png" class="icon" border="0"/>
+<img src="/media/img/icon_exit_off.png" class="icon" border="0"/>
+</div>
 <div id="export_widget" class="box widget right-widget">
 <h3>Exporteren</h3>
 <div id="export" class="accordion">
@@ -78,7 +84,13 @@
 		</p>
 	</div>
 </div>
+
+<a id="goToMyPage" href="#">Go to My Page</a>
+<div id="modalDiv"><iframe id="modalIFrame" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" title="Dialog Title" src="http://localhost:8000/wizard/membership/1/"></iframe></div>
+
+
 </div>
+
 
 <script type="text/javascript">
 var refreshIntervalId;
@@ -88,6 +100,27 @@ $(document).ready(function() {
     $("#export").accordion({ collapsible: true })
     $("#export").accordion("activate", false);
     //$("#progressbar").progressbar({ value: 0 });
+    
+    $("#modalDiv").dialog({
+        modal: true,
+        autoOpen: false,
+        height: '600',
+        width: '800',
+        draggable: true,
+        resizeable: true,   
+        title: 'IFrame Modal Dialog'
+    });
+    
+    $("img.icon").hover(
+    		function() { this.src = this.src.replace("_off", "_on"); },
+    		function() { this.src = this.src.replace("_on", "_off");
+    		});
+    
+    $('#goToMyPage').click(
+        function() {
+            $("#modalDiv").dialog("open");
+            return false;
+    });      
   });
 
 function exportGeloofhet() {
