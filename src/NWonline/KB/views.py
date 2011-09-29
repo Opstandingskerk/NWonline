@@ -521,14 +521,16 @@ def handleLogin(request):
             else:
                 # Return a "disabled account" error message
                 return render_to_response("KB/error.html",
-                                          {"message": "Dit account is niet langer geldig."})
+                                          {"message": "Dit account is niet langer geldig."},
+                                          context_instance=RequestContext(request))
         else:
             # Return an "invalid login" error message.
             return render_to_response("KB/login.html",
-                                          {"message": "Ongeldige gebruikersnaam of wachtwoord."})
+                                          {"message": "Ongeldige gebruikersnaam of wachtwoord."},
+                                          context_instance=RequestContext(request))
     else:
         # No post data, show login screen
-        return render_to_response("KB/login.html")
+        return render_to_response("KB/login.html", context_instance=RequestContext(request))
     
 def handleLogout(request):
     logout(request)
