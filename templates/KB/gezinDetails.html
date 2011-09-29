@@ -26,6 +26,7 @@
 <div id="detail" class="container">
 
 <form name="gezinForm" id="gezinForm" action="" method="post">
+{% csrf_token %}
 <input type="hidden" name="idgezin" id="idgezin" value="{{gezinForm.instance.idgezin}}"/>
 {% if gezinForm.errors %}
 <input type="hidden" name="gezinFormHasErrors" id="gezinFormHasErrors" value="1"/>
