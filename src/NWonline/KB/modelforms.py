@@ -15,7 +15,7 @@ import models
 class GezinForm(forms.ModelForm):
     txtgezinsnaam = forms.CharField(
                         widget=forms.TextInput(attrs={"size":40}),
-                        label="Gezinsnaam")
+                        label="Naam")
     inthuisnummer = forms.IntegerField(
                         widget=forms.TextInput(attrs={"size":3}),
                         label="Nummer",

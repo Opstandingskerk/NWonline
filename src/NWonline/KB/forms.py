@@ -21,7 +21,7 @@ class PersoonSearchForm(forms.Form):
                             queryset=GezinsRol.objects.all(), 
                             empty_label="",
                             required=False,
-                            label="Gezinsrol")
+                            label="Rol huishouden")
     txtachternaam = forms.CharField(label="Achternaam",
                                     required=False)
     txttussenvoegsels = forms.CharField(
