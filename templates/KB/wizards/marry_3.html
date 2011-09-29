@@ -6,10 +6,10 @@
 
 <div class="box widget">
 <h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
-<p>Op welk adres komt het gezin te wonen?</p>
+<p>Op welk adres komt het nieuwe huishouden te wonen?</p>
 <form name="form" id="form" action="." method="post">{% csrf_token %}
 
-<table border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0" class="multiline">
 <tr><td>
 <input type="radio" id="id_3-code_0" value="A" {% if form.code.data == "A" %} checked="checked" {% endif %} name="3-code" /><label for="id_3-code_0">{{persoonA}}<br class="clear"/><small>{{gezinA.create_address}}, {{gezinA.txtplaats}}</small></label>
 </td><td>

@@ -7,16 +7,17 @@
 <div id="content" class="detail">
 
 <div class="detail_header">
+	<div class="small">Huishouden</div>
 	<div class="title">
 		{% if formState == "ADD" or gezinForm.errors %}
-		<h2>Gezin toevoegen</h2>
+		<h2>Huishouden toevoegen</h2>
 		{% else %}
-		<h2>Fam. {{ gezinForm.instance.txtgezinsnaam }}</h2>
+		<h2>{{ gezinForm.instance.txtgezinsnaam }}</h2>
 		{% endif %}
 	</div>
 	<div class="box">
 		{% if gezinForm.instance.idgezin %}
-		<span><a href="/wizard/membership/gezin/{{gezinForm.instance.idgezin}}/">Lidmaatschap</a></span>
+		<span><a href="/wizard/membership/gezin/{{gezinForm.instance.idgezin}}/">Lidmaatschap wijzigen</a></span>
 		<br class="clear"/>
 		{% endif %}	
 	</div>
@@ -25,6 +26,7 @@
 <div id="detail" class="container">
 
 <form name="gezinForm" id="gezinForm" action="" method="post">
+{% csrf_token %}
 <input type="hidden" name="idgezin" id="idgezin" value="{{gezinForm.instance.idgezin}}"/>
 {% if gezinForm.errors %}
 <input type="hidden" name="gezinFormHasErrors" id="gezinFormHasErrors" value="1"/>
@@ -48,7 +50,7 @@
 <div class="detail_header">
 	<div class="box">
 		{% if gezinForm.instance.idgezin %}
-		<span><a href="persoon/add">Nieuw persoon</a></span>
+		<span><a href="persoon/add">Persoon toevoegen</a></span>
 		<br class="clear"/>
 		{% endif %}
 	</div>

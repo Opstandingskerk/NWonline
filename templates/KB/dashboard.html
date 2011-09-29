@@ -41,6 +41,7 @@
 	<div>
 		<p>Deze lijst bevat de gegevens van alle actieve leden.</p> 
 		<form name="members" action="members" method="POST">
+		{% csrf_token %}
 		<p class="clear">Type: <img src="/media/img/excel.gif" border="0"></p>
 		<input type="submit" value="Genereer"/>
 		</form>
@@ -49,6 +50,7 @@
 	<div>
 		<p>Deze lijst bevat alle actieve leden die in de gegeven periode jarig zijn, gegroepeerd op maand.</p>
 		<form name="birthdays" action="birthdays" method="POST">
+		{% csrf_token %}
 		{{ birthdays_form.date_from|generate:"fixed" }}{{ birthdays_form.date_to|generate }}<br class="clear"/>
 		{{ birthdays_form.category|generate:"fixed" }}
 		<p class="clear">Type: <img src="/media/img/word.gif" border="0"></p>
@@ -57,9 +59,10 @@
 	</div>
 	<h3><a href="#">Stemlijst</a></h3>
 	<div>
-		<p>De stemlijst bevat alle actieve belijdende leden, gegroepeerd op gezin.</p> 
+		<p>De stemlijst bevat alle actieve belijdende leden, gegroepeerd op huishouden.</p> 
 		<p>Type: <img src="/media/img/word.gif" border="0"></p>
 		<form name="election" action="election" method="POST">
+		{% csrf_token %}
 		<input type="submit" value="Genereer"/>
 		</form>
 	</div>
@@ -69,6 +72,7 @@
 		Deze lijst bevat de e-mailadressen van alle actieve leden.
 		</p>
 		<form name="email" action="email" method="POST">
+		{% csrf_token %}
 		<input type="submit" value="Genereer"/>
 		</form>
 	</div>

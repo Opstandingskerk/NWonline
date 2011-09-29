@@ -21,7 +21,7 @@ class PersoonSearchForm(forms.Form):
                             queryset=GezinsRol.objects.all(), 
                             empty_label="",
                             required=False,
-                            label="Gezinsrol")
+                            label="Rol huishouden")
     txtachternaam = forms.CharField(label="Achternaam",
                                     required=False)
     txttussenvoegsels = forms.CharField(
@@ -49,6 +49,8 @@ class PersoonSearchForm(forms.Form):
                                     queryset=LidmaatschapVorm.objects.all(),
                                     label="Lidmaatschap vorm",
                                     required=False)
+    boolgastlidelders = forms.BooleanField(label="Gastlid elders?", 
+                                           required=False)
     idwijk = forms.ModelChoiceField(queryset=Wijk.objects.all(),
                                     label="Wijk",
                                     required=False)

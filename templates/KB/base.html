@@ -32,7 +32,7 @@ This template is a generic HTML5 template.
         <header>
 		<div id="top">
 			<span>NWonline - Kerkelijk Bureau</span>
-			<span id="version">v0.8</span>
+			<span id="version">v0.9</span>
 			{% if user.is_active %}
 			<span id="user">Welkom, {% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}.
 			{% if user.is_staff %}<a href="/admin" target="_new">onderhoud</a> |{% endif %}

@@ -99,7 +99,7 @@ class Gezin(models.Model):
                                                 persoon.txtroepnaam)
         
     def create_address(self):
-        return ("%s %s %s" % (self.txtstraatnaam, str(self.inthuisnummer), self.txthuisnummertoevoeging)).strip()
+        return ("%s %s%s" % (self.txtstraatnaam, str(self.inthuisnummer), self.txthuisnummertoevoeging)).strip()
 
     def __unicode__(self):
         return self.txtgezinsnaam
@@ -205,8 +205,8 @@ class Attestatie(models.Model):
 class Persoon(models.Model):
     idpersoon = models.AutoField(primary_key=True, db_column="idPersoon") # Field name made lowercase.
     idlidmaatschapvorm = models.ForeignKey(LidmaatschapVorm, verbose_name="Lidmaatschap", null=False, db_column="idLidmaatschapVorm", blank=False) # Field name made lowercase.
-    idgezin = models.ForeignKey(Gezin, verbose_name="Gezin", null=True, blank=True, db_column="idGezin") # Field name made lowercase.
-    idgezinsrol = models.ForeignKey(GezinsRol, verbose_name="Gezinsrol", db_column="idGezinsRol") # Field name made lowercase.
+    idgezin = models.ForeignKey(Gezin, verbose_name="Huishouden", null=True, blank=True, db_column="idGezin") # Field name made lowercase.
+    idgezinsrol = models.ForeignKey(GezinsRol, verbose_name="Rol huishouden", db_column="idGezinsRol") # Field name made lowercase.
     txtachternaam = models.CharField("Achternaam", max_length=150, db_column="txtAchternaam", db_index=True) # Field name made lowercase.
     txttussenvoegsels = models.CharField("Tussenvoegsels", max_length=150, db_column="txtTussenvoegsels", blank=True, null=True) # Field name made lowercase.
     txtvoorletters = models.CharField("Voorletters", max_length=150, db_column="txtVoorletters", blank=True, null=True) # Field name made lowercase.
@@ -365,7 +365,7 @@ class tblHuishouden(models.Model):
     on the website.
     """
     idHuishouden = models.IntegerField(primary_key=True)
-    txtHuishoudenNaam = models.CharField("Gezin", max_length=150)
+    txtHuishoudenNaam = models.CharField("Huishouden", max_length=150)
     txtTelefoonnummer = models.CharField("Telefoon", max_length=75, blank=True, null=True)
     txtStraatnaam = models.CharField("Straat", max_length=150, blank=True, null=True)
     txtHuisnummer = models.CharField("Huisnummer", max_length=20, blank=True, null=True)
@@ -384,7 +384,7 @@ class tblLid(models.Model):
     idLid = models.IntegerField(primary_key=True, db_column="idLid") # Field name made lowercase.
     ysnLid = MySQLBooleanField("Actief lid")
     idHuishouden = models.IntegerField(verbose_name="Gezin", null=True, blank=True) # Field name made lowercase.
-    idRol = models.IntegerField(verbose_name="Gezinsrol", null=True, blank=True) # Field name made lowercase.
+    idRol = models.IntegerField(verbose_name="Rol huishouden", null=True, blank=True) # Field name made lowercase.
     txtAchternaam = models.CharField("Achternaam", max_length=150, db_index=True) # Field name made lowercase.
     txtVoorvoegsels = models.CharField("Tussenvoegsels", max_length=150, blank=True, null=True) # Field name made lowercase.
     txtVoorletters = models.CharField("Voorletters", max_length=150, blank=True, null=True) # Field name made lowercase.
