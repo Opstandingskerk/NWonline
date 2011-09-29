@@ -14,7 +14,7 @@
 <img style="padding: 3px" src="/media/img/search_small.png" border="0"/> <a href="#" id="extended_search">uitgebreid</a>
 </div>
 <div id="buttons">
-<a href="gezin/add">Nieuw gezin</a> | <a href="export"><img src="/media/img/excel.gif" alt="Exporteer naar Excel" border="0"/></a>
+<a href="gezin/add">Nieuw huishouden</a> | <a href="export"><img src="/media/img/excel.gif" alt="Exporteer naar Excel" border="0"/></a>
 </div>
 <div class="clear"></div>
 </div>
@@ -24,7 +24,7 @@
 {{ persoonSearchForm.txtachternaam|generate:"fixed" }} {{ persoonSearchForm.txttussenvoegsels|generate }}<br class="clear"/>
 {{ persoonSearchForm.txtvoorletters|generate:"fixed" }} {{ persoonSearchForm.txtroepnaam|generate }} {{ persoonSearchForm.txtdoopnaam|generate }}<br class="clear"/>
 {{ persoonSearchForm.dtmgeboortedatumvan|generate:"fixed" }} {{ persoonSearchForm.dtmgeboortedatumtot|generate }}<br class="clear"/>
-{{ persoonSearchForm.idlidmaatschapstatus|generate:"fixed" }} {{ persoonSearchForm.idlidmaatschapvorm|generate }}<br class="clear"/>
+{{ persoonSearchForm.idlidmaatschapstatus|generate:"fixed" }} {{ persoonSearchForm.idlidmaatschapvorm|generate }} {{ persoonSearchForm.boolgastlidelders|generate }}<br class="clear"/>
 {{ persoonSearchForm.idwijk|generate:"fixed" }}<br class="clear"/>
 {{ persoonSearchForm.dtmdatumbinnenkomstvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumbinnenkomsttot|generate }}<br class="clear"/>
 {{ persoonSearchForm.dtmdatumvertrekvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumvertrektot|generate }}<br class="clear"/>

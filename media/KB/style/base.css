@@ -180,7 +180,11 @@ span#user {
 }
 
 .detail_header {
-	margin-top 7px;	
+	margin-top: 1em;	
+}
+
+.detail_header h2 {
+	margin-top: 0px;
 }
 
 .detail_header .box span {
@@ -418,3 +422,8 @@ p.error {
 #export_widget {
 	display: none;
 }
+
+table.multiline td {
+	vertical-align: top;
+}
+	

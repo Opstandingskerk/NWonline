@@ -99,7 +99,7 @@ class Gezin(models.Model):
                                                 persoon.txtroepnaam)
         
     def create_address(self):
-        return ("%s %s %s" % (self.txtstraatnaam, str(self.inthuisnummer), self.txthuisnummertoevoeging)).strip()
+        return ("%s %s%s" % (self.txtstraatnaam, str(self.inthuisnummer), self.txthuisnummertoevoeging)).strip()
 
     def __unicode__(self):
         return self.txtgezinsnaam
@@ -205,8 +205,8 @@ class Attestatie(models.Model):
 class Persoon(models.Model):
     idpersoon = models.AutoField(primary_key=True, db_column="idPersoon") # Field name made lowercase.
     idlidmaatschapvorm = models.ForeignKey(LidmaatschapVorm, verbose_name="Lidmaatschap", null=False, db_column="idLidmaatschapVorm", blank=False) # Field name made lowercase.
-    idgezin = models.ForeignKey(Gezin, verbose_name="Gezin", null=True, blank=True, db_column="idGezin") # Field name made lowercase.
-    idgezinsrol = models.ForeignKey(GezinsRol, verbose_name="Gezinsrol", db_column="idGezinsRol") # Field name made lowercase.
+    idgezin = models.ForeignKey(Gezin, verbose_name="Huishouden", null=True, blank=True, db_column="idGezin") # Field name made lowercase.
+    idgezinsrol = models.ForeignKey(GezinsRol, verbose_name="Rol huishouden", db_column="idGezinsRol") # Field name made lowercase.
     txtachternaam = models.CharField("Achternaam", max_length=150, db_column="txtAchternaam", db_index=True) # Field name made lowercase.
     txttussenvoegsels = models.CharField("Tussenvoegsels", max_length=150, db_column="txtTussenvoegsels", blank=True, null=True) # Field name made lowercase.
     txtvoorletters = models.CharField("Voorletters", max_length=150, db_column="txtVoorletters", blank=True, null=True) # Field name made lowercase.

@@ -26,7 +26,7 @@
 	{% if persoonForm.instance.idpersoon %}
 	<div class="box">
 		<strong>{{ membership }}</strong>
-		<span><a href="/wizard/membership/{{persoonForm.instance.idpersoon}}/">Lidmaatschap</a> | <a href="/wizard/marry/{{persoonForm.instance.idpersoon}}/">Trouwen</a></span>
+		<span><a href="/wizard/membership/{{persoonForm.instance.idpersoon}}/">Lidmaatschap wijzigen</a> | <a href="/wizard/marry/{{persoonForm.instance.idpersoon}}/">Trouwen</a></span>
 	</div>
 	{% endif %}	
 </div>
@@ -88,9 +88,8 @@
 </form>
 
 <div class="detail_header">
-	<span class="title">
-		<h2>Fam. {{ persoonForm.instance.idgezin.txtgezinsnaam }} <a href="../../{{ persoonForm.instance.idgezin.idgezin }}/"><img border="0" src="/media/img/gotofamily.jpg"></a></h2>
-	</span>
+	<div class="small">Huishouden</div>
+	<h2>{{ persoonForm.instance.idgezin.txtgezinsnaam }} <a href="../../{{ persoonForm.instance.idgezin.idgezin }}/"><img border="0" src="/media/img/gotofamily.jpg"></a></h2>
 </div>
 
 {% include "KB/gezinPersoonList.html" %}

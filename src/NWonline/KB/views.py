@@ -158,6 +158,10 @@ def handlePersoonListFilter(request):
             if (idlidmaatschapvorm):
                 persoon_list = persoon_list.filter(idlidmaatschapvorm=idlidmaatschapvorm)
             
+            boolgastlidelders = persoonSearchForm.cleaned_data["boolgastlidelders"]
+            if (boolgastlidelders is not None):
+                persoon_list = persoon_list.filter(boolgastlidelders=boolgastlidelders)                
+            
             idwijk = persoonSearchForm.cleaned_data["idwijk"]
             if (idwijk):
                 persoon_list = persoon_list.filter(idwijk=idwijk)
