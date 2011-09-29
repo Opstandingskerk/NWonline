@@ -32,6 +32,7 @@
 </div>
 
 <form name="persoonForm" id="persoonForm" action="" method="post">
+{% csrf_token %}
 <div id="tabs_persoon" style="display: none" class="container">
 	<ul>
 		<li><a href="#subtab_persoonsgegevens">Persoonsgegevens</a></li>
