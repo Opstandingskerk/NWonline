@@ -11,7 +11,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 import locale
-locale.setlocale(locale.LC_ALL, "nl_NL.UTF-8")
+locale.setlocale(locale.LC_ALL, "nld")
 
 urlpatterns = patterns('',
     # Example:
