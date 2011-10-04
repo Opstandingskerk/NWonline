@@ -16,18 +16,6 @@ from NWonline import settings
 from django.db import models
 import datetime
 
-class MySQLBooleanField(models.BooleanField):
-    """
-    The database stores boolean fields as MySQL BIT fields, so we have to 
-    customize reading/writing.
-    """
-    __metaclass__ = models.SubfieldBase
-
-    def to_python(self, value):
-        if isinstance(value, bool):
-            return value
-        return bool(bytearray(value)[0])
-
 class GemeenteType(models.Model):
     idgemeentetype = models.AutoField(primary_key=True, db_column="idGemeenteType") # Field name made lowercase.
     txtgemeentetype = models.CharField(max_length=150, db_column="txtGemeenteType") # Field name made lowercase.
@@ -163,7 +151,7 @@ class LidmaatschapVorm(models.Model):
     
     idlidmaatschapvorm = models.AutoField(primary_key=True, db_column="idLidmaatschapvorm") # Field name made lowercase.
     txtlidmaatschapvorm = models.CharField(max_length=150, db_column="txtLidmaatschapvorm", blank=True) # Field name made lowercase.
-    boolvoorquotum = MySQLBooleanField(db_column="boolVoorQuotum") # Field name made lowercase. This field type is a guess.
+    boolvoorquotum = models.BooleanField(db_column="boolVoorQuotum") # Field name made lowercase. This field type is a guess.
     txtlidmaatschapvormkort = models.CharField(max_length=150, db_column="txtLidmaatschapvormKort", blank=True) # Field name made lowercase.
     txtattestatie = models.CharField(max_length=150, db_column="txtAttestatie", blank=True, null=True) # Field name made lowercase.
 
@@ -212,7 +200,7 @@ class Persoon(models.Model):
     txtvoorletters = models.CharField("Voorletters", max_length=150, db_column="txtVoorletters", blank=True, null=True) # Field name made lowercase.
     txtdoopnaam = models.CharField("Doopnaam", max_length=150, db_column="txtDoopnaam", blank=True, db_index=True, null=True) # Field name made lowercase.
     txtroepnaam = models.CharField("Roepnaam", max_length=150, db_column="txtRoepnaam", db_index=True, null=True) # Field name made lowercase.
-    boolaansprekenmetroepnaam = MySQLBooleanField("Aanspreken met roepnaam ", db_column="boolAansprekenMetRoepnaam", blank=True, default=True) # Field name made lowercase. This field type is a guess.
+    boolaansprekenmetroepnaam = models.BooleanField("Aanspreken met roepnaam ", db_column="boolAansprekenMetRoepnaam", blank=True, default=True) # Field name made lowercase. This field type is a guess.
     dtmgeboortedatum = models.DateField("Geboortedatum", null=True, db_column="dtmGeboortedatum", blank=True) # Field name made lowercase.
     txtgeboorteplaats = models.CharField("te", max_length=150, null=True, db_column="txtGeboorteplaats", blank=True) # Field name made lowercase.
     idgeslacht = models.ForeignKey(Geslacht, verbose_name="Geslacht", null=True, db_column="idGeslacht", blank=True) # Field name made lowercase.
@@ -236,9 +224,9 @@ class Persoon(models.Model):
     idwijk = models.ForeignKey(Wijk, verbose_name="Wijk", null=True, blank=True, db_column="idWijk") # Field name made lowercase.
     idgastgemeente = models.ForeignKey(Gemeente, verbose_name="Gastgemeente", null=True, blank=True, db_column="idGastGemeente", related_name="Gastlid") # Field name made lowercase.
     idgasthoofdgemeente = models.ForeignKey(Gemeente, verbose_name="Gasthoofdgemeente", null=True, blank=True, db_column="idGastHoofdGemeente", related_name="Gastlid_hoofd") # Field name made lowercase.
-    boolgastlidnw = MySQLBooleanField("Gastlid Noord-West", db_column="boolGastlidNW") # Field name made lowercase. This field type is a guess.
-    boolgastlidelders = MySQLBooleanField("Gastlid elders", db_column="boolGastlidElders") # Field name made lowercase. This field type is a guess.
-    boolgeborennw = MySQLBooleanField("Geboren in Noord-West", db_column="boolGeborenNW") # Field name made lowercase. This field type is a guess.
+    boolgastlidnw = models.BooleanField("Gastlid Noord-West", db_column="boolGastlidNW") # Field name made lowercase. This field type is a guess.
+    boolgastlidelders = models.BooleanField("Gastlid elders", db_column="boolGastlidElders") # Field name made lowercase. This field type is a guess.
+    boolgeborennw = models.BooleanField("Geboren in Noord-West", db_column="boolGeborenNW") # Field name made lowercase. This field type is a guess.
     idhuiskring = models.ForeignKey(Huiskring, verbose_name="Huiskring", db_column="idHuiskring", null=True, blank=True) # Field name made lowercase.
     idhuiskringlidrol = models.ForeignKey(HuiskringLidRol, verbose_name="Rol in huiskring", db_column="idHuiskringRol", null=True, blank=True) # Field name made lowercase.    
 
@@ -382,7 +370,7 @@ class tblLid(models.Model):
     on the website.  
     """
     idLid = models.IntegerField(primary_key=True, db_column="idLid") # Field name made lowercase.
-    ysnLid = MySQLBooleanField("Actief lid")
+    ysnLid = models.BooleanField("Actief lid")
     idHuishouden = models.IntegerField(verbose_name="Gezin", null=True, blank=True) # Field name made lowercase.
     idRol = models.IntegerField(verbose_name="Rol huishouden", null=True, blank=True) # Field name made lowercase.
     txtAchternaam = models.CharField("Achternaam", max_length=150, db_index=True) # Field name made lowercase.
@@ -390,7 +378,7 @@ class tblLid(models.Model):
     txtVoorletters = models.CharField("Voorletters", max_length=150, blank=True, null=True) # Field name made lowercase.
     txtDoopnaam = models.CharField("Doopnaam", max_length=150, blank=True, db_index=True, null=True) # Field name made lowercase.
     txtRoepnaam = models.CharField("Roepnaam", max_length=150, db_column="txtRoepnaam", db_index=True, null=True) # Field name made lowercase.
-    ysnRoepnaam = MySQLBooleanField("Aanspreken met roepnaam ", blank=True, default=True) # Field name made lowercase. This field type is a guess.
+    ysnRoepnaam = models.BooleanField("Aanspreken met roepnaam ", blank=True, default=True) # Field name made lowercase. This field type is a guess.
     dtmGeboortedatum = models.DateField("Geboortedatum", null=True, blank=True) # Field name made lowercase.
     txtGeboorteplaats = models.CharField("te", max_length=150, null=True, blank=True) # Field name made lowercase.
     txtGeslacht = models.CharField("Geslacht", max_length=150, null=True, blank=True) # Field name made lowercase.
@@ -404,9 +392,9 @@ class tblLid(models.Model):
     dtmVertrokken = models.DateField("Datum vertrek", null=True, blank=True) # Field name made lowercase.
     idVolgendeGemeente = models.IntegerField("Vertrokken naar", null=True, blank=True) # Field name made lowercase.
     txtMobielNummer = models.CharField("Telefoon", max_length=75, null=True, blank=True) # Field name made lowercase.
-    ysnMobielNummer = MySQLBooleanField("Mobiel zichtbaar?")
+    ysnMobielNummer = models.BooleanField("Mobiel zichtbaar?")
     txtEmailAdres = models.CharField("E-mailadres", max_length=150, null=True, blank=True) # Field name made lowercase.
-    ysnEmailAdres = MySQLBooleanField("E-mailadres zichtbaar?")
+    ysnEmailAdres = models.BooleanField("E-mailadres zichtbaar?")
     txtAantekeningen = models.TextField("Opmerkingen", max_length=765, null=True, blank=True) # Field name made lowercase.
     dtmTrouwdatum = models.DateField("Datum huwelijk", null=True, blank=True) # Field name made lowercase.
     idTrouwgemeente = models.IntegerField("Huwelijksgemeente", null=True, blank=True) # Field name made lowercase.
