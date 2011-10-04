@@ -4,21 +4,21 @@
 
 {% block content %}
 
+<form name="form" id="form" action="." method="post">{% csrf_token %}
 <div class="box widget">
 <h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
 <p>Wie wordt hoofd van het nieuwe huishouden?</p>
-<form name="form" id="form" action="." method="post">{% csrf_token %}
-
+<div class="form_row">
 <input type="radio" name="familyHead" value="A" id="headPersoonA"/><label for="headPersoonA">{{persoonA}}</label>
 <input type="radio" name="familyHead" value="B" id="headPersoonB"/><label for="headPersoonB">{{persoonB}}</label>
-{{ form.gezinshoofd }}<br class="clear"/>
+{{ form.gezinshoofd }}</div>
 
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
 {{ previous_fields|safe }}
-<input type="submit" id="submitButton" value="Volgende">
-<br class="clear"/>
-</form>
 </div>
+<br class="clear"/>
+<input type="submit" id="submitButton" value="Volgende">
+</form>
 
 <script type="text/javascript">
 

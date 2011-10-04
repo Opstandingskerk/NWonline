@@ -23,8 +23,27 @@ select {
 	border: 1px solid #DDD;
 }
 
-input {
-	padding: 3px;
+label, input, select, textarea, button {
+	float: left;
+	margin-right: 0.3em;
+}
+
+input, textarea {
+	padding: 4px 4px 3px 4px;
+}
+
+select {
+	padding: 3px 3px 2px 3px;
+}
+
+label {
+	padding: 4px 3px 2px 3px;
+}
+
+label input {
+	padding: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 th {
@@ -133,6 +152,18 @@ span#user {
 	height: 15%;
 }
 
+.form_row {
+	clear: both;
+	padding-top: 8px;
+	padding-bottom: 6px;
+	height: 1.5em;
+}
+
+.form_buttons {
+	clear: both;
+	margin-top: 0.5em;
+}
+
 .actions {
 	margin-top: 7px;
 }
@@ -196,8 +227,7 @@ span#user {
 	margin-bottom: 0.5em;
 	padding: 6px;
 	background-color: #f2f5f7;
-	background-image:
-		url("cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png");
+	background-image: url("cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png");
 	background-repeat: repeat-x;
 	background-attachment: scroll;
 	background-position: 50% top;
@@ -216,14 +246,13 @@ span#user {
 	float: left;
 }
 
+.form {
+	padding-bottom: 1.5em;
+}
+
 .right-widget {
 	width: 42em;
 	min-width: 42em;
-}
-
-#tabs { /*margin: 12px;
-	height: 90%;*/
-	
 }
 
 #loading {
@@ -384,11 +413,10 @@ p.error {
 	width: 10.0em;
 }
 
-.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button {
-	font-family: Arial, sans-serif;
-	float: left;
-	margin-bottom: 12px;
-	margin-right: 0.5em;
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
+{
+	font-family: Arial,sans-serif;
+	font-size: 1em;
 }
 
 .ui-tabs .ui-tabs-nav {
@@ -421,6 +449,19 @@ p.error {
 
 #export_widget {
 	display: none;
+}
+
+#export label.fixed {
+	width: 6em;
+}
+
+#export p {
+	margin: 0px;
+	padding: 0px;
+}
+
+#extended_search label.fixed {
+	width: 12em;
 }
 
 table.multiline td {
