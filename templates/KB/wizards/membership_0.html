@@ -4,7 +4,8 @@
 
 {% block content %}
 
-<div class="box widget">
+<form name="form" id="form" action="." method="post">
+<div class="box widget form">
 <h2>Wizard lidmaatschap wijzigen ({{ step }} van {{ step_count }})</h2>
 <p>Geef aan op welke manier het lidmaatschap van het huishouden
 {% if is_mode_family %}
@@ -12,35 +13,32 @@
 {% else %}
 {{ persoon }}
 {% endif %} wijzigt.</p>
-<form name="form" id="form" action="." method="post">
 {% csrf_token %}
 
-{{ form.idlidmaatschapstatus|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ form.idlidmaatschapstatus|generate:"fixed" }}</div>
 <div id="container_dtmdatumvertrek" style="display: none">
-{{ form.dtmdatumvertrek|generate:"fixed" }} {{ form.idvertrokkennaargemeente|generate }}<br class="clear"/>
-{{ form.gastlidmaatschap|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ form.dtmdatumvertrek|generate:"fixed" }} {{ form.idvertrokkennaargemeente|generate }}</div>
+<div class="form_row">{{ form.gastlidmaatschap|generate:"fixed" }}</div>
 <div id="container_guestnotification" style="display: none; font-size: x-small"><label class="fixed"></label>Gastleden behouden altijd de actieve status<br/><br/></div>
-{{ form.generateCertificate|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ form.generateCertificate|generate:"fixed" }}</div>
 </div>
 <div id="container_dtmdatumonttrokken" style="display: none">
-{{ form.dtmdatumonttrokken|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ form.dtmdatumonttrokken|generate:"fixed" }}</div>
 </div>
 <div id="container_dtmoverlijdensdatum" style="display: none">
-{{ form.dtmoverlijdensdatum|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ form.dtmoverlijdensdatum|generate:"fixed" }}</div>
 </div>
 
 {% if not is_mode_famiy and persoon.idgezinsrol.pk == 1 and persoon.idgezin.persoon_set.count > 1%}
 {{ form.updateWholeFamily|generate:"fixed" }}
 {% endif %}
 
-<br class="clear"/>
-
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
 {{ previous_fields|safe }}
-<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
-<br class="clear"/>
-</form>
 </div>
+<br class="clear"/>
+<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
+</form>
 
 <script type="text/javascript">
 

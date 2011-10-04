@@ -20,18 +20,17 @@
 </div>
 
 <div class="box" id="extended_search" style="display:none">
-{{ persoonSearchForm.idgezinsrol|generate:"fixed" }}<br class="clear"/>
-{{ persoonSearchForm.txtachternaam|generate:"fixed" }} {{ persoonSearchForm.txttussenvoegsels|generate }}<br class="clear"/>
-{{ persoonSearchForm.txtvoorletters|generate:"fixed" }} {{ persoonSearchForm.txtroepnaam|generate }} {{ persoonSearchForm.txtdoopnaam|generate }}<br class="clear"/>
-{{ persoonSearchForm.dtmgeboortedatumvan|generate:"fixed" }} {{ persoonSearchForm.dtmgeboortedatumtot|generate }}<br class="clear"/>
-{{ persoonSearchForm.idlidmaatschapstatus|generate:"fixed" }} {{ persoonSearchForm.idlidmaatschapvorm|generate }} {{ persoonSearchForm.boolgastlidelders|generate }}<br class="clear"/>
-{{ persoonSearchForm.idwijk|generate:"fixed" }}<br class="clear"/>
-{{ persoonSearchForm.dtmdatumbinnenkomstvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumbinnenkomsttot|generate }}<br class="clear"/>
-{{ persoonSearchForm.dtmdatumvertrekvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumvertrektot|generate }}<br class="clear"/>
-{{ persoonSearchForm.dtmdatumonttrokkenvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumonttrokkentot|generate }}<br class="clear"/>
-{{ persoonSearchForm.dtmoverlijdensdatumvan|generate:"fixed" }} {{ persoonSearchForm.dtmoverlijdensdatumtot|generate }}<br class="clear"/>
-<input type="button" id="btn_submit" value="Zoek"/> <input type="reset" value="Reset"/>
-<br class="clear"/>
+<div class="form_row">{{ persoonSearchForm.idgezinsrol|generate:"fixed" }}</div>
+<div class="form_row">{{ persoonSearchForm.txtachternaam|generate:"fixed" }} {{ persoonSearchForm.txttussenvoegsels|generate }}</div>
+<div class="form_row">{{ persoonSearchForm.txtvoorletters|generate:"fixed" }} {{ persoonSearchForm.txtroepnaam|generate }} {{ persoonSearchForm.txtdoopnaam|generate }}</div>
+<div class="form_row">{{ persoonSearchForm.dtmgeboortedatumvan|generate:"fixed" }} {{ persoonSearchForm.dtmgeboortedatumtot|generate }}</div>
+<div class="form_row">{{ persoonSearchForm.idlidmaatschapstatus|generate:"fixed" }} {{ persoonSearchForm.idlidmaatschapvorm|generate }} {{ persoonSearchForm.boolgastlidelders|generate }}</div>
+<div class="form_row">{{ persoonSearchForm.idwijk|generate:"fixed" }}</div>
+<div class="form_row">{{ persoonSearchForm.dtmdatumbinnenkomstvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumbinnenkomsttot|generate }}</div>
+<div class="form_row">{{ persoonSearchForm.dtmdatumvertrekvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumvertrektot|generate }}</div>
+<div class="form_row">{{ persoonSearchForm.dtmdatumonttrokkenvan|generate:"fixed" }} {{ persoonSearchForm.dtmdatumonttrokkentot|generate }}</div>
+<div class="form_row">{{ persoonSearchForm.dtmoverlijdensdatumvan|generate:"fixed" }} {{ persoonSearchForm.dtmoverlijdensdatumtot|generate }}</div>
+<div class="form_row"><input type="button" id="btn_submit" value="Zoek"/> <input type="reset" value="Reset"/></div>
 </div>
 
 </form>

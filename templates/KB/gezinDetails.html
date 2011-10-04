@@ -33,15 +33,16 @@
 {% else %}
 <input type="hidden" name="gezinFormHasErrors" id="gezinFormHasErrors" value="0"/>
 {% endif %}
-{{ gezinForm.txtgezinsnaam|generate:"fixed" }}<br class="clear"/>
-{{ gezinForm.txtstraatnaam|generate:"fixed" }} {{ gezinForm.inthuisnummer|generate }} {{ gezinForm.txthuisnummertoevoeging|generate }}<br class="clear"/>
-{{ gezinForm.txtpostcode|generate:"fixed" }} {{ gezinForm.txtplaats|generate }}	{{ gezinForm.idland|generate }}<br class="clear"/>
-{{ gezinForm.txttelefoon|generate:"fixed" }}<br class="clear"/>
-{{ gezinForm.txtopmerking|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ gezinForm.txtgezinsnaam|generate:"fixed" }}</div>
+<div class="form_row">{{ gezinForm.txtstraatnaam|generate:"fixed" }} {{ gezinForm.inthuisnummer|generate }} {{ gezinForm.txthuisnummertoevoeging|generate }}</div>
+<div class="form_row">{{ gezinForm.txtpostcode|generate:"fixed" }} {{ gezinForm.txtplaats|generate }}	{{ gezinForm.idland|generate }}</div>
+<div class="form_row">{{ gezinForm.txttelefoon|generate:"fixed" }}</div>
+<div class="form_row">{{ gezinForm.txtopmerking|generate:"fixed" }}</div>
+<div class="form_row">
 <input type="submit" class="button" id="buttonSaveGezinForm" value="Opslaan"/> 
 <input type="button" id="buttonModifyGezinForm" class="button" value="Wijzigen" onclick="modifyGezinForm()"/>
 <input type="button" id="buttonCancelGezinForm" class="button" value="Annuleren" onclick="cancelGezinForm()"/>
-</form>
+</div></form>
 
 <br class="clear"/>
 
