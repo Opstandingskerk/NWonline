@@ -58,14 +58,6 @@ form label.fixed {
 	width: 8.0em;
 }
 
-form label,form input,form select,form textarea,form button {
-	float: left;
-	margin-bottom: 0.5em;
-	margin-right: 1em;
-	line-height: 18px;
-}
-
-
 form tr {
 	clear: both;
 }
@@ -401,11 +393,6 @@ p.error {
 .ui-widget {
 	font-family: Arial, sans-serif;
 	font-size: 1.0em;
-}
-
-.ui-widget label {
-	float: left;
-	margin-right: 0.5em;
 }
 
 .ui-widget label.fixed {
