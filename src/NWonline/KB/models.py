@@ -237,7 +237,7 @@ class Persoon(models.Model):
     idgastgemeente = models.ForeignKey(Gemeente, verbose_name="Gastgemeente", null=True, blank=True, db_column="idGastGemeente", related_name="Gastlid") # Field name made lowercase.
     idgasthoofdgemeente = models.ForeignKey(Gemeente, verbose_name="Gasthoofdgemeente", null=True, blank=True, db_column="idGastHoofdGemeente", related_name="Gastlid_hoofd") # Field name made lowercase.
     boolgastlidnw = MySQLBooleanField("Gastlid Noord-West", db_column="boolGastlidNW") # Field name made lowercase. This field type is a guess.
-    boolgastlidelders = models.BooleanField("Gastlid elders", db_column="boolGastlidElders") # Field name made lowercase. This field type is a guess.
+    boolgastlidelders = MySQLBooleanField("Gastlid elders", db_column="boolGastlidElders") # Field name made lowercase. This field type is a guess.
     boolgeborennw = MySQLBooleanField("Geboren in Noord-West", db_column="boolGeborenNW") # Field name made lowercase. This field type is a guess.
     idhuiskring = models.ForeignKey(Huiskring, verbose_name="Huiskring", db_column="idHuiskring", null=True, blank=True) # Field name made lowercase.
     idhuiskringlidrol = models.ForeignKey(HuiskringLidRol, verbose_name="Rol in huiskring", db_column="idHuiskringRol", null=True, blank=True) # Field name made lowercase.    
