@@ -385,7 +385,7 @@ p.error {
 	padding: 0px;
 }
 
-.error li {
+.errorlist li {
 	float: left;
 	font-size: x-small;
 }
