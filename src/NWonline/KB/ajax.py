@@ -7,7 +7,7 @@
 # 20101209    Lukas Batteau        Added header.
 # 20100328    Lukas Batteau        Added queryGemeente, used in marry wizard
 ###############################################################################
-from NWonline.KB.models import Persoon, Gemeente, LidmaatschapStatus
+from NWonline.KB.models import Persoon, Gemeente
 from django.contrib.auth.decorators import login_required
 from django.db.models.query_utils import Q
 from django.http import HttpResponse
@@ -19,7 +19,7 @@ def queryPersoon(request):
     query = request.GET.get('term')
     query_words = query.split(" ")
     # Create empty list
-    persoon_list = Persoon.objects.filter(idlidmaatschapstatus__idlidmaatschapstatus=LidmaatschapStatus.ACTIEF)
+    persoon_list = Persoon.active_members.all()
    
     # Join filtered queries
     for word in query_words:

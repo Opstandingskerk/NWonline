@@ -14,6 +14,7 @@
 ###############################################################################
 from NWonline import settings
 from django.db import models
+from django.db.models.manager import Manager
 import datetime
 
 class MySQLBooleanField(models.BooleanField):
@@ -202,6 +203,11 @@ class Attestatie(models.Model):
     def __unicode__(self):
         return self.txtcode
 
+# First, define the Manager subclass.
+class ActiveMembersManager(models.Manager):
+    def get_query_set(self):
+        return super(ActiveMembersManager, self).get_query_set().filter(idlidmaatschapstatus__idlidmaatschapstatus=LidmaatschapStatus.ACTIEF)
+
 class Persoon(models.Model):
     idpersoon = models.AutoField(primary_key=True, db_column="idPersoon") # Field name made lowercase.
     idlidmaatschapvorm = models.ForeignKey(LidmaatschapVorm, verbose_name="Lidmaatschap", null=False, db_column="idLidmaatschapVorm", blank=False) # Field name made lowercase.
@@ -242,6 +248,8 @@ class Persoon(models.Model):
     idhuiskring = models.ForeignKey(Huiskring, verbose_name="Huiskring", db_column="idHuiskring", null=True, blank=True) # Field name made lowercase.
     idhuiskringlidrol = models.ForeignKey(HuiskringLidRol, verbose_name="Rol in huiskring", db_column="idHuiskringRol", null=True, blank=True) # Field name made lowercase.    
 
+    objects = Manager()
+    active_members = ActiveMembersManager()
 
     def calculate_age(self, some_date=None):
         if (some_date):
