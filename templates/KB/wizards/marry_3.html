@@ -1,13 +1,13 @@
-{% extends "KB/main.html" %}
+{% extends "KB/wizards/wizard.html" %}
 
 {% load customtags %}
 
 {% block content %}
 
+<form name="form" id="form" action="." method="post">{% csrf_token %}
 <div class="box widget">
 <h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
 <p>Op welk adres komt het nieuwe huishouden te wonen?</p>
-<form name="form" id="form" action="." method="post">{% csrf_token %}
 
 <table border="0" cellspacing="0" cellpadding="0" class="multiline">
 <tr><td>
@@ -21,22 +21,21 @@
 </td></tr>
 </table>
 
-<br class="clear"/>
-
 {{ form.welkgezin }}
 <div id="gezinDetails" style="display: none">
-{{ form.txtstraatnaam|generate:"fixed" }} {{ form.inthuisnummer|generate }} {{ form.txthuisnummertoevoeging|generate }}<br class="clear"/>
-{{ form.txtpostcode|generate:"fixed" }} {{ form.txtplaats|generate }}<br class="clear"/>
-{{ form.idland|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ form.txtstraatnaam|generate:"fixed" }} {{ form.inthuisnummer|generate }} {{ form.txthuisnummertoevoeging|generate }}</div>
+<div class="form_row">{{ form.txtpostcode|generate:"fixed" }} {{ form.txtplaats|generate }}</div>
+<div class="form_row">{{ form.idland|generate:"fixed" }}</div>
 
 </div>
 
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
 {{ previous_fields|safe }}
+</div>
+
 <input type="button" id="submitButton" onClick="submitForm()" value="Voltooien">
 <br class="clear"/>
 </form>
-</div>
 
 <script type="text/javascript">
 

@@ -29,10 +29,11 @@ This template is a generic HTML5 template.
         {% endblock %}
     </head>
     <body>
+    	{% block header %}
         <header>
 		<div id="top">
 			<span>NWonline - Kerkelijk Bureau</span>
-			<span id="version">v0.9</span>
+			<span id="version">dev</span>
 			{% if user.is_active %}
 			<span id="user">Welkom, {% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}.
 			{% if user.is_staff %}<a href="/admin" target="_new">onderhoud</a> |{% endif %}
@@ -42,8 +43,13 @@ This template is a generic HTML5 template.
 			{% endif %}
 		</div>    	
 		</header>
+		{% endblock %}
 		<div id="main">
-    	<div id="loading"><img src="/media/img/ajax-loader.gif" border="0"/></div>
+		<div id="loading">
+		{% block ajax-loader-image %}
+		<img src="/media/img/ajax-loader.gif" border="0"/>
+    	{% endblock %}
+    	</div>
 
 		<script type="text/javascript">
 		
@@ -77,8 +83,14 @@ This template is a generic HTML5 template.
 			
 		}
 
-		
-		
+		function resetForm(id) {
+			$(':input', id)
+			 .not(':button, :submit, :reset')
+			 .val('')
+			 .removeAttr('checked')
+			 .removeAttr('selected');
+		}
+
 		</script>
 		{% block body %}{% endblock %}
     	</div>

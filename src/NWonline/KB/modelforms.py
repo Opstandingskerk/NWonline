@@ -37,7 +37,7 @@ class GezinForm(forms.ModelForm):
 
 class PersoonForm(forms.ModelForm):
     txttussenvoegsels = forms.CharField(
-                            widget=forms.TextInput(attrs={"size":8}),
+                            widget=forms.TextInput(attrs={"size":6}),
                             label="Tussenvoegsels",
                             required=False)
     txtvoorletters = forms.CharField(

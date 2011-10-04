@@ -6,12 +6,21 @@
 # CHANGE HISTORY
 # 20101209    Lukas Batteau        Added header. Reorganized imports.
 ###############################################################################
+import os
+import locale
 from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
 admin.autodiscover()
 
-import locale
-locale.setlocale(locale.LC_ALL, "nl_NL.UTF-8")
+# Configure locale
+if (os.name == "nt"):
+    # Windows
+    locale_string = "nld"
+else:
+    # Assume posix
+    locale_string = "nl_NL.UTF-8" 
+
+locale.setlocale(locale.LC_ALL, locale_string)
 
 urlpatterns = patterns('',
     # Example:

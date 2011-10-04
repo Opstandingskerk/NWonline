@@ -1,0 +1,21 @@
+{% extends "KB/base.html" %}
+
+{% comment %}
+
+Template for wizard
+
+{% endcomment %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+{% block content %}
+
+<script language="javascript">
+window.parent.location = "{{ redirect }}";
+</script>
+
+{% endblock %}
+
+{% endblock %}

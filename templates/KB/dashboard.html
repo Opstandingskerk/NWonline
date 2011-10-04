@@ -31,7 +31,7 @@
 <div id="action_widget" class="box widget right-widget">
 <img src="/media/img/icon_enter_off.png" class="icon" border="0"/>
 <img src="/media/img/icon_baby_off.png" class="icon" border="0"/>
-<img src="/media/img/icon_marry_off.png" class="icon" border="0"/>
+<a id="wizard_marry_link" href="/wizard/marry/1/"><img src="/media/img/icon_marry_off.png" class="icon" border="0"/></a>
 <img src="/media/img/icon_exit_off.png" class="icon" border="0"/>
 </div>
 <div id="export_widget" class="box widget right-widget">
@@ -42,8 +42,7 @@
 		<p>Deze lijst bevat de gegevens van alle actieve leden.</p> 
 		<form name="members" action="members" method="POST">
 		{% csrf_token %}
-		<p class="clear">Type: <img src="/media/img/excel.gif" border="0"></p>
-		<input type="submit" value="Genereer"/>
+		<div class="form_row"><input type="submit" value="Genereer"/></div>
 		</form>
 	</div>
 	<h3><a href="#">Verjaardagen</a></h3>
@@ -51,19 +50,17 @@
 		<p>Deze lijst bevat alle actieve leden die in de gegeven periode jarig zijn, gegroepeerd op maand.</p>
 		<form name="birthdays" action="birthdays" method="POST">
 		{% csrf_token %}
-		{{ birthdays_form.date_from|generate:"fixed" }}{{ birthdays_form.date_to|generate }}<br class="clear"/>
-		{{ birthdays_form.category|generate:"fixed" }}
-		<p class="clear">Type: <img src="/media/img/word.gif" border="0"></p>
-		<input type="submit" value="Genereer"/>
+		<div class="form_row">{{ birthdays_form.date_from|generate:"fixed" }}{{ birthdays_form.date_to|generate }}</div>
+		<div class="form_row">{{ birthdays_form.category|generate:"fixed" }}</div>
+		<div class="form_row"><input type="submit" value="Genereer"/></div>
 		</form>
 	</div>
 	<h3><a href="#">Stemlijst</a></h3>
 	<div>
 		<p>De stemlijst bevat alle actieve belijdende leden, gegroepeerd op huishouden.</p> 
-		<p>Type: <img src="/media/img/word.gif" border="0"></p>
 		<form name="election" action="election" method="POST">
 		{% csrf_token %}
-		<input type="submit" value="Genereer"/>
+		<div class="form_row"><input type="submit" value="Genereer"/></div>
 		</form>
 	</div>
 	<h3><a href="#">E-mailadressen</a></h3>
@@ -73,7 +70,7 @@
 		</p>
 		<form name="email" action="email" method="POST">
 		{% csrf_token %}
-		<input type="submit" value="Genereer"/>
+		<div class="form_row"><input type="submit" value="Genereer"/></div>
 		</form>
 	</div>
 	<h3><a href="#">Update geloofhet.nl</a></h3>
@@ -83,14 +80,11 @@
 		</p> 
 		<div id="progressbar"></div>
 		<div id="progressmessage" class="small"></div>
-		<p>
-		<input id="button_export" type="submit" value="Exporteer" onClick="exportGeloofhet();"/>
-		</p>
+		<div class="form_row"><input id="button_export" type="submit" value="Exporteer" onClick="exportGeloofhet();"/></div>
 	</div>
 </div>
 
-<a id="goToMyPage" href="#">Go to My Page</a>
-<div id="modalDiv"><iframe id="modalIFrame" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" title="Dialog Title" src="http://localhost:8000/wizard/membership/1/"></iframe></div>
+<div id="wizard_marry_dialog"><iframe id="wizard_marry_iframe" style="width: 100%; height: 99%; margin: 0px; padding: 0px;" frameBorder="0" scrolling="auto" title="Dialog Title"></iframe></div>
 
 
 </div>
@@ -98,6 +92,7 @@
 
 <script type="text/javascript">
 var refreshIntervalId;
+var test;
 
 $(document).ready(function() {
 	$("#export_widget").show();
@@ -105,14 +100,23 @@ $(document).ready(function() {
     $("#export").accordion("activate", false);
     //$("#progressbar").progressbar({ value: 0 });
     
-    $("#modalDiv").dialog({
+    $("#wizard_marry_dialog").dialog({
         modal: true,
         autoOpen: false,
-        height: '600',
+        height: '400',
         width: '800',
         draggable: true,
         resizeable: true,   
-        title: 'IFrame Modal Dialog'
+        title: 'Wizard',
+        show: 'fade',
+        beforeClose: function(event, ui) {
+        	redirect = $("#wizard_marry_iframe").contents().find("#redirect").text();
+        	if (redirect) {
+        		document.location = redirect;
+        	} else {
+        		$("#wizard_marry_iframe").attr("src","");
+        	}
+        }
     });
     
     $("img.icon").hover(
@@ -120,9 +124,10 @@ $(document).ready(function() {
     		function() { this.src = this.src.replace("_on", "_off");
     		});
     
-    $('#goToMyPage').click(
+    $('#wizard_marry_link').click(
         function() {
-            $("#modalDiv").dialog("open");
+            $("#wizard_marry_dialog").dialog("open");
+            $("#wizard_marry_iframe").attr("src","http://localhost:8000/wizard/marry/1/");
             return false;
     });      
   });
