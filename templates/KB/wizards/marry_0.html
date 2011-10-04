@@ -4,27 +4,28 @@
 
 {% block content %}
 
-<div class="box widget">
+<form name="form" id="form" action="." method="post">{% csrf_token %}
+<div class="box widget form">
 <h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
 <p>Met wie gaat {{ persoonA }} trouwen?</p>
-<form name="form" id="form" action="." method="post">{% csrf_token %}
 <input type="hidden" id="persoonA" value="{{persoonA}}"/>
+<div class="form_row">
 {{ form.isNew|generate:"fixed" }}<input type="text" style="display:none" id="searchField" size="30" onChange="update()"/>
-<br class="clear"/>
+</div>
 
 <div id="persoonDetails" {% if form.errors %}style="display: none"{% endif %}>
 {{ form.idpersoonB }}
-{{ form.txtachternaam|generate:"fixed" }} {{ form.txttussenvoegsels|generate }} {{ form.idgeslacht|generate }}<br class="clear"/>
-{{ form.txtroepnaam|generate:"fixed" }} {{ form.txtvoorletters|generate }}<br class="clear"/>
-{{ form.idlidmaatschapvorm|generate:"fixed" }}<br class="clear"/>
+<div class="form_row">{{ form.txtachternaam|generate:"fixed" }} {{ form.txttussenvoegsels|generate }} {{ form.idgeslacht|generate }}</div>
+<div class="form_row">{{ form.txtroepnaam|generate:"fixed" }} {{ form.txtvoorletters|generate }}</div>
+<div class="form_row">{{ form.idlidmaatschapvorm|generate:"fixed" }}</div>
 </div>
 
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
 {{ previous_fields|safe }}
-<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
-<br class="clear"/>
-</form>
 </div>
+<br class="clear"/>
+<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
+</form>
 
 <script type="text/javascript">
 

@@ -17,6 +17,10 @@ from django.contrib.formtools.wizard import FormWizard
 from django.forms.forms import Form
 from django.http import HttpResponseRedirect
 from string import atoi
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 class MarryForm1(Form):
     """
@@ -204,7 +208,7 @@ class MarryWizard(FormWizard):
             gezin.idland = oldGezin.idland
             
         # Save
-        print "CREATING NEW GEZIN %s" % (gezin)
+        logger.info("Adding new huishouden %s" % (gezin))
         gezin.save()
 
         #######################################
@@ -236,7 +240,7 @@ class MarryWizard(FormWizard):
         
         # Remove old gezin of persoonA if empty
         if (len(persoonAGezinOld.persoon_set.all()) == 0):
-            print "DELETING GEZIN " + str(persoonAGezinOld)
+            logger.info("Removing huishouden %s" % (str(persoonAGezinOld)))
             persoonAGezinOld.delete()
             
         # Update marriage info
@@ -275,7 +279,7 @@ class MarryWizard(FormWizard):
  
         # Remove old gezin of persoonB if 'empty'
         if (persoonBGezinOld and len(persoonB.idgezin.persoon_set.all()) == 0):
-            print "DELETING GEZIN " + str(persoonBGezinOld)
+            logger.info("Removing huishouden %s" % (str(persoonAGezinOld)))
             persoonBGezinOld.delete()
         
         # Update marriage info

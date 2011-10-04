@@ -4,19 +4,18 @@
 
 {% block content %}
 
-<div class="box widget">
+<form name="form" id="form" action="." method="post">
+<div class="box widget form">
 <h2>Wizard lidmaatschap wijzigen ({{ step }} van {{ step_count }})</h2>
 <p>Kies het type attestatie:</p>
-<form name="form" id="form" action="." method="post">
 {% csrf_token %}
-{{ form.certificateType|generate:"fixed" }}
-<br class="clear"/>
+<div class="form_row">{{ form.certificateType|generate:"fixed" }}</div>
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
 {{ previous_fields|safe }}
-<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
-<br class="clear"/>
-</form>
 </div>
+<br class="clear"/>
+<input type="button" id="submitButton" onClick="submitForm()" value="Volgende">
+</form>
 
 <script type="text/javascript">
 
