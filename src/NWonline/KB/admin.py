@@ -62,7 +62,8 @@ class PersoonAdmin(admin.ModelAdmin):
                        'boolgeborennw',
                        ('boolgastlidnw',
                        'idgasthoofdgemeente'),
-                        'idgastgemeente',)
+                        ('boolgastlidelders',
+                         'idgastgemeente'),)
         }),
         ('Gezin', {
             'classes': ('collapse','wide',),

@@ -395,8 +395,7 @@ p.error {
 
 .error li {
 	float: left;
-	margin-right: 1.0em;
-	margin-left: -0.5em;
+	font-size: x-small;
 }
 
 .ui-widget {
