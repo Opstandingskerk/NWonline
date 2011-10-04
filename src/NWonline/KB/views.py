@@ -15,21 +15,19 @@
 #                                  Persoon list now filtered by status
 ###############################################################################
 from NWonline.KB.forms import PersoonSearchForm
-from NWonline.KB.modelforms import GemeenteForm
-from NWonline.KB.models import GezinsRol, LidmaatschapStatus, LidmaatschapVorm
+from NWonline.KB.models import GezinsRol, LidmaatschapStatus
 from datetime import datetime
 from django import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator, EmptyPage, InvalidPage
+from django.core.paginator import Paginator
 from django.db.models.query_utils import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template.context import RequestContext, Context
 from django.template import loader
+from django.template.context import RequestContext, Context
 from django.utils import simplejson
-from django.utils.html import escape
-from modelforms import GezinForm, PersoonForm, GezinsRolForm
+from modelforms import GezinForm, PersoonForm
 from models import Gezin, Persoon
 
 def createPersoonListPage(request):
@@ -159,7 +157,7 @@ def handlePersoonListFilter(request):
                 persoon_list = persoon_list.filter(idlidmaatschapvorm=idlidmaatschapvorm)
             
             boolgastlidelders = persoonSearchForm.cleaned_data["boolgastlidelders"]
-            if (boolgastlidelders is not None):
+            if (boolgastlidelders):
                 persoon_list = persoon_list.filter(boolgastlidelders=boolgastlidelders)                
             
             idwijk = persoonSearchForm.cleaned_data["idwijk"]
