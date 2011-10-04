@@ -1,0 +1,33 @@
+{% extends "KB/wizards/marry_0.html" %}
+
+{% load customtags %}
+
+{% block question %}
+<p>Wie gaan er trouwen?</p>
+{{ form.idpersoonA }}
+<div class="form_row"><label class="fixed">Lid</label><input type="text" id="searchFieldA" size="30"/></div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+
+function selectNameA(event, ui) {
+	$("{{form.idpersoonA|id}}").val(ui.item.idpersoon);
+}
+
+$(document).ready(function(){
+	$("#searchFieldA").focus(function() {
+		loader = $("#loading");
+		loader.css("position", "relative");
+		loader.css("left", 4);
+		loader.css("top", 4);
+		$("#searchFieldA").after(loader);		
+	});
+	$("#searchFieldA").autocomplete({source:"/query/persoon",
+		minLength: 2,
+		select: selectNameA});
+});
+
+</script>
+{% endblock %}
+

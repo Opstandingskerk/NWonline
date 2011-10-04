@@ -31,7 +31,7 @@
 <div id="action_widget" class="box widget right-widget">
 <img src="/media/img/icon_enter_off.png" class="icon" border="0"/>
 <img src="/media/img/icon_baby_off.png" class="icon" border="0"/>
-<a id="wizard_marry_link" href="/wizard/marry/1/"><img src="/media/img/icon_marry_off.png" class="icon" border="0"/></a>
+<a id="wizard_marry_link" href="#"><img src="/media/img/icon_marry_off.png" class="icon" border="0"/></a>
 <img src="/media/img/icon_exit_off.png" class="icon" border="0"/>
 </div>
 <div id="export_widget" class="box widget right-widget">
@@ -127,7 +127,7 @@ $(document).ready(function() {
     $('#wizard_marry_link').click(
         function() {
             $("#wizard_marry_dialog").dialog("open");
-            $("#wizard_marry_iframe").attr("src","http://localhost:8000/wizard/marry/1/");
+            $("#wizard_marry_iframe").attr("src","http://localhost:8000/wizard/marry/");
             return false;
     });      
   });

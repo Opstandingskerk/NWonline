@@ -10,7 +10,7 @@
 # 20110118    Lukas Batteau        Restructured code for readability 
 ###############################################################################
 from NWonline.KB.models import Gezin, Persoon, Geslacht, Land, GezinsRol, \
-    Gemeente, LidmaatschapStatus, LidmaatschapVorm
+    Gemeente, LidmaatschapVorm
 from NWonline.KB.widgets import AutoCompleteSelect, DatePicker
 from django import forms
 from django.contrib.formtools.wizard import FormWizard
@@ -37,12 +37,20 @@ class MarryForm1(Form):
     txtvoorletters = forms.CharField(label="Voorletters")
     idgeslacht = forms.ModelChoiceField(queryset=Geslacht.objects.all(),
                                         label="Geslacht")
-    txttussenvoegsels = forms.CharField(widget=forms.TextInput(attrs={"size":8}),
+    txttussenvoegsels = forms.CharField(widget=forms.TextInput(attrs={"size":4}),
                                         label="Tussenvoegsels",
                                         required=False)
     idlidmaatschapvorm = forms.ModelChoiceField(label="Soort lid",
                                                 queryset=LidmaatschapVorm.objects.all(),
                                                 required=True)
+    
+class MarryForm1MemberUnknown(MarryForm1):
+    isNew = forms.IntegerField(widget=forms.RadioSelect(choices=((1, "Nieuw"),(0, "Bestaand"))),
+                               label="Partner")
+    idpersoonA = forms.ModelChoiceField(label="Lid",
+                                        queryset=Persoon.active_members.all(),
+                                        widget=forms.HiddenInput(),
+                                        required=False)
     
 class MarryForm2(Form):
     """
@@ -91,7 +99,7 @@ class MarryWizard(FormWizard):
     
     def __init__(self, *args, **kwargs):
         FormWizard.__init__(self, *args, **kwargs)
-        setattr(self, "storedFields", {})
+        setattr(self, "stored_fields", {})
         
     def parse_params(self, request, *args, **kwargs):
         """
@@ -104,13 +112,13 @@ class MarryWizard(FormWizard):
         persoonId = kwargs["persoonId"]
         
         # Check if persoon already retrieved
-        if ("persoonA" not in self.storedFields 
-            or self.storedFields["persoonA"].idpersoon != persoonId):
+        if ("persoonA" not in self.stored_fields 
+            or self.stored_fields["persoonA"].idpersoon != persoonId):
             # Not yet retrieved or someone else. Retrieve.
             persoon = Persoon.objects.get(pk=persoonId)
         
             # Add persoon to stored fields
-            self.storedFields["persoonA"] = persoon        
+            self.stored_fields["persoonA"] = persoon        
         
         # Continue in super class
         FormWizard.parse_params(self, request, args, kwargs)
@@ -137,16 +145,16 @@ class MarryWizard(FormWizard):
                 persoon.txtvoorletters = request.POST["0-txtvoorletters"]
             
             # Add persoon to context
-            self.storedFields["persoonB"] = persoon
+            self.stored_fields["persoonB"] = persoon
         
-            gezinA = self.storedFields["persoonA"].idgezin
-            self.storedFields["gezinA"] = gezinA
+            gezinA = self.stored_fields["persoonA"].idgezin
+            self.stored_fields["gezinA"] = gezinA
             
-            gezinB = self.storedFields["persoonB"].idgezin
-            self.storedFields["gezinB"] = gezinB
+            gezinB = self.stored_fields["persoonB"].idgezin
+            self.stored_fields["gezinB"] = gezinB
 
         # Copy data in stored fields to context        
-        self.extra_context.update(self.storedFields)
+        self.extra_context.update(self.stored_fields)
         
         return FormWizard.render_template(self, request, form, previous_fields, step)
     
@@ -159,8 +167,8 @@ class MarryWizard(FormWizard):
         """
         
         # Stored data
-        persoonA = self.storedFields["persoonA"]
-        persoonB = self.storedFields["persoonB"]
+        persoonA = self.stored_fields["persoonA"]
+        persoonB = self.stored_fields["persoonB"]
         
         ################################
         # 1. CREATE NEW FAMILY OBJECT
@@ -183,8 +191,8 @@ class MarryWizard(FormWizard):
         code = form_list[3].cleaned_data["code"]
         
         # Retrieve the corresponding existing family (gezinB may be None)
-        if "gezin"+code in self.storedFields:
-            oldGezin = self.storedFields["gezin"+code] # gezinA or gezinB
+        if "gezin"+code in self.stored_fields:
+            oldGezin = self.stored_fields["gezin"+code] # gezinA or gezinB
         else:
             oldGezin = None 
 
@@ -299,4 +307,46 @@ class MarryWizard(FormWizard):
     
     def get_template(self, step):
         return "KB/wizards/marry_%s.html" % step
+    
+class MarryWizardMemberUnknown(MarryWizard):
+    """
+    Specialized form of the marry wizard, where the member getting married is
+    unknown, whereas normally the id is passed in the url. This form is used
+    when launching the wizard directly from the dashboard.
+    """
+
+    def parse_params(self, request, *args, **kwargs):
+        """
+        As we don't know which member is getting married, we do nothing here.
+        We will override render_template to extract member 'A' from the first
+        form and store it in stored_fields. 
+        """
+        pass
+    
+    def render_template(self, request, form, previous_fields, step, context=None):
+
+        if (step == 1):
+            # Store persoonB from screen 1.
+            idpersoon = request.POST["0-idpersoonA"]
+            persoon = Persoon.objects.get(pk=idpersoon)
+            # Add persoon to context
+            self.stored_fields["persoonA"] = persoon
+
+        # Copy data in stored fields to context        
+        self.extra_context.update(self.stored_fields)
+        
+        # Call super class to process rest of the form
+        return MarryWizard.render_template(self, request, form, previous_fields, step)    
+    
+    def get_template(self, step):
+        """
+        Only first page is different
+        """
+        if (step == 0):
+            return "KB/wizards/marry_unknown_0.html"
+        else:
+            return MarryWizard.get_template(self, step)
+    
+
+
         

@@ -7,10 +7,12 @@
 <form name="form" id="form" action="." method="post">{% csrf_token %}
 <div class="box widget form">
 <h2>Wizard trouwen ({{ step }} van {{ step_count }})</h2>
+{% block question %}
 <p>Met wie gaat {{ persoonA }} trouwen?</p>
-<input type="hidden" id="persoonA" value="{{persoonA}}"/>
+{% endblock %}
+
 <div class="form_row">
-{{ form.isNew|generate:"fixed" }}<input type="text" style="display:none" id="searchField" size="30" onChange="update()"/>
+{{ form.isNew|generate:"fixed" }}<input type="text" style="display:none" id="searchFieldB" size="30" onChange="update()"/>
 </div>
 
 <div id="persoonDetails" {% if form.errors %}style="display: none"{% endif %}>
@@ -42,13 +44,13 @@ function update() {
 		$("#submitButton").attr("disabled", true);
 	} else if (isNew == 1) {
 		$("#persoonDetails").show();
-		$("#searchField").hide();
+		$("#searchFieldB").hide();
 		$("#submitButton").removeAttr('disabled');
 		$('#persoonDetails :input').removeAttr('disabled');
 	} else {
 		$('#persoonDetails :input').attr('disabled', true);
 		$("#persoonDetails").show();
-		$("#searchField").show().focus();
+		$("#searchFieldB").show().focus();
 		if (!$("#id_{{ form.idpersoonB.html_name }}").val()) {
 			$("#submitButton").attr("disabled", true);
 		} else {
@@ -63,7 +65,7 @@ function toggleIsNew() {
 	// Check which option the user selected, 'new persoon' or 'existing'
 	if (isNew == 1) {
 		// New. Clear search field.
-		$("#searchField").val("");
+		$("#searchFieldB").val("");
 		// Clear persoon details form (might contain results from search field)
 		resetForm("#persoonDetails");
 	} else {
@@ -77,7 +79,7 @@ function toggleIsNew() {
 	update();
 }
 
-function selectName(event, ui) {
+function selectNameB(event, ui) {
 	$("{{form.idpersoonB|id}}").val(ui.item.idpersoon);
 	$("{{form.txtachternaam|id}}").val(ui.item.txtachternaam);
 	$("{{form.txttussenvoegsels|id}}").val(ui.item.txttussenvoegsels);
@@ -89,17 +91,17 @@ function selectName(event, ui) {
 }
 
 $(document).ready(function(){
-	$("#searchField").autocomplete({source:"/query/persoon",
+	$("#searchFieldB").autocomplete({source:"/query/persoon",
 									minLength: 2,
-									select: selectName});
+									select: selectNameB});
 	
-	// Place ajax loader icon next to search field
-	loader = $("#loading");
-	loader.css("position", "relative");
-	loader.css("left", 0);
-	loader.css("top", 0);
-	$("#searchField").after(loader);
-	
+	$("#searchFieldB").focus(function() {
+		loader = $("#loading");
+		loader.css("position", "relative");
+		loader.css("left", 4);
+		loader.css("top", 4);
+		$("#searchFieldB").after(loader);		
+	});	
 
 	$("form input[name='{{form.isNew.html_name}}']").click(toggleIsNew);		
 
@@ -107,6 +109,9 @@ $(document).ready(function(){
 
 });
 </script>
+
+{% block script %}
+{% endblock %}
 
 {% endblock %}
 
