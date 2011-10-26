@@ -1267,5 +1267,41 @@
             "dtmdatumbinnenkomst": "1995-11-07",
             "txtopmerking": ""
         }
+    },
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "kbadmin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2011-10-26 15:27:30",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha1$9fcf4$e82d77a5a702ab530d247ef8250e8a37e74e6da6",
+            "email": "kbadmin@asdf.com",
+            "date_joined": "2011-10-26 15:01:11"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "auth.user",
+        "fields": {
+            "username": "demo",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2011-10-26 15:27:58",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha1$d86fe$c43c149694553f2ba33c370aa0530094ed562909",
+            "email": "",
+            "date_joined": "2011-10-26 15:27:48"
+        }
     }
 ]
