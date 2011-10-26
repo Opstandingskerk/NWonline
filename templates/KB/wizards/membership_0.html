@@ -30,7 +30,7 @@
 </div>
 
 {% if not is_mode_famiy and persoon.idgezinsrol.pk == 1 and persoon.idgezin.persoon_set.count > 1%}
-{{ form.updateWholeFamily|generate:"fixed" }}
+<div class="form_row">{{ form.updateWholeFamily|generate:"fixed" }}</div>
 {% endif %}
 
 <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
