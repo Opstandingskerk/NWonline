@@ -515,7 +515,7 @@ def handleLogin(request):
                     path = request.GET["next"]
                     return HttpResponseRedirect(path)
                 except:
-                    return HttpResponseRedirect("/leden")
+                    return HttpResponseRedirect("/dashboard")
             else:
                 # Return a "disabled account" error message
                 return render_to_response("KB/error.html",
