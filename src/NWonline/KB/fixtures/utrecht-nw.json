@@ -1,0 +1,430 @@
+[
+    {
+        "pk": 1, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "P/KL", 
+            "txtwijknaam": "Pijlsweerd / kop Lombok"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "LO", 
+            "txtwijknaam": "Lombok"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "OSL", 
+            "txtwijknaam": "Oog in al, Schepenbuurt, Lombok"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "LR", 
+            "txtwijknaam": "Leidsche Rijn"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "OND", 
+            "txtwijknaam": "Ondiep"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "ZJ", 
+            "txtwijknaam": "Zuilen, omgeving Julianapark"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "ZN", 
+            "txtwijknaam": "Zuilen Noord"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "OZ", 
+            "txtwijknaam": "Overvecht Zuid"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "ON", 
+            "txtwijknaam": "Overvecht Noord"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "BU", 
+            "txtwijknaam": "Buitenland"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "KB.wijk", 
+        "fields": {
+            "txtwijknaamkort": "OV", 
+            "txtwijknaam": "Overig"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 1, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Pijlsweerd / kop Lombok kring 1"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 1, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Pijlsweerd / kop Lombok kring 2"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 1, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Pijlsweerd / kop Lombok kring 3"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 2, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Lombok kring 1"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 2, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Lombok kring 2"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 3, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Oog in al, Schepenbuurt, Lombok kring 1"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 3, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Oog in al, Schepenbuurt, Lombok kring 2"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 3, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Oog in al, Schepenbuurt, Lombok kring 3"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 4, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Leidsche Rijn Kring 1"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 4, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Kring Rijnwaarde"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 5, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Ondiep kring 1"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 5, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Ondiep kring 2"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 5, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Ondiep kring 3"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 5, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "d", 
+            "txthuiskringnaam": "Ondiep kring 4"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 6, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Zuilen, omgeving Julianapark kring 1"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 6, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Zuilen, omgeving Julianapark kring 2"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 6, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Zuilen, omgeving Julianapark kring 3"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 6, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "d", 
+            "txthuiskringnaam": "Zuilen, omgeving Julianapark kring 4"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 7, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Zuilen noord kring 1"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 7, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Zuilen noord kring 2"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 7, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Zuilen noord kring 3"
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 8, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Overvecht zuid kring 1"
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 8, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Overvecht zuid kring 2"
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 9, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Overvecht noord kring 1"
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 9, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "b", 
+            "txthuiskringnaam": "Overvecht noord kring 2"
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 9, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Overvecht noord kring 3"
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 10, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "a", 
+            "txthuiskringnaam": "Buitenland"
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 8, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Overvecht zuid kring 3"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 2, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "c", 
+            "txthuiskringnaam": "Lombok kring 3"
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "KB.huiskring", 
+        "fields": {
+            "idwijk": 7, 
+            "txtopmerking": "", 
+            "txtvolgnummer": "d", 
+            "txthuiskringnaam": "Zuilen noord kring 4"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.attestatie", 
+        "fields": {
+            "txtcode": "Doop", 
+            "txtbeschrijving": "<p>aan:<br>\r\n%s %s<br>\r\n%s<br>\r\n%s %s<br>\r\n%s\r\n</p>\r\n<p>\r\nUtrecht, %s\r\n</p>\r\n<center><h1>DOOPATTESTATIE</h1></center>\r\n<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat\r\n<table border=\"0\">\r\n<tr><td>%s</td><td><strong>%s %s (%s)</strong></td></tr>\r\n<tr><td>geboren</td><td>%s te %s</td></tr>\r\n<tr><td>gedoopt</td><td>%s in de %s</td></tr>\r\n</table>\r\n<p>tot op heden dooplid was van onze gemeente.</p>\r\n<p>De kerkenraad beveelt deze %s aan in de herderlijke zorgen van de opzieners van de %s.</p>\r\n<p>\r\nNieuw adres:<br>\r\n<strong>[INVULLEN]</strong>\r\n</p>\r\n<p>\r\nNamens de kerkenraad van Utrecht-Noord/West,<br>\r\n<br>\r\n<br>\r\n<br>\r\nds. J.P. Kruiger, preses\tW.F.Z. de Weger, scriba\r\n</p>\r\n<p>\r\n<small>Deze attestatie zo spoedig mogelijk inleveren bij het kerkelijk bureau.</small>\r\n</p>"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.attestatie", 
+        "fields": {
+            "txtcode": "Verblijfs", 
+            "txtbeschrijving": "<p>aan:<br>\r\n%s %s<br>\r\n%s<br>\r\n%s %s<br>\r\n%s\r\n</p>\r\n<p>\r\nUtrecht, %s\r\n</p>\r\n<center><h1>VERBLIJFSATTESTATIE</h1></center>\r\n<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat\r\n<table border=\"0\">\r\n<tr><td>%s</td><td><strong>%s %s (%s)</strong></td></tr>\r\n<tr><td>geboren</td><td>%s te %s</td></tr>\r\n<tr><td>gedoopt</td><td>%s in de %s</td></tr>\r\n<tr><td>belijdenis afgelegd</td><td>%s in de %s</td></tr>\r\n</table>\r\n<p>tot op heden belijdend lid was van onze gemeente.</p>\r\n<p>%s heeft te kennen gegeven gastlid te willen worden van uw gemeente.</p>\r\n<p>De kerkenraad beveelt deze %s aan de %s aan en verzoekt de ambtsdragers deze %s onder hun christelijk opzicht en bestuur aan te nemen, tot het gebruik van de heilige sacramenten toe te laten en in alle voorkomende gevallen met christelijke raad en daad bij te staan.</p>\r\n<p>\r\nNieuw adres:<br>\r\n<strong>[INVULLEN]</strong>\r\n</p>\r\n<p>\r\nNamens de kerkenraad van Utrecht-Noord/West,<br>\r\n<br>\r\n<br>\r\n<br>\r\nds. J.P. Kruiger, preses\tW.F.Z. de Weger, scriba\r\n</p>\r\n<p>\r\n<small>Deze attestatie zo spoedig mogelijk inleveren bij het kerkelijk bureau.</small>\r\n</p>"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.attestatie", 
+        "fields": {
+            "txtcode": "Belijdenis", 
+            "txtbeschrijving": "<p>aan:<br>\r\n%s %s<br>\r\n%s<br>\r\n%s %s<br>\r\n%s\r\n</p>\r\n<p>\r\nUtrecht, %s\r\n</p>\r\n<center><h1>BELIJDENISATTESTATIE</h1></center>\r\n<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat\r\n<table border=\"0\">\r\n<tr><td>%s</td><td><strong>%s %s (%s)</strong></td></tr>\r\n<tr><td>geboren</td><td>%s te %s</td></tr>\r\n<tr><td>gedoopt</td><td>%s in de %s</td></tr>\r\n<tr><td>belijdenis afgelegd</td><td>%s in de %s</td></tr>\r\n</table>\r\n<p>tot op heden belijdend lid was van onze gemeente.</p>\r\n<p>De kerkenraad beveelt deze %s aan de %s aan en verzoekt de ambtsdragers deze %s onder hun christelijk opzicht en bestuur aan te nemen, tot het gebruik van de heilige sacramenten toe te laten en in alle voorkomende gevallen met christelijke raad en daad bij te staan.</p>\r\n<p><strong>[INVULLEN EVENTUELE AANVULLENDE GEGEVENS]</strong></p>\r\n<p>\r\nNieuw adres:<br>\r\n<strong>[INVULLEN]</strong>\r\n</p>\r\n<p>\r\nNamens de kerkenraad van Utrecht-Noord/West,<br>\r\n<br>\r\n<br>\r\n<br>\r\nds. J.P. Kruiger, preses\tW.F.Z. de Weger, scriba\r\n</p>\r\n<p>\r\n<small>Deze attestatie zo spoedig mogelijk inleveren bij het kerkelijk bureau.</small>\r\n</p>"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.attestatie", 
+        "fields": {
+            "txtcode": "Gezins", 
+            "txtbeschrijving": "<p>aan:<br>\r\nFam. %s<br>\r\n%s<br>\r\n%s %s<br>\r\n%s\r\n</p>\r\n<p>\r\nUtrecht, %s\r\n</p>\r\n<center><h1>GEZINSATTESTATIE</h1></center>\r\n<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat\r\n<table border=\"0\">\r\n<tr><td>%s</td><td><strong>%s %s (%s)</strong></td></tr>\r\n<tr><td>geboren</td><td>%s te %s</td></tr>\r\n<tr><td>gedoopt</td><td>%s in de %s</td></tr>\r\n<tr><td>belijdenis afgelegd</td><td>%s in de %s</td></tr>\r\n</table>\r\n<p>en %s</p>\r\n<table border=\"0\">\r\n<tr><td>%s</td><td><strong>%s %s (%s)</strong></td></tr>\r\n<tr><td>geboren</td><td>%s te %s</td></tr>\r\n<tr><td>gedoopt</td><td>%s in de %s</td></tr>\r\n<tr><td>belijdenis afgelegd</td><td>%s in de %s</td></tr>\r\n</table>\r\n<p>tot de sacramenten zijn toegelaten en - zover hem bekend - gezond zijn in de leer en \r\nonbesproken in de wandel.</p>\r\n<p>De kerkenraad beveelt deze broeder en zuster en <strong>[INVULLEN KINDEREN]</strong> aan de \r\n%s aan en verzoekt de ambtsdragers dit gezin onder hun \r\nchristelijk opzicht en bestuur aan te nemen, tot het gebruik van de heilige sacramenten \r\ntoe te laten en in alle voorkomende gevallen met christelijke raad en daad bij te staan.</p>\r\n<p>\r\nAdres:<br>\r\n<strong>[INVULLEN]</strong>\r\n</p>\r\n<p>\r\nNamens de kerkenraad van Utrecht-Noord/West,<br>\r\n<br>\r\n<br>\r\n<br>\r\nds. J.P. Kruiger, preses\tW.F.Z. de Weger, scriba\r\n</p>\r\n<p>\r\n<small>Deze attestatie zo spoedig mogelijk inleveren bij het kerkelijk bureau.</small>\r\n</p>\r\n"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "KB.attestatie", 
+        "fields": {
+            "txtcode": "Kerkelijke gegevens", 
+            "txtbeschrijving": "<p>aan:<br>\r\n%s %s<br>\r\n%s<br>\r\n%s %s<br>\r\n%s\r\n</p>\r\n<p>\r\nUtrecht, %s\r\n</p>\r\n<center><h1>KERKELIJKE GEGEVENS</h1></center>\r\n<p>De raad van de Gereformeerde Kerk van Utrecht-Noord/West verklaart dat\r\n<table border=\"0\">\r\n<tr><td>%s</td><td><strong>%s %s (%s)</strong></td></tr>\r\n<tr><td>geboren</td><td>%s te %s</td></tr>\r\n<tr><td>gedoopt</td><td>%s in de %s</td></tr>\r\n<tr><td>belijdenis afgelegd</td><td>%s in de %s</td></tr>\r\n</table>\r\n<p>tot op heden %s was van onze gemeente.</p>\r\n<p>\r\nNamens de kerkenraad van Utrecht-Noord/West,<br>\r\n<br>\r\n<br>\r\n<br>\r\nds. J.P. Kruiger, preses\tW.F.Z. de Weger, scriba\r\n</p>\r\n<p>\r\n<small>Deze attestatie zo spoedig mogelijk inleveren bij het kerkelijk bureau.</small>\r\n</p>"
+        }
+    }
+]

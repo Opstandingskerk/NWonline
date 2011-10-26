@@ -1,0 +1,5984 @@
+[ 
+    {
+        "pk": 337, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Alt reformierte Kirche Campen (D)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 441, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "American Reformed Church Grand Rapids (VS)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 555, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "American Reformed Church Michigan, USA", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 328, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "American Reformed Church of Lynden (Wash.)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 544, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 471, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ancaster Canadian Reformed Church", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 383, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Anglicaanse kerk van Merimbula, New South Wales", 
+            "txtopmerking": ", Australi\u00eb", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 363, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Anglican Church Sydney, Australia", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 360, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Assembl\u00e9 de Dieu, Kigali, Rwanda", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 416, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Baptisten gemeente Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 397, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Baptisten gemeente Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 468, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Butipitri (Irian Jaya)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 198, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Canada", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 399, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Canadian Reformed Church Edmonton", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 290, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Canadian Reformed Church Londen Ontario", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 504, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Cephas Christian Reformed Church, Peterborough", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 477, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK 's Hertogenbosch", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 495, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 443, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Amsterdam", 
+            "txtopmerking": "Diepenbrockstraat 46, 1077 WB Amsterdam.", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 384, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Arnhem", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 458, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Biezelinge", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 459, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Biezelinge", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 500, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Bunschoten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 487, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Delfzijl", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 490, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Deventer", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 510, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Dordrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 503, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Enkhuizen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 498, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Groningen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 527, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Hilversum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 462, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK IJmuiden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 521, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Leiden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 507, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Lisse", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 491, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Middelharnis", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 478, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Nieuwerkerk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 543, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Nijmegen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 519, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Rotterdam Oost/ Capelle a/d Ijssel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 406, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Soest", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 422, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Utrecht-Centrum (Singelkerk)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 423, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Utrecht-West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 501, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Zeewolde", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 476, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Zierikzee", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 448, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CGK Zwolle", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 539, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Chr. Geref. kerk Rotterdam Oost/Capelle ad Ijssel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 362, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Chris. Church Pambula, Australia", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 326, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Christian Reformed Church of Peterborough, ON", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 541, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "CLC Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 107, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Cloverdale, Canada", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 445, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Crossroad International Church te Amsterdam", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Dopperkerk Heilbron", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 494, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Eglise Reformee de France st Palais sur Mer", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 493, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Eglise Reformee de France Versailles", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 557, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Evangelische Gemeente Harderwijk ", 
+            "txtopmerking": "", 
+            "idgemeentetype": 6
+        }
+    }, 
+    {
+        "pk": 529, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Evangelische gemeente Ijsselstein", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 395, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Evangelische Gemeente Zuilen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 511, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Evangelische Kirchengemeinde Ennepetal", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 425, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Free Church of Scotland in Londen - UK", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 340, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geboren", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 398, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "gedoopt", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 435, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Geref. gemeente 's Gravenpolder", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 403, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Geref. gemeente 's-Gravenhage Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 405, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Geref. gemeente Soest", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 436, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. gemeente Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. Huisgemeente Paramaribo", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 178, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk 's Hertogenbosch", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 375, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk 's-Gravenhage-Centrum/Scheveningen", 
+            "txtopmerking": "Scriba: B.E. Boiten, Stephensonstraat 24, 2561 XV  's-Gravenhage, 070-3648866, berend@boiten.nl., Duinkerksestraat 11, 2587 VS 's-Gravenhage", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 108, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk 's-Hertogenbosch", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk 't Harde", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk (syn.) 's Gravenzande", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk (syn.) Nieuwegein", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 109, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk (syn.) Nieuwegein", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk (syn.) Weesp", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 359, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk (syn.) Westbroek", 
+            "txtopmerking": ", scriba: T. Timmer, Rading 30, 1231 KA  Loosdrecht", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 438, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk (syn.) Woerden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 179, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Aduard", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 180, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Alkmaar", 
+            "txtopmerking": "Scriba F.H. van Heuveln, Sweelinklaan 74, 072-5152803, Sweelinklaan 74, 1817KH  Alkmaar", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 112, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Almelo", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 391, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Almere", 
+            "txtopmerking": "Scriba: J.J. van Gurp, Poulencstraat 51, 1323GN Almere, 036-5362690, jjvgurp@euronet.nl, Postbus 10090, 1301 AB  Almere", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 480, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Almere West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 496, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Almere-Zeewolde", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Almkerk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Almkerk-Werkendam", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 113, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Alphen a/d Rijn", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 114, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Centrum", 
+            "txtopmerking": "Scriba: K. Mulder, Melisandeplaats 2, 3816RL Amersfoort, 033-4726308, mulderk@hetnet.nl, p/a Melisanderplaats 2, 3816 RL  Amersfoort", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 388, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-De Horsten", 
+            "txtopmerking": "Mw. R. Padding-Nijland, Boomrijk 20, 3813XJ Amersfoort, 033-4802785, email: k.padding@wanadoo.nl, Laan naar Emiclaer 1, 3823 EG  Amersfoort", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 358, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Emiclaer", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 408, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Hoogland", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 353, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Nieuwland", 
+            "txtopmerking": "Elke woensdag van 19:30 - 20:00 uur in de kerk. Info G. Hutten, 033 456 31 18.", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 115, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 291, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Oost", 
+            "txtopmerking": "Dinsdags van 19.00-19.30u in 'De Schaapskooi', Magelhaenstraat 70. 033-4758360, Talingstraat 34, 3815 JS  Amersfoort", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 417, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Vathorst", 
+            "txtopmerking": "Dinsdags van 19.00-19.30u in 'De Schaapskooi', Magelhaenstraat 70. 033-4758360, Talingstraat 34, 3815 JS  Amersfoort", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-West", 
+            "txtopmerking": "Ma 19u00-19u30, P. Baas, Soesterweg 408, 033-4613007, pbaas@wish.nl., Chirurgijnsgilde 40, 3813GZ Amersfoort", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 430, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amersfoort-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 463, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amstelveen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amsterdam", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amsterdam-Centrum", 
+            "txtopmerking": "J.L.C. Groenenberg, Hogeweg 39-3, 1098 BX Amsterdam, 468 86 42, jlcgroenenberg@hetnet.nl, Oosterpark 5, 1091 AC Amsterdam", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 317, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Amsterdam-Zuid/West", 
+            "txtopmerking": "Mw. A.H. Horlings, B.Hoqquerstraat 621, 1064CX Amsterdam, 020-6861233, marietteboersma@dolfijn.nl, Egidiusstraat 37, 1055 GM  Amsterdam", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 216, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Anna-Paulowna", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 118, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Apeldoorn", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 354, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Apeldoorn-Centrum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 545, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Apeldoorn-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 540, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Appingendam", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Arnhem", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Assen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 387, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Assen-Kloosterveen", 
+            "txtopmerking": "scriba: Mevr. Chr. Janssen, Asserstraat 121, 9335TB Zuidvelde, 0592-388348, scriba-kv@hetnet.nl, Asserstraat 121, 9335 TB Zuidvelde", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 394, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Assen-Marsdijk", 
+            "txtopmerking": ", Postbus 505, 9400 AM  Assen", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 283, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Assen-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 316, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Assen-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 119, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Avereest-Dedemsvaart", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 188, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Axel", 
+            "txtopmerking": "A. Spakman email A.spakman@hetnet.nl 0115-562327, Westsingel 16, 4571 VE  Axel", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 189, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Baarn", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 515, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Baflo", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 393, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Balkbrug", 
+            "txtopmerking": ", Postbus 25, 7707 ZG  Balkbrug", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 120, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Barendrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 319, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Barneveld-Voorthuizen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bedum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Beetsterzwaag", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 418, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bergentheim", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bergschenhoek", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 192, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Berkel en Rodenrijs", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 367, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Berkum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 479, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Best", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 123, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Beverwijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bilthoven", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 472, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Blije-Holwerd", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bodegraven-Woerden", 
+            "txtopmerking": "Scriba: F. Prins, Minkemalaan 58, 3446GL Woerden, 0348-434492., Minkemalaan 58, 3446GL  Woerden", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 366, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Breda", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 342, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Breezand", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Breukelen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 292, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Broek op Langedijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 506, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Brouwershaven", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 194, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Brunsum-Treebeek", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 343, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Buitenpost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bunschoten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bunschoten-Oost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 217, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bunschoten-West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 196, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Buschoten/Spakenburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bussum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 197, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Bussum-Huizen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 125, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Capelle a/d IJssel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 442, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Capelle a/d IJssel-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 218, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Capelle a/d IJssel-Zuid/West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 126, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Creil", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Culemborg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 200, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Cura\u00e7ao", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 127, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Daarleveen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 128, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Dalfsen", 
+            "txtopmerking": ", Postbus 4, 7720 AA  Dalfsen", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 411, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Damwoude", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk De Bilt-Bilthoven", 
+            "txtopmerking": "Scriba: Dhr. S. Zwarts, Distelvlinder 8, 3723 RN Bilthoven, tel. 030 228 31 19., Postbus 503, 3720 AM  Bilthoven", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 378, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Delft", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 325, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Delfzijl", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 205, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Den Bosch", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 429, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Den Haag-Centrum/Scheveningen", 
+            "txtopmerking": ", \r\n2587 VS 's-Gravenhage", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 327, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Den Haag-Zuid/Rijswijk", 
+            "txtopmerking": "Scriba: J.A.D. Schravendeel, tel. 070-3946318, Postbus 45787, 2504 BD  Den Haag", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 546, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk den Ham", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Den Helder", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Deventer", 
+            "txtopmerking": "Scriba: G.J. van Rijn, Veldhommel 35, 7423HP Deventer, 0570-658985, email: gjvanrijn@daxis.nl, Postbus 875, 7400 AW  Deventer", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Doesburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 312, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Doetinchem", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Dokkum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 208, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Dordrecht", 
+            "txtopmerking": "Scriba: J.W. Boersma, 078-6316997, Postbus 9157, 3301 AD  Dordrecht", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 209, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Drachten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 508, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Drachten Zuid-West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 284, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Drachten Zuid/Oost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 526, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Drachten-Nijega", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 376, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Drachten-oost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 130, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Driebergen-Rijsenburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 131, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Dronten", 
+            "txtopmerking": "Scriba: N. de Roon, tel. 0321-316069, Postbus 137, 8250 AC  Dronten", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 415, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ede", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 211, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ede-Noord", 
+            "txtopmerking": "Mevr. H. Lok, Hofbeeklaan 19, 6715 EA Ede, 0318 63 83 55", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 453, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ede-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Eindhoven", 
+            "txtopmerking": "bezoekadres: N. Buurman, Mgr. Cuytenlaan 38, Nuenen, Orionstraat 7, 5632DA Eindhoven", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 323, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Eindhoven-Best", 
+            "txtopmerking": "Postbus 87\r\n5680 AB Bes", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Emmeloord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 213, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Emmen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 473, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Enkhuizen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 132, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Enschede-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 133, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Enschede-Oost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 352, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk enschede-west", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 455, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Enschede-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 413, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Enumatil", 
+            "txtopmerking": ", Postbus 138, 9800 AA  Zuidhorn", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ermelo", 
+            "txtopmerking": "Scriba: J. van der Deure\r\nSeringweg 71\r\n3852 GR Ermelo, Postbus 49, 3850 AA  Ermelo", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 528, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Franeker", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 345, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Frieschepalen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 365, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Garrelsweer", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Gees", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 225, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Giessen-Rijswijk  (NBR)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Glanerbrug", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Goes", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 371, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Gorinchem", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Gouda", 
+            "txtopmerking": "Scriba: H.C. Kammeraat, tel. 0182-393521, Scriba: H.C. Kammeraat, Postbus 774, 2800 AT  Gouda", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Groningen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Groningen-Noord", 
+            "txtopmerking": "Noorderbuitensingel 12, 9717KK Groningen, 050-5735569, nooderkerk@gvgroningen.nl, Noorderbuitensingel 12, 9717 KK  Groningen", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Groningen-Oost", 
+            "txtopmerking": ", Postbus 60060, 9703 BB  Groningen", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 134, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Groningen-West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Groningen-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 377, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Grootegast", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 231, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Haarlem", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hardenberg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 232, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hardenberg Oost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 390, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hardenberg-Baalder", 
+            "txtopmerking": "W. Dam, Paasberg 1, 7772DG Hardenberg, 0523-263485, wicherdam@solcon.nl, Postbus 401, 7770AK Hardenberg", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 346, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hardenberg-Baalderveld", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 135, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hardenberg-Centrum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Harderwijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 136, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hardinxveld-Giessendam", 
+            "txtopmerking": "G. Nederveen, Buitendams 342, 3171BT, Hardinxveld-Giessendam, 0184-613652., Buitendams 45, 3371BA Hardinxveld-Giessendam", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 137, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Haren", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 310, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hasselt", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 138, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hattem", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 389, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hattem-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Haulerwijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 533, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Heemse", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Heerde", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Heereveen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 139, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Helpman", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 140, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hengelo", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 141, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hilversum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 336, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hoek", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 311, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hoofddorp", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 142, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hoogeveen", 
+            "txtopmerking": "G.J. Klijnstra, 0582-270132, elke do.19.30-19.45 in de kerk, Bentinckslaan 78, Hoogeveen., Postbus 57, 7900 AB  Hoogeveen", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hoogkerk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Hoogvliet-Spijkenisse", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 382, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Houten", 
+            "txtopmerking": "mw. T.A. van Veen-Andr\u00e9, Zwenghout 15, 030-6341241, fratal@zonnet.nl, p/a mw. J. Valentijn, Snoeksloot 152, 3993 HP  Houten", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 239, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Idskenhuizen (syn.)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 470, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk IJselmuiden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 240, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Kadoelen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 220, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Kampen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 356, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Kampen-noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 355, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Kampen-zuid", 
+            "txtopmerking": ", Cello 1, 8265 RL Kampen", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 368, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Krimpen a/d IJssel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 320, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Langerak", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 465, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Langeslag", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 439, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Leek", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Leek/Roden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Leerdam", 
+            "txtopmerking": "W. van der Mijden, tel 0345616775., Postbus 241, 4140AE  Leerdam", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 428, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Leeuwarden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 221, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Leiden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 380, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Leidsche Rijn", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 386, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Lelystad", 
+            "txtopmerking": ", Postbus 296, 8200AG Lelystad", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 321, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Lemele-Lemelerveld", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Leusden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 434, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Lisse", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 143, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Loenen a/d Vecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 509, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Loenen-Abcoude", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 409, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Loppersum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 334, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Lutten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 294, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Maarssen-Breukelen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Maartensdijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Maassluis", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 475, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Maastricht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Mari\u00ebnberg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Marknesse", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 381, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Mechelen (Belgi\u00eb)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 322, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Meppel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 144, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Middelburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 404, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Middelharnis", 
+            "txtopmerking": ", Postbus 73, 3240AB Middelharnis", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Middelstum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 330, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Mijdrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Monster", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Mussel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 523, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Musselkanaal/Valthermond", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 247, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Neede", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk New Westminster", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 344, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nieuw-Lekkerland", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 248, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nieuwegein", 
+            "txtopmerking": "Mw. A.G. Roose, Graaf Woldemarlaan 10, tel. 030-6080890, mroose@hetnet.nl, scriba G.B. Horsman\r\n030 630 23 55, Braamsluiper 75, 3435 BB Nieuwegein", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 456, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nieuwerkerk a/d IJssel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nieuwleusen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 249, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nijkerk", 
+            "txtopmerking": "do. 18.30-19.00 T. Bakker, Havenstraat 35, thbakker@tref.nl, 033-2451240., Postbus 148, 3860 AC  Nijkerk", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 542, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nijkerk-Oost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 505, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nijkerk-West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 146, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nijmegen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 560, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Nijverdal", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 347, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Noordbergum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 524, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Noordwijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 357, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Oegstgeest", 
+            "txtopmerking": ", Postbus 1108, 2340 BC  Oegstgeest", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 364, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Oldenhove", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ommen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 147, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ontario", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Oostburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Oostelijk Flevoland", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 427, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Overschie", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 446, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Pernis", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 447, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Pernis-Albrandswaard", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Pieterburen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 253, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Pijnacker-Nootdorp", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 424, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Putten", 
+            "txtopmerking": "scriba: Eric Korsaan, Hoofdlaan 74, 3881ZB Putten, 0341-362286, ekorsaan@hetnet.nl", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 474, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ridderkerk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 420, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rijnsburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 149, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rijswijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 254, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Roden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 464, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Roodeschool", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Centrum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 256, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Delfshaven", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Hilligersberg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Kralingen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 150, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Oost", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 222, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Stad", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rotterdam-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 351, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rouveen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 297, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Rozenburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 536, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ruinerwold", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 151, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Santa Rosa/Curacao", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Schermerborn", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 551, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Sexbierum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Sneek", 
+            "txtopmerking": "scriba: T. Hoekstra, Westereems 38, 8602 CR  Sneek, 0515-419347, t.hoekstra@planet.nl, Kleinzand 22, 8601 BH  Sneek", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 318, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Soest", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 385, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. Kerk Soest-Baarn", 
+            "txtopmerking": "Scriba G. Huttinga, 035-6028201, Postbus 3095, 3760DB  Soest", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Souburg-Vlissingen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 152, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Spakenburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Spakenburg-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Spakenburg-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 431, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk spakenburg-Zuid", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Stadskanaal", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 522, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Staphorst", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 153, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Steenwijk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 154, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ten Boer", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 401, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ten Post", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 155, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Terneuzen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Test", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Tiel", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 333, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Tilburg", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Uithuizermeden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ulrum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 156, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Ureterp", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 499, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Urk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 285, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 223, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Utrecht-Centrum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 157, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Utrecht-Noord/West", 
+            "txtopmerking": "M. Terpstra, Acaciastraat 26 bis, Utrecht, 030-2448680, R. vd Hamkade 4, 3552 CM  Utrecht", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 298, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Veendam", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 267, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Veenendaal", 
+            "txtopmerking": "C. Timmer. Dichterslaan 16, 3906 EN  Veenendaal, tel.0318-514265, Postbus 1168, 3900 BD  Veenendaal", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 450, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Veenendaal-Oost", 
+            "txtopmerking": "kerkelijkbureau @ veenendaal-o.gkv.nl, Postbus 446, 3900AK Veenendaal", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 451, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Veenendaal-West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 159, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Velp", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Vlaardingen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Vleuten-De Meern", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 160, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Vlissingen", 
+            "txtopmerking": "Dhr. F. Caan, Rosenburglaan 247, 4385KL Vlissingen, 0118 46 26 69, f.caan @ hetnet.nl., per email: scriba@vlissingen.gkv.nl", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 469, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. Kerk Vollenhove", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 161, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Voorburg", 
+            "txtopmerking": "Scriba: A.S. Louter, Mgr. Van Steelaan 155, 2273EK Voorbrug, 070-3867680, Mgr. Van Steelaan 155, 2273EK Voorbrug", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 335, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Voorschoten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 271, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Voorthuizen-Barneveld", 
+            "txtopmerking": "Scriba: D.J. van Harten, 0342-423285, djharten@gelrevision.nl, Postbus 201, 3770 KC  Barneveld", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 315, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Vrouwenpolder", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 454, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Waardhuizen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 163, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Waddinxveen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Wageningen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 275, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Weesp-Nigtevecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 165, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Westeremden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Wezep", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 287, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Winsum-Obergum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 457, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Woerden/Bodegraven", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 467, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zaamslag", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zaandam", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 372, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zaltbommel", 
+            "txtopmerking": "Mw. A.S. van Houwelingen-Schenkels, Kloosterweide 66, 5301WH Zaltbommel, Postbus 217, 5300 AE  Zaltbommel", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 166, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zeewolde", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 276, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zeist", 
+            "txtopmerking": "W. Ekma, Brugakker 13-01, 3704WE Zeist, 030-6952101, Scriba: Mw. H.J. Slump, Postbus 510, 3700 AM  Zeist", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zevenbergen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 167, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zoetermeer", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 482, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zuidbroek", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zuidhorn", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 168, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zuidlaren", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 289, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zuidwolde", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 169, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zuilen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zutphen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 486, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwartsluis", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 170, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwijndrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 171, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwijndrecht Groote Lindt", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwolle", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 407, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwolle-Berkum", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 299, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwolle-Centrum", 
+            "txtopmerking": ", Mw. H.M. Schiebaan-Strating, Postbus 1417, 8001 BK  Zwolle", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 419, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwolle-Noord", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 432, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwolle-West", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 224, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "geref. kerk Zwolle-Zuid", 
+            "txtopmerking": "Koningskerk, do 19u00-19u30, P.R.A. Borg, 038-4657317, scriba@koningskerk.nl, Postbus 40076, 8004 DB  Zwolle", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 492, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Gereformeerde Gemeente Melissant", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 484, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Gereformeerde Kerk (PKN) Ede", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Gereformeerde kerk Curitiba", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 379, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Gereja Reformasi, Bomakia (Irian Jaya)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 172, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. Gemeente IJsselmuiden en Grafhorst", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 173, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. Gemeente Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 410, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. Gemeente Waddinxveen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 437, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. gemeente Woerden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 236, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. Gemeente Zegveld", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. kerk Veenendaal", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 174, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. kerk Zegveld", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Herv. kerk Zuilen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 556, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Hervormde gemeente Delfshaven", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 518, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Hervormde Gemeente Putten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 349, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Hervormde kerk Nieuw-Loosdrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Huisgemeente Boma", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Huisgemeente Veenhuizen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 532, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Igreja evangelica reformanda de casrambei -Colonia", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "l'\u00e9glise wallonne, Pieterskerk te Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 370, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Leger des heils Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 98, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Monte Alegre, Brazil", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 466, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Assen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 426, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Breukelen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 452, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Deventer", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 489, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Eindhoven", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 329, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Glanerbrug", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 392, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Houten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 481, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Oegstgeest", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 402, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Ten Post", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 176, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 497, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Wezep", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 502, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Zeewolde", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Zwartsluis", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 177, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. geref. kerk Zwolle", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 488, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. Herv. Evangelisatie Zorgvlied", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 512, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. herv. Kerk Amerongen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 369, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. herv. kerk Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 313, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. herv. kerk De Bilt", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 553, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. herv. kerk Lelystad", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 350, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Ned. herv. kerk Zwolle", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 547, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "NGK Houten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 514, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "NGK Rijnwaarde Leidsche-Rijn - Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 548, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "NGK Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 537, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "NGK Wageningen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 538, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "NH Wageningen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 461, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Nieuw vrijgemaakte kerk Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 251, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "nvt/Colombia", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 338, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "onttrokken", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 440, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Orthodox Presbyterian Church Birmingham", 
+            "txtopmerking": ", P.O. Box 43594, Birmingham, AL 35243, USA", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 100, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Oud Geref. Gemeente Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 339, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "overleden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 550, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Amsterdam", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 460, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Dordrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 513, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Ermelo", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 516, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Jacobikerk Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 554, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Lelystad", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 558, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Lopik", 
+            "txtopmerking": "", 
+            "idgemeentetype": 4
+        }
+    }, 
+    {
+        "pk": 444, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Nieuwe Kerk te Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 520, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Nieuwegein", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 559, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Nunspeet", 
+            "txtopmerking": "", 
+            "idgemeentetype": 4
+        }
+    }, 
+    {
+        "pk": 535, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN Waddinxveen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 549, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "PKN-gemeente Ooltgensplaat", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 396, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Presbyterian Church Korea", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 483, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Protestantse wijkgemeente Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 485, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Protestantse Wijkgemeente Amersfoort", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 101, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. kerk Bonaire", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 102, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. kerk Colombia", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 103, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. kerk Etten-Leur", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 104, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. kerk Laren", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 534, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. kerk Sint JacobusKerk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 324, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. kerk Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 412, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. te Musaga (Burundi)", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 331, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K. Zuilen Jacubus Ludgerus", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 105, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "R.K.H. Bonaventurakerk Woerden", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 332, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Remonstrantse Gemeente te Dordrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 106, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Roomse kerk Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 525, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Rwanda", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 348, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "S.O.W. gemeente Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 530, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Sao Jose Da Coroa Grande", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 361, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "St. John's Bega. Australia", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 421, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "toegelaten", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 373, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Uitgesloten uit de gemeenschap van de kerk", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 531, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Vergadering van Gelovigen te Ermelo", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 341, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Victory Outreach Utrecht", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 552, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Volle Evangeliegemeente Woord & Daad Vaassen", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    }, 
+    {
+        "pk": 374, 
+        "model": "KB.gemeente", 
+        "fields": {
+            "txtgemeentenaam": "Vrij evangelische gemeente Zwolle", 
+            "txtopmerking": "", 
+            "idgemeentetype": 1
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.gemeentetype", 
+        "fields": {
+            "txtgemeentetype": "GKV"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.gemeentetype", 
+        "fields": {
+            "txtgemeentetype": "NGK"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.gemeentetype", 
+        "fields": {
+            "txtgemeentetype": "CGK"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.gemeentetype", 
+        "fields": {
+            "txtgemeentetype": "PKN"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "KB.gemeentetype", 
+        "fields": {
+            "txtgemeentetype": "RK"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "KB.gemeentetype", 
+        "fields": {
+            "txtgemeentetype": "Evangelisch"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "KB.gemeentetype", 
+        "fields": {
+            "txtgemeentetype": "Zusterkerk buitenland"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.geslacht", 
+        "fields": {
+            "txtaanhefkerkkort": "br.", 
+            "txtgeslachtlang": "man", 
+            "txtaanhefkort": "dhr.", 
+            "txtgeslacht": "M", 
+            "txtaanhef": "de heer", 
+            "txtaanhefkerk": "broeder"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.geslacht", 
+        "fields": {
+            "txtaanhefkerkkort": "zr.", 
+            "txtgeslachtlang": "vrouw", 
+            "txtaanhefkort": "mw.", 
+            "txtgeslacht": "V", 
+            "txtaanhef": "mevrouw", 
+            "txtaanhefkerk": "zuster"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.gezinsrol", 
+        "fields": {
+            "txtgezinsrol": "Hoofd"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.gezinsrol", 
+        "fields": {
+            "txtgezinsrol": "Partner"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.gezinsrol", 
+        "fields": {
+            "txtgezinsrol": "Kind (inwonend)"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Afghanistan"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Albani\u00eb"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Algerije"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Amerikaans-Samoa"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Amerikaanse Maagdeneilanden"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Andorra"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Angola"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Anguilla"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Antarctica"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Antigua en Barbuda"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Argentini\u00eb"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Armeni\u00eb"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Aruba"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Australi\u00eb"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Azerbeidzjan"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bahama's"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bahrein"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bangladesh"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Barbados"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Belarus"
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Belgi\u00eb"
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Belize"
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Benin"
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bermuda"
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bhutan"
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bolivia"
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bosni\u00eb-Herzegovina"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Botswana"
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Brazili\u00eb"
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Britse Maagdeneilanden"
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Brunei"
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Bulgarije"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Burkina Faso"
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Burundi"
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Cambodja"
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Canada"
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Caymaneilanden / Kaaimaneilanden"
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Centraal-Afrikaanse Republiek"
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Chili"
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "China"
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Christmaseiland"
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Cocoseilanden"
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Colombia"
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Comoren"
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Congo"
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Congo"
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Cookeilanden"
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Costa Rica"
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Cuba"
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Cura\u00e7ao"
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Cyprus"
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Denemarken"
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Djibouti"
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Dominica"
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Dominicaanse Republiek"
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Duitsland"
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Ecuador"
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Egypte"
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "El Salvador"
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Equatoriaal-Guinea"
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Eritrea"
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Estland"
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Ethiopi\u00eb"
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Faer\u00f8er"
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Falklandeilanden"
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Fiji"
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Filipijnen"
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Finland"
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Frankrijk"
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Frans-Guyana"
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Frans-Polynesi\u00eb"
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Gabon"
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Gambia"
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Georgi\u00eb"
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Ghana"
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Gibraltar"
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Grenada"
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Griekenland"
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Groenland"
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Groot-Brittanni\u00eb"
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Guadeloupe"
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Guam"
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Guatemala"
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Guinee"
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Guinee-Bissau"
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Guyana"
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Ha\u00efti"
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Heilige Stoel"
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Honduras"
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Hongarije"
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Hongkong"
+        }
+    }, 
+    {
+        "pk": 93, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Ierland"
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "IJsland"
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "India"
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Indonesi\u00eb"
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Irak"
+        }
+    }, 
+    {
+        "pk": 98, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Iran"
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Isra\u00ebl"
+        }
+    }, 
+    {
+        "pk": 100, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Itali\u00eb"
+        }
+    }, 
+    {
+        "pk": 101, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Ivoorkust"
+        }
+    }, 
+    {
+        "pk": 102, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Jamaica"
+        }
+    }, 
+    {
+        "pk": 103, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Japan"
+        }
+    }, 
+    {
+        "pk": 104, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Jemen"
+        }
+    }, 
+    {
+        "pk": 105, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Jordani\u00eb"
+        }
+    }, 
+    {
+        "pk": 106, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kaaimaneilanden / Caymaneilanden"
+        }
+    }, 
+    {
+        "pk": 107, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kaapverdi\u00eb"
+        }
+    }, 
+    {
+        "pk": 108, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kameroen"
+        }
+    }, 
+    {
+        "pk": 109, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kazachstan"
+        }
+    }, 
+    {
+        "pk": 110, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kenia"
+        }
+    }, 
+    {
+        "pk": 111, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kirgizi\u00eb, Kyrgyzstan"
+        }
+    }, 
+    {
+        "pk": 112, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kiribati"
+        }
+    }, 
+    {
+        "pk": 113, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Koeweit"
+        }
+    }, 
+    {
+        "pk": 114, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kosovo"
+        }
+    }, 
+    {
+        "pk": 115, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Kroati\u00eb"
+        }
+    }, 
+    {
+        "pk": 116, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Laos"
+        }
+    }, 
+    {
+        "pk": 117, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Lesotho"
+        }
+    }, 
+    {
+        "pk": 118, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Letland"
+        }
+    }, 
+    {
+        "pk": 119, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Libanon"
+        }
+    }, 
+    {
+        "pk": 120, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Liberia"
+        }
+    }, 
+    {
+        "pk": 121, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Libi\u00eb"
+        }
+    }, 
+    {
+        "pk": 122, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Liechtenstein"
+        }
+    }, 
+    {
+        "pk": 123, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Litouwen"
+        }
+    }, 
+    {
+        "pk": 124, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Luxemburg"
+        }
+    }, 
+    {
+        "pk": 125, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Macau"
+        }
+    }, 
+    {
+        "pk": 126, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Macedoni\u00eb"
+        }
+    }, 
+    {
+        "pk": 127, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Madagaskar"
+        }
+    }, 
+    {
+        "pk": 128, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Malawi"
+        }
+    }, 
+    {
+        "pk": 129, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Maldiven, Malediven"
+        }
+    }, 
+    {
+        "pk": 130, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Maleisi\u00eb"
+        }
+    }, 
+    {
+        "pk": 131, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Mali"
+        }
+    }, 
+    {
+        "pk": 132, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Malta"
+        }
+    }, 
+    {
+        "pk": 133, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Marokko"
+        }
+    }, 
+    {
+        "pk": 134, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Marshalleilanden"
+        }
+    }, 
+    {
+        "pk": 135, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Martinique"
+        }
+    }, 
+    {
+        "pk": 136, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Mauritani\u00eb"
+        }
+    }, 
+    {
+        "pk": 137, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Mauritius"
+        }
+    }, 
+    {
+        "pk": 138, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Mexico"
+        }
+    }, 
+    {
+        "pk": 139, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Micronesia"
+        }
+    }, 
+    {
+        "pk": 140, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Moldavi\u00eb"
+        }
+    }, 
+    {
+        "pk": 141, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Monaco"
+        }
+    }, 
+    {
+        "pk": 142, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Mongoli\u00eb"
+        }
+    }, 
+    {
+        "pk": 143, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Montenegro"
+        }
+    }, 
+    {
+        "pk": 144, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Montserrat"
+        }
+    }, 
+    {
+        "pk": 145, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Mozambique"
+        }
+    }, 
+    {
+        "pk": 146, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Myanmar"
+        }
+    }, 
+    {
+        "pk": 147, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Namibi\u00eb"
+        }
+    }, 
+    {
+        "pk": 148, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nauru"
+        }
+    }, 
+    {
+        "pk": 149, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nederland"
+        }
+    }, 
+    {
+        "pk": 150, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nederlandse Antillen"
+        }
+    }, 
+    {
+        "pk": 151, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nepal"
+        }
+    }, 
+    {
+        "pk": 152, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nicaragua"
+        }
+    }, 
+    {
+        "pk": 153, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nieuw-Caledoni\u00eb"
+        }
+    }, 
+    {
+        "pk": 154, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nieuw-Zeeland"
+        }
+    }, 
+    {
+        "pk": 155, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Niger"
+        }
+    }, 
+    {
+        "pk": 156, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Nigeria"
+        }
+    }, 
+    {
+        "pk": 157, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Niue"
+        }
+    }, 
+    {
+        "pk": 159, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Noord-Korea"
+        }
+    }, 
+    {
+        "pk": 158, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Noordelijke Marianen"
+        }
+    }, 
+    {
+        "pk": 160, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Noorwegen"
+        }
+    }, 
+    {
+        "pk": 161, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Norfolkeiland"
+        }
+    }, 
+    {
+        "pk": 162, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Oeganda"
+        }
+    }, 
+    {
+        "pk": 163, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Oekra\u00efne"
+        }
+    }, 
+    {
+        "pk": 164, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Oezbekistan"
+        }
+    }, 
+    {
+        "pk": 165, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Oman"
+        }
+    }, 
+    {
+        "pk": 167, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Oost-Timor"
+        }
+    }, 
+    {
+        "pk": 166, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Oostenrijk"
+        }
+    }, 
+    {
+        "pk": 168, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Pakistan"
+        }
+    }, 
+    {
+        "pk": 169, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Palau"
+        }
+    }, 
+    {
+        "pk": 170, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Palestijnse Autonome Gebieden"
+        }
+    }, 
+    {
+        "pk": 171, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Panama"
+        }
+    }, 
+    {
+        "pk": 172, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Papoea-Nieuw-Guinea"
+        }
+    }, 
+    {
+        "pk": 173, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Paraguay"
+        }
+    }, 
+    {
+        "pk": 174, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Peru"
+        }
+    }, 
+    {
+        "pk": 175, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Pitcairneilanden"
+        }
+    }, 
+    {
+        "pk": 176, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Polen"
+        }
+    }, 
+    {
+        "pk": 177, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Portugal"
+        }
+    }, 
+    {
+        "pk": 178, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Puerto Rico, Porto Rico"
+        }
+    }, 
+    {
+        "pk": 179, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Qatar"
+        }
+    }, 
+    {
+        "pk": 180, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "R\u00e9union"
+        }
+    }, 
+    {
+        "pk": 181, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Roemeni\u00eb"
+        }
+    }, 
+    {
+        "pk": 182, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Rusland"
+        }
+    }, 
+    {
+        "pk": 183, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Rwanda"
+        }
+    }, 
+    {
+        "pk": 184, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Saint Kitts en Nevis"
+        }
+    }, 
+    {
+        "pk": 185, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Saint Lucia"
+        }
+    }, 
+    {
+        "pk": 187, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Saint Vincent en de Grenadines"
+        }
+    }, 
+    {
+        "pk": 186, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Saint-Pierre en Miquelon"
+        }
+    }, 
+    {
+        "pk": 188, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Salomonseilanden"
+        }
+    }, 
+    {
+        "pk": 189, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Samoa"
+        }
+    }, 
+    {
+        "pk": 190, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "San Marino"
+        }
+    }, 
+    {
+        "pk": 191, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Sao Tom\u00e9 en Principe"
+        }
+    }, 
+    {
+        "pk": 192, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Saudi-Arabi\u00eb"
+        }
+    }, 
+    {
+        "pk": 193, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Senegal"
+        }
+    }, 
+    {
+        "pk": 194, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Servi\u00eb"
+        }
+    }, 
+    {
+        "pk": 195, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Seychellen"
+        }
+    }, 
+    {
+        "pk": 196, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Sierra Leone"
+        }
+    }, 
+    {
+        "pk": 197, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Singapore"
+        }
+    }, 
+    {
+        "pk": 199, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Sint Maarten"
+        }
+    }, 
+    {
+        "pk": 198, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Sint-Helena"
+        }
+    }, 
+    {
+        "pk": 200, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Slovakije"
+        }
+    }, 
+    {
+        "pk": 201, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Sloveni\u00eb"
+        }
+    }, 
+    {
+        "pk": 202, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Soedan"
+        }
+    }, 
+    {
+        "pk": 203, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Somali\u00eb"
+        }
+    }, 
+    {
+        "pk": 204, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Spanje"
+        }
+    }, 
+    {
+        "pk": 205, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Sri Lanka"
+        }
+    }, 
+    {
+        "pk": 206, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Suriname"
+        }
+    }, 
+    {
+        "pk": 207, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Swaziland"
+        }
+    }, 
+    {
+        "pk": 208, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Syri\u00eb"
+        }
+    }, 
+    {
+        "pk": 209, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tadzjikistan"
+        }
+    }, 
+    {
+        "pk": 210, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Taiwan"
+        }
+    }, 
+    {
+        "pk": 211, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tanzania"
+        }
+    }, 
+    {
+        "pk": 212, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Thailand"
+        }
+    }, 
+    {
+        "pk": 213, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Timor-Leste"
+        }
+    }, 
+    {
+        "pk": 214, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Togo"
+        }
+    }, 
+    {
+        "pk": 215, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tokelau-eilanden"
+        }
+    }, 
+    {
+        "pk": 216, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tonga"
+        }
+    }, 
+    {
+        "pk": 217, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Trinidad en Tobago"
+        }
+    }, 
+    {
+        "pk": 218, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tsjaad"
+        }
+    }, 
+    {
+        "pk": 219, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tsjechi\u00eb"
+        }
+    }, 
+    {
+        "pk": 220, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tunesi\u00eb"
+        }
+    }, 
+    {
+        "pk": 221, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Turkije"
+        }
+    }, 
+    {
+        "pk": 222, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Turkmenistan"
+        }
+    }, 
+    {
+        "pk": 223, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Turks- en Caicoseilanden"
+        }
+    }, 
+    {
+        "pk": 224, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Tuvalu"
+        }
+    }, 
+    {
+        "pk": 225, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Uganda"
+        }
+    }, 
+    {
+        "pk": 226, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Uruguay"
+        }
+    }, 
+    {
+        "pk": 227, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Vanuatu"
+        }
+    }, 
+    {
+        "pk": 228, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Vaticaanstad"
+        }
+    }, 
+    {
+        "pk": 229, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Venezuela"
+        }
+    }, 
+    {
+        "pk": 232, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Verenigd Koninkrijk"
+        }
+    }, 
+    {
+        "pk": 230, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Verenigde Arabische Emiraten"
+        }
+    }, 
+    {
+        "pk": 231, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Verenigde Staten van Amerika"
+        }
+    }, 
+    {
+        "pk": 233, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Vietnam"
+        }
+    }, 
+    {
+        "pk": 234, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Wallis en Futuna"
+        }
+    }, 
+    {
+        "pk": 235, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Wit-Rusland"
+        }
+    }, 
+    {
+        "pk": 236, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Zambia"
+        }
+    }, 
+    {
+        "pk": 237, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Zimbabwe"
+        }
+    }, 
+    {
+        "pk": 238, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Zuid-Afrika"
+        }
+    }, 
+    {
+        "pk": 239, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Zuid-Korea"
+        }
+    }, 
+    {
+        "pk": 240, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Zweden"
+        }
+    }, 
+    {
+        "pk": 241, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "Zwitserland"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.land", 
+        "fields": {
+            "txtlandnaam": "\u00c5land"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.lidmaatschapstatus", 
+        "fields": {
+            "txtlidmaatschapstatus": "Actief"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.lidmaatschapstatus", 
+        "fields": {
+            "txtlidmaatschapstatus": "Vertrokken"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.lidmaatschapstatus", 
+        "fields": {
+            "txtlidmaatschapstatus": "Onttrokken"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.lidmaatschapstatus", 
+        "fields": {
+            "txtlidmaatschapstatus": "Overleden"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "KB.lidmaatschapvorm", 
+        "fields": {
+            "boolvoorquotum": true, 
+            "txtlidmaatschapvorm": "Dooplid", 
+            "txtattestatie": "Doopattestatie", 
+            "txtlidmaatschapvormkort": "D"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "KB.lidmaatschapvorm", 
+        "fields": {
+            "boolvoorquotum": true, 
+            "txtlidmaatschapvorm": "Belijdend lid", 
+            "txtattestatie": "Belijdenisattestatie", 
+            "txtlidmaatschapvormkort": "B"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "KB.lidmaatschapvorm", 
+        "fields": {
+            "boolvoorquotum": false, 
+            "txtlidmaatschapvorm": "Gastlid (doop)", 
+            "txtattestatie": "Doopattestatie als gastlid", 
+            "txtlidmaatschapvormkort": "D(g)"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "KB.lidmaatschapvorm", 
+        "fields": {
+            "boolvoorquotum": false, 
+            "txtlidmaatschapvorm": "Gastlid (belijdend)", 
+            "txtattestatie": "Belijdenisattestatie als gastlid", 
+            "txtlidmaatschapvormkort": "B(g)"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "KB.lidmaatschapvorm", 
+        "fields": {
+            "boolvoorquotum": false, 
+            "txtlidmaatschapvorm": "Catechumeen", 
+            "txtattestatie": "", 
+            "txtlidmaatschapvormkort": "C"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "KB.lidmaatschapvorm", 
+        "fields": {
+            "boolvoorquotum": false, 
+            "txtlidmaatschapvorm": "Vriend", 
+            "txtattestatie": "", 
+            "txtlidmaatschapvormkort": "V"
+        }
+    }
+]    
