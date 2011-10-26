@@ -228,14 +228,14 @@ def exportMembersToWebsite(request):
     
     try:
         exportGezinnen()
-    except Exception as (errno, strerror):
-        result_message = strerror
+    except Exception as error:
+        result_message = error
         result_success = False
          
     try:
         exportLeden()
-    except Exception as (errno, strerror):
-        result_message = strerror
+    except Exception as error:
+        result_message = error
         result_success = False
      
     if (result_success):

@@ -11,7 +11,7 @@ This template is a generic HTML5 template.
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         {% block title %}
-		<title>NWonline - Kerkelijk Bureau</title> 
+		<title>Kerkelijk Bureau - DEMO</title> 
 		{% endblock %}
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
@@ -32,8 +32,12 @@ This template is a generic HTML5 template.
     	{% block header %}
         <header>
 		<div id="top">
-			<span>NWonline - Kerkelijk Bureau</span>
+			<span>Kerkelijk Bureau - DEMO</span>
 			<span id="version">v1.0</span>
+			<span id="loading">
+			{% block ajax-loader-image %}
+			<img src="/media/img/ajax-loader.gif" border="0" height="12px"/>
+    		{% endblock %}</span>
 			{% if user.is_active %}
 			<span id="user">Welkom, {% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}.
 			{% if user.is_staff %}<a href="/admin" target="_new">onderhoud</a> |{% endif %}
@@ -45,12 +49,7 @@ This template is a generic HTML5 template.
 		</header>
 		{% endblock %}
 		<div id="main">
-		<div id="loading">
-		{% block ajax-loader-image %}
-		<img src="/media/img/ajax-loader.gif" border="0"/>
-    	{% endblock %}
-    	</div>
-
+		
 		<script type="text/javascript">
 		
 		$(document).ready(function(){

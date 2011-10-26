@@ -10,10 +10,13 @@ Login page
 
 <section>
 	<div id="login" class="box">
+	<span style="font-size: larger; color: #555">Deze demo-omgeving bevat gegevens van fictieve personen om een indruk 
+	te geven van de functionaliteit. De database wordt elke nacht gereset. U kunt inloggen met <strong>demo/demo</strong>.
+	</span> 
 	<form name="login" action="" method="post">
 	{% csrf_token %}
 	<div class="message">{{ message }}</div>
-	<label for="username">Gebruikersnaam:</label><input id="username" type="text" name="username"/><br/>
+	<label for="username">Gebruikersnaam:</label><input id="username" type="text" name="username"/><br/ class="clear">
 	<label for="password">Wachtwoord:</label><input id="password" type="password" name="password"/><br/ class="clear">
 	<div style="margin-left: 10.5em; margin-top: 1em"><input type="submit" value="OK"/></div>
 	</form>

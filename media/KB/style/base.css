@@ -257,9 +257,6 @@ span#user {
 
 #loading {
 	display: none;
-	position: absolute;
-	left: 15.5em;
-	top: 0.5em;
 }
 
 #version {
