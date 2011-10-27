@@ -10,9 +10,6 @@ from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
 admin.autodiscover()
 
-import locale
-locale.setlocale(locale.LC_ALL, "nl_NL.UTF-8")
-
 urlpatterns = patterns('',
     # Example:
     # (r'^Ledenadministratie/', include('NWonline.foo.urls')),
