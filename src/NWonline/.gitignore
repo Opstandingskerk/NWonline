@@ -1,3 +1,4 @@
 /settings.py
 settings.py
-settings-test.py
+/settings-prod.py
+/settings-test.py
