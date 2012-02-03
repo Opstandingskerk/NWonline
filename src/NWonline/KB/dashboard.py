@@ -313,8 +313,9 @@ def exportLeden():
         geloofhetLid.txtRoepnaam = lid.txtroepnaam 
         geloofhetLid.ysnRoepnaam = lid.boolaansprekenmetroepnaam 
         geloofhetLid.dtmGeboortedatum = lid.dtmgeboortedatum 
-        geloofhetLid.txtGeboorteplaats = lid.txtgeboorteplaats 
-        geloofhetLid.txtGeslacht = lid.idgeslacht.txtgeslacht 
+        geloofhetLid.txtGeboorteplaats = lid.txtgeboorteplaats
+        if (lid.idgeslacht):
+            geloofhetLid.txtGeslacht = lid.idgeslacht.txtgeslacht 
         geloofhetLid.idStatus = lid.idlidmaatschapstatus.pk if lid.idlidmaatschapstatus else None 
         geloofhetLid.dtmDoop = lid.dtmdatumdoop 
         geloofhetLid.idDoopgemeente = lid.iddoopgemeente.pk if lid.iddoopgemeente else None  
