@@ -273,6 +273,8 @@ def exportGezinnen():
         geloofhetGezin.txtTelefoonnummer = gezin.txttelefoon
         geloofhetGezin.txtStraatnaam = gezin.txtstraatnaam
         geloofhetGezin.txtHuisnummer = str(gezin.inthuisnummer)
+        if (gezin.txthuisnummertoevoeging):
+            geloofhetGezin.txtHuisnummer += " " + gezin.txthuisnummertoevoeging
         geloofhetGezin.txtPostcode = gezin.txtpostcode
         geloofhetGezin.txtPlaats = gezin.txtplaats
         geloofhetGezin.save(using=database)
