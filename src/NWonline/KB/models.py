@@ -216,6 +216,7 @@ class Persoon(models.Model):
     idvertrokkennaargemeente = models.ForeignKey(Gemeente, verbose_name="Vertrokken naar", null=True, db_column="idVertrokkenNaarGemeente", blank=True, related_name="Vertrokken") # Field name made lowercase.
     txttelefoonnummer = models.CharField("Telefoon", max_length=75, null=True, db_column="txtTelefoonNummer", blank=True) # Field name made lowercase.
     txtemailadres = models.CharField("E-mailadres", max_length=150, null=True, db_column="txtEmailAdres", blank=True) # Field name made lowercase.
+    boolnieuwsbriefontvangen = models.BooleanField("Nieuwsbrief ontvangen", default=True)
     dtmdatumhuwelijksbevestiging = models.DateField("Datum huwelijksbevestiging", null=True, db_column="dtmDatumHuwelijksbevestiging", blank=True) # Field name made lowercase.
     txtopmerking = models.TextField("Opmerkingen", max_length=765, null=True, db_column="txtOpmerking", blank=True) # Field name made lowercase.
     dtmoverlijdensdatum = models.DateField("Datum overlijden", null=True, db_column="dtmOverlijdensdatum", blank=True) # Field name made lowercase.

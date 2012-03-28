@@ -207,7 +207,7 @@ def handleExportBirthdays(request):
     
 @login_required
 def handleExportEmail(request):
-    members = Persoon.objects.filter(idlidmaatschapstatus=LidmaatschapStatus.ACTIEF)
+    members = Persoon.objects.filter(idlidmaatschapstatus=LidmaatschapStatus.ACTIEF, boolnieuwsbriefontvangen=True)
     members = members.order_by("idgezin__txtgezinsnaam")
     
     response = HttpResponse() 
@@ -217,7 +217,7 @@ def handleExportEmail(request):
     for persoon in members:
         if (persoon.txtemailadres):
             response.write(persoon.txtemailadres.lower())
-            response.write("\r\n")
+            response.write(";")
 
     return response
 

@@ -51,6 +51,8 @@ class PersoonAdmin(admin.ModelAdmin):
                        'boolaansprekenmetroepnaam'),
                        ('dtmgeboortedatum',
                        'txtgeboorteplaats'),
+                       ('txtemailadres',
+                        'boolnieuwsbriefontvangen'),
                        'txtopmerking',
                        )
         }),
